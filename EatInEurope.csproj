@@ -61,6 +61,10 @@
     </Compile>
     <Compile Include="Views\Manager.xaml.cs">
       <DependentUpon>Manager.xaml</DependentUpon>
+    <Compile Include="DataBaseModel.cs" />
+    <Compile Include="ViewModelSearch.cs" />
+    <Compile Include="views\SearchView.xaml.cs">
+      <DependentUpon>SearchView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -71,6 +75,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DBConnect.cs" />
+    <Compile Include="IModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -80,6 +85,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Manager.xaml">
+    <Page Include="views\SearchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -121,6 +127,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Views\white_logo.png" />
+    <Content Include="content\files\cities.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -5,9 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EatInEurope"
         mc:Ignorable="d"
+        xmlns:views="clr-namespace:EatInEurope.views"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Grid.Background>
+
+      <Grid.Background>
             <ImageBrush x:Name="background" ImageSource="Mix Of Flavored Spices Powder On Table.jpg" />
         </Grid.Background>
         <Grid.ColumnDefinitions>
@@ -32,5 +34,7 @@
         <Button x:Name="Client" Content="client changh me" Click="Client_Click" Margin="0.2,0" Grid.Row="2" Grid.Column="3" RenderTransformOrigin="0.5,0.5"/>
         <Button x:Name="Manager" Content="Manager change me" Click="Manager_Click" Margin="0.2,0" Grid.Row="2" Grid.Column="1" RenderTransformOrigin="0.5,0.5"/>
         <Button x:Name="Exit" Content="Exit"  Click="Exit_Click" FontSize="25"  Margin="0.2,0" Grid.Row="4" Grid.Column="4" RenderTransformOrigin="0.5,0.5" />
+     
     </Grid>
+    
 </Window>
