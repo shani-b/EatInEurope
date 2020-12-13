@@ -66,6 +66,9 @@
     <Compile Include="views\SearchView.xaml.cs">
       <DependentUpon>SearchView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\RestaurantOwnerWindow.xaml.cs">
+      <DependentUpon>RestaurantOwnerWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -86,6 +89,10 @@
     </Page>
     <Page Include="Views\Manager.xaml">
     <Page Include="views\SearchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RestaurantOwnerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -130,6 +137,9 @@
     <Content Include="content\files\cities.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\rest.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

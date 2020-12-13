@@ -28,7 +28,7 @@
         </Grid.RowDefinitions>
 
         <!-- Title -->
-        <Label Content="Eat In Europe" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3"  FontSize="54" FontWeight="Bold" Foreground="#FFF9D437" Margin="59.8,0,69.4,5" FontFamily="Maiandra GD" />
+        <Label Content="Eat In Europe" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3"  FontSize="54" FontWeight="Bold" Foreground="#FFF9D437" Margin="59.8,3,69.4,2" FontFamily="Maiandra GD" />
 
         <!-- Buttons -->
         <Button x:Name="Client" Content="client changh me" Click="Client_Click" Margin="0.2,0" Grid.Row="2" Grid.Column="3" RenderTransformOrigin="0.5,0.5"/>

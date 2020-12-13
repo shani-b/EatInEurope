@@ -28,14 +28,14 @@
         </Grid.RowDefinitions>
         <!-- Logo -->
         <Image x:Name="logo" Source="white_logo.png" Grid.ColumnSpan="3" Margin="59.8,18,74.4,22" Grid.RowSpan="3" Grid.Column="1"/>
-        
+
         <!-- Title -->
         <Label Content="Choose option:" Grid.Row="2" Grid.ColumnSpan="3"  FontSize="30" FontWeight="Bold" Foreground="White" Margin="120,9,127,56" FontFamily="Maiandra GD" Grid.RowSpan="2" />
-        
+
         <!-- Options -->
         <Button x:Name="loginOption" Content="Log in" FontSize="20" Click="Login_Option_Click" Margin="26.4,9,0,0" Grid.Row="2" Grid.Column="2" Background="LightGray"/>
-        <Button x:Name="signUpOption" Content="Sign up" FontSize="20" Click="Sign_up_Option_Click" Margin="0,9,0,0" Grid.Row="2" Grid.Column="3" Background="LightGray"/>
-        
+        <Button x:Name="signUpOption" Content="Sign up" FontSize="20" Click="Sign_up_Option_Click" Margin="0,9,33.4,0" Grid.Row="2" Grid.Column="3" Background="LightGray"/>
+
         <!-- Log in -->
         <Label x:Name="username" Content="Username:" FontSize="20" Margin="159,16,0.4,10" Grid.Row="3" Grid.ColumnSpan="2" Foreground="White"/>
         <TextBox x:Name="usernameValue" Padding="5" Margin="2.6,16,1.8,8" Text="" FontSize="20" Grid.Row="3" Grid.Column="2"/>
@@ -43,11 +43,46 @@
         <TextBox x:Name="passwordValue" Padding="5" Margin="2.6,16,1.8,8" Text="" FontSize="20" Grid.Row="4" Grid.Column="2"/>
 
         <Button x:Name="login" Content="Log in" FontSize="30" Click="Login_Click" Margin="0.8,5,25.6,5" Grid.Row="5" Grid.Column="1"/>
-        
+
         <!-- Sign up -->
         <Label x:Name="passwordConfirm" Content="Confirm Password:" FontSize="20" Margin="0.8,16,142,10" Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="1" Foreground="White"/>
         <TextBox x:Name="passwordConfirmValue" Padding="5" Margin="12.4,16,150.4,8" Text="" FontSize="35" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2"/>
         <Button x:Name="signUp" Content="Sign up" FontSize="30" Click="Sign_up_Click" Margin="17,7,3.4,7" Grid.Row="5" Grid.Column="3"/>
+
+        <!-- Go back-->
+        <!--<Button x:Name="goBack" Content="Go Back" FontSize="20" Click="Go_Back_Click" Margin="8,8,13.2,6" Grid.Row="6"/>-->
+
+
+        <Button Click="Go_Back_Click" Margin="12,7,17.2,5" RenderTransformOrigin="0.5,0.5" Grid.Row="6">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Width="100" Height="50" Stroke="LightGray" Fill="LightGray" VerticalAlignment="Top"/>
+                            <Polygon Points= "0,0 30,25, 0,50" Stroke="LightGray" Fill="LightGray" />
+                        </StackPanel>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Content="Go Back" Margin="27,10,44.8,9" RenderTransformOrigin="0.5,0.5" Width="49" Height="21">
+                            <ContentPresenter.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="-1"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </ContentPresenter.RenderTransform>
+                        </ContentPresenter>
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
 
     </Grid>
 </Window>
