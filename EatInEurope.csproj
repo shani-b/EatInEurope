@@ -56,6 +56,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Views\Client.xaml.cs">
+      <DependentUpon>Client.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Manager.xaml.cs">
+      <DependentUpon>Manager.xaml</DependentUpon>
     <Compile Include="DataBaseModel.cs" />
     <Compile Include="ViewModelSearch.cs" />
     <Compile Include="views\SearchView.xaml.cs">
@@ -75,6 +80,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Client.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Manager.xaml">
     <Page Include="views\SearchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -107,6 +117,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Mix Of Flavored Spices Powder On Table.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Toalha De Mesa.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\white_logo.png" />
     <Content Include="content\files\cities.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
