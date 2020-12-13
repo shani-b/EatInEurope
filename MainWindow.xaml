@@ -7,6 +7,30 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.Background>
+            <ImageBrush x:Name="background" ImageSource="Mix Of Flavored Spices Powder On Table.jpg" />
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title -->
+        <Label Content="Eat In Europe" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3"  FontSize="54" FontWeight="Bold" Foreground="#FFF9D437" Margin="59.8,0,69.4,5" FontFamily="Maiandra GD" />
+
+        <!-- Buttons -->
+        <Button x:Name="Client" Content="client changh me" Click="Client_Click" Margin="0.2,0" Grid.Row="2" Grid.Column="3" RenderTransformOrigin="0.5,0.5"/>
+        <Button x:Name="Manager" Content="Manager change me" Click="Manager_Click" Margin="0.2,0" Grid.Row="2" Grid.Column="1" RenderTransformOrigin="0.5,0.5"/>
+        <Button x:Name="Exit" Content="Exit"  Click="Exit_Click" FontSize="25"  Margin="0.2,0" Grid.Row="4" Grid.Column="4" RenderTransformOrigin="0.5,0.5" />
     </Grid>
 </Window>

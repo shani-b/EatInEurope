@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EatInEurope.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,25 @@ namespace EatInEurope
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Client_Click(object sender, RoutedEventArgs e)
+        {
+            Client c = new Client();
+            c.Show();
+            this.Close();
+        }
+
+        private void Manager_Click(object sender, RoutedEventArgs e)
+        {
+            Manager m = new Manager();
+            m.Show();
+            this.Close();
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
