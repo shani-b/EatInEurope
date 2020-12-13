@@ -15,8 +15,8 @@ namespace EatInEurope
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            DBConnect restaurants = new DBConnect();
-            Console.WriteLine(restaurants.OpenConnection());
+            //DBConnect restaurants = new DBConnect();
+            //Console.WriteLine(restaurants.OpenConnection());
         }
     }
 }
