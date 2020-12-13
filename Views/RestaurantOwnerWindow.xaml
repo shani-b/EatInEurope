@@ -1,14 +1,14 @@
-﻿<Window x:Class="EatInEurope.MainWindow"
+﻿<Window x:Class="EatInEurope.Views.RestaurantOwnerWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:EatInEurope"
+        xmlns:local="clr-namespace:EatInEurope.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="RestaurantOwnerWindow" Height="450" Width="800">
     <Grid>
         <Grid.Background>
-            <ImageBrush x:Name="background" ImageSource="Mix Of Flavored Spices Powder On Table.jpg" />
+            <ImageBrush x:Name="background" ImageSource="rest.png" />
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -24,13 +24,12 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <!-- Logo -->
+        <Image x:Name="logo" Source="Logo.png" Grid.ColumnSpan="2" Margin="-44,7,127.6,48" Grid.RowSpan="2"/>
 
         <!-- Title -->
-        <Label Content="Eat In Europe" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3"  FontSize="54" FontWeight="Bold" Foreground="#FFF9D437" Margin="59.8,3,69.4,2" FontFamily="Maiandra GD" />
+        <Label Content="My Restaurants" Grid.Column="1" Grid.ColumnSpan="3"  FontSize="54" FontWeight="Bold" Foreground="Black" Margin="48.8,5,21.4,0" FontFamily="Maiandra GD" />
 
-        <!-- Buttons -->
-        <Button x:Name="Client" Content="client changh me" Click="Client_Click" Margin="0.2,0" Grid.Row="2" Grid.Column="3" RenderTransformOrigin="0.5,0.5"/>
-        <Button x:Name="Manager" Content="Manager change me" Click="Manager_Click" Margin="0.2,0" Grid.Row="2" Grid.Column="1" RenderTransformOrigin="0.5,0.5"/>
-        <Button x:Name="Exit" Content="Exit"  Click="Exit_Click" FontSize="25"  Margin="0.2,0" Grid.Row="4" Grid.Column="4" RenderTransformOrigin="0.5,0.5" />
+        <Label x:Name="usernameValue" Padding="5" Margin="3,0,2.2,24" Content="" FontSize="20" Grid.Row="1" Background="{x:Null}" FontWeight="Bold" BorderBrush="{x:Null}" />
     </Grid>
 </Window>

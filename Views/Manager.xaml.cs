@@ -48,14 +48,23 @@ namespace EatInEurope.Views
                 passwordValue.BorderBrush = Brushes.Red;
             }
 
+            RestaurantOwnerWindow rest = new RestaurantOwnerWindow(userName);
+            rest.Show();
+            this.Close();
         }
+
         private void Sign_up_Click(object sender, RoutedEventArgs e)
         {
-            
-            /*String userName = Username.Text;
-            String password = Password.Text;*/
+
+            String userName = usernameValue.Text;
+            String password = passwordValue.Text;
+            String passwordConfirm = passwordConfirmValue.Text;
+            RestaurantOwnerWindow rest = new RestaurantOwnerWindow(userName);
+            rest.Show();
+            this.Close();
 
         }
+
         private void Login_Option_Click(object sender, RoutedEventArgs e)
         {
             btn_login = sender as Button;
@@ -82,6 +91,7 @@ namespace EatInEurope.Views
 
 
         }
+
         private void Sign_up_Option_Click(object sender, RoutedEventArgs e)
         {
             btn_singUp = sender as Button;
@@ -103,6 +113,13 @@ namespace EatInEurope.Views
                 btn_login.Background = Brushes.LightGray;
                 btn_singUp.Background = Brushes.Orange;
             }
+        }
+
+        private void Go_Back_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
         }
     }
 }
