@@ -61,10 +61,6 @@
     </Compile>
     <Compile Include="Views\Manager.xaml.cs">
       <DependentUpon>Manager.xaml</DependentUpon>
-    <Compile Include="DataBaseModel.cs" />
-    <Compile Include="ViewModelSearch.cs" />
-    <Compile Include="views\SearchView.xaml.cs">
-      <DependentUpon>SearchView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RestaurantOwnerWindow.xaml.cs">
       <DependentUpon>RestaurantOwnerWindow.xaml</DependentUpon>
@@ -77,6 +73,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DataBaseModel.cs" />
+    <Compile Include="ViewModelSearch.cs" />
+    <Compile Include="views\SearchView.xaml.cs">
+      <DependentUpon>SearchView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DBConnect.cs" />
     <Compile Include="IModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -88,11 +89,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Manager.xaml">
-    <Page Include="views\SearchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RestaurantOwnerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="views\SearchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -134,9 +138,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Views\white_logo.png" />
-    <Content Include="content\files\cities.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Views\rest.png" />
