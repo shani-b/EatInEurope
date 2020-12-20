@@ -184,6 +184,9 @@ namespace EatInEurope.Views
                     ColorBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFC000")),
                 },
 
+
+
+
                 new Category
                 {
                     Title = "Category#04",

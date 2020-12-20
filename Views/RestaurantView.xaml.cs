@@ -20,6 +20,8 @@ namespace EatInEurope.Views
     /// </summary>
     public partial class RestaurantView : UserControl
     {
+
+
         public List<string> temp;
         public RestaurantView()
         {

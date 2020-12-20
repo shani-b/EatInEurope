@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="RestaurantOwnerWindow" Height="450" Width="800">
     <Grid>
+        
+        
         <Grid.Background>
             <ImageBrush x:Name="background" ImageSource="rest.png" />
         </Grid.Background>

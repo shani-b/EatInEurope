@@ -30,6 +30,8 @@
         <Label x:Name="CountryName" Padding="5" Margin="0,1.4,0,61.6" Content="Country name" FontSize="20" Grid.Row="4" Grid.RowSpan="2" Grid.Column="2" Background="{x:Null}"/>
         <Label x:Name="cityName" Padding="5" Margin="0,1.4,0,61.6" Content="City name," FontSize="20" Grid.Row="4" Grid.RowSpan="2" Background="{x:Null}" Grid.Column="1"/>
 
+        
+        
         <Polygon Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="15" Height="15" Stretch="Fill" Points="10,2 10,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7" Name="star1" Margin="15,38.4,130,10.6" Grid.Row="3" Grid.Column="2"/>
         <Polygon Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="15" Height="15" Stretch="Fill" Points="10,2 10,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7" Name="star2" Margin="38,38.4,107,10.6" Grid.Row="3" Grid.Column="2"/>
         <Polygon Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="15" Height="15" Stretch="Fill" Points="10,2 10,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7" Name="star3" Margin="64,38.4,81,10.6" Grid.Row="3" Grid.Column="2"/>

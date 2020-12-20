@@ -35,6 +35,8 @@ namespace EatInEurope.Views
             this.Close();
         }
 
+
+
         private void Search_Restaurant_Click(object sender, RoutedEventArgs e)
         {
             search.Visibility = Visibility.Visible;

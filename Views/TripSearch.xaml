@@ -13,6 +13,8 @@
         <Canvas x:Name="mainCanvas" 
                 Margin="20,0"/>
 
+        
+        
         <ScrollViewer Margin="20,0"
                       Padding="10"
                       VerticalAlignment="Center"

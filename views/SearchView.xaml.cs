@@ -24,6 +24,8 @@ namespace EatInEurope.views
     {
         StackPanel stackPanel;
 
+
+
         public SearchView()
         {
             IModel model = new DataBaseModel();

@@ -24,5 +24,6 @@ namespace EatInEurope.Views
         {
             InitializeComponent();
         }
+
     }
 }

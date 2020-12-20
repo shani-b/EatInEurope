@@ -24,6 +24,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        
+        
+        
         <Label x:Name="restName" Padding="5" Margin="0,54,0,9.6" Content="Rest name" FontSize="40" Grid.ColumnSpan="3" Grid.RowSpan="3" Background="{x:Null}" Grid.Column="1"/>
         <Label x:Name="styleName" Padding="5" Margin="0,3.4,0,59.6" Content="Style name |" FontSize="20" Grid.Row="4" Grid.RowSpan="2" Background="{x:Null}" Grid.Column="1"/>
         <Label x:Name="passwordValue" Padding="5" Margin="0,2.4,0,60.6" Content="stars " FontSize="20" Grid.Row="4" Grid.RowSpan="2" Grid.Column="2" Background="{x:Null}"/>
