@@ -7,7 +7,8 @@ namespace EatInEurope
 {
     class ViewModelSearch: INotifyPropertyChanged
     {
-        public List<string> Cities { get; set; }
+        public List<string> Countries { get; set; }
+/*        public List<string> Cities { get; set; }*/
         private IModel model;
 
 
@@ -20,12 +21,12 @@ namespace EatInEurope
                 NotifyPropertyChanged("VM_" + e.PropertyName);
             };
 
-            Cities = new List<string> {
+            /*Cities = new List<string> {
                 "Amsterdam", "Athens","Barcelona", "Berlin","Bratislava","Brussels","Budapest",
                 "Copenhagen","Dublin","Edinburgh","Geneva","Hamburg","Helsinki","Krakow","Lisbon","Ljubljana",
                 "London","Luxembourg","Lyon","Madrid","Milan","Munich","Oporto","Oslo","Paris","Prague","Rome",
                 "Stockholm","Vienna","Warsaw","Zurich"
-            };
+            };*/
 
     }
         public event PropertyChangedEventHandler PropertyChanged;
@@ -54,7 +55,7 @@ namespace EatInEurope
             }
         }
 
-        public List<string> TypesFilter
+        public List<string> VM_TypesFilter
         {
             set
             {
@@ -62,7 +63,7 @@ namespace EatInEurope
             }
         }
 
-        public double[] RateFilter
+        public double[] VM_RateFilter
         {
             set
             {
@@ -70,11 +71,35 @@ namespace EatInEurope
             }
         }
 
-        public int[] PriceFilter
+        public int[] VM_PriceFilter
         {
             set
             {
                 model.PriceFilter = value;
+            }
+        }
+
+        public List<string> VM_CountriesOptions
+        {
+            get
+            {
+                return model.CountriesOptions;
+            }
+        }
+
+        public List<string> VM_CitiesOptions
+        {
+            get
+            {
+                return model.CitiesOptions;
+            }
+        }
+
+        public List<string> VM_TypesOptions
+        {
+            get
+            {
+                return model.TypesOptions;
             }
         }
     }

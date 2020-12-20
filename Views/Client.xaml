@@ -42,6 +42,5 @@
         <Viewbox Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="3" Margin="4,13,-7.4,76" Grid.Row="2">
             <Views1:RestaurantView x:Name="rest2" />
         </Viewbox>
-
     </Grid>
 </Window>

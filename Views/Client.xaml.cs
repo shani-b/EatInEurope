@@ -20,8 +20,50 @@ namespace EatInEurope.Views
     /// </summary>
     public partial class Client : Window
     {
+        StackPanel stackPanel;
+        List<string> countriesFilters;
+        public List<string> CountriesFilters
+        {
+            get { return (List<string>)GetValue(CountriesFiltersProperty); }
+            set
+            {
+                SetValue(CountriesFiltersProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty CountriesFiltersProperty =
+            DependencyProperty.Register("CountriesFilters", typeof(List<string>), typeof(Client));
+
+        List<string> citiesFilters;
+        public List<string> CitiesFilters
+        {
+            get { return (List<string>)GetValue(CitiesFiltersProperty); }
+            set
+            {
+                SetValue(CitiesFiltersProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty CitiesFiltersProperty =
+            DependencyProperty.Register("CitiesFilters", typeof(List<string>), typeof(Client));
+
+        List<string> typesFilters;
+        public List<string> TypesFilters
+        {
+            get { return (List<string>)GetValue(TypesFiltersProperty); }
+            set
+            {
+                SetValue(TypesFiltersProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty TypesFiltersProperty =
+            DependencyProperty.Register("TypesFilters", typeof(List<string>), typeof(Client));
+
         public Client()
         {
+            IModel model = (DataBaseModel)Application.Current.Properties["model"];
+            DataContext = new ViewModelSearch(model);
             InitializeComponent();
             search.Visibility = Visibility.Collapsed;
             rest1.Visibility = Visibility.Collapsed;

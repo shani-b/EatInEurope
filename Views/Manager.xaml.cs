@@ -24,6 +24,9 @@ namespace EatInEurope.Views
         public Manager()
         {
             InitializeComponent();
+            IModel model = (DataBaseModel)Application.Current.Properties["model"];
+            DataContext = new ViewModelManager(model);
+
             password.Visibility = Visibility.Collapsed;
             passwordValue.Visibility = Visibility.Collapsed;
             username.Visibility = Visibility.Collapsed;
@@ -37,6 +40,9 @@ namespace EatInEurope.Views
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
+            usernameValue.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            passwordValue.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+
             String userName = usernameValue.Text;
             String password = passwordValue.Text;
             // TODO: Check if username correct & password
@@ -59,10 +65,19 @@ namespace EatInEurope.Views
             String userName = usernameValue.Text;
             String password = passwordValue.Text;
             String passwordConfirm = passwordConfirmValue.Text;
+
+            if (!password.Equals(passwordConfirm))
+            {
+                // try again
+            } else
+            {
+                usernameValue.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                passwordConfirmValue.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            }
+
             RestaurantOwnerWindow rest = new RestaurantOwnerWindow(userName);
             rest.Show();
             this.Close();
-
         }
 
         private void Login_Option_Click(object sender, RoutedEventArgs e)
