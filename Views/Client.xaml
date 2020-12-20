@@ -7,6 +7,35 @@
         mc:Ignorable="d"
         Title="Client" Height="450" Width="800">
     <Grid Background="#FF1AA84A">
-        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="0" Margin="5">
+            <TextBlock FontSize="20" FontStyle="Italic">choose filters</TextBlock>
+            <TextBlock>countries</TextBlock>
+            <ComboBox ItemsSource="{Binding VM_CountriesOptions}" SelectionChanged="countriesChanged"/>
+            <TextBlock>cities</TextBlock>
+            <ComboBox ItemsSource="{Binding VM_CitiesOptions}" SelectionChanged="citiesChanged"/>
+            <TextBlock>styles</TextBlock>
+            <ComboBox ItemsSource="{Binding VM_TypesOptions}" SelectionChanged="typesChanged"/>
+            <TextBlock>from price</TextBlock>
+            <TextBox />
+            <TextBlock>to price</TextBlock>
+            <TextBox />
+            <TextBlock>from rate</TextBlock>
+            <TextBox />
+            <TextBlock>to rate</TextBlock>
+            <TextBox />
+            <Button Content="search" HorizontalAlignment="Left" Width="103" Height="39" Click="searchClick"/>
+        </StackPanel>
+        <StackPanel x:Name="choises" Grid.Row="0" Grid.Column="1" Margin="5">
+            <TextBlock FontSize="20" FontStyle="Italic">your choises:</TextBlock>
+        </StackPanel>
     </Grid>
 </Window>

@@ -33,7 +33,7 @@ namespace EatInEurope
         //Initialize values
         private void Initialize()
         {
-            server = "localhost";
+            server = "192.168.1.105";
             port = "3306";
             database = "rest";
             uid = "root";
@@ -94,10 +94,11 @@ namespace EatInEurope
         //Insert statement
         public bool Insert(string values, string table)
         {
-            string query = "INSERT INTO "+ table + " VALUES " + values;
+            string query = "INSERT INTO " + table + " VALUES " + values;
 
             //open connection
-            if (this.OpenConnection() == true) {
+            if (this.OpenConnection() == true)
+            {
                 //create command and assign the query and connection from the constructor
                 MySqlCommand cmd = new MySqlCommand(query, connection);
 
@@ -107,7 +108,8 @@ namespace EatInEurope
                 //close connection
                 this.CloseConnection();
                 return true;
-            } else
+            }
+            else
             {
                 return false;
             }
@@ -117,7 +119,7 @@ namespace EatInEurope
         public List<string>[] Select(string table, string whereCond, string orderByValue, string order)
         {
             //retaurants:
-            string query = "SELECT * FROM " + table ;
+            string query = "SELECT * FROM " + table;
 
             if (whereCond != null)
             {
@@ -212,7 +214,8 @@ namespace EatInEurope
         public bool Update(string table, string set, string whereCond)
         {
             string query = "UPDATE " + table + " SET " + set;
-            if (whereCond != null) {
+            if (whereCond != null)
+            {
                 query += " WHERE " + whereCond;
             }
             //Open connection
@@ -238,7 +241,8 @@ namespace EatInEurope
                 {
                     return false;
                 }
-            } else
+            }
+            else
             {
                 return false;
             }
@@ -248,7 +252,7 @@ namespace EatInEurope
         //Delete statement
         public bool Delete(string table, string whereCond)
         {
-            string query = "DELETE FROM "+ table + " WHERE " + whereCond;
+            string query = "DELETE FROM " + table + " WHERE " + whereCond;
 
             if (this.OpenConnection() == true)
             {
@@ -263,15 +267,16 @@ namespace EatInEurope
                 {
                     return false;
                 }
-            } else
+            }
+            else
             {
                 return false;
             }
         }
 
-        
-       
-        
+
+
+
 
 
         //Count statement

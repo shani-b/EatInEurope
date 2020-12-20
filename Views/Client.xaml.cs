@@ -19,9 +19,105 @@ namespace EatInEurope.Views
     /// </summary>
     public partial class Client : Window
     {
+        StackPanel stackPanel;
+        List<string> countriesFilters;
+        public List<string> CountriesFilters
+        {
+            get { return (List<string>)GetValue(CountriesFiltersProperty); }
+            set
+            {
+                SetValue(CountriesFiltersProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty CountriesFiltersProperty =
+            DependencyProperty.Register("CountriesFilters", typeof(List<string>), typeof(Client));
+
+        List<string> citiesFilters;
+        public List<string> CitiesFilters
+        {
+            get { return (List<string>)GetValue(CitiesFiltersProperty); }
+            set
+            {
+                SetValue(CitiesFiltersProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty CitiesFiltersProperty =
+            DependencyProperty.Register("CitiesFilters", typeof(List<string>), typeof(Client));
+
+        List<string> typesFilters;
+        public List<string> TypesFilters
+        {
+            get { return (List<string>)GetValue(TypesFiltersProperty); }
+            set
+            {
+                SetValue(TypesFiltersProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty TypesFiltersProperty =
+            DependencyProperty.Register("TypesFilters", typeof(List<string>), typeof(Client));
+
         public Client()
         {
+            IModel model = (DataBaseModel)Application.Current.Properties["model"];
+            DataContext = new ViewModelSearch(model);
             InitializeComponent();
+            stackPanel = (StackPanel)FindName("choises");
+            countriesFilters = new List<string>();
+            citiesFilters = new List<string>();
+            typesFilters = new List<string>();
+
+            var VMCountriesFilters = "VM_CountriesFilter";
+            var bindingCountries = new Binding(VMCountriesFilters) { Mode = BindingMode.TwoWay };
+            this.SetBinding(CountriesFiltersProperty, bindingCountries);
+
+            var VMCitiesFilters = "VM_CitiesFilter";
+            var bindingCities = new Binding(VMCitiesFilters) { Mode = BindingMode.TwoWay };
+            this.SetBinding(CitiesFiltersProperty, bindingCities);
+
+            var VMTypesFilters = "VM_TypesFilter";
+            var bindingTypes = new Binding(VMTypesFilters) { Mode = BindingMode.TwoWay };
+            this.SetBinding(TypesFiltersProperty, bindingTypes);
+        }
+        public void GenerateControls(string newVal, List<string> list)
+        {
+            var exist = list.Find(val => val.Equals(newVal));
+            if (exist == null)
+            {
+                list.Add(newVal);
+                TextBlock filter = new TextBlock();
+                filter.Name = newVal;
+                filter.Text = newVal;
+                stackPanel.Children.Add(filter);
+                stackPanel.RegisterName(filter.Name, filter);
+            }
+        }
+
+        private void countriesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string country = (sender as ComboBox).SelectedItem as string;
+            GenerateControls(country, countriesFilters);
+        }
+
+        private void citiesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string city = (sender as ComboBox).SelectedItem as string;
+            GenerateControls(city, citiesFilters);
+        }
+
+        private void typesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string type = (sender as ComboBox).SelectedItem as string;
+            GenerateControls(type, typesFilters);
+        }
+
+        private void searchClick(object sender, RoutedEventArgs e)
+        {
+            CountriesFilters = countriesFilters;
+            CitiesFilters = citiesFilters;
+            TypesFilters = typesFilters;
         }
     }
 }

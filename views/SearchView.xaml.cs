@@ -22,21 +22,28 @@ namespace EatInEurope.views
     public partial class SearchView : UserControl
     {
         StackPanel stackPanel;
+        List<string> filters;
 
         public SearchView()
         {
-            IModel model = new DataBaseModel();
+            IModel model = (DataBaseModel)Application.Current.Properties["model"];
             DataContext = new ViewModelSearch(model);
             InitializeComponent();
             stackPanel = (StackPanel)FindName("choises");
+            filters = new List<string>();
         }
         public void GenerateControls(string newVal)
         {
-            TextBlock filter = new TextBlock();
-            filter.Name = newVal;
-            filter.Text = newVal;
-            stackPanel.Children.Add(filter);
-            stackPanel.RegisterName(filter.Name, filter);
+            var exist = filters.FirstOrDefault(val => val.Equals(newVal));
+            if (exist == null)
+            {
+                filters.Add(newVal);
+                TextBlock filter = new TextBlock();
+                filter.Name = newVal;
+                filter.Text = newVal;
+                stackPanel.Children.Add(filter);
+                stackPanel.RegisterName(filter.Name, filter);
+            }
         }
 
         private void countriesChanged(object sender, SelectionChangedEventArgs e)

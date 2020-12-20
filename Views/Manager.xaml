@@ -38,15 +38,15 @@
 
         <!-- Log in -->
         <Label x:Name="username" Content="Username:" FontSize="20" Margin="159,16,0.4,10" Grid.Row="3" Grid.ColumnSpan="2" Foreground="White"/>
-        <TextBox x:Name="usernameValue" Padding="5" Margin="2.6,16,1.8,8" Text="" FontSize="20" Grid.Row="3" Grid.Column="2"/>
+        <TextBox x:Name="usernameValue" Padding="5" Margin="2.6,16,1.8,8" FontSize="20" Grid.Row="3" Grid.Column="2" Text="{Binding VM_UserName, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
         <Label x:Name="password" Content="Password:" FontSize="20" Margin="159,16,0.4,10" Grid.Row="4" Grid.ColumnSpan="2" Foreground="White"/>
-        <TextBox x:Name="passwordValue" Padding="5" Margin="2.6,16,1.8,8" Text="" FontSize="20" Grid.Row="4" Grid.Column="2"/>
+        <TextBox x:Name="passwordValue" Padding="5" Margin="2.6,16,1.8,8" FontSize="20" Grid.Row="4" Grid.Column="2"  Text="{Binding VM_Password, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
 
         <Button x:Name="login" Content="Log in" FontSize="30" Click="Login_Click" Margin="0.8,5,25.6,5" Grid.Row="5" Grid.Column="1"/>
 
         <!-- Sign up -->
         <Label x:Name="passwordConfirm" Content="Confirm Password:" FontSize="20" Margin="0.8,16,142,10" Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="1" Foreground="White"/>
-        <TextBox x:Name="passwordConfirmValue" Padding="5" Margin="12.4,16,150.4,8" Text="" FontSize="35" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="passwordConfirmValue" Padding="5" Margin="12.4,16,150.4,8" FontSize="35" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding VM_NewPassword, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
         <Button x:Name="signUp" Content="Sign up" FontSize="30" Click="Sign_up_Click" Margin="17,7,3.4,7" Grid.Row="5" Grid.Column="3"/>
 
         <!-- Go back-->
