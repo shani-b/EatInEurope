@@ -4,29 +4,41 @@ using System.ComponentModel;
 using System.Configuration;
 using System.Text;
 using System.Threading;
+using System.Windows;
 
 namespace EatInEurope
 {
     class DataBaseModel : IModel
-
     {
-        private string ip;
-        private int port;
-        Queue<string> queCommand;
-        volatile Boolean stop;
+        DBConnect restaurants;
 
-/*        public SimulatorModel()
+        public DataBaseModel(DBConnect dbConnect)
         {
-            Message = "Welcome to Flight Simulator";
-            ip = ConfigurationManager.AppSettings["ip"];
-            port = Int32.Parse(ConfigurationManager.AppSettings["port"]);
-            queCommand = new Queue<string>();
-            this.telnetClient = telnetClient;
-            stop = false;
-            IsConnect = false;
-            connect(ip, port);
-            Coordinates = "32.002644, 34.888781";
-        }*/
+            restaurants = dbConnect;
+
+            CitiesOptions = new List<string> {
+                "Amsterdam", "Athens","Barcelona", "Berlin","Bratislava","Brussels","Budapest",
+                "Copenhagen","Dublin","Edinburgh","Geneva","Hamburg","Helsinki","Krakow","Lisbon","Ljubljana",
+                "London","Luxembourg","Lyon","Madrid","Milan","Munich","Oporto","Oslo","Paris","Prague","Rome",
+                "Stockholm","Vienna","Warsaw","Zurich"
+            };
+            CountriesOptions = new List<string> {
+                "Netherlands", "England","Swiss", "France","Germany"
+            };
+            TypesOptions = new List<string> {
+                "Chinese", "Indian","vegeterian", "vegan","Italian"
+            };
+
+            RestsResults = new List<List<string>>
+            {
+                new List<string> {"Martine of Martine's Table","Amsterdam", "French", "Dutch", "European"
+                    , "5", "$$ - $$$", "136", "Just like home", "A Warm Welcome to Wintry Amsterdam", "/Restaurant_Review-g188590-d11752080-Reviews-Martine_of_Martine_s_Table-Amsterdam_North_Holland_Province.html" },
+                new List<string> {"De Silveren Spiegel" ,"Amsterdam","Dutch", "European", "Vegetarian Friendly","Gluten Free Options",
+                    "4.5","$$$$", "812", "Great food and staff", "just perfect","/Restaurant_Review-g188590-d693419-Reviews-De_Silveren_Spiegel-Amsterdam_North_Holland_Province.html" },
+                 new List<string> {"La Rive" ,"Amsterdam","Mediterranean", "French", "International", "European", "Vegetarian Friendly", "Vegan Options",
+                    "4.5","$$$$", "567", "Satisfaction", "Delicious old school restaurant","/Restaurant_Review-g188590-d696959-Reviews-La_Rive-Amsterdam_North_Holland_Province.html"}
+            };
+        }
 
         // Message to user property.
         private string message;
@@ -50,6 +62,30 @@ namespace EatInEurope
                 username = value;
                 NotifyPropertyChanged("username");
             } 
+        }
+
+        private string password;
+        public string Password
+        {
+            get { return password; }
+            set
+            {
+                password = value;
+                NotifyPropertyChanged("password");
+                signIn(username, password);
+            }
+        }
+
+        private string newPassword;
+        public string NewPassword
+        {
+            get { return newPassword; }
+            set
+            {
+                newPassword = value;
+                NotifyPropertyChanged("newPassword");
+                register(username, newPassword);
+            }
         }
 
         private string[] top5Rests = new string[5];
@@ -90,6 +126,39 @@ namespace EatInEurope
             }
         }
 
+        private List<string> countriesOptions = new List<string>();
+        public List<string> CountriesOptions
+        {
+            get { return countriesOptions; }
+            set
+            {
+                countriesOptions = value;
+                NotifyPropertyChanged("countriesOptions");
+            }
+        }
+
+        private List<string> citiesOptions = new List<string>();
+        public List<string> CitiesOptions
+        {
+            get { return citiesOptions; }
+            set
+            {
+                citiesOptions = value;
+                NotifyPropertyChanged("citiesOptions");
+            }
+        }
+
+        private List<string> typesOptions = new List<string>();
+        public List<string> TypesOptions
+        {
+            get { return typesOptions; }
+            set
+            {
+                typesOptions = value;
+                NotifyPropertyChanged("typesOptions");
+            }
+        }
+
         private double[] ratesFilter = new double[2];
         public double[] RateFilter {
             get { return ratesFilter; }
@@ -110,8 +179,8 @@ namespace EatInEurope
             }
         }
 
-        private List<string> restsResults = new List<string>();
-        public List<string> RestsResult
+        private List<List<string>> restsResults = new List<List<string>>();
+        public List<List<string>> RestsResults
         {
             get { return restsResults; }
             set
@@ -123,31 +192,11 @@ namespace EatInEurope
 
         public void send(string message)
         {
-            // Push the messege to the queue.
-            queCommand.Enqueue(message);
+/*            // Push the messege to the queue.
+            queCommand.Enqueue(message);*/
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public void connect(string ip, int port)
-        {
-            /*try
-            {
-                // Stop is false for start loop.
-                stop = false;
-                telnetClient.connect(ip, port);
-                IsConnect = true;
-                Message = "Connect To Server";
-                start();
-            }
-            catch
-            {
-                // If the connection is failed- tellto the user.
-                IsConnect = false;
-                stop = true;
-                Message = "Cannot connect to server";
-            }*/
-        }
 
         public void start()
         {
@@ -161,51 +210,80 @@ namespace EatInEurope
             }
         }
 
-        public void disconnect()
+        public bool register(string username, string password)
         {
-            
-        }
-
-        public bool register(string username, string password1, string password2)
-        {
-            if (!password1.Equals(password2)) {
-                Message = "The passwords do not match, please try again";
-                return false;
-            }
-
-            // add query for adding new user
+            List<string> values = new List<string> { username, password };
+            // restaurants.Insert("('" + username + "','" + password +"')", "t_owners");
+            UserName = username;
             return true;
-
         }
 
         public bool signIn(string username, string password)
         {
-            throw new NotImplementedException();
+/*             List<string> result = restaurants.Check_existing(username, password, "t_owners");
+            if (result[0].Equals("0")) {
+                return false;
+            }
+
+            UserName = username;*/
+            return true;
         }
 
-        public void orderBy(string orderType, bool asc)
+        public List<List<string>> orderBy(string orderType, string order)
         {
-            throw new NotImplementedException();
+            //RestsResults = restaurants.Select("t_restaurants", null, orderType, order);
+            return restsResults;
         }
 
-        public string[] restDetails(string rest)
+        public List<string> restDetails(string rest)
         {
-            throw new NotImplementedException();
+            List<string> details = null;
+            // Select(string table, string whereCond, string orderByValue, string order)
+            if (restsResults.Count != 0)
+            {
+                details = restsResults.Find(x => x[1] == rest);
+            }
+            else
+            {
+                // details = restaurants.Select("t_restaurants", "Name=" + rest, null, null)[0];
+            }
+            return details;
         }
 
         public void addReview(int rate, string body)
         {
-            throw new NotImplementedException();
+            List<string> values = new List<string> { rate.ToString(), body };
+            // restaurants.Insert("('" + rate + "','" + body + "')", "t_reviews");
         }
 
         public void addRest(string name, string country, string city, List<string> types)
         {
-            throw new NotImplementedException();
+            List<string> values = new List<string> { name, country, city};
+            foreach (string type in types)
+            {
+                values.Add(type);
+            }
+
+            string valuesString = "('" + name + "','" + country + "','" + city;
+            foreach (string type in types)
+            {
+                valuesString += "','" + type;
+            }
+            // restaurants.Insert(valuesString + "')", "t_reviews");
         }
 
         public Dictionary<string, double> graphCountriesByType(string type)
         {
-            throw new NotImplementedException();
+            // quary count all rests with this type = total
+            // count for each country the rests with this type (group by) = each
+            // divide = total/each
+
+            Dictionary<string, double> countriesByType = new Dictionary<string, double>();
+            countriesByType.Add("france", 0.05);
+            countriesByType.Add("germany", 0.22);
+            countriesByType.Add("Netherlands", 0.27);
+            countriesByType.Add("England", 0.46);
+            return countriesByType;
         }
     }
 }

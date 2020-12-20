@@ -19,10 +19,28 @@ namespace EatInEurope.Views
     /// </summary>
     public partial class RestaurantOwnerWindow : Window
     {
+        public List<List<string>> MyRestaurants
+        {
+            get { return (List<List<string>>)GetValue(MyRestaurantsProperty); }
+            set
+            {
+                SetValue(MyRestaurantsProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty MyRestaurantsProperty =
+            DependencyProperty.Register("MyRestaurants", typeof(List<List<string>>), typeof(RestaurantOwnerWindow));
         public RestaurantOwnerWindow(string username)
         {
             InitializeComponent();
             usernameValue.Content = "Hello " + username;
+
+            IModel model = (DataBaseModel)Application.Current.Properties["model"];
+            DataContext = new ViewModelRestaurantOwner(model);
+
+            var VMMyRests = "VM_RestsResults";
+            var bindingMyRests = new Binding(VMMyRests) { Mode = BindingMode.TwoWay };
+            this.SetBinding(MyRestaurantsProperty, bindingMyRests);
         }
     }
 }
