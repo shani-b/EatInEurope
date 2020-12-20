@@ -52,7 +52,6 @@
         <!-- Go back-->
         <!--<Button x:Name="goBack" Content="Go Back" FontSize="20" Click="Go_Back_Click" Margin="8,8,13.2,6" Grid.Row="6"/>-->
 
-
         <Button Click="Go_Back_Click" Margin="12,7,17.2,5" RenderTransformOrigin="0.5,0.5" Grid.Row="6">
             <Button.RenderTransform>
                 <TransformGroup>
@@ -84,5 +83,7 @@
             </Button.Template>
         </Button>
 
+        
+        
     </Grid>
 </Window>
