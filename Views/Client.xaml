@@ -3,10 +3,44 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:EatInEurope.Views"
+        xmlns:Views="clr-namespace:EatInEurope.views" xmlns:Views1="clr-namespace:EatInEurope.Views"
         mc:Ignorable="d"
         Title="Client" Height="450" Width="800">
-    <Grid Background="#FF1AA84A">
-        
+    <Grid Background="#FF7FE0AE">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!-- Logo -->
+        <Image x:Name="logo" Source="white_logo.png" Margin="0.2,0,0,10" Grid.Column="2" Grid.RowSpan="2"/>
+
+        <!-- Options -->
+        <Button x:Name="searchTrip" Content="Searching for a&#xD;&#xA; trip destination&#xD;&#xA; by foods' style" Click="Search_Trip_Click" FontSize="20" Margin="0,0,0.4,0" Grid.Row="2" Grid.Column="1" Background="LightGray" />
+        <Button x:Name="searchRest" Content="Find a restaurant" Click="Search_Restaurant_Click" FontSize="20" Margin="0,0,0.4,0" Grid.Row="2" Grid.Column="3" Background="LightGray" />
+        <!--Searching for a trip destination by restaurants foods' style-->
+
+
+
+
+        <Views:SearchView x:Name="search" Margin="0,5,158,22" Grid.ColumnSpan="3" Grid.RowSpan="5"/>
+        <Viewbox Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="5,2,-8.4,3">
+            <Views1:RestaurantView x:Name="rest1" />
+        </Viewbox>
+
+
+        <Viewbox Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="3" Margin="4,13,-7.4,76" Grid.Row="2">
+            <Views1:RestaurantView x:Name="rest2" />
+        </Viewbox>
+
     </Grid>
 </Window>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EatInEurope.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,6 +44,12 @@ namespace EatInEurope.views
         {
             string country = (sender as ComboBox).SelectedItem as string;
             GenerateControls(country);
+        }
+
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+            RestaurantView rest1 = new RestaurantView();
+            rest1.Visibility = Visibility.Visible;
         }
     }
 }

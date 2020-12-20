@@ -56,14 +56,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Category.cs" />
     <Compile Include="Views\Client.xaml.cs">
       <DependentUpon>Client.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Manager.xaml.cs">
       <DependentUpon>Manager.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Rest.xaml.cs">
+      <DependentUpon>Rest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RestaurantOwnerWindow.xaml.cs">
       <DependentUpon>RestaurantOwnerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TripSearch.xaml.cs">
+      <DependentUpon>TripSearch.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -75,6 +82,9 @@
     </Compile>
     <Compile Include="DataBaseModel.cs" />
     <Compile Include="ViewModelSearch.cs" />
+    <Compile Include="Views\RestaurantView.xaml.cs">
+      <DependentUpon>RestaurantView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="views\SearchView.xaml.cs">
       <DependentUpon>SearchView.xaml</DependentUpon>
     </Compile>
@@ -92,11 +102,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Rest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\RestaurantOwnerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\RestaurantView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="views\SearchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TripSearch.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
