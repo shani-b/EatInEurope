@@ -22,8 +22,19 @@ namespace EatInEurope.Views
     {
 
         StackPanel stackPanel;
-        List<string> countriesFilters;
+        public List<Restaurant> RestaurantsResult
+        {
+            get { return (List<Restaurant>)GetValue(RestaurantsResultProperty); }
+            set
+            {
+                SetValue(RestaurantsResultProperty, value);
+            }
+        }
 
+        public static readonly DependencyProperty RestaurantsResultProperty =
+            DependencyProperty.Register("RestaurantsResult", typeof(List<Restaurant>), typeof(RestaurantOwnerWindow));
+
+        List<string> countriesFilters;
         public List<string> CountriesFilters
         {
             get { return (List<string>)GetValue(CountriesFiltersProperty); }
@@ -76,6 +87,10 @@ namespace EatInEurope.Views
             countriesFilters = new List<string>();
             citiesFilters = new List<string>();
             typesFilters = new List<string>();
+
+            var VMMyRests = "VM_RestsResults";
+            var bindingMyRests = new Binding(VMMyRests) { Mode = BindingMode.TwoWay };
+            this.SetBinding(RestaurantsResultProperty, bindingMyRests);
 
             var VMCountriesFilters = "VM_CountriesFilter";
             var bindingCountries = new Binding(VMCountriesFilters) { Mode = BindingMode.TwoWay };
