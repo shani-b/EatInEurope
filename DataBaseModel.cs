@@ -29,25 +29,15 @@ namespace EatInEurope
                 "Chinese", "Indian","vegeterian", "vegan","Italian"
             };
 
-            /*            RestsResults = new List<List<string>>
-                        {
-                            new List<string> {"Martine of Martine's Table","Amsterdam", "French", "Dutch", "European"
-                                , "5", "$$ - $$$", "136", "Just like home", "A Warm Welcome to Wintry Amsterdam", "/Restaurant_Review-g188590-d11752080-Reviews-Martine_of_Martine_s_Table-Amsterdam_North_Holland_Province.html" },
-                            new List<string> {"De Silveren Spiegel" ,"Amsterdam","Dutch", "European", "Vegetarian Friendly","Gluten Free Options",
-                                "4.5","$$$$", "812", "Great food and staff", "just perfect","/Restaurant_Review-g188590-d693419-Reviews-De_Silveren_Spiegel-Amsterdam_North_Holland_Province.html" },
-                             new List<string> {"La Rive" ,"Amsterdam","Mediterranean", "French", "International", "European", "Vegetarian Friendly", "Vegan Options",
-                                "4.5","$$$$", "567", "Satisfaction", "Delicious old school restaurant","/Restaurant_Review-g188590-d696959-Reviews-La_Rive-Amsterdam_North_Holland_Province.html"}
-                        };*/
-
             RestsResults = new List<Restaurant>
             {
-                new Restaurant("Martine of Martine's Table","Netherlands", "Amsterdam",new List<string>{ "French", "Dutch", "European" }
+                new Restaurant("d11752080","Martine of Martine's Table","Netherlands", "Amsterdam",new List<string>{ "French", "Dutch", "European" }
                     , 5, "$$ - $$$", 136,new List<string>{ "Just like home", "A Warm Welcome to Wintry Amsterdam" },
                     "/Restaurant_Review-g188590-d11752080-Reviews-Martine_of_Martine_s_Table-Amsterdam_North_Holland_Province.html"),
-                new Restaurant("De Silveren Spiegel","Netherlands", "Amsterdam",new List<string>{ "Dutch", "European", "Vegetarian Friendly", "Gluten Free Options" }
+                new Restaurant("d693419", "De Silveren Spiegel","Netherlands", "Amsterdam",new List<string>{ "Dutch", "European", "Vegetarian Friendly", "Gluten Free Options" }
                     , 4.5, "$$$$", 812,new List<string>{ "Great food and staff", "just perfect" },
                     "/Restaurant_Review-g188590-d693419-Reviews-De_Silveren_Spiegel-Amsterdam_North_Holland_Province.html"),
-                new Restaurant("La Rive","Netherlands", "Amsterdam",new List<string>{ "Mediterranean", "French", "International", "European", "Vegetarian Friendly", "Vegan Options" }
+                new Restaurant("d696959", "La Rive","Netherlands", "Amsterdam",new List<string>{ "Mediterranean", "French", "International", "European", "Vegetarian Friendly", "Vegan Options" }
                     , 4.5, "$$$$", 567,new List<string>{ "Satisfaction", "Delicious old school restaurant"},
                     "/Restaurant_Review-g188590-d696959-Reviews-La_Rive-Amsterdam_North_Holland_Province.html")
             };

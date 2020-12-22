@@ -8,6 +8,7 @@ namespace EatInEurope
 {
     public class Restaurant
     {
+        public string ID { get; set; }
         public string Name { get; set; }
         public string Country { get; set; }
         public string City { get; set; }
@@ -18,9 +19,10 @@ namespace EatInEurope
         public List<string> Reviews { get; set; }
         public string URL { get; set; }
 
-        public Restaurant(string name, string country, string city, List<string> types, double rate, string priceRange,
+        public Restaurant(string id, string name, string country, string city, List<string> types, double rate, string priceRange,
                             int numOfReviews, List<string> reviews, string url)
         {
+            ID = id;
             Name = name;
             Country = country;
             City = city;
