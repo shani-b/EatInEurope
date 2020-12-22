@@ -22,7 +22,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <!-- Logo -->
-        <Image x:Name="logo" Source="white_logo.png" Margin="0.2,0,0,10" Grid.Column="2" Grid.RowSpan="2"/>
+        <Image x:Name="logo" Source="white_logo.png" Margin="0.4,0,10,10" Grid.Column="2" Grid.RowSpan="2"/>
 
         <!-- Options -->
         <Button x:Name="searchTrip" Content="Searching for a&#xD;&#xA; trip destination&#xD;&#xA; by foods' style" Click="Search_Trip_Click" FontSize="20" Margin="0,0,0.4,0" Grid.Row="2" Grid.Column="1" Background="LightGray" />
@@ -30,10 +30,30 @@
         <!--Searching for a trip destination by restaurants foods' style-->
 
 
+        <StackPanel x:Name="search" Grid.Row="0" Grid.Column="0" Margin="5,5,158,10" Grid.ColumnSpan="3" Grid.RowSpan="4">
+            <TextBlock FontSize="20" FontStyle="Italic">choose filters</TextBlock>
+            <TextBlock>countries</TextBlock>
+            <ComboBox ItemsSource="{Binding VM_CountriesOptions}" SelectionChanged="countriesChanged"/>
+            <TextBlock>cities</TextBlock>
+            <ComboBox ItemsSource="{Binding VM_CitiesOptions}" SelectionChanged="citiesChanged"/>
+            <TextBlock>styles</TextBlock>
+            <ComboBox ItemsSource="{Binding VM_TypesOptions}" SelectionChanged="typesChanged"/>
+            <TextBlock>from price</TextBlock>
+            <TextBox />
+            <TextBlock>to price</TextBlock>
+            <TextBox />
+            <TextBlock>from rate</TextBlock>
+            <TextBox />
+            <TextBlock>to rate</TextBlock>
+            <TextBox />
+            <Button Content="search" HorizontalAlignment="Left" Width="103" Height="39" Click="Search_Click"/>
+        </StackPanel>
+        <StackPanel x:Name="choises" Grid.Row="0" Grid.Column="2" Margin="0.4,5,10,0" Grid.RowSpan="4">
+            <TextBlock FontSize="20" FontStyle="Italic">your choises:</TextBlock>
+        </StackPanel>
 
-        
 
-        <Views:SearchView x:Name="search" Margin="0,5,158,22" Grid.ColumnSpan="3" Grid.RowSpan="5"/>
+
         <Viewbox Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="5,2,-8.4,3">
             <Views1:RestaurantView x:Name="rest1" />
         </Viewbox>

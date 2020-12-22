@@ -28,7 +28,7 @@ namespace EatInEurope
                 "Stockholm","Vienna","Warsaw","Zurich"
             };*/
 
-    }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string PropName)
         {
@@ -100,6 +100,15 @@ namespace EatInEurope
             get
             {
                 return model.TypesOptions;
+            }
+        }
+
+        public List<Restaurant> VM_RestsResults
+        {
+            get { return model.RestsResults; }
+            set
+            {
+                model.RestsResults = value;
             }
         }
     }
