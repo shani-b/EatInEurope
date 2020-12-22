@@ -29,7 +29,7 @@ namespace EatInEurope
             }
         }
 
-        public List<List<string>> VM_RestsResults
+        public List<Restaurant> VM_RestsResults
         {
             get { return model.RestsResults; }
             set
