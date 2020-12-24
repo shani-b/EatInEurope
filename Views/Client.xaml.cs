@@ -32,7 +32,7 @@ namespace EatInEurope.Views
         }
 
         public static readonly DependencyProperty RestaurantsResultProperty =
-            DependencyProperty.Register("RestaurantsResult", typeof(List<Restaurant>), typeof(RestaurantOwnerWindow));
+            DependencyProperty.Register("RestaurantsResult", typeof(List<Restaurant>), typeof(Client));
 
         List<string> countriesFilters;
         public List<string> CountriesFilters

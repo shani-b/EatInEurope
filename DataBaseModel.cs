@@ -192,6 +192,14 @@ namespace EatInEurope
                 NotifyPropertyChanged("restsResults");
             }
         }
+        private Dictionary<string, int> countriesPartStyle = new Dictionary<string, int>();
+        public Dictionary<string, int> CountriesPartStyle
+        {
+            get
+            {
+                return graphCountriesByType("vegiterian");
+            }
+        }
 
         public void send(string message)
         {
@@ -275,18 +283,19 @@ namespace EatInEurope
             // restaurants.Insert(valuesString + "')", "t_reviews");
         }
 
-        public Dictionary<string, double> graphCountriesByType(string type)
+        public Dictionary<string, int> graphCountriesByType(string type)
         {
             // quary count all rests with this type = total
             // count for each country the rests with this type (group by) = each
             // divide = total/each
 
-            Dictionary<string, double> countriesByType = new Dictionary<string, double>();
-            countriesByType.Add("france", 0.05);
-            countriesByType.Add("germany", 0.22);
-            countriesByType.Add("Netherlands", 0.27);
-            countriesByType.Add("England", 0.46);
-            return countriesByType;
+            Dictionary<string, int> dic = new Dictionary<string, int>();
+            dic.Add("france", 5);
+            dic.Add("germany", 22);
+            dic.Add("Netherlands", 27);
+            dic.Add("England", 46);
+
+            return dic;
         }
     }
 }
