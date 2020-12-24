@@ -8,7 +8,7 @@ using System.Windows;
 using MySql.Data.MySqlClient;
 using System.Diagnostics;
 using System.IO;
-using Cassandra;
+//using Cassandra;
 using System.Data.SqlClient;
 
 namespace EatInEurope
@@ -33,11 +33,11 @@ namespace EatInEurope
         //Initialize values
         private void Initialize()
         {
-            server = "192.168.1.105";
+            server = "localhost";
             port = "3306";
             database = "rest";
             uid = "root";
-            password = "Ssoukou8";
+            password = "100798";
             string connectionString;
             connectionString = "SERVER=" + server + ";" + "PORT=" + port + ";" + "DATABASE=" +
             database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
@@ -153,7 +153,7 @@ namespace EatInEurope
                 {
                     list[0].Add(dataReader["ID_TA"] + "");
                     list[1].Add(dataReader["Name"] + "");
-                    list[2].Add(dataReader["City"] + "");
+                    list[2].Add(dataReader["ID"] + "");
                     list[3].Add(dataReader["Rating"] + "");
                     list[4].Add(dataReader["Price_Range"] + "");
                     list[5].Add(dataReader["URL_TA"] + "");
@@ -174,6 +174,54 @@ namespace EatInEurope
                 return list;
             }
         }
+
+
+
+        public List<string> SelectColumn(string table, string whereCond, string orderByValue, string order ,string column)
+        {
+            //retaurants:
+            string query = "SELECT * FROM " + table;
+
+            if (whereCond != null)
+            {
+                query += " WHERE " + whereCond;
+            }
+            if (orderByValue != null)
+            {
+                query += " ORDER BY " + orderByValue + " " + order;
+            }
+
+            //Create a list to store the result
+            List<string> list = new List<string>();
+
+            //Open connection
+            if (this.OpenConnection() == true)
+            {
+                //Create Command
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                //Create a data reader and Execute the command
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                //Read the data and store them in the list
+                while (dataReader.Read())
+                {
+                    list.Add(dataReader[column] + "");
+                }
+
+                //close Data Reader
+                dataReader.Close();
+
+                //close Connection
+                this.CloseConnection();
+
+                //return list to be displayed
+                return list;
+            }
+            else
+            {
+                return list;
+            }
+        } 
 
         public List<string> Check_existing(string user_name, string password, string table)
         {

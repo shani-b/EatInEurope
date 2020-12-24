@@ -20,8 +20,6 @@ namespace EatInEurope.Views
     /// </summary>
     public partial class Client : Window
     {
-        List<List<string>> RestsResults; // DELETE - BINDING
-
         StackPanel stackPanel;
         public List<Restaurant> RestaurantsResult
         {
@@ -85,15 +83,7 @@ namespace EatInEurope.Views
             searchResults.Visibility = Visibility.Collapsed;
             title.Visibility = Visibility.Collapsed;
             noRest.Visibility = Visibility.Collapsed;
-            RestsResults = new List<List<string>> // DELEETE - PROPRETY!!!
-            {
-                new List<string> {"Martine of Martine's Table","Amsterdam", "French", "Dutch", "European"
-                    , "5", "$$ - $$$", "136", "Just like home", "A Warm Welcome to Wintry Amsterdam", "/Restaurant_Review-g188590-d11752080-Reviews-Martine_of_Martine_s_Table-Amsterdam_North_Holland_Province.html" },
-                new List<string> {"De Silveren Spiegel" ,"Amsterdam","Dutch", "European", "Vegetarian Friendly",
-                    "4.5","$$$$", "812", "Great food and staff", "just perfect","/Restaurant_Review-g188590-d693419-Reviews-De_Silveren_Spiegel-Amsterdam_North_Holland_Province.html" },
-                 new List<string> {"La Rive" ,"Amsterdam","Mediterranean", "French", "International",
-                    "4.5","$$$$", "567", "Satisfaction", "Delicious old school restaurant","/Restaurant_Review-g188590-d696959-Reviews-La_Rive-Amsterdam_North_Holland_Province.html"}
-            };
+
 
             stackPanel = (StackPanel)FindName("choises");
             countriesFilters = new List<string>();
@@ -190,8 +180,8 @@ namespace EatInEurope.Views
         private void fillRestStackPanel()
         {
             // Check how many restuarents exsits.
-            int restNum = RestsResults.Count;
-            if (RestsResults == null || restNum == 0)
+            int restNum = RestaurantsResult.Count;
+            if (RestaurantsResult == null || restNum == 0)
             {
                 noRest.Visibility = Visibility.Visible;
                 searchResults.Visibility = Visibility.Collapsed;
@@ -205,16 +195,16 @@ namespace EatInEurope.Views
                 {
                     // TODO : change restID to accept id.
                     //string restID = "";
-                    string restID = RestsResults[i][0]; // DELETE
+                    string restID = RestaurantsResult[i].ID; // DELETE
                     
                     RestaurantView rest = new RestaurantView(this, restID);
 
-                    rest.restName.Content = RestsResults[i][0];
-                    rest.styleName.Content = RestsResults[i][3] + " | ";
-                    rest.locationValue.Content = RestsResults[i][1] + ", " + RestsResults[i][2];
+                    rest.restName.Content = RestaurantsResult[i].Name;
+                    rest.styleName.Content = RestaurantsResult[i].Types + " | ";
+                    rest.locationValue.Content = RestaurantsResult[i].City + ", " + RestaurantsResult[i].Country;
 
                     // TODO: FUNC ???
-                    if (RestsResults[i][5] == "5")
+                    if (RestaurantsResult[i].Rate == 5)
                     {
                         rest.star1.Fill = Brushes.Yellow;
                         rest.star2.Fill = Brushes.Yellow;
@@ -222,25 +212,25 @@ namespace EatInEurope.Views
                         rest.star4.Fill = Brushes.Yellow;
                         rest.star5.Fill = Brushes.Yellow;
                     }
-                    else if (RestsResults[i][5] == "4")
+                    else if (RestaurantsResult[i].Rate == 4)
                     {
                         rest.star1.Fill = Brushes.Yellow;
                         rest.star2.Fill = Brushes.Yellow;
                         rest.star3.Fill = Brushes.Yellow;
                         rest.star4.Fill = Brushes.Yellow;
                     }
-                    else if (RestsResults[i][5] == "3")
+                    else if (RestaurantsResult[i].Rate == 3)
                     {
                         rest.star1.Fill = Brushes.Yellow;
                         rest.star2.Fill = Brushes.Yellow;
                         rest.star3.Fill = Brushes.Yellow;
                     }
-                    else if (RestsResults[i][5] == "2")
+                    else if (RestaurantsResult[i].Rate == 2)
                     {
                         rest.star1.Fill = Brushes.Yellow;
                         rest.star2.Fill = Brushes.Yellow;
                     }
-                    else if (RestsResults[i][5] == "1")
+                    else if (RestaurantsResult[i].Rate == 1)
                     {
                         rest.star1.Fill = Brushes.Yellow;
                     }
@@ -259,13 +249,13 @@ namespace EatInEurope.Views
 
 
         // TODO : TEMP FUNC - DELETE
-        public List<string> getDetailsByID(string id)
+        public Restaurant getDetailsByID(string id)
         {
-            for (int i = 0; i < RestsResults.Count; i++)
+            for (int i = 0; i < RestaurantsResult.Count; i++)
             {
-                if (RestsResults[i][0] == id)
+                if (RestaurantsResult[i].ID == id)
                 {
-                    return RestsResults[i];
+                    return RestaurantsResult[i];
                 }
             }
             return null;

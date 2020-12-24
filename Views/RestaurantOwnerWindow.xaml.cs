@@ -65,11 +65,11 @@ namespace EatInEurope.Views
 
 
         // TODO : TEMP FUNC - DELETE
-        public List<string> getDetailsByID(string id)
+        public Restaurant getDetailsByID(string id)
         {
             for(int i = 0; i < MyRestaurants.Count; i++)
             {
-               if( MyRestaurants[i][0] == id)
+               if( MyRestaurants[i].ID == id)
                 {
                     return MyRestaurants[i];
                 }
@@ -106,18 +106,18 @@ namespace EatInEurope.Views
                 // There are exists restuarents.
                 for (int i = 0; i < restNum; i++)
                 {
-                    // TODO : change restID to accept id.
+
                     //string restID = "";
-                    string restID = MyRestaurants[i][0]; // DELETE
+                    string restID = MyRestaurants[i].ID; // DELETE
                     Rest rest = new Rest(this, restID);
 
-                    rest.restName.Content = MyRestaurants[i][0];
-                    rest.styleName.Content = MyRestaurants[i][3];
-                    rest.cityName.Content = MyRestaurants[i][1];
-                    rest.CountryName.Content = MyRestaurants[i][2];
+                    rest.restName.Content = MyRestaurants[i].Name;
+                    rest.styleName.Content = MyRestaurants[i].Types;
+                    rest.cityName.Content = MyRestaurants[i].City;
+                    rest.CountryName.Content = MyRestaurants[i].Country;
 
                     // TODO: FUNC ???
-                    if (MyRestaurants[i][5] == "5")
+                    if (MyRestaurants[i].Rate == 5)
                     {
                         rest.star1.Fill = Brushes.Yellow;
                         rest.star2.Fill = Brushes.Yellow;
@@ -125,25 +125,25 @@ namespace EatInEurope.Views
                         rest.star4.Fill = Brushes.Yellow;
                         rest.star5.Fill = Brushes.Yellow;
                     }
-                    else if (MyRestaurants[i][5] == "4")
+                    else if (MyRestaurants[i].Rate == 4)
                     {
                         rest.star1.Fill = Brushes.Yellow;
                         rest.star2.Fill = Brushes.Yellow;
                         rest.star3.Fill = Brushes.Yellow;
                         rest.star4.Fill = Brushes.Yellow;
                     }
-                    else if (MyRestaurants[i][5] == "3")
+                    else if (MyRestaurants[i].Rate == 3)
                     {
                         rest.star1.Fill = Brushes.Yellow;
                         rest.star2.Fill = Brushes.Yellow;
                         rest.star3.Fill = Brushes.Yellow;
                     }
-                    else if (MyRestaurants[i][5] == "2")
+                    else if (MyRestaurants[i].Rate == 2)
                     {
                         rest.star1.Fill = Brushes.Yellow;
                         rest.star2.Fill = Brushes.Yellow;
                     }
-                    else if (MyRestaurants[i][5] == "1")
+                    else if (MyRestaurants[i].Rate == 1)
                     {
                         rest.star1.Fill = Brushes.Yellow;
                     }

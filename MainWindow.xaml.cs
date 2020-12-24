@@ -21,13 +21,32 @@ namespace EatInEurope
     /// </summary>
     public partial class MainWindow : Window
     {
+        public bool IsClient
+        {
+            get { return (bool)GetValue(IsClientProperty); }
+            set
+            {
+                SetValue(IsClientProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty IsClientProperty =
+            DependencyProperty.Register("IsClient", typeof(bool), typeof(MainWindow));
+
         public MainWindow()
         {
             InitializeComponent();
+            IModel model = (DataBaseModel)Application.Current.Properties["model"];
+            DataContext = new ViewModelMain(model);
+
+            var VM_IsClient = "VM_IsClient";
+            var binding = new Binding(VM_IsClient) { Mode = BindingMode.TwoWay };
+            this.SetBinding(IsClientProperty, binding);
         }
 
         private void Client_Click(object sender, RoutedEventArgs e)
         {
+            IsClient = true;
             Client c = new Client();
             c.Show();
             this.Close();
@@ -35,7 +54,8 @@ namespace EatInEurope
 
         private void Manager_Click(object sender, RoutedEventArgs e)
         {
-            Manager m = new Manager();
+            IsClient = false;
+             Manager m = new Manager();
             m.Show();
             this.Close();
         }

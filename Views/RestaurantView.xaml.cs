@@ -43,7 +43,7 @@ namespace EatInEurope.Views
 
         private void details_Click(object sender, RoutedEventArgs e)
         {
-            List<string> showThisRestDetailes = c.getDetailsByID(restID);
+            Restaurant showThisRestDetailes = c.getDetailsByID(restID);
             RestaurantDetails restD = new RestaurantDetails(showThisRestDetailes, isClient);
             restD.Show();
             c.Close();
