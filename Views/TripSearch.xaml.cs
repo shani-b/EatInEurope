@@ -24,6 +24,10 @@ namespace EatInEurope.Views
         public TripSearch()
         {
             InitializeComponent();
+        }
+
+        private void run_Click(object sender, RoutedEventArgs e)
+        {
             float pieWidth = 250, pieHeight = 250, centerX = pieWidth / 2, centerY = pieHeight / 2, radius = pieWidth / 2;
             mainCanvas.Width = pieWidth;
             mainCanvas.Height = pieHeight;

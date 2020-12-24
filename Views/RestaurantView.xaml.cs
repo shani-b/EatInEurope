@@ -21,22 +21,32 @@ namespace EatInEurope.Views
     public partial class RestaurantView : UserControl
     {
 
-
+        string restID;
+        Client c;
+        bool isClient;
         public List<string> temp;
-        public RestaurantView()
+        public RestaurantView(Client rest, string idRest)
         {
             InitializeComponent();
-            if (temp == null)
-            {
-                // NO RESTURENT in this search try filter in differant way.
-            }
-            // TODO: DELETE {"Country", "City", "Name", "$$$", "Style","Raiting - stars"}
-            temp = new List<string> {"Country", "City", "Name", "$$$", "Style","3"};
+            //if (temp == null)
+            //{
+            //    // NO RESTURENT in this search try filter in differant way.
+            //}
+            //// TODO: DELETE {"Country", "City", "Name", "$$$", "Style","Raiting - stars"}
+            //temp = new List<string> {"Country", "City", "Name", "$$$", "Style","3"};
+
+            restID = idRest;
+            c = rest;
+            isClient = true;
         }
 
-        private void Rest_Details_Click(object sender, RoutedEventArgs e)
+
+        private void details_Click(object sender, RoutedEventArgs e)
         {
-           
+            List<string> showThisRestDetailes = c.getDetailsByID(restID);
+            RestaurantDetails restD = new RestaurantDetails(showThisRestDetailes, isClient);
+            restD.Show();
+            c.Close();
         }
     }
 }

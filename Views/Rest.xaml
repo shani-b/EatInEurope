@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EatInEurope.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="300" d:DesignWidth="600">
     <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -24,21 +24,51 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Label x:Name="restName" Padding="5" Margin="0,0.2,0,62.6" Content="Rest name" FontSize="40" Grid.ColumnSpan="3" Grid.RowSpan="3" Background="{x:Null}" Grid.Column="1" Grid.Row="1"/>
-        <Label x:Name="styleName" Padding="5" Margin="0,2.4,0,60.6" Content="Style name |" FontSize="20" Grid.Row="3" Grid.RowSpan="2" Background="{x:Null}" Grid.Column="1"/>
-        <Label x:Name="passwordValue" Padding="5" Margin="0,1.4,0,61.6" Content="stars " FontSize="20" Grid.Row="3" Grid.RowSpan="2" Grid.Column="2" Background="{x:Null}"/>
-        <Label x:Name="CountryName" Padding="5" Margin="0,1.4,0,61.6" Content="Country name" FontSize="20" Grid.Row="4" Grid.RowSpan="2" Grid.Column="2" Background="{x:Null}"/>
-        <Label x:Name="cityName" Padding="5" Margin="0,1.4,0,61.6" Content="City name," FontSize="20" Grid.Row="4" Grid.RowSpan="2" Background="{x:Null}" Grid.Column="1"/>
+        <Label x:Name="restName" Padding="5" Margin="8,4,10,33.2" Content="Rest name" FontSize="40" Grid.ColumnSpan="5" Grid.RowSpan="3" Background="{x:Null}"/>
+        <Label x:Name="styleName" Padding="5" Margin="0,16.6,8,31" Content="Style name |" FontSize="20" Grid.Row="2" Background="{x:Null}" Grid.RowSpan="2"/>
+        <Label x:Name="CountryName" Padding="5" Margin="6,2,95,0.2" Content="Country name" FontSize="20" Grid.Row="4" Grid.Column="1" Background="{x:Null}" Grid.ColumnSpan="2"/>
+        <Label x:Name="cityName" Padding="5" Margin="8,4,116,34.4" Content="City name," FontSize="20" Grid.Row="4" Background="{x:Null}" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
 
-        
-        
-        <Polygon Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="15" Height="15" Stretch="Fill" Points="10,2 10,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7" Name="star1" Margin="15,38.4,130,10.6" Grid.Row="3" Grid.Column="2"/>
-        <Polygon Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="15" Height="15" Stretch="Fill" Points="10,2 10,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7" Name="star2" Margin="38,38.4,107,10.6" Grid.Row="3" Grid.Column="2"/>
-        <Polygon Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="15" Height="15" Stretch="Fill" Points="10,2 10,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7" Name="star3" Margin="64,38.4,81,10.6" Grid.Row="3" Grid.Column="2"/>
-        <Polygon Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="15" Height="15" Stretch="Fill" Points="10,2 10,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7" Name="star4" Margin="88,38.4,57,10.6" Grid.Row="3" Grid.Column="2"/>
-        <Polygon Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="15" Height="15" Stretch="Fill" Points="10,2 10,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7" Name="star5" Margin="113,38.4,32,10.6" Grid.Row="3" Grid.Column="2"/>
-        <Button x:Name="details" Content="Rest Detailes"  Grid.Column="3" Margin="0,1.4,0,61.6" Grid.Row="4" Grid.RowSpan="2" FontSize="20"/>
-    
+        <Rectangle x:Name="star15" Fill="White" Margin="19,42.6,94,9" Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" />
+
+        <Polygon Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="15" Stretch="Fill" Points="10,2 10,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7" Name="star1" Margin="10,41.6,95,19" Grid.Row="2" Grid.Column="1" Grid.RowSpan="2"/>
+        <Polygon Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="15" Stretch="Fill" Points="10,2 10,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7" Name="star2" Margin="30,41.6,75,19" Grid.Row="2" Grid.Column="1" Grid.RowSpan="2"/>
+        <Polygon Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="15" Stretch="Fill" Points="10,2 10,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7" Name="star3" Margin="50,41.6,55,19" Grid.Row="2" Grid.Column="1" Grid.RowSpan="2"/>
+        <Polygon Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="15" Stretch="Fill" Points="10,2 10,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7" Name="star4" Margin="70,41.6,35,19" Grid.Row="2" Grid.Column="1" Grid.RowSpan="2"/>
+        <Polygon Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="15" Stretch="Fill" Points="10,2 10,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7" Name="star5" Margin="90,41.6,15,19" Grid.Row="2" Grid.Column="1" Grid.RowSpan="2"/>
+
+
+
+
+        <Button x:Name="details" Content="Rest Detailes"  Grid.Column="2" Margin="30,9,92,34.4" Grid.Row="4" FontSize="20" Grid.ColumnSpan="2" Grid.RowSpan="2" Click="details_Click"/>
+        <Button x:Name="deleteRest" Content="Delete" Click="deleteRest_Click" Margin="89,9.6,92,31" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" />
+
+        <!--TODO: change color-->
+        <Separator Grid.ColumnSpan="5" Margin="13,2,7,10.4" Grid.Row="6" Background="#FFB43B3B" />
+
+
+
+        <!--TODO: DELETE THIS-->
+        <!--<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Grid.ColumnSpan="2" Margin="48,2.8,72,40.2" Grid.RowSpan="2" Grid.Row="1">
+            <Canvas Canvas.Left="20" Canvas.Top="20">
+                <Rectangle Width="200" Height="50" Fill="White" RadiusX="5" RadiusY="5" Canvas.Left="48" Canvas.Top="46" />
+                <Canvas Canvas.Left="5" Canvas.Top="20">
+                    <Path Stroke="#000080" Fill="#FFFF00" StrokeThickness="3" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round" Data="M 0,0 l 10,0 l 5,-10 l 5,10 l 10,0 l -7,10 l 2,10 l -10,-5 l -10,5 l 2,-10 Z" Canvas.Left="38.8" Canvas.Top="36.8" />
+                </Canvas>
+                <Canvas Canvas.Left="45" Canvas.Top="20">
+                    <Path Stroke="#000080" Fill="#FFFF00" StrokeThickness="3" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round" Data="M 0,0 l 10,0 l 5,-10 l 5,10 l 10,0 l -7,10 l 2,10 l -10,-5 l -10,5 l 2,-10 Z" Canvas.Left="38.8" Canvas.Top="36.8" />
+                </Canvas>
+                <Canvas Canvas.Left="85" Canvas.Top="20">
+                    <Path Stroke="#000080" Fill="#FFFF00" StrokeThickness="3" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round" Data="M 0,0 l 10,0 l 5,-10 l 5,10 l 10,0 l -7,10 l 2,10 l -10,-5 l -10,5 l 2,-10 Z" Canvas.Left="38.8" Canvas.Top="36.8" />
+                </Canvas>
+                <Canvas Canvas.Left="125" Canvas.Top="20">
+                    <Path Stroke="#808080" Fill="#C0C0C0" StrokeThickness="3" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round" Data="M 0,0 l 10,0 l 5,-10 l 5,10 l 10,0 l -7,10 l 2,10 l -10,-5 l -10,5 l 2,-10 Z" Canvas.Left="38.8" Canvas.Top="36.8" />
+                </Canvas>
+                <Canvas Canvas.Left="165" Canvas.Top="20">
+                    <Path Stroke="#808080" Fill="#C0C0C0" StrokeThickness="3" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round" Data="M 0,0 l 10,0 l 5,-10 l 5,10 l 10,0 l -7,10 l 2,10 l -10,-5 l -10,5 l 2,-10 Z" Canvas.Left="38.8" Canvas.Top="36.8" />
+                </Canvas>
+            </Canvas>
+        </Canvas>-->
     </Grid>
 </UserControl>
 

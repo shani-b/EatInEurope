@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EatInEurope.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="200" d:DesignWidth="500">
     <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -24,21 +24,24 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        
-        
-        
-        <Label x:Name="restName" Padding="5" Margin="0,54,0,9.6" Content="Rest name" FontSize="40" Grid.ColumnSpan="3" Grid.RowSpan="3" Background="{x:Null}" Grid.Column="1"/>
-        <Label x:Name="styleName" Padding="5" Margin="0,3.4,0,59.6" Content="Style name |" FontSize="20" Grid.Row="4" Grid.RowSpan="2" Background="{x:Null}" Grid.Column="1"/>
-        <Label x:Name="passwordValue" Padding="5" Margin="0,2.4,0,60.6" Content="stars " FontSize="20" Grid.Row="4" Grid.RowSpan="2" Grid.Column="2" Background="{x:Null}"/>
-        <Label x:Name="CountryName" Padding="5" Margin="0,2.4,0,60.6" Content="Country name" FontSize="20" Grid.Row="5" Grid.RowSpan="2" Grid.Column="2" Background="{x:Null}"/>
-        <Label x:Name="cityName" Padding="5" Margin="0,2.4,0,60.6" Content="City name," FontSize="20" Grid.Row="5" Grid.RowSpan="2" Background="{x:Null}" Grid.Column="1"/>
+        <Label x:Name="restName" Padding="5" Margin="8,4,10,0.067" Content="Rest name" FontSize="40" Grid.ColumnSpan="5" Grid.RowSpan="2" Background="{x:Null}"/>
+        <Label x:Name="styleName" Padding="5" Margin="0,5.8,86,9.8" Content="Style name |" FontSize="20" Grid.Row="2" Background="{x:Null}" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
 
-        <Polygon Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="15" Height="15" Stretch="Fill" Points="10,2 10,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7" Name="star1" Margin="15,39.4,130,9.6" Grid.Row="4" Grid.Column="2"/>
-        <Polygon Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="15" Height="15" Stretch="Fill" Points="10,2 10,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7" Name="star2" Margin="38,39.4,107,9.6" Grid.Row="4" Grid.Column="2"/>
-        <Polygon Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="15" Height="15" Stretch="Fill" Points="10,2 10,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7" Name="star3" Margin="64,39.4,81,9.6" Grid.Row="4" Grid.Column="2"/>
-        <Polygon Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="15" Height="15" Stretch="Fill" Points="10,2 10,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7" Name="star4" Margin="88,39.4,57,9.6" Grid.Row="4" Grid.Column="2"/>
-        <Polygon Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="15" Height="15" Stretch="Fill" Points="10,2 10,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7" Name="star5" Margin="113,39.4,32,9.6" Grid.Row="4" Grid.Column="2"/>
-        <Button x:Name="details" Content="Rest Detailes"  Grid.Column="3" Margin="10,39.4,150,23.6" Grid.Row="4" Grid.RowSpan="2" FontSize="20" Grid.ColumnSpan="2"/>
+        <Label x:Name="locationValue" Padding="5" Margin="0,25,0,23.4" Content="City name, conutry" FontSize="20" Grid.Row="3" Background="{x:Null}" Grid.RowSpan="3" Grid.ColumnSpan="2"/>
+
+        <Rectangle x:Name="star15" Fill="White" Margin="19,42.6,94,9" Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" />
+
+        <Polygon Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="15" Stretch="Fill" Points="10,2 10,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7" Name="star1" Margin="26,19.8,59,21.8" Grid.Row="2" Grid.Column="1" Grid.RowSpan="2"/>
+        <Polygon Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="15" Stretch="Fill" Points="10,2 10,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7" Name="star2" Margin="41,19.8,44,21.8" Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" RenderTransformOrigin="-0.013,0.575"/>
+        <Polygon Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="15" Stretch="Fill" Points="10,2 10,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7" Name="star3" Margin="56,19.8,29,21.8" Grid.Row="2" Grid.Column="1" Grid.RowSpan="2"/>
+        <Polygon Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="15" Stretch="Fill" Points="10,2 10,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7" Name="star4" Margin="71,19.8,14,21.8" Grid.Row="2" Grid.Column="1" Grid.RowSpan="2"/>
+        <Polygon Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Width="15" Stretch="Fill" Points="10,2 10,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7" Name="star5" Margin="86,19.8,99,21.8" Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+
+
+        <Button x:Name="details" Content="Rest Detailes"  Grid.Column="2" Margin="10,24,44,24.4" Grid.Row="3" FontSize="20" Grid.ColumnSpan="2" Grid.RowSpan="3" Click="details_Click"/>
+
+        <!--TODO: change color-->
+        <Separator Grid.ColumnSpan="5" Margin="13,2,7,10.4" Grid.Row="6" Background="#FFB43B3B" />
 
     </Grid>
 </UserControl>

@@ -1,0 +1,33 @@
+﻿<Window x:Class="EatInEurope.Views.AddReview"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EatInEurope.Views"
+        mc:Ignorable="d"
+        Title="AddReview" Height="450" Width="800">
+    <Grid Background="#FFC6BBD6">
+        <!-- EDIT DETAILS -->
+        <Label x:Name="title" FontSize="40" Content="My new review:" Margin="10,19,409.6,328"/>
+
+        <Label x:Name="newReview" FontSize="20" Content="Enter rest name:" Margin="2,112,627.6,266"/>
+        <TextBox x:Name="reviewText" Margin="171,113,24.6,227" Background="White" OpacityMask="#FFB05555"/>
+        <Label x:Name="newScore" FontSize="20" Content="Enter rating number:" Margin="0,212,597.6,165"/>
+        <!--STAR VIEW-->
+        <!--<Viewbox Margin="316,212,321.6,159"/>-->
+        <ComboBox Margin="210,212,501.6,159">
+            <ComboBoxItem Content="1" />
+            <ComboBoxItem Content="1.5" />
+            <ComboBoxItem Content="2" />
+            <ComboBoxItem Content="2.5" />
+            <ComboBoxItem Content="3" />
+            <ComboBoxItem Content="3.5" />
+            <ComboBoxItem Content="4" />
+            <ComboBoxItem Content="4.5" />
+            <ComboBoxItem Content="5" />
+        </ComboBox>
+
+        <Button x:Name="insert" Content="Send!" Click="insert_Click" FontSize="20" Margin="601,354,56.6,22"/>
+
+    </Grid>
+</Window>

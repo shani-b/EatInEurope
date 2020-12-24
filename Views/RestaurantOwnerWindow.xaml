@@ -7,8 +7,6 @@
         mc:Ignorable="d"
         Title="RestaurantOwnerWindow" Height="450" Width="800">
     <Grid>
-        
-        
         <Grid.Background>
             <ImageBrush x:Name="background" ImageSource="rest.png" />
         </Grid.Background>
@@ -27,17 +25,26 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <!-- Logo -->
-        <Image x:Name="logo" Source="Logo.png" Grid.ColumnSpan="2" Margin="-44,7,127.6,48" Grid.RowSpan="2"/>
+        <Image x:Name="logo" Source="Logo.png" Margin="-8,5,0.2,57" Grid.RowSpan="2"/>
 
         <!-- Title -->
-        <Label Content="My Restaurants" Grid.Column="1" Grid.ColumnSpan="3"  FontSize="54" FontWeight="Bold" Foreground="Black" Margin="48.8,5,21.4,0" FontFamily="Maiandra GD" />
+        <Label Content="My Restaurants" Grid.Column="1" Grid.ColumnSpan="4"  FontSize="54" FontWeight="Bold" Foreground="Black" Margin="112.8,5,116.6,0" FontFamily="Maiandra GD" />
         <Label x:Name="usernameValue" Padding="5" Margin="3,0,2.2,24" Content="" FontSize="20" Grid.Row="1" Background="{x:Null}" FontWeight="Bold" BorderBrush="{x:Null}" />
 
-        <Viewbox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="48.8,32,105.4,10">
-            <local:RestaurantView x:Name="rest" />
-        </Viewbox>
+        <ScrollViewer x:Name="myRest" Grid.ColumnSpan="5" Margin="157,0,1.6,54" Grid.RowSpan="4" Grid.Row="1" Background="White">
+            <StackPanel x:Name="restList">
+                <!--list of rest-->
+            </StackPanel>
+        </ScrollViewer>
+
+        <Label x:Name="noRest" Content="There are no restaurants you own&#xD;&#xA; Add a new restaurant!" FontSize="20" Grid.ColumnSpan="3" Margin="115.8,5,38.4,0" Grid.Column="1" Grid.Row="4" />
+        <Button x:Name="addRest" Content="add new restaurant" Click="addRest_Click" FontSize="16" Grid.ColumnSpan="2" Grid.Column="3" Margin="150,36,17.6,9" Grid.Row="4"/>
 
 
-
+        <Label x:Name="filters" Content="choose filter:" FontSize="20" Margin="4,67,27.2,68" Grid.Row="1" Grid.RowSpan="2" />
+        <Button x:Name="filterByAZ" Content="A-Z" Click="filterByAZ_Click" FontSize="16" Margin="10,26,111.2,28" Grid.Row="2" Height="30"/>
+        <Button x:Name="filterByZA" Content="Z-A" Click ="filterByZA_Click" FontSize="16" Margin="78,0,43.2,28" Grid.Row="2" Height="30" VerticalAlignment="Bottom" />
+        <Button x:Name="filterByLow" Content="raiting low to height" Click="filterByLow_Click" FontSize="16" Margin="4,67,6.2,71" Grid.Row="2" Height="30" Grid.RowSpan="2"/>
+        <Button x:Name="filterByHeight" Content="raiting height to low" Click="filterByHeight_Click" FontSize="16" Margin="4,20,4.2,34" Grid.Row="3" Height="30"  />
     </Grid>
 </Window>
