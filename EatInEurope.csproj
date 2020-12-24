@@ -132,9 +132,21 @@
     <Compile Include="Restaurant.cs" />
     <Compile Include="ViewModelManager.cs" />
     <Compile Include="ViewModelRestaurantOwner.cs" />
+    <Compile Include="Views\AddRest.xaml.cs">
+      <DependentUpon>AddRest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddReview.xaml.cs">
+      <DependentUpon>AddReview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModelTripSearch.cs" />
     <Compile Include="Views\Client.xaml.cs">
       <DependentUpon>Client.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Edit.xaml.cs">
+      <DependentUpon>Edit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditView.xaml.cs">
+      <DependentUpon>EditView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Manager.xaml.cs">
       <DependentUpon>Manager.xaml</DependentUpon>
@@ -142,8 +154,17 @@
     <Compile Include="Views\Rest.xaml.cs">
       <DependentUpon>Rest.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\RestaurantDetails.xaml.cs">
+      <DependentUpon>RestaurantDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RestaurantOwnerWindow.xaml.cs">
       <DependentUpon>RestaurantOwnerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Review.xaml.cs">
+      <DependentUpon>Review.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Style.xaml.cs">
+      <DependentUpon>Style.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TripSearch.xaml.cs">
       <DependentUpon>TripSearch.xaml</DependentUpon>
@@ -170,7 +191,23 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\AddRest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddReview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Client.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Edit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -182,6 +219,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\RestaurantDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\RestaurantOwnerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -190,7 +231,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Review.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="views\SearchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Style.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:EatInEurope.views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <!--<Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
 
@@ -38,5 +38,5 @@
             <TextBlock FontSize="20" FontStyle="Italic">your choises:</TextBlock>
         </StackPanel>
 
-    </Grid>
+    </Grid>-->
 </UserControl>

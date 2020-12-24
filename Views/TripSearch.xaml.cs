@@ -36,6 +36,10 @@ namespace EatInEurope.Views
         public TripSearch()
         {
             InitializeComponent();
+        }
+
+        private void run_Click(object sender, RoutedEventArgs e)
+        {
 
             IModel model = (DataBaseModel)Application.Current.Properties["model"];
             DataContext = new ViewModelTripSearch(model);
@@ -43,7 +47,6 @@ namespace EatInEurope.Views
             var VMCountriesPartStyle = "VM_CountriesPartStyle";
             var binding = new Binding(VMCountriesPartStyle) { Mode = BindingMode.OneWay };
             this.SetBinding(CountriesPartStyleProperty, binding);
-
             float pieWidth = 250, pieHeight = 250, centerX = pieWidth / 2, centerY = pieHeight / 2, radius = pieWidth / 2;
             mainCanvas.Width = pieWidth;
             mainCanvas.Height = pieHeight;

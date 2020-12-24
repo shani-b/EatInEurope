@@ -19,6 +19,11 @@ namespace EatInEurope.Views
     /// </summary>
     public partial class RestaurantOwnerWindow : Window
     {
+        private StackPanel stp;
+        private string ownerName;
+
+        //public List<List<string>> MyRestaurants
+
         public List<Restaurant> MyRestaurants
         {
             get { return (List<Restaurant>)GetValue(MyRestaurantsProperty); }
@@ -32,8 +37,6 @@ namespace EatInEurope.Views
             DependencyProperty.Register("MyRestaurants", typeof(List<Restaurant>), typeof(RestaurantOwnerWindow));
         public RestaurantOwnerWindow(string username)
         {
-            InitializeComponent();
-            usernameValue.Content = "Hello " + username;
 
             IModel model = (DataBaseModel)Application.Current.Properties["model"];
             DataContext = new ViewModelRestaurantOwner(model);
@@ -41,6 +44,143 @@ namespace EatInEurope.Views
             var VMMyRests = "VM_RestsResults";
             var bindingMyRests = new Binding(VMMyRests) { Mode = BindingMode.TwoWay };
             this.SetBinding(MyRestaurantsProperty, bindingMyRests);
+
+            InitializeComponent();
+            ownerName = username;
+            usernameValue.Content = "Hello " + ownerName;
+           
+            noRest.Visibility = Visibility.Collapsed;
+
+            stp = (StackPanel)FindName("restList");
+           
+            fillRestStackPanel();
+
+
+        }
+
+        public string getOwner()
+        {
+            return ownerName;
+        }
+
+
+        // TODO : TEMP FUNC - DELETE
+        public List<string> getDetailsByID(string id)
+        {
+            for(int i = 0; i < MyRestaurants.Count; i++)
+            {
+               if( MyRestaurants[i][0] == id)
+                {
+                    return MyRestaurants[i];
+                }
+            }
+            return null;
+        }
+
+        private void addRest_Click(object sender, RoutedEventArgs e)
+        {
+            AddRest ar = new AddRest(ownerName);
+            ar.Show();
+            this.Close();
+        }
+
+        private void filterByAZ_Click(object sender, RoutedEventArgs e)
+        {
+            stp.Children.Clear();
+            // filter A-Z
+            fillRestStackPanel();
+        }
+        private void fillRestStackPanel()
+        {
+            // Check how many restuarents exsits.
+            int restNum = MyRestaurants.Count;
+            if (MyRestaurants == null || restNum == 0)
+            {
+                noRest.Visibility = Visibility.Visible;
+                myRest.Visibility = Visibility.Collapsed;
+                // TODO: Change color.
+                addRest.Background = Brushes.Yellow;
+            }
+            else
+            {
+                // There are exists restuarents.
+                for (int i = 0; i < restNum; i++)
+                {
+                    // TODO : change restID to accept id.
+                    //string restID = "";
+                    string restID = MyRestaurants[i][0]; // DELETE
+                    Rest rest = new Rest(this, restID);
+
+                    rest.restName.Content = MyRestaurants[i][0];
+                    rest.styleName.Content = MyRestaurants[i][3];
+                    rest.cityName.Content = MyRestaurants[i][1];
+                    rest.CountryName.Content = MyRestaurants[i][2];
+
+                    // TODO: FUNC ???
+                    if (MyRestaurants[i][5] == "5")
+                    {
+                        rest.star1.Fill = Brushes.Yellow;
+                        rest.star2.Fill = Brushes.Yellow;
+                        rest.star3.Fill = Brushes.Yellow;
+                        rest.star4.Fill = Brushes.Yellow;
+                        rest.star5.Fill = Brushes.Yellow;
+                    }
+                    else if (MyRestaurants[i][5] == "4")
+                    {
+                        rest.star1.Fill = Brushes.Yellow;
+                        rest.star2.Fill = Brushes.Yellow;
+                        rest.star3.Fill = Brushes.Yellow;
+                        rest.star4.Fill = Brushes.Yellow;
+                    }
+                    else if (MyRestaurants[i][5] == "3")
+                    {
+                        rest.star1.Fill = Brushes.Yellow;
+                        rest.star2.Fill = Brushes.Yellow;
+                        rest.star3.Fill = Brushes.Yellow;
+                    }
+                    else if (MyRestaurants[i][5] == "2")
+                    {
+                        rest.star1.Fill = Brushes.Yellow;
+                        rest.star2.Fill = Brushes.Yellow;
+                    }
+                    else if (MyRestaurants[i][5] == "1")
+                    {
+                        rest.star1.Fill = Brushes.Yellow;
+                    }
+                    else
+                    {
+                        // half- .5 -think what to do?????
+                    }
+
+                    stp.Children.Add(rest);
+
+                }
+
+                //string name = MyRestaurants[0][0];
+
+            }
+        }
+
+        private void filterByZA_Click(object sender, RoutedEventArgs e)
+        {
+            stp.Children.Clear();
+            // filter Z-A
+            fillRestStackPanel();
+        }
+
+        private void filterByLow_Click(object sender, RoutedEventArgs e)
+        {
+            stp.Children.Clear();
+            // filter raiting low
+            fillRestStackPanel();
+        }
+
+        private void filterByHeight_Click(object sender, RoutedEventArgs e)
+        {
+            stp.Children.Clear();
+            // filter height
+            fillRestStackPanel();
         }
     }
+
 }

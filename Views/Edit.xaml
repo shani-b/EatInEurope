@@ -1,0 +1,26 @@
+﻿<Window x:Class="EatInEurope.Views.Edit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EatInEurope.Views"
+        mc:Ignorable="d"
+        Title="Edit" Height="450" Width="800">
+    <Grid Background="#FF9DDEE2">
+        <!-- EDIT DETAILS -->
+        <Label x:Name="title" FontSize="40" Content="changes" Margin="10,19,595.6,328"/>
+        
+        <Label x:Name="ChangeName" FontSize="20" Content="Change rest name:" Margin="2,112,595.6,266"/>
+        <TextBox x:Name="restName" Margin="207,113,336.6,266" Background="White" OpacityMask="#FFB05555"/>
+        <Label x:Name="ChangeCity" FontSize="20" Content="Change rest city:" Margin="0,174,597.6,203"/>
+        <TextBox x:Name="citytName" Margin="207,176,336.6,203" Background="White" OpacityMask="#FFB05555"/>
+        <Label x:Name="ChangeUrl" FontSize="20" Content="Change rest url add's:" Margin="0,236,591.6,143"/>
+        <TextBox x:Name="urltAdd" Margin="207,236,336.6,143" Background="White" OpacityMask="#FFB05555"/>
+        <Label x:Name="ChangePrice" FontSize="20" Content="Change rest price:" Margin="0,295,597.6,82"/>
+        <TextBox x:Name="priceValue" Text="$$$$$" Foreground="#FFC5BBBB" FontSize="25" Margin="207,297,336.6,82" Background="White" OpacityMask="#FFB05555"/>
+        
+        <Button x:Name="update" Content="Edit!" Click="update_Click" FontSize="20" Margin="601,354,56.6,22"/>
+        
+
+    </Grid>
+</Window>

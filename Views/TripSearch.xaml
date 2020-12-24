@@ -6,49 +6,58 @@
         xmlns:local="clr-namespace:EatInEurope"
         mc:Ignorable="d"
         Title="TripSearch" Height="450" Width="800">
-    <StackPanel x:Name="mainGrid"
+    <Viewbox>
+        <StackPanel x:Name="mainGrid"
                 Orientation="Horizontal"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center">
-        <Canvas x:Name="mainCanvas" 
+            <StackPanel Orientation="Vertical">
+                <Label Content="Choose style:"/>
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox Width="45" />
+                    <Button x:Name="run" Content="ok" Width="22" Click="run_Click"/>
+                </StackPanel>
+            </StackPanel>
+            <Canvas x:Name="mainCanvas" 
                 Margin="20,0"/>
 
-        
-        
-        <ScrollViewer Margin="20,0"
+            <ScrollViewer Margin="20,0"
                       Padding="10"
                       VerticalAlignment="Center"
                       VerticalScrollBarVisibility="Auto"
                       HorizontalScrollBarVisibility="Hidden">
-            <ItemsControl x:Name="detailsItemsControl">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="{x:Type local:Category}">
-                        <StackPanel Orientation="Horizontal"
+                <ItemsControl x:Name="detailsItemsControl">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type local:Category}">
+                            <StackPanel Orientation="Horizontal"
                                     Margin="10">
-                            <Rectangle Width="20"
+                                <Rectangle Width="20"
                                        Height="20"
                                        Fill="{Binding ColorBrush}"
                                        Margin="0,0,5,0"
                                        VerticalAlignment="Center"/>
 
-                            <TextBlock Text="{Binding Title}"
+                                <TextBlock Text="{Binding Title}"
                                        FontSize="20"
                                        VerticalAlignment="Center"/>
 
-                            <TextBlock Text="{Binding Percentage}"
+                                <TextBlock Text="{Binding Percentage}"
                                        Foreground="{Binding ColorBrush}"
                                        FontSize="20"
                                        Margin="20,0,0,0"
                                        VerticalAlignment="Center"/>
-                            
-                            <TextBlock Text="%"
+
+                                <TextBlock Text="%"
                                        Foreground="{Binding ColorBrush}"
                                        FontSize="20"
                                        VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
-    </StackPanel>
+
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+            </ScrollViewer>
+        </StackPanel>
+    </Viewbox>
 </Window>
