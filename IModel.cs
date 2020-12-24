@@ -10,6 +10,7 @@ namespace EatInEurope
         string UserName { get; set; }
         string Password { get; set; }
         string NewPassword { get; set; }
+        bool IsClient { set; get; }
         string[] Top5Rests {get; set;} // results of the top 5 rests fitting to user choise
 
         // users filters
@@ -21,7 +22,7 @@ namespace EatInEurope
         List<string> TypesOptions { get; set; }
         double[] RateFilter { get; set; }
         int[] PriceFilter { get; set; }
-        Dictionary<string, int> CountriesPartStyle { get; set; }
+        Dictionary<string, int> CountriesPartStyle { get; }
 
         List<Restaurant> RestsResults { get; set; } // all rests fitting to user choise *or* all rests owned by the user
 

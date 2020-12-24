@@ -36,7 +36,7 @@ namespace EatInEurope.Views
             // detaile window without recomends and raiting 
             // with add and edit options.
             // TODO: THIS THE CORRECT LINE : string showThisRestDetailes = restID;
-            List<string> showThisRestDetailes = restow.getDetailsByID(restID);
+            Restaurant showThisRestDetailes = restow.getDetailsByID(restID);
             RestaurantDetails restD = new RestaurantDetails(showThisRestDetailes, isClient);
             restD.Show();
             restow.Close();

@@ -130,6 +130,7 @@
     </ApplicationDefinition>
     <Compile Include="Category.cs" />
     <Compile Include="Restaurant.cs" />
+    <Compile Include="ViewModelMain.cs" />
     <Compile Include="ViewModelManager.cs" />
     <Compile Include="ViewModelRestaurantOwner.cs" />
     <Compile Include="Views\AddRest.xaml.cs">
