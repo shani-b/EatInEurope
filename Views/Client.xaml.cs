@@ -21,7 +21,20 @@ namespace EatInEurope.Views
     public partial class Client : Window
     {
         List<List<string>> RestsResults; // DELETE - BINDING
+
         StackPanel stackPanel;
+        public List<Restaurant> RestaurantsResult
+        {
+            get { return (List<Restaurant>)GetValue(RestaurantsResultProperty); }
+            set
+            {
+                SetValue(RestaurantsResultProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty RestaurantsResultProperty =
+            DependencyProperty.Register("RestaurantsResult", typeof(List<Restaurant>), typeof(Client));
+
         List<string> countriesFilters;
 
         public List<string> CountriesFilters
@@ -87,6 +100,10 @@ namespace EatInEurope.Views
             citiesFilters = new List<string>();
             stylesFilters = new List<string>();
 
+            var VMMyRests = "VM_RestsResults";
+            var bindingMyRests = new Binding(VMMyRests) { Mode = BindingMode.TwoWay };
+            this.SetBinding(RestaurantsResultProperty, bindingMyRests);
+
             var VMCountriesFilters = "VM_CountriesFilter";
             var bindingCountries = new Binding(VMCountriesFilters) { Mode = BindingMode.TwoWay };
             this.SetBinding(CountriesFiltersProperty, bindingCountries);
@@ -126,12 +143,14 @@ namespace EatInEurope.Views
                 {
                     return;
                 }
+
                 list.Add(newVal);
                 TextBlock filter = new TextBlock();
                 filter.Name = newVal;
                 filter.Text = newVal;
                 stackPanel.Children.Add(filter);
                 //stackPanel.RegisterName(filter.Name, filter);
+
             }
         }
 
@@ -152,6 +171,7 @@ namespace EatInEurope.Views
         {
             string type = (sender as ComboBox).SelectedItem as string;
             GenerateControls(type, stylesFilters);
+
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
@@ -264,6 +284,7 @@ namespace EatInEurope.Views
             CitiesFilters.Clear();
             CountriesFilters.Clear();
             StylesFilters.Clear();
+
         }
     }
 }

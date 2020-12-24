@@ -129,6 +129,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Category.cs" />
+    <Compile Include="Restaurant.cs" />
     <Compile Include="ViewModelManager.cs" />
     <Compile Include="ViewModelRestaurantOwner.cs" />
     <Compile Include="Views\AddRest.xaml.cs">
@@ -137,6 +138,7 @@
     <Compile Include="Views\AddReview.xaml.cs">
       <DependentUpon>AddReview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModelTripSearch.cs" />
     <Compile Include="Views\Client.xaml.cs">
       <DependentUpon>Client.xaml</DependentUpon>
     </Compile>

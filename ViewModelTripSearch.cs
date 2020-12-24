@@ -5,12 +5,13 @@ using System.Text;
 
 namespace EatInEurope
 {
-    class ViewModelRestaurantOwner : INotifyPropertyChanged
+    class ViewModelTripSearch: INotifyPropertyChanged
     {
+        public List<string> Countries { get; set; }
         private IModel model;
 
 
-        public ViewModelRestaurantOwner(IModel model)
+        public ViewModelTripSearch(IModel model)
         {
             this.model = model;
             model.PropertyChanged +=
@@ -29,13 +30,13 @@ namespace EatInEurope
             }
         }
 
-        public List<Restaurant> VM_RestsResults
+        public Dictionary<string, int> VM_CountriesPartStyle
         {
-            get { return model.RestsResults; }
-            set
+            get
             {
-                model.RestsResults = value;
+                return model.CountriesPartStyle;
             }
         }
+
     }
 }

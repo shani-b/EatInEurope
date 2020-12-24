@@ -22,9 +22,11 @@ namespace EatInEurope.Views
         private StackPanel stp;
         private string ownerName;
 
-        public List<List<string>> MyRestaurants
+        //public List<List<string>> MyRestaurants
+
+        public List<Restaurant> MyRestaurants
         {
-            get { return (List<List<string>>)GetValue(MyRestaurantsProperty); }
+            get { return (List<Restaurant>)GetValue(MyRestaurantsProperty); }
             set
             {
                 SetValue(MyRestaurantsProperty, value);
@@ -32,9 +34,7 @@ namespace EatInEurope.Views
         }
 
         public static readonly DependencyProperty MyRestaurantsProperty =
-            DependencyProperty.Register("MyRestaurants", typeof(List<List<string>>), typeof(RestaurantOwnerWindow));
-
-
+            DependencyProperty.Register("MyRestaurants", typeof(List<Restaurant>), typeof(RestaurantOwnerWindow));
         public RestaurantOwnerWindow(string username)
         {
 

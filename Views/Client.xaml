@@ -24,6 +24,7 @@
         <!-- Logo -->
         <Image x:Name="logo" Source="white_logo.png" Margin="0.4,0,10,57" Grid.Column="2" Grid.RowSpan="2"/>
 
+
         <!-- Options -->
         <Button x:Name="searchTrip" Content="Searching for a&#xD;&#xA; trip destination&#xD;&#xA; by foods' style" Click="Search_Trip_Click" FontSize="20" Margin="0,0,0.4,0" Grid.Row="2" Grid.Column="1" Background="LightGray" />
         <Button x:Name="searchRest" Content="Find a restaurant" Click="Search_Restaurant_Click" FontSize="20" Margin="0,0,0.4,0" Grid.Row="2" Grid.Column="3" Background="LightGray" />
@@ -96,8 +97,6 @@
                 <!--list of rest-->
             </StackPanel>
         </ScrollViewer>
-
-
         <Label x:Name="noRest" Content="There are no restaurants in this filters&#xD;&#xA; Try new search!" FontSize="20" Grid.ColumnSpan="3" Margin="80.4,10,47.6,79" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" />
     </Grid>
 </Window>
