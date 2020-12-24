@@ -21,6 +21,7 @@ namespace EatInEurope
         List<string> TypesOptions { get; set; }
         double[] RateFilter { get; set; }
         int[] PriceFilter { get; set; }
+        Dictionary<string, int> CountriesPartStyle { get; set; }
 
         List<Restaurant> RestsResults { get; set; } // all rests fitting to user choise *or* all rests owned by the user
 
@@ -32,7 +33,7 @@ namespace EatInEurope
         List<string> restDetails(string rest); // get the details of the rest by its name
         void addReview(int rate, string body);
         void addRest(string name, string country, string city, List<string> types); // for owner
-        Dictionary<string, double> graphCountriesByType(string type); // key=country | value=precentage
+        Dictionary<string, int> graphCountriesByType(string type); // key=country | value=precentage
 
         // Message to user property
         string Message { get; set; }
