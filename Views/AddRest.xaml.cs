@@ -23,6 +23,8 @@ namespace EatInEurope.Views
         public AddRest(string ownerName)
         {
             InitializeComponent();
+            IModel model = (DataBaseModel)Application.Current.Properties["model"];
+            DataContext = new ViewModelAddRest(model);
             owner = ownerName;
         }
 
@@ -32,6 +34,16 @@ namespace EatInEurope.Views
             RestaurantOwnerWindow row = new RestaurantOwnerWindow(owner);
             row.Show();
             this.Close();
+        }
+
+        private void countriesChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void citiesChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

@@ -18,10 +18,13 @@
             <Label x:Name="newContrynewCity" FontSize="20" Content="Enter rest contry:" Margin="0,163,597.6,214"/>
             <TextBox x:Name="newcontrytName" FontSize="25" Margin="207,163,336.6,216" Background="White" OpacityMask="#FFB05555"/>
             <!--<ComboBox Margin="207,163,402,216" />-->
+            <ComboBox Name="countries" ItemsSource="{Binding VM_CountriesOptions}" Margin="207,163,402,216" SelectionChanged="countriesChanged"/>
+
 
             <Label x:Name="newCity" FontSize="20" Content="Enter rest city:" Margin="0,212,597.6,165"/>
             <TextBox x:Name="newcitytName" FontSize="25" Margin="207,212,336.6,167" Background="White" OpacityMask="#FFB05555"/>
             <!--<ComboBox Margin="207,212,402,167" />-->
+            <ComboBox Name="cities"  Margin="207,212,402,167" ItemsSource="{Binding VM_CitiesOptions}" SelectionChanged="citiesChanged"/>
 
             <Label x:Name="newUrl" FontSize="20" Content="Enter rest url add's:" Margin="0,260,591.6,119"/>
             <TextBox x:Name="newurltAdd" FontSize="25" Margin="207,260,336.6,119" Background="White" OpacityMask="#FFB05555"/>
@@ -49,6 +52,7 @@
             <TextBox x:Name="newStyleValue" Text="" FontSize="25" Margin="207,358,336.6,21" Background="White" OpacityMask="#FFB05555"/>
             <!--<ComboBox ItemsSource="{Binding VM_TypesOptions}" SelectionChanged="typesChanged"/>-->
             <!--<ComboBox Margin="207,358,402,21.4" />-->
+          
 
 
 

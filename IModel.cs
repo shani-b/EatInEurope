@@ -11,30 +11,40 @@ namespace EatInEurope
         string Password { get; set; }
         string NewPassword { get; set; }
         bool IsClient { set; get; }
+        bool LoginOK { get; set; }
+        bool UsernameFree { get; set; }
         string[] Top5Rests {get; set;} // results of the top 5 rests fitting to user choise
 
         // users filters
-        List<string> CountriesFilter { get; set; }
+        string CountryFilter { get; set; }
         List<string> CitiesFilter { get; set; }
         List<string> TypesFilter { get; set; }
         List<string> CountriesOptions { get; set; }
         List<string> CitiesOptions { get; set; }
         List<string> TypesOptions { get; set; }
+        string Order { get; set; }
+        bool Asc { get; set; }
+        string RestID { get; set; }
+        string RestName { get; set; }
+        Restaurant RestDetails { get; set; }
+        UserReview NewReview { get; set; }
         double[] RateFilter { get; set; }
         int[] PriceFilter { get; set; }
         Dictionary<string, int> CountriesPartStyle { get; }
 
         List<Restaurant> RestsResults { get; set; } // all rests fitting to user choise *or* all rests owned by the user
 
-
         // Methods which makes queries.
         bool register(string username, string password);
+        List<Restaurant> getRestByFilter();
         bool signIn(string username, string password);
-        List<Restaurant> orderBy(string orderType, string order); // orderType=rests name,price,rate | asc=true -> A-Z | asc=false -> Z-A
-        List<string> restDetails(string rest); // get the details of the rest by its name
+        List<Restaurant> orderBy(string orderType, bool order); // orderType=rests name,price,rate | asc=true -> A-Z | asc=false -> Z-A
+        Restaurant restDetails(string rest); // get the details of the rest by its name
         void addReview(int rate, string body);
         void addRest(string name, string country, string city, List<string> types); // for owner
         Dictionary<string, int> graphCountriesByType(string type); // key=country | value=precentage
+        List<string> getCountries();
+        List<string> getCities();
 
         // Message to user property
         string Message { get; set; }
