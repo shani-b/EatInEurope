@@ -15,14 +15,17 @@ namespace EatInEurope
         public DataBaseModel(DBConnect dbConnect)
         {
             dBConnect = dbConnect;
+            CountriesOptions = new List<string> {
+                "Netherlands", "England","Swiss", "France","Germany"
+            };
 
-            /*CitiesOptions = new List<string> {
+            CitiesOptions = new List<string> {
                 "Amsterdam", "Athens","Barcelona", "Berlin","Bratislava","Brussels","Budapest",
                 "Copenhagen","Dublin","Edinburgh","Geneva","Hamburg","Helsinki","Krakow","Lisbon","Ljubljana",
                 "London","Luxembourg","Lyon","Madrid","Milan","Munich","Oporto","Oslo","Paris","Prague","Rome",
                 "Stockholm","Vienna","Warsaw","Zurich"
             };
-            CountriesOptions = new List<string> {
+            /*CountriesOptions = new List<string> {
                 "Netherlands", "England","Swiss", "France","Germany"
             };
             TypesOptions = new List<string> {
@@ -85,11 +88,13 @@ namespace EatInEurope
             {
                 password = value;
                 NotifyPropertyChanged("password");
-                if (signIn(username, password))
+                LoginOK = true;
+                /*if (signIn(username, password))
                 {
+                    LoginOK = true;
                     // get relevent rest
                     RestsResults = getRestByFilter();
-                }
+                }*/
             }
         }
 
@@ -111,14 +116,35 @@ namespace EatInEurope
             {
                 isClient = value;
                 NotifyPropertyChanged("isClient");
-                if (isClient) {
+                /*if (isClient) {
                     CountriesOptions = getCountries();
-                }
+                }*/
             } 
             get {
                 return isClient;
 
             } }
+
+        private bool loginOK = false;
+        public bool LoginOK { 
+            get { return loginOK; }
+            set {
+                loginOK = value;
+                NotifyPropertyChanged("loginOK");
+            }
+        }
+        private bool usernameFree = false;
+        public bool UsernameFree {
+            get { 
+                // TODO: update flag by calling function checks username
+                return usernameFree; 
+            }
+            set
+            {
+                usernameFree = value;
+                NotifyPropertyChanged("usernameFree");
+            }
+        }
 
 
         private string[] top5Rests = new string[5];
@@ -130,13 +156,13 @@ namespace EatInEurope
             } 
         }
 
-        private List<string> countriesFilter = new List<string>();
-        public List<string> CountriesFilter {
-            get { return countriesFilter; }
+        private string countryFilter;
+        public string CountryFilter {
+            get { return countryFilter; }
             set {
-                countriesFilter = value;
-                NotifyPropertyChanged("countriesFilter");
-                CitiesOptions = getCities();
+                countryFilter = value;
+                NotifyPropertyChanged("countryFilter");
+                //CitiesOptions = getCities();
             } 
         }
 
@@ -213,6 +239,64 @@ namespace EatInEurope
             }
         }
 
+        private string order;
+        public string Order { 
+            get { return order; }
+            set
+            {
+                order = value;
+                NotifyPropertyChanged("order");
+            }
+        }
+        private bool asc;
+        public bool Asc { 
+            get { return asc; }
+            set
+            {
+                asc = value;
+                NotifyPropertyChanged("asc");
+                orderBy(order, asc);
+            }
+        }
+        private string restID;
+        public string RestID {
+            get { return restID; }
+            set
+            {
+                restID = value;
+                NotifyPropertyChanged("restID");
+            } 
+        }
+        private string restName;
+        public string RestName { 
+            get { return restName; }
+            set
+            {
+                restName = value;
+                NotifyPropertyChanged("restName");
+            }
+        }
+        public Restaurant RestDetails
+        {
+            get { return restDetails(restID); }
+            set
+            {
+                RestsResults[restsResults.FindIndex(x => x.Name == restID)] = value;
+                NotifyPropertyChanged("RestDetails");
+            }
+        }
+        private UserReview newReview;
+        public UserReview NewReview { 
+            get { return newReview; }
+            set
+            {
+                newReview = value;
+                RestsResults.Find(x => x.Name == restID).Reviews.Add(value);
+                NotifyPropertyChanged("newReview");
+            }
+        }
+
+
         private List<Restaurant> restsResults = new List<Restaurant>();
         public List<Restaurant> RestsResults
         {
@@ -285,7 +369,7 @@ namespace EatInEurope
 
         public bool signIn(string username, string password)
         {
-             List<string> result = dBConnect.Check_existing(username, password, "t_owners");
+            List<string> result = dBConnect.Check_existing(username, password, "t_owners");
             if (result[0].Equals("0")) {
                 return false;
             }
@@ -294,15 +378,15 @@ namespace EatInEurope
             return true;
         }
 
-        public List<Restaurant> orderBy(string orderType, string order)
+        public List<Restaurant> orderBy(string orderType, bool order)
         {
             //RestsResults = dBConnect.Select("t_restaurants", null, orderType, order);
             return restsResults;
         }
 
-        public List<string> restDetails(string rest)
+        public Restaurant restDetails(string rest)
         {
-            List<string> details = null;
+            Restaurant details = null;
             // Select(string table, string whereCond, string orderByValue, string order)
             /*if (restsResults.Count != 0)
             {
@@ -359,7 +443,7 @@ namespace EatInEurope
 
         public List<string> getCities()
         {
-            string whereCond = "CountryCode = (select code from t_country where name = \"" + countriesFilter[0] + "\")";
+            string whereCond = "CountryCode = (select code from t_country where name = \"" + countryFilter + "\")";
             return dBConnect.SelectColumn("t_country",  whereCond ,"ASC","name","name");
         }
     }

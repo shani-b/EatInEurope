@@ -130,9 +130,14 @@
     </ApplicationDefinition>
     <Compile Include="Category.cs" />
     <Compile Include="Restaurant.cs" />
+    <Compile Include="UserReview.cs" />
+    <Compile Include="ViewModelReview.cs" />
     <Compile Include="ViewModelMain.cs" />
     <Compile Include="ViewModelManager.cs" />
+    <Compile Include="ViewModelEdit.cs" />
     <Compile Include="ViewModelRestaurantOwner.cs" />
+    <Compile Include="ViewModelAddRest.cs" />
+    <Compile Include="ViewModelRestaurantDetails.cs" />
     <Compile Include="Views\AddRest.xaml.cs">
       <DependentUpon>AddRest.xaml</DependentUpon>
     </Compile>

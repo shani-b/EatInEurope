@@ -54,5 +54,15 @@ namespace EatInEurope
                 model.NewPassword = value;
             }
         }
+
+        public bool VM_LoginOK
+        {
+            get { return model.LoginOK; }
+            set
+            {
+                model.LoginOK = value;
+            }
+        }
+            
     }
 }

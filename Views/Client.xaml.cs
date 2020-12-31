@@ -35,17 +35,17 @@ namespace EatInEurope.Views
 
         List<string> countriesFilters;
 
-        public List<string> CountriesFilters
+        public string CountryFilter
         {
-            get { return (List<string>)GetValue(CountriesFiltersProperty); }
+            get { return (string)GetValue(CountryFilterProperty); }
             set
             {
-                SetValue(CountriesFiltersProperty, value);
+                SetValue(CountryFilterProperty, value);
             }
         }
 
-        public static readonly DependencyProperty CountriesFiltersProperty =
-            DependencyProperty.Register("CountriesFilters", typeof(List<string>), typeof(Client));
+        public static readonly DependencyProperty CountryFilterProperty =
+            DependencyProperty.Register("CountryFilter", typeof(string), typeof(Client));
 
 
         List<string> citiesFilters;
@@ -94,9 +94,9 @@ namespace EatInEurope.Views
             var bindingMyRests = new Binding(VMMyRests) { Mode = BindingMode.TwoWay };
             this.SetBinding(RestaurantsResultProperty, bindingMyRests);
 
-            var VMCountriesFilters = "VM_CountriesFilter";
+            var VMCountriesFilters = "VM_CountryFilter";
             var bindingCountries = new Binding(VMCountriesFilters) { Mode = BindingMode.TwoWay };
-            this.SetBinding(CountriesFiltersProperty, bindingCountries);
+            this.SetBinding(CountryFilterProperty, bindingCountries);
 
             var VMCitiesFilters = "VM_CitiesFilter";
             var bindingCities = new Binding(VMCitiesFilters) { Mode = BindingMode.TwoWay };
@@ -149,6 +149,9 @@ namespace EatInEurope.Views
         {
             string country = (sender as ComboBox).SelectedItem as string;
             GenerateControls(country, countriesFilters);
+            CountryFilter = country;
+
+            countries.IsEnabled = false;
         }
 
         private void citiesChanged(object sender, SelectionChangedEventArgs e)
@@ -166,8 +169,6 @@ namespace EatInEurope.Views
 
         private void Search_Click(object sender, RoutedEventArgs e)
         {
-
-            CountriesFilters = countriesFilters;
             CitiesFilters = citiesFilters;
             StylesFilters = stylesFilters;
 
@@ -265,15 +266,23 @@ namespace EatInEurope.Views
         {
             stackPanel = (StackPanel)FindName("choises");
             stackPanel.Children.Clear();
-            stackPanel.Children.Add(titleChoices); 
+            stackPanel.Children.Add(titleChoices);
 
             countries.SelectedItem = null;
             cities.SelectedItem = null;
             styles.SelectedItem = null;
 
-            CitiesFilters.Clear();
-            CountriesFilters.Clear();
-            StylesFilters.Clear();
+            countries.IsEnabled = true;
+
+            if (CitiesFilters != null)
+            {
+                CitiesFilters.Clear();
+            }
+            if (StylesFilters != null)
+            {
+                StylesFilters.Clear();
+            }
+            
 
         }
     }
