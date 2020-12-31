@@ -84,12 +84,7 @@ namespace EatInEurope.Views
             this.Close();
         }
 
-        private void filterByAZ_Click(object sender, RoutedEventArgs e)
-        {
-            stp.Children.Clear();
-            // filter A-Z
-            fillRestStackPanel();
-        }
+
         private void fillRestStackPanel()
         {
             // Check how many restuarents exsits.
@@ -106,13 +101,11 @@ namespace EatInEurope.Views
                 // There are exists restuarents.
                 for (int i = 0; i < restNum; i++)
                 {
-
-                    //string restID = "";
-                    string restID = MyRestaurants[i].ID; // DELETE
+                    string restID = MyRestaurants[i].ID;
                     Rest rest = new Rest(this, restID);
 
                     rest.restName.Content = MyRestaurants[i].Name;
-                    rest.styleName.Content = MyRestaurants[i].Types;
+                    rest.styleName.Content = MyRestaurants[i].Types[0];
                     rest.cityName.Content = MyRestaurants[i].City;
                     rest.CountryName.Content = MyRestaurants[i].Country;
 
@@ -153,32 +146,16 @@ namespace EatInEurope.Views
                     }
 
                     stp.Children.Add(rest);
-
                 }
-
-                //string name = MyRestaurants[0][0];
-
             }
         }
 
-        private void filterByZA_Click(object sender, RoutedEventArgs e)
-        {
-            stp.Children.Clear();
-            // filter Z-A
-            fillRestStackPanel();
-        }
 
-        private void filterByLow_Click(object sender, RoutedEventArgs e)
+        private void filtersChanged(object sender, SelectionChangedEventArgs e)
         {
+            // TODO: get correct filter by choice - clear restview and Re-insert 'fillRest..'  
             stp.Children.Clear();
-            // filter raiting low
-            fillRestStackPanel();
-        }
-
-        private void filterByHeight_Click(object sender, RoutedEventArgs e)
-        {
-            stp.Children.Clear();
-            // filter height
+            // correct filter 
             fillRestStackPanel();
         }
     }
