@@ -16,11 +16,11 @@ namespace EatInEurope
         public double Rate { get; set; }
         public string PriceRange { get; set; }
         public int NumOfReviews { get; set; }
-        public List<string> Reviews { get; set; }
+        public List<UserReview> Reviews { get; set; }
         public string URL { get; set; }
 
         public Restaurant(string id, string name, string country, string city, List<string> types, double rate, string priceRange,
-                            int numOfReviews, List<string> reviews, string url)
+                            int numOfReviews, List<UserReview> reviews, string url)
         {
             ID = id;
             Name = name;
@@ -32,6 +32,19 @@ namespace EatInEurope
             NumOfReviews = numOfReviews;
             Reviews = reviews;
             URL = url;
+        }
+        public Restaurant(string id, string name, string country, string city, List<string> types, double rate)
+        {
+            ID = id;
+            Name = name;
+            Country = country;
+            City = city;
+            Types = types;
+            Rate = rate;
+            PriceRange = "";
+            NumOfReviews = -1;
+            Reviews = new List<UserReview>();
+            URL = "";
         }
     }
 }

@@ -5,12 +5,12 @@ using System.Text;
 
 namespace EatInEurope
 {
-    class ViewModelRestaurantOwner : INotifyPropertyChanged
+    class ViewModelEdit : INotifyPropertyChanged
     {
         private IModel model;
 
 
-        public ViewModelRestaurantOwner(IModel model)
+        public ViewModelEdit(IModel model)
         {
             this.model = model;
             model.PropertyChanged +=
@@ -29,23 +29,9 @@ namespace EatInEurope
             }
         }
 
-        public List<Restaurant> VM_RestsResults
+        public Restaurant VM_RestDetails
         {
-            get { return model.RestsResults; }
-            set
-            {
-                model.RestsResults = value;
-            }
-        }
-        public string VM_Order
-        {
-            get { return model.Order; }
-            set { model.Order = value; }
-        }
-        public bool VM_Asc
-        {
-            get { return model.Asc; }
-            set { model.Asc = value; }
+            set { model.RestDetails = value; }
         }
     }
 }

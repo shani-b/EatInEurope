@@ -114,9 +114,11 @@ namespace EatInEurope.Views
                 //    // bold add Reviews button!!!!!!!!
                 //}
                 stp = (StackPanel)FindName("reviewsList");
-                List<string> iReviews = idRest.Reviews;
-                Review r = new Review(iReviews[0]);
-                Review r1 = new Review(iReviews[1]);
+
+                // changeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+                List<UserReview> iReviews = idRest.Reviews;
+                Review r = new Review(iReviews[0].Content);
+                Review r1 = new Review(iReviews[1].Content);
                 stp.Children.Add(r);
                 stp.Children.Add(r1);
 

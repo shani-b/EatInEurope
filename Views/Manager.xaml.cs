@@ -19,6 +19,18 @@ namespace EatInEurope.Views
     /// </summary>
     public partial class Manager : Window
     {
+        public bool LoginOK
+        {
+            get { return (bool)GetValue(LoginOKProperty); }
+            set
+            {
+                SetValue(LoginOKProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty LoginOKProperty =
+            DependencyProperty.Register("LoginOK", typeof(bool), typeof(Manager));
+
         private Button btn_login;
         private Button btn_singUp;
         public Manager()
@@ -26,6 +38,10 @@ namespace EatInEurope.Views
             InitializeComponent();
             IModel model = (DataBaseModel)Application.Current.Properties["model"];
             DataContext = new ViewModelManager(model);
+
+            var VMLoginOK = "VM_LoginOK";
+            var binding = new Binding(VMLoginOK) { Mode = BindingMode.TwoWay };
+            this.SetBinding(LoginOKProperty, binding);
 
             password.Visibility = Visibility.Collapsed;
             passwordValue.Visibility = Visibility.Collapsed;
@@ -46,17 +62,19 @@ namespace EatInEurope.Views
             String userName = usernameValue.Text;
             String password = passwordValue.Text;
             // TODO: Check if username correct & password
-            if (userName == "1" || password == "1")
+            if (!LoginOK)
             {
                 usernameValue.Text = "worng";
                 usernameValue.BorderBrush = Brushes.Red;
                 passwordValue.Text = "worng";
                 passwordValue.BorderBrush = Brushes.Red;
             }
-
-            RestaurantOwnerWindow rest = new RestaurantOwnerWindow(userName);
-            rest.Show();
-            this.Close();
+            else
+            {
+                RestaurantOwnerWindow rest = new RestaurantOwnerWindow(userName);
+                rest.Show();
+                this.Close();
+            }
         }
 
         private void Sign_up_Click(object sender, RoutedEventArgs e)

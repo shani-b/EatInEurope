@@ -13,9 +13,11 @@
         <Label x:Name="newName" FontSize="20" Content="Enter rest name:" Margin="2,112,595.6,266"/>
         <TextBox x:Name="newrestName" Margin="207,113,336.6,266" Background="White" OpacityMask="#FFB05555"/>
         <Label x:Name="newCity" FontSize="20" Content="Enter rest city:" Margin="0,163,597.6,214"/>
-        <TextBox x:Name="newcitytName" Margin="207,163,336.6,216" Background="White" OpacityMask="#FFB05555"/>
+        <ComboBox Name="cities"  Margin="207,163,336.6,216" ItemsSource="{Binding VM_CitiesOptions}" SelectionChanged="citiesChanged"/>
+        <!--<TextBox x:Name="newcitytName" Margin="207,163,336.6,216" Background="White" OpacityMask="#FFB05555"/>-->
         <Label x:Name="newContry" FontSize="20" Content="Enter rest contry:" Margin="0,212,597.6,165"/>
-        <TextBox x:Name="newcontrytName" Margin="207,212,336.6,167" Background="White" OpacityMask="#FFB05555"/>
+        <!--<TextBox x:Name="newcontrytName" Margin="207,212,336.6,167" Background="White" OpacityMask="#FFB05555"/>-->
+        <ComboBox Name="countries" ItemsSource="{Binding VM_CountriesOptions}" Margin="207,212,336.6,167" SelectionChanged="countriesChanged"/>
         <Label x:Name="newUrl" FontSize="20" Content="Enter rest url add's:" Margin="0,260,591.6,119"/>
         <TextBox x:Name="newurltAdd" Margin="207,260,336.6,119" Background="White" OpacityMask="#FFB05555"/>
         <Label x:Name="newPrice" FontSize="20" Content="Enter price range:" Margin="0,307,597.6,70"/>

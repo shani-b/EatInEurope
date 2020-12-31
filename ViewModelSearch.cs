@@ -39,11 +39,11 @@ namespace EatInEurope
         }
 
         // The Dashboard propreties for update his values in the view.
-        public List<string> VM_CountriesFilter
+        public string VM_CountryFilter
         {
             set
             {
-                model.CountriesFilter = value;
+                model.CountryFilter = value;
             }
         }
 
@@ -110,6 +110,22 @@ namespace EatInEurope
             {
                 model.RestsResults = value;
             }
+        }
+
+        public string VM_RestName
+        {
+            set { model.RestName = value; }
+        }
+
+        public string VM_Order
+        {
+            get { return model.Order; }
+            set { model.Order = value; }
+        }
+        public bool VM_Asc
+        {
+            get { return model.Asc; }
+            set { model.Asc = value; }
         }
     }
 }

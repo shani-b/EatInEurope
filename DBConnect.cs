@@ -33,7 +33,7 @@ namespace EatInEurope
         //Initialize values
         private void Initialize()
         {
-            server = "localhost";
+            server = "192.168.1.244";
             port = "3306";
             database = "rest";
             uid = "root";
