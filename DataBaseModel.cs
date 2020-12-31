@@ -27,16 +27,16 @@ namespace EatInEurope
             };
             TypesOptions = new List<string> {
                 "Chinese", "Indian","vegeterian", "vegan","Italian"
-            };
+            };*/
 
             RestsResults = new List<Restaurant>
             {
                 //new List<string> {"Martine of Martine's Table","Amsterdam", "French", "Dutch", "European"
-                  //  , "5", "$$ - $$$", "136", "Just like home", "A Warm Welcome to Wintry Amsterdam", "/Restaurant_Review-g188590-d11752080-Reviews-Martine_of_Martine_s_Table-Amsterdam_North_Holland_Province.html" },
-//                 new List<string> {"De Silveren Spiegel" ,"Amsterdam","Dutch", "European", "Vegetarian Friendly",
-//                     "4.5","$$$$", "812", "Great food and staff", "just perfect","/Restaurant_Review-g188590-d693419-Reviews-De_Silveren_Spiegel-Amsterdam_North_Holland_Province.html" },
-//                  new List<string> {"La Rive" ,"Amsterdam","Mediterranean", "French", "International", 
-//                     "4.5","$$$$", "567", "Satisfaction", "Delicious old school restaurant","/Restaurant_Review-g188590-d696959-Reviews-La_Rive-Amsterdam_North_Holland_Province.html"}
+                //    , "5", "$$ - $$$", "136", "Just like home", "A Warm Welcome to Wintry Amsterdam", "/Restaurant_Review-g188590-d11752080-Reviews-Martine_of_Martine_s_Table-Amsterdam_North_Holland_Province.html" },
+                // new List<string> {"De Silveren Spiegel" ,"Amsterdam","Dutch", "European", "Vegetarian Friendly",
+                //     "4.5","$$$$", "812", "Great food and staff", "just perfect","/Restaurant_Review-g188590-d693419-Reviews-De_Silveren_Spiegel-Amsterdam_North_Holland_Province.html" },
+                //  new List<string> {"La Rive" ,"Amsterdam","Mediterranean", "French", "International", 
+                //     "4.5","$$$$", "567", "Satisfaction", "Delicious old school restaurant","/Restaurant_Review-g188590-d696959-Reviews-La_Rive-Amsterdam_North_Holland_Province.html"}
 
                 new Restaurant("d11752080","Martine of Martine's Table","Netherlands", "Amsterdam",new List<string>{ "French", "Dutch", "European" }
                     , 5, "$$ - $$$", 136,new List<string>{ "Just like home", "A Warm Welcome to Wintry Amsterdam" },
@@ -47,7 +47,7 @@ namespace EatInEurope
                 new Restaurant("d696959", "La Rive","Netherlands", "Amsterdam",new List<string>{ "Mediterranean", "French", "International", "European", "Vegetarian Friendly", "Vegan Options" }
                     , 4.5, "$$$$", 567,new List<string>{ "Satisfaction", "Delicious old school restaurant"},
                     "/Restaurant_Review-g188590-d696959-Reviews-La_Rive-Amsterdam_North_Holland_Province.html")
-            };*/
+            };
             //RestsResults = new List<List<string>> { };
 
 
@@ -85,11 +85,11 @@ namespace EatInEurope
             {
                 password = value;
                 NotifyPropertyChanged("password");
-                if (signIn(username, password))
-                {
-                    // get relevent rest
-                    RestsResults = getRestByFilter();
-                }
+                //if (signIn(username, password))
+                //{
+                //    // get relevent rest
+                //    RestsResults = getRestByFilter();
+                //}
             }
         }
 
@@ -101,7 +101,7 @@ namespace EatInEurope
             {
                 newPassword = value;
                 NotifyPropertyChanged("newPassword");
-                register(username, newPassword);
+                //register(username, newPassword);
             }
         }
 
@@ -111,9 +111,9 @@ namespace EatInEurope
             {
                 isClient = value;
                 NotifyPropertyChanged("isClient");
-                if (isClient) {
-                    CountriesOptions = getCountries();
-                }
+                //if (isClient) {
+                //    CountriesOptions = getCountries();
+                //}
             } 
             get {
                 return isClient;
@@ -136,7 +136,7 @@ namespace EatInEurope
             set {
                 countriesFilter = value;
                 NotifyPropertyChanged("countriesFilter");
-                CitiesOptions = getCities();
+                //CitiesOptions = getCities();
             } 
         }
 

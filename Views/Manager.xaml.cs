@@ -35,49 +35,65 @@ namespace EatInEurope.Views
             passwordConfirmValue.Visibility = Visibility.Collapsed;
             login.Visibility = Visibility.Collapsed;
             signUp.Visibility = Visibility.Collapsed;
+            errorUsername.Visibility = Visibility.Collapsed;
+            errorPassword.Visibility = Visibility.Collapsed;
+            errorConfirm.Visibility = Visibility.Collapsed;
 
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
             usernameValue.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            passwordValue.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            //passwordValue.GetBindingExpression(TextBox.TextProperty).UpdateSource();
 
             String userName = usernameValue.Text;
-            String password = passwordValue.Text;
+            String password = passwordValue.Password;
+
             // TODO: Check if username correct & password
+
             if (userName == "1" || password == "1")
             {
                 usernameValue.Text = "worng";
-                usernameValue.BorderBrush = Brushes.Red;
-                passwordValue.Text = "worng";
-                passwordValue.BorderBrush = Brushes.Red;
+                errorUsername.Visibility = Visibility.Visible;
+                passwordValue.Password = "worng";
+                errorPassword.Visibility = Visibility.Visible;
             }
-
-            RestaurantOwnerWindow rest = new RestaurantOwnerWindow(userName);
-            rest.Show();
-            this.Close();
+            else
+            {
+                RestaurantOwnerWindow rest = new RestaurantOwnerWindow(userName);
+                rest.Show();
+                this.Close();
+            }
         }
 
         private void Sign_up_Click(object sender, RoutedEventArgs e)
         {
 
             String userName = usernameValue.Text;
-            String password = passwordValue.Text;
-            String passwordConfirm = passwordConfirmValue.Text;
+            String password = passwordValue.Password;
+            String passwordConfirm = passwordConfirmValue.Password;
+            
+            // TODO: add check if the username exsits - not allowed!!!
 
             if (!password.Equals(passwordConfirm))
             {
-                // try again
+                passwordValue.Password = "worng";
+                errorPassword.Visibility = Visibility.Visible;
+                passwordConfirmValue.Password = "worng";
+                errorConfirm.Visibility = Visibility.Visible;
+
             } else
             {
                 usernameValue.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-                passwordConfirmValue.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                //passwordConfirmValue.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+
+                // TODO: put this inside the else!!!!
+                RestaurantOwnerWindow rest = new RestaurantOwnerWindow(userName);
+                rest.Show();
+                this.Close();
             }
 
-            RestaurantOwnerWindow rest = new RestaurantOwnerWindow(userName);
-            rest.Show();
-            this.Close();
+           
         }
 
         private void Login_Option_Click(object sender, RoutedEventArgs e)
@@ -88,7 +104,15 @@ namespace EatInEurope.Views
             password.Visibility = Visibility.Visible;
             passwordValue.Visibility = Visibility.Visible;
             login.Visibility = Visibility.Visible;
-            if (btn_singUp == null /*|| btn_singUp.Background == Brushes.LightGray*/)
+
+            errorUsername.Visibility = Visibility.Collapsed;
+            errorPassword.Visibility = Visibility.Collapsed;
+            errorConfirm.Visibility = Visibility.Collapsed;
+
+            usernameValue.Text = "";
+            passwordValue.Password = "";
+
+            if (btn_singUp == null)
             {
                 btn_login.Background = Brushes.Orange;
             }
@@ -117,7 +141,15 @@ namespace EatInEurope.Views
             passwordConfirm.Visibility = Visibility.Visible;
             passwordConfirmValue.Visibility = Visibility.Visible;
             signUp.Visibility = Visibility.Visible;
-            if(btn_login == null /*|| btn_login.Background == Brushes.LightGray*/)
+
+            errorUsername.Visibility = Visibility.Collapsed;
+            errorPassword.Visibility = Visibility.Collapsed;
+            errorConfirm.Visibility = Visibility.Collapsed;
+
+            usernameValue.Text = "";
+            passwordValue.Password = "";
+            passwordConfirmValue.Password = "";
+            if (btn_login == null)
             {
                 btn_singUp.Background = Brushes.Orange;
             }

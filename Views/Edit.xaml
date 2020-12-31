@@ -6,21 +6,47 @@
         xmlns:local="clr-namespace:EatInEurope.Views"
         mc:Ignorable="d"
         Title="Edit" Height="450" Width="800">
-    <Grid Background="#FF9DDEE2">
-        <!-- EDIT DETAILS -->
-        <Label x:Name="title" FontSize="40" Content="changes" Margin="10,19,595.6,328"/>
-        
-        <Label x:Name="ChangeName" FontSize="20" Content="Change rest name:" Margin="2,112,595.6,266"/>
-        <TextBox x:Name="restName" Margin="207,113,336.6,266" Background="White" OpacityMask="#FFB05555"/>
-        <Label x:Name="ChangeCity" FontSize="20" Content="Change rest city:" Margin="0,174,597.6,203"/>
-        <TextBox x:Name="citytName" Margin="207,176,336.6,203" Background="White" OpacityMask="#FFB05555"/>
-        <Label x:Name="ChangeUrl" FontSize="20" Content="Change rest url add's:" Margin="0,236,591.6,143"/>
-        <TextBox x:Name="urltAdd" Margin="207,236,336.6,143" Background="White" OpacityMask="#FFB05555"/>
-        <Label x:Name="ChangePrice" FontSize="20" Content="Change rest price:" Margin="0,295,597.6,82"/>
-        <TextBox x:Name="priceValue" Text="$$$$$" Foreground="#FFC5BBBB" FontSize="25" Margin="207,297,336.6,82" Background="White" OpacityMask="#FFB05555"/>
-        
-        <Button x:Name="update" Content="Edit!" Click="update_Click" FontSize="20" Margin="601,354,56.6,22"/>
-        
+    <Viewbox>
+        <Grid Background="#FF9DDEE2">
+            <!-- EDIT DETAILS -->
+            <Label x:Name="title" FontSize="40" Content="changes" Margin="10,19,595.6,328"/>
 
-    </Grid>
+            <Label x:Name="ChangeName" FontSize="20" Content="Change rest name:" Margin="2,112,595.6,266"/>
+            <TextBox x:Name="restName" FontSize="25" Margin="207,113,336.6,266" Background="White" OpacityMask="#FFB05555"/>
+            
+            <Label x:Name="ChangeCity" FontSize="20" Content="Change rest city:" Margin="0,174,597.6,203"/>
+            <TextBox x:Name="citytName" FontSize="25" Margin="207,176,336.6,203" Background="White" OpacityMask="#FFB05555"/>
+            
+            <Label x:Name="ChangeUrl" FontSize="20" Content="Change rest url add's:" Margin="0,236,591.6,143"/>
+            <TextBox x:Name="urltAdd" FontSize="25" Margin="207,236,336.6,143" Background="White" OpacityMask="#FFB05555"/>
+            
+            <Label x:Name="ChangePrice" FontSize="20" Content="Change rest price:" Margin="0,295,597.6,82"/>
+            <!--<TextBox x:Name="priceValue" Text="$$$$$" Foreground="#FFC5BBBB" FontSize="25" Margin="207,297,336.6,82" Background="White" OpacityMask="#FFB05555"/>-->
+            
+            <!--<TextBox x:Name="newpriceValue" Text="$$$$$" Foreground="#FFC5BBBB" FontSize="25" Margin="207,310,336.6,69" Background="White" OpacityMask="#FFB05555"/>-->
+            <Label  Content="From" FontSize="15" Margin="207,306,529.6,82.2"/>
+            <ComboBox x:Name="lowPriceVal" Margin="254,297,456.6,82.2" FontSize="20">
+                <ComboBoxItem Content="$" />
+                <ComboBoxItem Content="$$" />
+                <ComboBoxItem Content="$$$" />
+                <ComboBoxItem Content="$$$$" />
+                <ComboBoxItem Content="$$$$$" />
+            </ComboBox>
+            <Label  Content="To" FontSize="15" Margin="342,306,423.6,82.2"/>
+            <ComboBox x:Name="topPriceVal" Margin="374,297,336.6,82.2" FontSize="20">
+                <ComboBoxItem Content="$" />
+                <ComboBoxItem Content="$$" />
+                <ComboBoxItem Content="$$$" />
+                <ComboBoxItem Content="$$$$" />
+                <ComboBoxItem Content="$$$$$" />
+            </ComboBox>
+
+
+
+
+            <Button x:Name="update" Content="Edit!" Click="update_Click" FontSize="20" Margin="601,354,105.6,22"/>
+
+
+        </Grid>
+    </Viewbox>
 </Window>
