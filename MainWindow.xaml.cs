@@ -1,18 +1,7 @@
-﻿using EatInEurope.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using EatInEurope.ViewModels;
+using EatInEurope.Views;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace EatInEurope
 {
@@ -33,35 +22,41 @@ namespace EatInEurope
         public static readonly DependencyProperty IsClientProperty =
             DependencyProperty.Register("IsClient", typeof(bool), typeof(MainWindow));
 
+
         public MainWindow()
         {
-            InitializeComponent();
+            // Constructor.
             IModel model = (DataBaseModel)Application.Current.Properties["model"];
             DataContext = new ViewModelMain(model);
 
             var VM_IsClient = "VM_IsClient";
             var binding = new Binding(VM_IsClient) { Mode = BindingMode.TwoWay };
             this.SetBinding(IsClientProperty, binding);
+
+            InitializeComponent();
         }
 
         private void Client_Click(object sender, RoutedEventArgs e)
         {
+            // Go to client view.
             IsClient = true;
-            Client c = new Client();
-            c.Show();
+            Client client = new Client();
+            client.Show();
             this.Close();
         }
 
         private void Manager_Click(object sender, RoutedEventArgs e)
         {
+            // Go to Manager view.
             IsClient = false;
-             Manager m = new Manager();
-            m.Show();
+            Manager manager = new Manager();
+            manager.Show();
             this.Close();
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
+            // Exit from the project.
             this.Close();
         }
     }

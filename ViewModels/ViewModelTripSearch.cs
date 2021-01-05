@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
-namespace EatInEurope
+namespace EatInEurope.ViewModels
 {
-    class ViewModelAddRest: INotifyPropertyChanged
+    class ViewModelTripSearch: INotifyPropertyChanged
     {
+        public List<string> Countries { get; set; }
         private IModel model;
 
 
-        public ViewModelAddRest(IModel model)
+        public ViewModelTripSearch(IModel model)
         {
             this.model = model;
             model.PropertyChanged +=
@@ -29,39 +30,22 @@ namespace EatInEurope
             }
         }
 
-        // The Dashboard propreties for update his values in the view.
-
-        public List<string> VM_CountriesOptions
+        public Dictionary<string, int> VM_CountriesPartStyle
         {
             get
             {
-                return model.CountriesOptions;
-            }
-        }
-
-        public List<string> VM_CitiesOptions
-        {
-            get
-            {
-                return model.CitiesOptions;
+                return model.CountriesPartStyle;
             }
         }
 
         public List<string> VM_TypesOptions
         {
-            get
+            get { return model.TypesOptions; }
+            set
             {
-                return model.TypesOptions;
+                model.TypesOptions = value;
             }
         }
 
-        public List<Restaurant> VM_RestsResults
-        {
-            get { return model.RestsResults; }
-            set
-            {
-                model.RestsResults = value;
-            }
-        }
     }
 }

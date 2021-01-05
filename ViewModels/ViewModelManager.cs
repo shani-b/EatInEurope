@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
-namespace EatInEurope
+namespace EatInEurope.ViewModels
 {
     class ViewModelManager : INotifyPropertyChanged
     {
@@ -63,6 +63,14 @@ namespace EatInEurope
                 model.LoginOK = value;
             }
         }
-            
+
+        public bool VM_UsernameFree
+        {
+            get { return model.UsernameFree; }
+            set
+            {
+                model.UsernameFree = value;
+            }
+        }
     }
 }

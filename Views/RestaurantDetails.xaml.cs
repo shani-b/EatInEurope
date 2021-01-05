@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EatInEurope.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -23,12 +24,69 @@ namespace EatInEurope.Views
         private StackPanel stp;
         Restaurant restDetails;
         string restID;
-        public RestaurantDetails(Restaurant idRest, bool whoIsIt)
-        {
-            InitializeComponent();
-            //editView.Visibility = Visibility.Collapsed;
 
-            bool isClient = whoIsIt;
+        public string RestID
+        {
+            get { return (string)GetValue(RestIDProperty); }
+            set
+            {
+                SetValue(RestIDProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty RestIDProperty =
+            DependencyProperty.Register("RestID", typeof(string), typeof(RestaurantDetails));
+
+        public Restaurant RestDetails
+        {
+            get { return (Restaurant)GetValue(RestDetailsProperty); }
+            set
+            {
+                SetValue(RestDetailsProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty RestDetailsProperty =
+            DependencyProperty.Register("RestDetails", typeof(Restaurant), typeof(RestaurantDetails));
+
+        public bool WhoIsIt
+        {
+            get { return (bool)GetValue(WhoIsItProperty); }
+            set
+            {
+                SetValue(WhoIsItProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty WhoIsItProperty =
+            DependencyProperty.Register("WhoIsIt", typeof(bool), typeof(RestaurantDetails));
+
+        public RestaurantDetails(string idRest, bool whoIsIt)
+        {
+            // TODO: prameter whousit
+            IModel model = (DataBaseModel)Application.Current.Properties["model"];
+            DataContext = new ViewModelRestaurantDetails(model);
+            InitializeComponent();
+
+            var VMRestID = "VM_RestID";
+            var bindingRestID = new Binding(VMRestID) { Mode = BindingMode.TwoWay };
+            this.SetBinding(RestIDProperty, bindingRestID);
+
+            // send Model the rest id.
+             RestID = idRest;
+            // TODO:  May delete this filed
+            restID = idRest;
+            var VMRestDetails = "VM_RestDetails";
+            var bindingRestDetails = new Binding(VMRestDetails) { Mode = BindingMode.OneWay };
+            this.SetBinding(RestDetailsProperty, bindingRestDetails);
+
+            var VMIsClient = "VM_IsClient";
+            var bindingIsClient = new Binding(VMIsClient) { Mode = BindingMode.OneWay };
+            this.SetBinding(WhoIsItProperty, bindingIsClient);
+
+
+
+            bool isClient = WhoIsIt;
 
             if (isClient)
             {
@@ -48,18 +106,14 @@ namespace EatInEurope.Views
             }
             else
             {
-                // TODO: CHANGE!! MEANTIME ACCEPT NAME INSTED ID!!!!!!!!
-                restID = idRest.ID;
-                restDetails = idRest;
+                
 
-
-                // TODO: quere get this resturnts details.
-                // In the meantime get the details listed from the list of restaurants in RestOW/ClientW
-                restName.Content = idRest.ID;
-                location.Content = idRest.City + ", " + idRest.Country;
-                raitingNum.Content = idRest.Rate;
+                // fill view from the binding rest details.
+                restName.Content = RestDetails.Name;
+                location.Content = RestDetails.City + ", " + RestDetails.Country;
+                raitingNum.Content = RestDetails.Rate;
                 // fill stars color
-                if (idRest.Rate == 5)
+                if (RestDetails.Rate == 5)
                 {
                     star1.Fill = Brushes.Yellow;
                     star2.Fill = Brushes.Yellow;
@@ -67,25 +121,25 @@ namespace EatInEurope.Views
                     star4.Fill = Brushes.Yellow;
                     star5.Fill = Brushes.Yellow;
                 }
-                else if (idRest.Rate == 4)
+                else if (RestDetails.Rate == 4)
                 {
                     star1.Fill = Brushes.Yellow;
                     star2.Fill = Brushes.Yellow;
                     star3.Fill = Brushes.Yellow;
                     star4.Fill = Brushes.Yellow;
                 }
-                else if (idRest.Rate == 3)
+                else if (RestDetails.Rate == 3)
                 {
                     star1.Fill = Brushes.Yellow;
                     star2.Fill = Brushes.Yellow;
                     star3.Fill = Brushes.Yellow;
                 }
-                else if (idRest.Rate == 2)
+                else if (RestDetails.Rate == 2)
                 {
                     star1.Fill = Brushes.Yellow;
                     star2.Fill = Brushes.Yellow;
                 }
-                else if (idRest.Rate == 1)
+                else if (RestDetails.Rate == 1)
                 {
                     star1.Fill = Brushes.Yellow;
                 }
@@ -95,15 +149,15 @@ namespace EatInEurope.Views
                 }
 
 
-                priceValue.Content = idRest.PriceRange;
+                priceValue.Content = RestDetails.PriceRange;
 
-                // TODO : FOR for list of styles
+                //  list of styles
                 stp = (StackPanel)FindName("styleList");
-                List<string> styleName = idRest.Types;
-                Style s = new Style(styleName[0]);
-                Style s1 = new Style(styleName[1]);
-                stp.Children.Add(s);
-                stp.Children.Add(s1);
+                for (int i=0; i< RestDetails.Types.Count; i++)
+                {
+                    Style s = new Style(RestDetails.Types[i]);
+                    stp.Children.Add(s);
+                }
 
                 // TODO : FOR for list of reviews
                 // Chck if no Review
@@ -115,16 +169,26 @@ namespace EatInEurope.Views
                 //}
                 stp = (StackPanel)FindName("reviewsList");
 
-                // changeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-                List<UserReview> iReviews = idRest.Reviews;
-                Review r = new Review(iReviews[0].Content);
-                Review r1 = new Review(iReviews[1].Content);
-                stp.Children.Add(r);
-                stp.Children.Add(r1);
+             
+                // TODO: delete stars from review
 
-                Uri hyperlink = new Uri("https://www.tripadvisor.co.il" + idRest.URL);
+                List<UserReview> iReviews = RestDetails.Reviews;
+                for (int i = 0; i < RestDetails.Reviews.Count; i++)
+                {
+                    Review r = new Review(RestDetails.Reviews[i].Content);
+                    stp.Children.Add(r);
+                }
+
+                Uri hyperlink;
+                if (RestDetails.URL.Contains("http"))
+                {
+                    hyperlink = new Uri(RestDetails.URL);
+                }
+                else
+                {
+                    hyperlink = new Uri("https://www.tripadvisor.co.il" + RestDetails.URL);
+                }
                 urlAdd.NavigateUri = hyperlink;
-                //urlText.Content = idRest[10];
             }
 
         }

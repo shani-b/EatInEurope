@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
-namespace EatInEurope
+namespace EatInEurope.ViewModels
 {
-    class ViewModelRestaurantOwner : INotifyPropertyChanged
+    class ViewModelAddRest: INotifyPropertyChanged
     {
         private IModel model;
 
 
-        public ViewModelRestaurantOwner(IModel model)
+        public ViewModelAddRest(IModel model)
         {
             this.model = model;
             model.PropertyChanged +=
@@ -29,6 +29,32 @@ namespace EatInEurope
             }
         }
 
+        // The Dashboard propreties for update his values in the view.
+
+        public List<string> VM_CountriesOptions
+        {
+            get
+            {
+                return model.CountriesOptions;
+            }
+        }
+
+        public List<string> VM_CitiesOptions
+        {
+            get
+            {
+                return model.CitiesOptions;
+            }
+        }
+
+        public List<string> VM_TypesOptions
+        {
+            get
+            {
+                return model.TypesOptions;
+            }
+        }
+
         public List<Restaurant> VM_RestsResults
         {
             get { return model.RestsResults; }
@@ -36,16 +62,6 @@ namespace EatInEurope
             {
                 model.RestsResults = value;
             }
-        }
-        public string VM_Order
-        {
-            get { return model.Order; }
-            set { model.Order = value; }
-        }
-        public bool VM_Asc
-        {
-            get { return model.Asc; }
-            set { model.Asc = value; }
         }
     }
 }

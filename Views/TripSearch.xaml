@@ -14,7 +14,7 @@
             <StackPanel Orientation="Vertical">
                 <Label Content="Choose style:"/>
                 <StackPanel Orientation="Horizontal">
-                    <ComboBox Width="45" />
+                    <ComboBox x:Name="styleChoice" Width="45" ItemsSource="{Binding VM_TypesOptions}" SelectionChanged="styleChoice_SelectionChanged"/>
                     <Button x:Name="run" Content="ok" Width="22" Click="run_Click"/>
                 </StackPanel>
             </StackPanel>

@@ -39,7 +39,7 @@ namespace EatInEurope
         List<Restaurant> getRestByFilter();
         bool signIn(string username, string password);
         List<Restaurant> orderBy(string orderType, bool order); // orderType=rests name,price,rate | asc=true -> A-Z | asc=false -> Z-A
-        Restaurant restDetails(string rest); // get the details of the rest by its name
+        // Restaurant restDetails(string rest); // get the details of the rest by its name
         void addReview(int rate, string body);
         void addRest(string name, string country, string city, List<string> types); // for owner
         Dictionary<string, int> graphCountriesByType(string type); // key=country | value=precentage

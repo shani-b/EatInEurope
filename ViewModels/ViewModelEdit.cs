@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
-namespace EatInEurope
+namespace EatInEurope.ViewModels
 {
-    class ViewModelReview : INotifyPropertyChanged
+    class ViewModelEdit : INotifyPropertyChanged
     {
         private IModel model;
 
 
-        public ViewModelReview(IModel model)
+        public ViewModelEdit(IModel model)
         {
             this.model = model;
             model.PropertyChanged +=
@@ -29,10 +29,18 @@ namespace EatInEurope
             }
         }
 
-        public UserReview NewReview
+        public Restaurant VM_RestDetails
         {
-            set { model.NewReview = value; }
+            get { return model.RestDetails; }
+            set { model.RestDetails = value; }
         }
 
+        public List<string> VM_CitiesOptions
+        {
+            get
+            {
+                return model.CitiesOptions;
+            }
+        }
     }
 }

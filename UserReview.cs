@@ -11,8 +11,8 @@ namespace EatInEurope
         public string RestID { get; set; }
         public string Content { get; set; }
         public string Date { get; set; }
-        public int Rate { get; set; }
-        public UserReview(string id, string content, string date, int rate)
+        public double Rate { get; set; }
+        public UserReview(string id, string content, string date, double rate)
         {
             RestID = id;
             Content = content;
