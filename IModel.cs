@@ -39,18 +39,13 @@ namespace EatInEurope
         List<Restaurant> getRestByFilter();
         bool signIn(string username, string password);
         List<Restaurant> orderBy(string orderType, bool order); // orderType=rests name,price,rate | asc=true -> A-Z | asc=false -> Z-A
-        Restaurant restDetails(string rest); // get the details of the rest by its name
-        void addReview(int rate, string body);
-        void addRest(string name, string country, string city, List<string> types); // for owner
+        Restaurant restDetails(string rest); // get the details of the rest by its id
+        bool addReview(UserReview userReview);
+        bool addRest(Restaurant rest); // for owner
         Dictionary<string, int> graphCountriesByType(string type); // key=country | value=precentage
         List<string> getCountries();
         List<string> getCities();
 
-        // Message to user property
-        string Message { get; set; }
-
-        // Method which comunicate with the SQL server
-        void send(string message);
-        void start();
+        
     }
 }
