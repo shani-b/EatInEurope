@@ -139,7 +139,7 @@ namespace EatInEurope
         }
 
         //Select statement 
-        public List<string>[] Select(string table, string whereCond, string orderByValue, string order, string select)
+        public List<string>[] Select(string table, string whereCond, string orderByValue, string order, string select,int limit)
         {
             string query;
             if (select != null) {
@@ -153,6 +153,10 @@ namespace EatInEurope
             }
             if (orderByValue != null) {
                 query += " ORDER BY " + orderByValue + " " + order;
+            }
+            if (limit != -1)
+            {
+                query += "LIMIT" + limit.ToString();
             }
 
             //Create a list to store the result
