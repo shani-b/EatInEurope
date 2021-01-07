@@ -1,17 +1,8 @@
 ﻿using EatInEurope.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace EatInEurope.Views
 {
@@ -23,7 +14,9 @@ namespace EatInEurope.Views
         private string idRest;
         private string city;
         private string price;
+        private bool flagFromPriceSelected;
 
+        // Properties.
         public Restaurant UpdateRest
         {
             get { return (Restaurant)GetValue(UpdateRestProperty); }
@@ -39,55 +32,44 @@ namespace EatInEurope.Views
 
         public Edit(string restID)
         {
+            // Constructor.
             IModel model = (DataBaseModel)Application.Current.Properties["model"];
             DataContext = new ViewModelEdit(model);
-            InitializeComponent();
 
             var VMUpdateRest = "VM_RestDetails";
             var bindingUpdateRest = new Binding(VMUpdateRest) { Mode = BindingMode.TwoWay };
             this.SetBinding(UpdateRestProperty, bindingUpdateRest);
 
+            InitializeComponent();
+
+            // Initialize the fileds.
             idRest = restID;
             city = "";
             price = "";
+            flagFromPriceSelected = false;
         }
 
-        private void update_Click(object sender, RoutedEventArgs e)
+        private void CityChanged(object sender, SelectionChangedEventArgs e)
         {
-            Restaurant rest = UpdateRest;
-            if (!restName.Text.Equals(""))
-            {
-                rest.Name = restName.Text;
-            }
-            if (!city.Equals(""))
-            {
-                rest.City = city;
-            }
-            if (!urltAdd.Text.Equals(""))
-            {
-                rest.URL = urltAdd.Text;
-            }
-            if (!price.Equals(""))
-            {
-                rest.PriceRange = price;
-            }
-            UpdateRest = rest;
-            RestaurantDetails rd = new RestaurantDetails(idRest, false);
-            rd.Show();
-            this.Close();
+            // Update city filed to be the selected city.
+            city = (sender as ComboBox).SelectedItem as string;
         }
 
-        private void citiesChanged(object sender, SelectionChangedEventArgs e)
+        private void LowPriceVal_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-             city = (sender as ComboBox).SelectedItem as string;
-        }
-
-        private void lowPriceVal_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+            // Update price filed to be the selected price.
             ComboBoxItem priceItem = (ComboBoxItem)lowPriceVal.SelectedItem;
             price = priceItem.Content.ToString();
-            topPriceVal.IsEnabled = true;
 
+            // Enabled 'To' view.
+            topPriceVal.IsEnabled = true;
+            if (!flagFromPriceSelected)
+            {
+                lowPriceVal.IsEnabled = false;
+                flagFromPriceSelected = true;
+            }
+
+            // Update combo item view for fit the low price.
             switch (priceItem.Name[0])
             {
                 case 'a': top1.Visibility = Visibility.Collapsed;
@@ -117,11 +99,52 @@ namespace EatInEurope.Views
             }
         }
 
-        private void topPriceVal_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void TopPriceVal_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            // Update price filed to be 'the prev price  - the selected price'.
             ComboBoxItem typeItem = (ComboBoxItem)topPriceVal.SelectedItem;
             string topPrice = typeItem.Content.ToString();
             price += " - " + topPrice;
+        }
+
+        private void Update_Click(object sender, RoutedEventArgs e)
+        {
+            // 'rest' is the rest to update.
+            Restaurant rest = UpdateRest;
+
+            // Check witch filed was changed.
+            if (!restName.Text.Equals(""))
+            {
+                rest.Name = restName.Text;
+            }
+            if (!city.Equals(""))
+            {
+                rest.City = city;
+            }
+            if (!urltAdd.Text.Equals(""))
+            {
+                rest.URL = urltAdd.Text;
+            }
+            if (!price.Equals(""))
+            {
+                rest.PriceRange = price;
+            }
+
+            // Update in the DB the details that was changed.
+            UpdateRest = rest;
+
+            // Show the Restaurant Details view. (with the changes)
+            RestaurantDetails rd = new RestaurantDetails(idRest);
+            rd.Show();
+            this.Close();
+        }
+
+        private void Go_Back_Click(object sender, RoutedEventArgs e)
+        {
+            // Go back - show the Restaurant Details view. (without changes)
+            RestaurantDetails rd = new RestaurantDetails(idRest);
+            rd.Show();
+            this.Close();
         }
     }
 }

@@ -1,18 +1,10 @@
 ﻿using EatInEurope.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace EatInEurope.Views
 {
@@ -22,9 +14,9 @@ namespace EatInEurope.Views
     public partial class RestaurantDetails : Window
     {
         private StackPanel stp;
-        Restaurant restDetails;
-        string restID;
+        //private string restID;
 
+        // Properties.
         public string RestID
         {
             get { return (string)GetValue(RestIDProperty); }
@@ -36,6 +28,7 @@ namespace EatInEurope.Views
 
         public static readonly DependencyProperty RestIDProperty =
             DependencyProperty.Register("RestID", typeof(string), typeof(RestaurantDetails));
+
 
         public Restaurant RestDetails
         {
@@ -49,6 +42,7 @@ namespace EatInEurope.Views
         public static readonly DependencyProperty RestDetailsProperty =
             DependencyProperty.Register("RestDetails", typeof(Restaurant), typeof(RestaurantDetails));
 
+
         public bool WhoIsIt
         {
             get { return (bool)GetValue(WhoIsItProperty); }
@@ -61,21 +55,20 @@ namespace EatInEurope.Views
         public static readonly DependencyProperty WhoIsItProperty =
             DependencyProperty.Register("WhoIsIt", typeof(bool), typeof(RestaurantDetails));
 
-        public RestaurantDetails(string idRest, bool whoIsIt)
+
+        public RestaurantDetails(string idRest)
         {
-            // TODO: prameter whousit
+            // Constructor.
             IModel model = (DataBaseModel)Application.Current.Properties["model"];
             DataContext = new ViewModelRestaurantDetails(model);
-            InitializeComponent();
 
             var VMRestID = "VM_RestID";
             var bindingRestID = new Binding(VMRestID) { Mode = BindingMode.TwoWay };
             this.SetBinding(RestIDProperty, bindingRestID);
 
-            // send Model the rest id.
-             RestID = idRest;
-            // TODO:  May delete this filed
-            restID = idRest;
+            // Send model the rest id.
+            RestID = idRest;
+
             var VMRestDetails = "VM_RestDetails";
             var bindingRestDetails = new Binding(VMRestDetails) { Mode = BindingMode.OneWay };
             this.SetBinding(RestDetailsProperty, bindingRestDetails);
@@ -84,133 +77,179 @@ namespace EatInEurope.Views
             var bindingIsClient = new Binding(VMIsClient) { Mode = BindingMode.OneWay };
             this.SetBinding(WhoIsItProperty, bindingIsClient);
 
-
+            InitializeComponent();
+            // Hides these objects until the visibility changes.
+            noStyle.Visibility = Visibility.Collapsed;
+            noReviews.Visibility = Visibility.Collapsed;
+            noURL.Visibility = Visibility.Collapsed;
 
             bool isClient = WhoIsIt;
-
+            // Checks who is it (clien/owner) for the correct view options.
             if (isClient)
             {
-                // It's client!!!!
-
+                // It's client.
                 edit.Visibility = Visibility.Collapsed;
             }
             else
             {
-                // It's rest owner!!!!
+                // It's rest owner.
                 addNewReview.Visibility = Visibility.Collapsed;
             }
+            
 
             if (idRest == null)
             {
-                Console.WriteLine("no rest id exists"); // TODO: change!! ERROR!!!
+                // Error handling
+                Console.WriteLine("Error - No rest id exists");
             }
             else
             {
-                
+                // Fill view from the binding rest details.
 
-                // fill view from the binding rest details.
-                restName.Content = RestDetails.Name;
-                location.Content = RestDetails.City + ", " + RestDetails.Country;
-                raitingNum.Content = RestDetails.Rate;
-                // fill stars color
-                if (RestDetails.Rate == 5)
+                // Fill name view.
+                if (RestDetails.Name == null || RestDetails.Name.Equals(""))
                 {
-                    star1.Fill = Brushes.Yellow;
-                    star2.Fill = Brushes.Yellow;
-                    star3.Fill = Brushes.Yellow;
-                    star4.Fill = Brushes.Yellow;
-                    star5.Fill = Brushes.Yellow;
-                }
-                else if (RestDetails.Rate == 4)
-                {
-                    star1.Fill = Brushes.Yellow;
-                    star2.Fill = Brushes.Yellow;
-                    star3.Fill = Brushes.Yellow;
-                    star4.Fill = Brushes.Yellow;
-                }
-                else if (RestDetails.Rate == 3)
-                {
-                    star1.Fill = Brushes.Yellow;
-                    star2.Fill = Brushes.Yellow;
-                    star3.Fill = Brushes.Yellow;
-                }
-                else if (RestDetails.Rate == 2)
-                {
-                    star1.Fill = Brushes.Yellow;
-                    star2.Fill = Brushes.Yellow;
-                }
-                else if (RestDetails.Rate == 1)
-                {
-                    star1.Fill = Brushes.Yellow;
+                    restName.Content = "None";
                 }
                 else
                 {
-                    // half- .5 -think what to do?????
+                    restName.Content = RestDetails.Name;
                 }
 
+                // Fill location view.
+                if (RestDetails.City != null && !RestDetails.City.Equals("")
+                    && RestDetails.Country != null && !RestDetails.Country.Equals(""))
+                {
+                    location.Content = RestDetails.City + ", " + RestDetails.Country;
+                }
+                else if ((RestDetails.City == null || RestDetails.City.Equals(""))
+                    && RestDetails.Country != null && !RestDetails.Country.Equals(""))
+                {
+                    location.Content = "None, " + RestDetails.Country;
+                }
+                else if (RestDetails.City != null && !RestDetails.City.Equals("")
+                    && (RestDetails.Country == null || !RestDetails.Country.Equals("")))
+                {
+                    location.Content = RestDetails.City + ", None";
+                }
+                else
+                {
+                    location.Content = "None, None";
+                }
 
+                // Fill rating view.
+                raitingNum.Content = RestDetails.Rate;
+
+                // Fill stars view according to rating number.
+                stp = (StackPanel)FindName("stars");
+                StarsRaitingView str = new StarsRaitingView();
+                stp.Children.Add(str);
+
+                // Fill price view.
                 priceValue.Content = RestDetails.PriceRange;
 
-                //  list of styles
-                stp = (StackPanel)FindName("styleList");
-                for (int i=0; i< RestDetails.Types.Count; i++)
+                // Fill list of styles.
+                int styleNum = RestDetails.Types.Count;
+                if (styleNum == 0)
                 {
-                    Style s = new Style(RestDetails.Types[i]);
-                    stp.Children.Add(s);
-                }
-
-                // TODO : FOR for list of reviews
-                // Chck if no Review
-                //int numReviews;
-                //if (numReviews == 0)
-                //{
-                //    // no Reviews massenger!!!
-                //    // bold add Reviews button!!!!!!!!
-                //}
-                stp = (StackPanel)FindName("reviewsList");
-
-             
-                // TODO: delete stars from review
-
-                List<UserReview> iReviews = RestDetails.Reviews;
-                for (int i = 0; i < RestDetails.Reviews.Count; i++)
-                {
-                    Review r = new Review(RestDetails.Reviews[i].Content);
-                    stp.Children.Add(r);
-                }
-
-                Uri hyperlink;
-                if (RestDetails.URL.Contains("http"))
-                {
-                    hyperlink = new Uri(RestDetails.URL);
+                    style.Visibility = Visibility.Collapsed;
+                    noStyle.Visibility = Visibility.Visible;
                 }
                 else
                 {
-                    hyperlink = new Uri("https://www.tripadvisor.co.il" + RestDetails.URL);
+                    // There is styles.
+                    stp = (StackPanel)FindName("styleList");
+                    for (int i = 0; i < styleNum; i++)
+                    {
+                        Style s = new Style(RestDetails.Types[i]);
+                        stp.Children.Add(s);
+                    }
                 }
-                urlAdd.NavigateUri = hyperlink;
-            }
 
+                // Fill list of reviews.
+                List<UserReview> reviews = RestDetails.Reviews;
+                if (reviews == null || reviews.Count == 0)
+                {
+                    review.Visibility = Visibility.Collapsed;
+                    noReviews.Visibility = Visibility.Visible;
+                    if (isClient)
+                    {
+                        addNewReview.Background = Brushes.Yellow;
+                    }
+                }
+                else
+                {
+                    // There is reviews.
+                    stp = (StackPanel)FindName("reviewsList");
+                    for (int i = 0; i < reviews.Count; i++)
+                    {
+                        Review r = new Review(i + 1, reviews[i]);
+                        stp.Children.Add(r);
+                    }
+                }
+
+                // Fill URL view.
+                if (RestDetails.URL == null || RestDetails.URL.Equals(""))
+                {
+                    // No URL address.
+                }
+                else
+                {
+                    // Show URL address.
+                    Uri hyperlink;
+                    if (RestDetails.URL.Contains("http"))
+                    {
+                        hyperlink = new Uri(RestDetails.URL);
+                    }
+                    else
+                    {
+                        hyperlink = new Uri("https://www.tripadvisor.co.il" + RestDetails.URL);
+                    }
+                    urlAdd.NavigateUri = hyperlink;
+                }
+            }
         }
 
         private void Hyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
         {
-            System.Diagnostics.Process.Start(e.Uri.AbsoluteUri);
+            // Display hyperlink.
+            if (e.Uri.Equals("")) {
+                // No URL.
+                if (!WhoIsIt)
+                {
+                    // It's owner view.
+                    noURL.Visibility = Visibility.Visible;
+                    edit.Background = Brushes.Yellow;
+                }
+                return;
+            }
+            else
+            {
+                System.Diagnostics.Process.Start(e.Uri.AbsoluteUri);
+            }
         }
 
-        private void edit_Click(object sender, RoutedEventArgs e)
+        private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            details.Visibility = Visibility.Collapsed;
-            Edit ev = new Edit(restID);
-            ev.Show();
+            // Show edit view.
+            Edit edit = new Edit(RestID);
+            edit.Show();
             this.Close();
         }
 
-        private void addNewReview_Click(object sender, RoutedEventArgs e)
+        private void AddNewReview_Click(object sender, RoutedEventArgs e)
         {
-            // TODO : FOR for list of reviews
-            AddReview ar = new AddReview(restID);
-            ar.Show();
+            // Show add review view.
+            AddReview addreview = new AddReview(RestID);
+            addreview.Show();
+            this.Close();
+        }
+
+        private void Go_Back_Click(object sender, RoutedEventArgs e)
+        {
+            // Back button - Restaurant Owner window view.
+            RestaurantOwnerWindow restOwner = new RestaurantOwnerWindow(RestDetails.Owner);
+            restOwner.Show();
             this.Close();
         }
     }

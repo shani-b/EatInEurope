@@ -6,28 +6,58 @@
         xmlns:local="clr-namespace:EatInEurope.Views"
         mc:Ignorable="d"
         Title="AddReview" Height="450" Width="800">
-    <Grid Background="#FFC6BBD6">
-        <!-- EDIT DETAILS -->
-        <Label x:Name="title" FontSize="40" Content="My new review:" Margin="10,19,409.6,328"/>
+    <Viewbox>
+        <Grid Background="#FFC6BBD6" Height="426" Width="800">
+            
+            <!-- Title -->
+            <Label x:Name="title" FontSize="46" FontWeight="Bold" FontFamily="Maiandra GD" Content="My new review:" Margin="10,19,409.6,328"/>
 
-        <Label x:Name="newReview" FontSize="20" Content="Enter rest name:" Margin="2,112,627.6,266"/>
-        <TextBox x:Name="reviewText" Margin="171,113,24.6,227" Background="White" OpacityMask="#FFB05555"/>
-        <Label x:Name="newScore" FontSize="20" Content="Enter rating number:" Margin="0,212,597.6,165"/>
-        <!--STAR VIEW-->
-        <!--<Viewbox Margin="316,212,321.6,159"/>-->
-        <ComboBox x:Name="raitingCombo" Margin="210,212,501.6,159" SelectionChanged="raiting_SelectionChanged">
-            <ComboBoxItem Content="1" />
-            <ComboBoxItem Content="1.5" />
-            <ComboBoxItem Content="2" />
-            <ComboBoxItem Content="2.5" />
-            <ComboBoxItem Content="3" />
-            <ComboBoxItem Content="3.5" />
-            <ComboBoxItem Content="4" />
-            <ComboBoxItem Content="4.5" />
-            <ComboBoxItem Content="5" />
-        </ComboBox>
+            <!-- Logo -->
+            <Image Source="black logo.png" Margin="607,0,0,284"/>
 
-        <Button x:Name="insert" Content="Send!" Click="insert_Click" FontSize="20" Margin="601,354,56.6,22"/>
+            <!-- Text -->
+            <Label x:Name="newReview" FontFamily="Maiandra GD" FontSize="22" Content="Enter rest name:" Margin="6,112,628,266"/>
+            <TextBox x:Name="reviewText" SpellCheck.IsEnabled="True" Language="en-US" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" Margin="177,113,25,251" Background="White" FontSize="22" OpacityMask="#FFB05555"/>
 
-    </Grid>
+            <!-- Raiting number -->
+            <Label x:Name="newScore" FontFamily="Maiandra GD" FontSize="22" Content="Enter rating number:" Margin="6,218,581,159"/>
+            <ComboBox x:Name="raitingCombo" FontSize="20" Margin="224,220,509,168" SelectionChanged="Raiting_SelectionChanged">
+                <ComboBoxItem Content="0" />
+                <ComboBoxItem Content="0.5" />
+                <ComboBoxItem Content="1" />
+                <ComboBoxItem Content="1.5" />
+                <ComboBoxItem Content="2" />
+                <ComboBoxItem Content="2.5" />
+                <ComboBoxItem Content="3" />
+                <ComboBoxItem Content="3.5" />
+                <ComboBoxItem Content="4" />
+                <ComboBoxItem Content="4.5" />
+                <ComboBoxItem Content="5" />
+            </ComboBox>
+
+            <!-- Buttons -->
+            <!-- Insert -->
+            <Button x:Name="insert" Content="Add!" Click="Insert_Click" FontSize="24" Margin="656,354,42,22">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
+            <!-- Go back -->
+            <Button x:Name="goBack" FontSize="20" Click="Go_Back_Click" Margin="19,354,651,22">
+                <Grid>
+                    <Image Source="go-back-left-arrow.png" Margin="4,10,93,10" HorizontalAlignment="Center" Width="28" RenderTransformOrigin="0.507,1.468"/>
+                    <TextBlock Text="Go Back" FontSize="20" Margin="39,8,7,7" RenderTransformOrigin="0.5,0.5"/>
+                </Grid>
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            
+        </Grid>
+    </Viewbox>
 </Window>

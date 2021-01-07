@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EatInEurope.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" Width="900">
+             d:DesignHeight="350" Width="400">
     <Viewbox>
         <Grid Width="39167" Height="19618">
             <Grid.ColumnDefinitions>
@@ -13,24 +13,28 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="0*"/>
             </Grid.ColumnDefinitions>
-            <Image x:Name="stat1C" Source="star.png" Margin="84,6075,31104.2,6283" Grid.ColumnSpan="2"/>
-            <Image x:Name="stat2C" Source="star.png" Margin="7953,6075,23235.2,6283" Grid.Column="1"/>
-            <Image x:Name="stat3C" Source="star.png" Margin="15877,6075,15310.2,6283" Grid.Column="1"/>
-            <Image x:Name="stat4C" Source="star.png" Margin="23857,6075,7768.2,6283" Grid.Column="1"/>
-            <Image x:Name="stat5C" Source="star.png" Margin="31723,6075,30.2,6283" Grid.Column="1"/>
 
+            <!-- Empty stars -->
+            <Image x:Name="stat1E" Source="star.png" Margin="84,6075,31104.2,6283" Grid.ColumnSpan="2"/>
+            <Image x:Name="stat2E" Source="star.png" Margin="7953,6075,23235.2,6283" Grid.Column="1"/>
+            <Image x:Name="stat3E" Source="star.png" Margin="15877,6075,15310.2,6283" Grid.Column="1"/>
+            <Image x:Name="stat4E" Source="star.png" Margin="23857,6075,7768.2,6283" Grid.Column="1"/>
+            <Image x:Name="stat5E" Source="star.png" Margin="31723,6075,30.2,6283" Grid.Column="1"/>
+
+            <!-- Half stars -->
             <Image x:Name="stat1H" Source="half atsr.png" Margin="84,6075,31104.2,6283" Grid.ColumnSpan="2"/>
             <Image x:Name="stat2H" Source="half atsr.png" Margin="7953,6075,23235.2,6283" Grid.Column="1"/>
             <Image x:Name="stat3H" Source="half atsr.png" Margin="15877,6075,15310.2,6283" Grid.Column="1"/>
             <Image x:Name="stat4H" Source="half atsr.png" Margin="23857,6075,7768.2,6283" Grid.Column="1"/>
             <Image x:Name="stat5H" Source="half atsr.png" Margin="31723,6075,30.2,6283" Grid.Column="1"/>
 
+            <!-- Full stars -->
             <Image x:Name="stat1F" Source="full star.png" Margin="84,6075,31104.2,6283" Grid.ColumnSpan="2"/>
             <Image x:Name="stat2F" Source="full star.png" Margin="7953,6075,23235.2,6283" Grid.Column="1"/>
             <Image x:Name="stat3F" Source="full star.png" Margin="15877,6075,15310.2,6283" Grid.Column="1"/>
             <Image x:Name="stat4F" Source="full star.png" Margin="23857,6075,7768.2,6283" Grid.Column="1"/>
             <Image x:Name="stat5F" Source="full star.png" Margin="31723,6075,30.2,6283" Grid.Column="1"/>
-            
+
         </Grid>
     </Viewbox>
 </UserControl>

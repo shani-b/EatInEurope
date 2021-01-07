@@ -11,6 +11,7 @@ namespace EatInEurope.Views
     /// </summary>
     public partial class Manager : Window
     {
+
         private Button btn_login;
         private Button btn_singUp;
         private bool cleanUser;
@@ -313,7 +314,7 @@ namespace EatInEurope.Views
             this.Close();
         }
 
-        private void usernameValue_TextChanged(object sender, TextChangedEventArgs e)
+        private void UsernameValue_TextChanged(object sender, TextChangedEventArgs e)
         {
             // Checks choise in switch button.
             if (choiceOpition)
@@ -374,7 +375,7 @@ namespace EatInEurope.Views
             }
         }
 
-        private void passwordValue_PasswordChanged(object sender, RoutedEventArgs e)
+        private void PasswordValue_PasswordChanged(object sender, RoutedEventArgs e)
         {
             // Checks choise in switch button.
             if (choiceOpition)
@@ -434,7 +435,7 @@ namespace EatInEurope.Views
             }
         }
 
-        private void passwordConfirmValue_PasswordChanged(object sender, RoutedEventArgs e)
+        private void PasswordConfirmValue_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if (cleanConfirm)
             {

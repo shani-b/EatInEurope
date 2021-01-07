@@ -1,18 +1,5 @@
-﻿using EatInEurope.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
+
 
 namespace EatInEurope.Views
 {
@@ -21,10 +8,27 @@ namespace EatInEurope.Views
     /// </summary>
     public partial class Review : UserControl
     {
-        public Review(string iReview)
+        public Review(int i, UserReview iReview)
         {
+            // Constructor.
             InitializeComponent();
-            reviewText.Content = iReview;
+
+            // Fill the review with details.
+            reviewNum.Content = i.ToString();
+            reviewText.Text = iReview.Content;
+            date.Content = iReview.Date;
+            if (iReview.Rate == 0)
+            {
+                ratingNum.Content = " --";
+            }
+            else if (iReview.Rate % 1 == 0)
+            {
+                ratingNum.Content = " " + iReview.Rate.ToString();
+            }
+            else
+            {
+                ratingNum.Content = iReview.Rate.ToString();
+            } 
         }
     }
 }

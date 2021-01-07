@@ -22,7 +22,7 @@ namespace EatInEurope
 
         public Restaurant() { }
         public Restaurant(string id, string name, string country, string city, List<string> types, double rate, string priceRange,
-                            int numOfReviews, List<UserReview> reviews, string url)
+                            int numOfReviews, List<UserReview> reviews, string url, string owner)
         {
             ID = id;
             Name = name;
@@ -34,8 +34,9 @@ namespace EatInEurope
             NumOfReviews = numOfReviews;
             Reviews = reviews;
             URL = url;
+            Owner = owner;
         }
-        public Restaurant(string id, string name, string country, string city, List<string> types, double rate)
+        public Restaurant(string id, string name, string country, string city, List<string> types, double rate, string owner)
         {
             ID = id;
             Name = name;
@@ -47,6 +48,7 @@ namespace EatInEurope
             NumOfReviews = -1;
             Reviews = new List<UserReview>();
             URL = "";
+            Owner = owner;
         }
     }
 }

@@ -42,12 +42,12 @@
             <!-- Username -->
             <Label x:Name="username" Content="Username:" FontSize="27" FontFamily="Maiandra GD" Margin="4.4,15.8,47.2,10.4" Grid.Row="3" Foreground="White" Grid.Column="1"/>
             <Border x:Name="errorUsername" Background="#FFDA3636" Padding="1" Grid.Column="2" Margin="47.8,14.8,134.4,4.4" Grid.Row="3" Grid.ColumnSpan="2" />
-            <TextBox x:Name="usernameValue" Padding="5" Margin="50.8,16.8,137.4,7.4" FontSize="25" MaxLength="14" Grid.Row="3" Grid.Column="2" Text="{Binding VM_UserName, Mode=TwoWay, UpdateSourceTrigger=Explicit}" Grid.ColumnSpan="2" TextChanged="usernameValue_TextChanged"/>
+            <TextBox x:Name="usernameValue" Padding="5" Margin="50.8,16.8,137.4,7.4" FontSize="25" MaxLength="14" Grid.Row="3" Grid.Column="2" Text="{Binding VM_UserName, Mode=TwoWay, UpdateSourceTrigger=Explicit}" Grid.ColumnSpan="2" TextChanged="UsernameValue_TextChanged"/>
 
             <!-- Password -->
             <Label x:Name="password" Content="Password:" FontSize="27"  FontFamily="Maiandra GD" Margin="4.4,15.6,47.2,9.6" Grid.Row="4" Foreground="White" Grid.Column="1"/>
             <Border x:Name="errorPassword" Background="#FFEB4A4A" Padding="1" Grid.Column="2" Margin="47.8,14.6,134.4,3.6" Grid.Row="4" Grid.ColumnSpan="2"/>
-            <PasswordBox x:Name="passwordValue" Padding="5" Margin="50.8,16.6,137.4,6.6" FontSize="30" Grid.Column="2" Grid.Row="4" MaxLength="14" PasswordChar="*" Grid.ColumnSpan="2" Password="" PasswordChanged="passwordValue_PasswordChanged"/>
+            <PasswordBox x:Name="passwordValue" Padding="5" Margin="50.8,16.6,137.4,6.6" FontSize="30" Grid.Column="2" Grid.Row="4" MaxLength="14" PasswordChar="*" Grid.ColumnSpan="2" Password="" PasswordChanged="PasswordValue_PasswordChanged"/>
 
             <!-- Login Button -->
             <Button x:Name="login" Content="Login" FontSize="30" FontFamily="Maiandra GD" Click="Login_Click" Margin="83.2,9.4,155.2,4.8" Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="2">
@@ -62,7 +62,7 @@
             <!-- Confirm Password -->
             <Label x:Name="passwordConfirm" Content="Confirm Password:" FontSize="25" FontFamily="Maiandra GD" Margin="4.4,18.4,156.8,7.8" Grid.Row="5" Foreground="White" Grid.Column="1" Grid.ColumnSpan="2"/>
             <Border x:Name="errorConfirm" Background="#FFEB4A4A" Padding="1" Grid.Column="2" Margin="47.8,13.4,134.4,4.8" Grid.Row="5" Grid.ColumnSpan="2"/>
-            <PasswordBox x:Name="passwordConfirmValue" Padding="5" Margin="49.8,15.4,137.4,7.8" FontSize="30" Grid.Column="2" Grid.Row="5" MaxLength="14" PasswordChar="*"  Password="" Grid.ColumnSpan="2" PasswordChanged="passwordConfirmValue_PasswordChanged" />
+            <PasswordBox x:Name="passwordConfirmValue" Padding="5" Margin="49.8,15.4,137.4,7.8" FontSize="30" Grid.Column="2" Grid.Row="5" MaxLength="14" PasswordChar="*"  Password="" Grid.ColumnSpan="2" PasswordChanged="PasswordConfirmValue_PasswordChanged" />
 
             <!-- SingUp Button -->
             <Button x:Name="signUp" Content="Sign up" FontSize="30"  FontFamily="Maiandra GD" Click="Sign_up_Click" Margin="83.2,9.4,155.2,4.8" Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="2">

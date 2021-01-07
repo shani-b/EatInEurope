@@ -3,108 +3,110 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:Views="clr-namespace:EatInEurope.views" xmlns:Views1="clr-namespace:EatInEurope.Views"
+        xmlns:Views="clr-namespace:EatInEurope.Views" xmlns:Views1="clr-namespace:EatInEurope.Views"
         mc:Ignorable="d"
         Title="Client" Height="450" Width="800">
-    <Grid Background="#FF7FE0AE">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <!-- Logo -->
-        <Image x:Name="logo" Source="white_logo.png" Margin="0.4,0,10,57" Grid.Column="2" Grid.RowSpan="2"/>
+    <Viewbox>
+        <Grid Background="#FF7FE0AE" Height="476" Width="901">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!-- Logo -->
+            <Image x:Name="logo" Source="white_logo.png" Margin="0.4,0,10,57" Grid.Column="2" Grid.RowSpan="2"/>
 
 
-        <!-- Options -->
-        <Button x:Name="searchTrip" Content="Searching for a&#xD;&#xA; trip destination&#xD;&#xA; by foods' style" Click="Search_Trip_Click" FontSize="20" Margin="0,0,0.4,0" Grid.Row="2" Grid.Column="1" Background="LightGray" />
-        <Button x:Name="searchRest" Content="Find a restaurant" Click="Search_Restaurant_Click" FontSize="20" Margin="0,0,0.4,0" Grid.Row="2" Grid.Column="3" Background="LightGray" />
-        <!--Searching for a trip destination by restaurants foods' style-->
+            <!-- Options -->
+            <Button x:Name="searchTrip" Content="Searching for a&#xD;&#xA; trip destination&#xD;&#xA; by foods' style" Click="Search_Trip_Click" FontSize="20" Margin="0,0,0.4,0" Grid.Row="2" Grid.Column="1" Background="LightGray" />
+            <Button x:Name="searchRest" Content="Find a restaurant" Click="Search_Restaurant_Click" FontSize="20" Margin="0,0,0.4,0" Grid.Row="2" Grid.Column="3" Background="LightGray" />
+            <!--Searching for a trip destination by restaurants foods' style-->
 
 
-        <StackPanel x:Name="search" Grid.Row="0" Grid.Column="0" Margin="5,5,0.2,0" Grid.RowSpan="5">
-            <TextBlock FontSize="20" FontStyle="Italic">Search:</TextBlock>
-            <TextBlock Text="Rest Name"/>
-            <TextBox />
-            <Label Height="20" Margin="0,0,0.4,0"/>
-            <TextBlock FontSize="16" FontStyle="Italic">choose filters</TextBlock>
+            <StackPanel x:Name="search" Grid.Row="0" Grid.Column="0" Margin="5,5,0.2,0" Grid.RowSpan="5">
+                <TextBlock FontSize="20" FontStyle="Italic">Search:</TextBlock>
+                <TextBlock Text="Rest Name"/>
+                <TextBox />
+                <Label Height="20" Margin="0,0,0.4,0"/>
+                <TextBlock FontSize="16" FontStyle="Italic">choose filters</TextBlock>
 
-            <TextBlock>countries</TextBlock>
-            <ComboBox Name="countries" ItemsSource="{Binding VM_CountriesOptions}" SelectionChanged="countriesChanged"/>
-            <TextBlock>cities</TextBlock>
-            <ComboBox Name="cities" ItemsSource="{Binding VM_CitiesOptions}" SelectionChanged="citiesChanged"/>
-            <TextBlock>styles</TextBlock>
-            <ComboBox Name="styles" ItemsSource="{Binding VM_TypesOptions}" SelectionChanged="typesChanged"/>
-            <TextBlock>from price</TextBlock>
-            <ComboBox>
-                <ComboBoxItem Content="$" />
-                <ComboBoxItem Content="$$" />
-                <ComboBoxItem Content="$$$" />
-                <ComboBoxItem Content="$$$$" />
-                <ComboBoxItem Content="$$$$$" />
-            </ComboBox>
-            <TextBlock>to price</TextBlock>
-            <ComboBox>
-                <ComboBoxItem Content="$" />
-                <ComboBoxItem Content="$$" />
-                <ComboBoxItem Content="$$$" />
-                <ComboBoxItem Content="$$$$" />
-                <ComboBoxItem Content="$$$$$" />
-            </ComboBox>
-            <TextBlock>from rate</TextBlock>
-            <ComboBox>
-                <ComboBoxItem Content="1" />
-                <ComboBoxItem Content="1.5" />
-                <ComboBoxItem Content="2" />
-                <ComboBoxItem Content="2.5" />
-                <ComboBoxItem Content="3" />
-                <ComboBoxItem Content="3.5" />
-                <ComboBoxItem Content="4" />
-                <ComboBoxItem Content="4.5" />
-                <ComboBoxItem Content="5" />
-            </ComboBox>
-            <TextBlock>to rate</TextBlock>
-            <ComboBox>
-                <ComboBoxItem Content="1" />
-                <ComboBoxItem Content="1.5" />
-                <ComboBoxItem Content="2" />
-                <ComboBoxItem Content="2.5" />
-                <ComboBoxItem Content="3" />
-                <ComboBoxItem Content="3.5" />
-                <ComboBoxItem Content="4" />
-                <ComboBoxItem Content="4.5" />
-                <ComboBoxItem Content="5" />
-            </ComboBox>
-            <Button Content="search" HorizontalAlignment="Left" Width="69" Height="39" Click="Search_Click"/>
-        </StackPanel>
-        <Button x:Name="deleteChoises" Content="Clean" HorizontalAlignment="Left" Width="51" Height="39" Click="deleteChoises_Click" Margin="86,42,0,3" Grid.Row="4"/>
-        <StackPanel x:Name="choises" Grid.Row="0" Grid.Column="1" Margin="4.8,5,5.6,0" Grid.RowSpan="5">
-            <TextBlock x:Name="titleChoices" FontSize="20" FontStyle="Italic">your choises:</TextBlock>
-        </StackPanel>
-
-        <Label x:Name="sort" Content="Sort by:" FontSize="20" Margin="4.4,5,26,41" Grid.Column="2" />
-        <ComboBox x:Name="comboSort" Margin="4.4,43,8,1" SelectionChanged="filtersChanged" Grid.Column="2">
-            <ComboBoxItem x:Name="AZ" Content="A-Z" />
-            <ComboBoxItem x:Name="ZA" Content="Z-A" />
-            <ComboBoxItem Content="Raiting low to height" />
-            <ComboBoxItem Content="Raiting height to low" />
-        </ComboBox>
-
-        <Label x:Name="title" Margin="0,9,19.6,10" Content="Search Results:" FontSize="40"  Grid.ColumnSpan="2" Grid.Column="3" FontWeight="Bold"/>
-        <ScrollViewer x:Name="searchResults" Grid.Row="1" Grid.Column="2" Margin="10.4,0,-0.4,0" Grid.RowSpan="4" Grid.ColumnSpan="3">
-            <StackPanel x:Name="restList">
-                <!--list of rest-->
+                <TextBlock>countries</TextBlock>
+                <ComboBox Name="countries" ItemsSource="{Binding VM_CountriesOptions}" SelectionChanged="countriesChanged"/>
+                <TextBlock>cities</TextBlock>
+                <ComboBox Name="cities" ItemsSource="{Binding VM_CitiesOptions}" SelectionChanged="citiesChanged"/>
+                <TextBlock>styles</TextBlock>
+                <ComboBox Name="styles" ItemsSource="{Binding VM_TypesOptions}" SelectionChanged="typesChanged"/>
+                <TextBlock>from price</TextBlock>
+                <ComboBox>
+                    <ComboBoxItem Content="$" />
+                    <ComboBoxItem Content="$$" />
+                    <ComboBoxItem Content="$$$" />
+                    <ComboBoxItem Content="$$$$" />
+                    <ComboBoxItem Content="$$$$$" />
+                </ComboBox>
+                <TextBlock>to price</TextBlock>
+                <ComboBox>
+                    <ComboBoxItem Content="$" />
+                    <ComboBoxItem Content="$$" />
+                    <ComboBoxItem Content="$$$" />
+                    <ComboBoxItem Content="$$$$" />
+                    <ComboBoxItem Content="$$$$$" />
+                </ComboBox>
+                <TextBlock>from rate</TextBlock>
+                <ComboBox>
+                    <ComboBoxItem Content="1" />
+                    <ComboBoxItem Content="1.5" />
+                    <ComboBoxItem Content="2" />
+                    <ComboBoxItem Content="2.5" />
+                    <ComboBoxItem Content="3" />
+                    <ComboBoxItem Content="3.5" />
+                    <ComboBoxItem Content="4" />
+                    <ComboBoxItem Content="4.5" />
+                    <ComboBoxItem Content="5" />
+                </ComboBox>
+                <TextBlock>to rate</TextBlock>
+                <ComboBox>
+                    <ComboBoxItem Content="1" />
+                    <ComboBoxItem Content="1.5" />
+                    <ComboBoxItem Content="2" />
+                    <ComboBoxItem Content="2.5" />
+                    <ComboBoxItem Content="3" />
+                    <ComboBoxItem Content="3.5" />
+                    <ComboBoxItem Content="4" />
+                    <ComboBoxItem Content="4.5" />
+                    <ComboBoxItem Content="5" />
+                </ComboBox>
+                <Button Content="search" HorizontalAlignment="Left" Width="69" Height="39" Click="Search_Click"/>
             </StackPanel>
-        </ScrollViewer>
-        <Label x:Name="noRest" Content="There are no restaurants in this filters&#xD;&#xA; Try new search!" FontSize="20" Grid.ColumnSpan="3" Margin="80.4,10,47.6,79" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" />
-    </Grid>
+            <Button x:Name="deleteChoises" Content="Clean" HorizontalAlignment="Left" Width="51" Height="39" Click="deleteChoises_Click" Margin="86,42,0,3" Grid.Row="4"/>
+            <StackPanel x:Name="choises" Grid.Row="0" Grid.Column="1" Margin="4.8,5,5.6,0" Grid.RowSpan="5">
+                <TextBlock x:Name="titleChoices" FontSize="20" FontStyle="Italic">your choises:</TextBlock>
+            </StackPanel>
+
+            <Label x:Name="sort" Content="Sort by:" FontSize="20" Margin="4.4,5,26,41" Grid.Column="2" />
+            <ComboBox x:Name="comboSort" Margin="4,43,7.8,0" SelectionChanged="filtersChanged" Grid.Column="2" Height="42" VerticalAlignment="Top">
+                <ComboBoxItem x:Name="AZ" Content="A-Z" />
+                <ComboBoxItem x:Name="ZA" Content="Z-A" />
+                <ComboBoxItem Content="Raiting low to height" />
+                <ComboBoxItem Content="Raiting height to low" />
+            </ComboBox>
+
+            <Label x:Name="title" Margin="0,9,19.6,10" Content="Search Results:" FontSize="40"  Grid.ColumnSpan="2" Grid.Column="3" FontWeight="Bold"/>
+            <ScrollViewer x:Name="searchResults" Grid.Row="1" Grid.Column="2" Margin="10.4,0,-0.4,0" Grid.RowSpan="4" Grid.ColumnSpan="3">
+                <StackPanel x:Name="restList">
+                    <!--list of rest-->
+                </StackPanel>
+            </ScrollViewer>
+            <Label x:Name="noRest" Content="There are no restaurants in this filters&#xD;&#xA; Try new search!" FontSize="20" Grid.ColumnSpan="3" Margin="80.4,10,47.6,79" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" />
+        </Grid>
+    </Viewbox>
 </Window>
