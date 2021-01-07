@@ -1,18 +1,8 @@
 ﻿using EatInEurope.ViewModels;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace EatInEurope.Views
 {
@@ -21,9 +11,9 @@ namespace EatInEurope.Views
     /// </summary>
     public partial class Rest : UserControl
     {
+
         string restID;
         RestaurantOwnerWindow restow;
-        bool isClient;
 
         public List<Restaurant> MyRestaurantsList
         {
@@ -51,6 +41,7 @@ namespace EatInEurope.Views
 
         public Rest(RestaurantOwnerWindow rest, string idRest)
         {
+            // Constructor.
             IModel model = (DataBaseModel)Application.Current.Properties["model"];
             DataContext = new ViewModelRestaurantOwner(model);
 
@@ -63,31 +54,31 @@ namespace EatInEurope.Views
             this.SetBinding(RestIDProperty, bindingRestID);
 
             InitializeComponent();
+
+            // Initialize the fileds.
             restID = idRest;
             restow = rest;
-            isClient = false;
+
         }
 
-        private void details_Click(object sender, RoutedEventArgs e)
+        private void Details_Click(object sender, RoutedEventArgs e)
         {
-            // detaile window without recomends and raiting 
-            // with add and edit options.
-            // TODO: THIS THE CORRECT LINE : string showThisRestDetailes = restID;
-           // Restaurant showThisRestDetailes = restow.getDetailsByID(restID);
-            RestaurantDetails restD = new RestaurantDetails(restID, isClient);
+            // Show this 'restID' Rest Detailes view -
+            // without add review & raiting, and with edit options.
+            RestaurantDetails restD = new RestaurantDetails(restID);
             restD.Show();
             restow.Close();
         }
 
-        private void deleteRest_Click(object sender, RoutedEventArgs e)
+        private void DeleteRest_Click(object sender, RoutedEventArgs e)
         {
-            //  Delete in DB this rest.
+            // Delete from the DB this rest('restID').
             RestID = restID;
             MyRestaurantsList.RemoveAt(MyRestaurantsList.FindIndex(x => x.ID == restID));
 
-            // remove from RestaurantOwnerWindow
+            // Delete from RestaurantOwnerWindow view this rest.
             restow.stp.Children.Clear();
-            restow.fillRestStackPanel();
+            restow.FillRestStackPanel();
         }
     }
 }

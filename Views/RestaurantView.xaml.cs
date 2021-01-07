@@ -23,7 +23,7 @@ namespace EatInEurope.Views
 
         string restID;
         Client c;
-        bool isClient;
+
         public List<string> temp;
         public RestaurantView(Client rest, string idRest)
         {
@@ -31,14 +31,13 @@ namespace EatInEurope.Views
 
             restID = idRest;
             c = rest;
-            isClient = true;
         }
 
 
         private void details_Click(object sender, RoutedEventArgs e)
         {
             //Restaurant showThisRestDetailes = c.getDetailsByID(restID);
-            RestaurantDetails restD = new RestaurantDetails(restID, isClient);
+            RestaurantDetails restD = new RestaurantDetails(restID);
             restD.Show();
             c.Close();
         }

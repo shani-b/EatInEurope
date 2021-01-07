@@ -1,5 +1,5 @@
 ﻿using EatInEurope.ViewModels;
-using EatInEurope.views;
+using EatInEurope.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;

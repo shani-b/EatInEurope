@@ -1,17 +1,9 @@
 ﻿using EatInEurope.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace EatInEurope.Views
 {
@@ -20,9 +12,10 @@ namespace EatInEurope.Views
     /// </summary>
     public partial class AddReview : Window
     {
-        private string RestID;
-        private double raiting;
+        private string restID;
+        private double rating;
 
+        // Properties.
         public UserReview MyNewReview
         {
             get { return (UserReview)GetValue(MyNewReviewProperty); }
@@ -37,6 +30,7 @@ namespace EatInEurope.Views
 
         public AddReview(string idRest)
         {
+            // Constructor.
             IModel model = (DataBaseModel)Application.Current.Properties["model"];
             DataContext = new ViewModelReview(model);
             
@@ -45,24 +39,38 @@ namespace EatInEurope.Views
             this.SetBinding(MyNewReviewProperty, bindingMyNewReview);
 
             InitializeComponent();
-            RestID = idRest;
+            restID = idRest;
+            rating = 0;
         }
 
-        private void insert_Click(object sender, RoutedEventArgs e)
-        {
-            string date = DateTime.Now.ToString("dd/MM/yyy");
-            MyNewReview = new UserReview(RestID, reviewText.Text, date, raiting);
-  
-            RestaurantDetails rd = new RestaurantDetails(RestID, true);
-            rd.Show();
-            this.Close();
-        }
-
-        private void raiting_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Raiting_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBoxItem raitingItem = (ComboBoxItem)raitingCombo.SelectedItem;
             string raitingString = raitingItem.Content.ToString();
-            raiting = Double.Parse(raitingString);
+            // Fill the rating filed with the chosen number.
+            rating = Double.Parse(raitingString);
+        }
+
+        private void Insert_Click(object sender, RoutedEventArgs e)
+        {
+            // Fill current date. 
+            string date = DateTime.Now.ToString("dd/MM/yyy");
+
+            // Insert to the DB the new review.
+            MyNewReview = new UserReview(restID, reviewText.Text, date, rating);
+
+            // Show the Restaurant Details view (with the new review).
+            RestaurantDetails restdetails = new RestaurantDetails(restID);
+            restdetails.Show();
+            this.Close();
+        }
+
+        private void Go_Back_Click(object sender, RoutedEventArgs e)
+        {
+            // Go Back - show the Restaurant Details view. (without add the new review)
+            RestaurantDetails restdetails = new RestaurantDetails(restID);
+            restdetails.Show();
+            this.Close();
         }
     }
 }

@@ -154,6 +154,9 @@
     <Compile Include="Views\Manager.xaml.cs">
       <DependentUpon>Manager.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\StarsRaitingView.xaml.cs">
+      <DependentUpon>StarsRaitingView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Rest.xaml.cs">
       <DependentUpon>Rest.xaml</DependentUpon>
     </Compile>
@@ -165,9 +168,6 @@
     </Compile>
     <Compile Include="Views\Review.xaml.cs">
       <DependentUpon>Review.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\StarsRaitingView.xaml.cs">
-      <DependentUpon>StarsRaitingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Style.xaml.cs">
       <DependentUpon>Style.xaml</DependentUpon>
@@ -187,9 +187,6 @@
     <Compile Include="ViewModels\ViewModelSearch.cs" />
     <Compile Include="Views\RestaurantView.xaml.cs">
       <DependentUpon>RestaurantView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="views\SearchView.xaml.cs">
-      <DependentUpon>SearchView.xaml</DependentUpon>
     </Compile>
     <Compile Include="DBConnect.cs" />
     <Compile Include="IModel.cs" />
@@ -217,6 +214,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\StarsRaitingView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Rest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -234,14 +235,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Review.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="views\SearchView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\StarsRaitingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -328,6 +321,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Views\full star.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\dry-clean.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\black logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

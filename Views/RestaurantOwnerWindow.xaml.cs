@@ -12,10 +12,11 @@ namespace EatInEurope.Views
     /// </summary>
     public partial class RestaurantOwnerWindow : Window
     {
-        public StackPanel stp;
+
         private string ownerName;
+        public StackPanel stp;
 
-
+        // Properties.
         public List<Restaurant> MyRestaurants
         {
             get { return (List<Restaurant>)GetValue(MyRestaurantsProperty); }
@@ -88,74 +89,110 @@ namespace EatInEurope.Views
             var bindingAsc = new Binding(VMAsc) { Mode = BindingMode.TwoWay };
             this.SetBinding(AscProperty, bindingAsc);
 
+            // Initialize the view.
             InitializeComponent();
-            ownerName = username;
-            usernameValue.Content = "Hello " + ownerName;
-
             noRest.Visibility = Visibility.Collapsed;
             comboSort.IsEnabled = true;
 
+            // Fill the list of rest view accordint to DB list of rest. 
             stp = (StackPanel)FindName("restList");
+            FillRestStackPanel();
 
-            fillRestStackPanel();
-
+            // Initialize the fileds.
+            ownerName = username;
+            usernameValue.Content = "Hello " + ownerName;
 
         }
 
-        public void fillRestStackPanel()
+        public void FillRestStackPanel()
         {
             // Check how many restuarents exsits.
             int restNum = MyRestaurants.Count;
-            if (MyRestaurants == null || restNum == 0)
+            if (MyRestaurants == null || MyRestaurants.Count == 0)
             {
+                // The owner does not own any restaurants.
+                // Show view changes accordingly.
                 noRest.Visibility = Visibility.Visible;
                 myRest.Visibility = Visibility.Collapsed;
+                addRest.Background = Brushes.Yellow;
                 comboSort.IsEnabled = false;
                 // Clean the combo if used.
                 if(comboSort.SelectedItem != null)
                 {
                     comboSort.SelectedItem = null;
                 }
-                // TODO: Change color.
-                addRest.Background = Brushes.Yellow;
             }
             else
             {
                 // There are exists restuarents.
                 for (int i = 0; i < restNum; i++)
                 {
+                    // Fill id view.
                     string restID = MyRestaurants[i].ID;
-                    CurrentRestID = MyRestaurants[i].ID;
-                    // BINDING RAITING
 
+                    // Binding for stars raiting view.
+                    CurrentRestID = restID;
 
+                    // Create new Rest view.
                     Rest rest = new Rest(this, restID);
 
-                    rest.restName.Content = MyRestaurants[i].Name;
-                    if(MyRestaurants[i].Types.Count == 0)
+                    // Fill name view.
+                    if (MyRestaurants[i].Name == null || MyRestaurants[i].Name.Equals(""))
                     {
-                        rest.styleName.Content = "None";
+                        rest.restName.Content = "None";
+                    }
+                    else
+                    {
+                        rest.restName.Content = MyRestaurants[i].Name;
+                    }
+
+                    // Fill style view.
+                    if (MyRestaurants[i].Types == null || MyRestaurants[i].Types.Count == 0)
+                    {
+                        rest.styleName.Content = "None |";
                     } 
                     else
                     {
                         rest.styleName.Content = MyRestaurants[i].Types[0] + " |";
                     }
 
-                    rest.locationValue.Content = MyRestaurants[i].City + ", " + MyRestaurants[i].Country;
-                    
+                    // Fill location view.
+                    if (MyRestaurants[i].City != null && !MyRestaurants[i].City.Equals("") 
+                        && MyRestaurants[i].Country != null && !MyRestaurants[i].Country.Equals(""))
+                    {
+                        rest.locationValue.Content = MyRestaurants[i].City + ", " + MyRestaurants[i].Country;
+                    }
+                    else if ((MyRestaurants[i].City == null || MyRestaurants[i].City.Equals("")) 
+                        && MyRestaurants[i].Country != null && !MyRestaurants[i].Country.Equals(""))
+                    {
+                        rest.locationValue.Content = "None, " + MyRestaurants[i].Country;
+                    }
+                    else if (MyRestaurants[i].City != null && !MyRestaurants[i].City.Equals("")
+                        && (MyRestaurants[i].Country == null || !MyRestaurants[i].Country.Equals("")))
+                    {
+                        rest.locationValue.Content =  MyRestaurants[i].City + ", None";
+                    }
+                    else
+                    {
+                        rest.locationValue.Content = "None, None";
+                    }
+
+                    // Add rest detailes to Rest view.
                     stp.Children.Add(rest);
                 }
             }
         }
 
-        private void sortChanged(object sender, SelectionChangedEventArgs e)
+        private void SortChanged(object sender, SelectionChangedEventArgs e)
         {
             var filterChoice = (sender as ComboBox).SelectedItem;
-            if(filterChoice == null)
+            if(filterChoice == null) // Error handling.
             {
                 return;
             }
             string filterChoiceValue = filterChoice.ToString();
+            
+            // Update the choice in the DB.
             if (filterChoiceValue.Contains("A-Z"))
             {
                 Order = "name";
@@ -177,21 +214,21 @@ namespace EatInEurope.Views
                 Asc = false;
             }
 
-
-            // TODO: get correct filter by choice - clear restview and Re-insert 'fillRest..'  
+            // Clear the List of rest view.
             stp.Children.Clear();
-            // correct filter 
-            fillRestStackPanel();
+            // Fill the List of rest view by the selected sort filter.
+            FillRestStackPanel();
         }
 
-        private void addRest_Click(object sender, RoutedEventArgs e)
+        private void AddRest_Click(object sender, RoutedEventArgs e)
         {
+            // Show add restaurant view.
             AddRest ar = new AddRest(ownerName);
             ar.Show();
             this.Close();
         }
 
-        private void logOut_Click(object sender, RoutedEventArgs e)
+        private void LogOut_Click(object sender, RoutedEventArgs e)
         {
             // Logout button - Go back to Manager window.
             Manager manager = new Manager();

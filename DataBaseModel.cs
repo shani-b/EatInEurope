@@ -42,14 +42,14 @@ namespace EatInEurope
                 //     "4.5","$$$$", "567", "Satisfaction", "Delicious old school restaurant","/Restaurant_Review-g188590-d696959-Reviews-La_Rive-Amsterdam_North_Holland_Province.html"}
 
                 new Restaurant("d11752080","Martine of Martine's Table","Netherlands", "Amsterdam",new List<string>{ "French", "Dutch", "European" }
-                    , 5, "$$ - $$$", 136,new List<UserReview>{new UserReview("d11752080","good", "10/1/99", 5) },
-                    "/Restaurant_Review-g188590-d11752080-Reviews-Martine_of_Martine_s_Table-Amsterdam_North_Holland_Province.html"),
+                    , 5, "$$ - $$$", 136,new List<UserReview>{new UserReview("d11752080","gooooooooooooooood", "10/1/99", 0.0), new UserReview("d11752080","very recomend rest", "20/01/19", 2.5), new UserReview("d11752080","I LIKE THIS REST", "29/08/2000", 5) },
+                    "/Restaurant_Review-g188590-d11752080-Reviews-Martine_of_Martine_s_Table-Amsterdam_North_Holland_Province.html", "Orel"),
                 new Restaurant("d693419", "De Silveren Spiegel","Netherlands", "Amsterdam",new List<string>{ "Dutch", "European", "Vegetarian Friendly", "Gluten Free Options" }
                     , 4.5, "$$$$", 812,new List<UserReview>(),
-                    "/Restaurant_Review-g188590-d693419-Reviews-De_Silveren_Spiegel-Amsterdam_North_Holland_Province.html"),
+                    "/Restaurant_Review-g188590-d693419-Reviews-De_Silveren_Spiegel-Amsterdam_North_Holland_Province.html", "shani"),
                 new Restaurant("d696959", "La Rive","Netherlands", "Amsterdam",new List<string>{ "Mediterranean", "French", "International", "European", "Vegetarian Friendly", "Vegan Options" }
-                    , 4.5, "$$$$", 567,new List<UserReview>(),
-                    "/Restaurant_Review-g188590-d696959-Reviews-La_Rive-Amsterdam_North_Holland_Province.html")
+                    , 1.5, "$$$$", 567,new List<UserReview>(),
+                    "/Restaurant_Review-g188590-d696959-Reviews-La_Rive-Amsterdam_North_Holland_Province.html", "reut")
             };
             //RestsResults = new List<List<string>> { };
 
@@ -380,7 +380,9 @@ namespace EatInEurope
             List<string>[] rest = dBConnect.Select("t_restaurants", "owner = \"" + username + "\"", null, null);
             for (int i = 0; i<rest[0].Count ;i++)
             {
-                Restaurant new_rest = new Restaurant(rest[0][i], rest[1][i], null, null, null, Convert.ToDouble(rest[3][i]), rest[4][i], 0, null, rest[5][i]);
+                // Restaurant new_rest = new Restaurant(rest[0][i], rest[1][i], null, null, null, Convert.ToDouble(rest[3][i]), rest[4][i], 0, null, rest[5][i]);
+                // REUT: i want send me owner name!!!! i am not sure what to do for this , so i send [0][i] again....
+                Restaurant new_rest = new Restaurant(rest[0][i], rest[1][i], null, null, null, Convert.ToDouble(rest[3][i]), rest[4][i], 0, null, rest[5][i], username);
                 all_rest.Add(new_rest);
             }
             return all_rest;

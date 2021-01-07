@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EatInEurope.Views"
         mc:Ignorable="d"
-        Title="RestaurantOwnerWindow" Height="450" Width="800">
+        Title="Eat In Europe" Height="450" Width="800">
     <Viewbox>
         <Grid Height="421" Width="794">
             <Grid.Background>
@@ -47,7 +47,7 @@
 
             <!-- Buttons -->
             <!-- Add rest -->
-            <Button x:Name="addRest" Click="addRest_Click" FontSize="16" Grid.ColumnSpan="2" Grid.Column="3" Margin="136,36.2,17.6,8.8" Grid.Row="4">
+            <Button x:Name="addRest" Click="AddRest_Click" FontSize="16" Grid.ColumnSpan="2" Grid.Column="3" Margin="136,36.2,17.6,8.8" Grid.Row="4">
                 <Grid Width="159" Height="35">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="25*"/>
@@ -66,7 +66,7 @@
             <!-- sort filters -->
             <Label x:Name="sort" Content="Sort by:" FontFamily="Maiandra GD" FontSize="24" Margin="40,63.2,13.2,66.8" Grid.Row="1" Grid.RowSpan="2" />
             <Image x:Name="sortIcon" Source="sort-descending.png" Margin="10,69.2,123.2,69.8" Grid.Row="1" RenderTransformOrigin="7.408,0.007" Grid.RowSpan="2"/>
-            <ComboBox x:Name="comboSort" Margin="4,21.2,142.6,33.8" Grid.Row="2" SelectionChanged="sortChanged" FontSize="14" Grid.ColumnSpan="2">
+            <ComboBox x:Name="comboSort" Margin="4,21.2,142.6,33.8" Grid.Row="2" SelectionChanged="SortChanged" FontSize="14" Grid.ColumnSpan="2">
                 <ComboBoxItem x:Name="AZ" Content="A-Z" />
                 <ComboBoxItem x:Name="ZA" Content="Z-A" />
                 <ComboBoxItem Content="Raiting low to height" />
@@ -74,14 +74,14 @@
             </ComboBox>
 
             <!-- Logout -->
-            <Button x:Name="logOut" Click="logOut_Click" FontSize="16" Margin="12,36.2,58.2,8.8" Grid.Row="4">
+            <Button x:Name="logOut" Click="LogOut_Click" FontSize="16" Margin="12,36.2,58.2,8.8" Grid.Row="4">
                 <Grid Width="89" Height="35">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="25*"/>
                         <ColumnDefinition Width="121*"/>
                     </Grid.ColumnDefinitions>
                     <Image Source="Logout.png" Margin="4,7,64.8,7" HorizontalAlignment="Center" Width="20" RenderTransformOrigin="0.507,1.468" Grid.ColumnSpan="2"/>
-                    <TextBlock Text=" Logout"  FontSize="14" Margin="9.8,7" RenderTransformOrigin="0.5,0.5" Grid.Column="1"/>
+                    <TextBlock Text=" Logout" FontSize="14" Margin="9.8,7" RenderTransformOrigin="0.5,0.5" Grid.Column="1"/>
                 </Grid>
                 <Button.Resources>
                     <Style TargetType="Border">

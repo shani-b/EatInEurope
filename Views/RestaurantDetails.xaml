@@ -6,63 +6,101 @@
         xmlns:local="clr-namespace:EatInEurope.Views"
         mc:Ignorable="d"
         Title="RestaurantDetails" Height="450" Width="800">
-    <Grid Background="#FFFFB3B3">
+    <Viewbox>
+        <Grid x:Name="details" Background="#FFFFB3B3" Width="2110" Height="1115">
 
-        <ScrollViewer >
-            <Grid x:Name="details" Height="1000">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="253*"/>
-                    <ColumnDefinition Width="6*"/>
-                </Grid.ColumnDefinitions>
-                <!-- Logo -->
-                <Image x:Name="logo" Source="white_logo.png" Margin="576,0,1.8,847" Grid.ColumnSpan="2"/>
+            <!-- Logo -->
+            <Image x:Name="logo" Source="white_logo.png" Margin="1701,10,19,772"/>
 
+            <!-- Name -->
+            <Label x:Name="restName" FontFamily="Maiandra GD" Padding="5" Margin="29,21,391,935" Content="Rest name" FontSize="120"/>
 
-                <Label x:Name="restName" Padding="5" Margin="6,4,103.2,918" Content="Rest name" FontSize="45" Background="{x:Null}"/>
-                <Label x:Name="location" Padding="5" Margin="6,87,293.2,865" Content="City name, Country name" FontSize="25" Background="{x:Null}"/>
-                <Label x:Name="raitingNum" Padding="5" Margin="10,153,681.2,797" Content="num" FontSize="24" Background="{x:Null}" FontWeight="Bold"/>
+            <!-- Location -->
+            <Label x:Name="location" FontFamily="Maiandra GD" Padding="5" Margin="29,190,957,841" Content="City name, Country name" FontSize="60"/>
 
+            <!-- Rating -->
+            <Label x:Name="raitingNum" FontFamily="Maiandra GD" Padding="5" Margin="29,293,1996,748" Content="num" FontSize="52" FontWeight="Bold" HorizontalAlignment="Center"/>
 
-                <Polygon Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Stretch="Fill" Points="10,2 10,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7" Name="star1" Margin="84,153,625.2,797"/>
-                <Polygon Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Stretch="Fill" Points="10,2 10,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7" Name="star2" Margin="139,153,570.2,797"/>
-                <Polygon Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Stretch="Fill" Points="10,2 10,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7" Name="star3" Margin="194,153,515.2,797"/>
-                <Polygon Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Stretch="Fill" Points="10,2 10,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7" Name="star4" Margin="249,153,460.2,797"/>
-                <Polygon Stroke="Black" StrokeThickness=".5" StrokeLineJoin="Round" Stretch="Fill" Points="10,2 10,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7" Name="star5" Margin="304,153,406.2,797" RenderTransformOrigin="0.332,7.108"/>
+            <!-- Raiting stars view -->
+            <StackPanel x:Name="stars" Margin="83,231,1508,732">
+                <!-- Stars according to raiting number -->
+            </StackPanel>
 
-                <Separator Margin="361,150,336.2,788" Background="Black" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" >
-                    <Separator.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleY="-1"/>
-                            <SkewTransform/>
-                            <RotateTransform Angle="90"/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </Separator.RenderTransform>
-                </Separator>
+            <!-- Price -->
+            <Label x:Name="priceValue" Padding="5" Margin="607,293,905,720" Content="| $$$$$" FontSize="52" FontWeight="Bold" />
 
-                <Label x:Name="priceValue" Padding="5" Margin="430,153,136.2,797" Content="$$$$$" FontSize="30" Background="{x:Null}" FontWeight="Bold" Foreground="#FF939090"/>
-
-                <Label x:Name="styles" Padding="5" Margin="10,231,652.2,726" Content="Styles:" FontSize="20" Background="{x:Null}" FontWeight="Bold" />
-                <StackPanel x:Name="styleList" Margin="0,274,-0.2,626" Grid.ColumnSpan="2">
+            <!-- Styles -->
+            <Label x:Name="styles" Padding="5" Margin="29,383,1965,678" Content="Styles:" FontSize="32" FontWeight="Bold" />
+            <ScrollViewer x:Name="style" Margin="0,436,859,457" FlowDirection="RightToLeft"  RenderTransformOrigin="0.5,0.5">
+                <StackPanel x:Name="styleList" FlowDirection="LeftToRight" >
                     <!-- styles list-->
                 </StackPanel>
+            </ScrollViewer>
+            <!-- Show no style message -->
+            <Label x:Name="noStyle" Content=" None" FontSize="36" Margin="27,441,1931,608" />
 
-
-                <Label x:Name="reviews" Padding="5" Margin="6,374,636.2,581" Content="Reviews:" FontSize="20" Background="{x:Null}" FontWeight="Bold" />
-                <StackPanel x:Name="reviewsList" Margin="0,424,1.8,224" Grid.ColumnSpan="2">
+            <!-- Reviews -->
+            <Label x:Name="reviews" Padding="5" Margin="29,676,1931,372" Content="Reviews:" FontSize="32" FontWeight="Bold" />
+            <ScrollViewer x:Name="review" Margin="0,752,859,0" FlowDirection="RightToLeft" RenderTransformOrigin="0.5,0.5">
+                <StackPanel x:Name="reviewsList" FlowDirection="LeftToRight">
                     <!--list of reviews-->
                 </StackPanel>
+            </ScrollViewer>
+            <!-- Show no reviewe message -->
+            <Label x:Name="noReviews" Content=" None" FontSize="36" Margin="27,752,1931,297" />
 
-                <Label x:Name="url" Padding="5" Margin="0,794,681.2,161" Content="url:" FontSize="20" Background="{x:Null}" FontWeight="Bold" />
-                <TextBlock Margin="53,806,615.2,153">
-                    <Hyperlink x:Name="urlAdd" RequestNavigate="Hyperlink_RequestNavigate" NavigateUri="http://www.msn.com">link rest</Hyperlink>
-                </TextBlock>
+            <!-- Url -->
+            <Label x:Name="url" Padding="5" Margin="1515,984,504,54" Content="URL :" FontSize="34" FontWeight="Bold" />
+            <TextBlock Margin="1611,987,360,69" FontSize="34">
+                <Hyperlink x:Name="urlAdd" RequestNavigate="Hyperlink_RequestNavigate" NavigateUri="">Rest link</Hyperlink>
+            </TextBlock>
+            <!-- Show no Url message -->
+            <Label x:Name="noURL" Content=" No URL address, &#xD;&#xA; Edit and add one!" FontSize="36" Margin="1465,848,309,154" Background="PaleGoldenrod"/>
 
+            <!-- Buttons -->
+            <!-- Edit details -->
+            <Button x:Name="edit" Click="Edit_Click" Margin="1784,272,53,748">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="121*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="edit.png" Margin="46,0,176.8,7" HorizontalAlignment="Center" Width="46" RenderTransformOrigin="0.507,1.468" Grid.ColumnSpan="2"/>
+                    <TextBlock Text=" Edit" FontFamily="Maiandra GD" FontSize="50" Margin="59.6,12,39.8,16" RenderTransformOrigin="0.5,0.5" Grid.Column="1"/>
+                </Grid>
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
 
-                <Button x:Name="edit" Content="edit" Click="edit_Click" Margin="634,159,0.2,787" />
-                <Button x:Name="addNewReview" Content="add" Click="addNewReview_Click" Margin="135,374,564.2,581" />
+            <!-- Add review -->
+            <Button x:Name="addNewReview" Click="AddNewReview_Click" Margin="212,676,1716,370">
+                <Grid>
+                    <Image Source="add.png" Margin="20,14,119.2,12.6" HorizontalAlignment="Center" Width="40" RenderTransformOrigin="0.507,1.468"/>
+                    <TextBlock Text="Add" FontFamily="Maiandra GD" FontSize="40" Margin="70,10,23.2,10.6" RenderTransformOrigin="0.5,0.5"/>
+                </Grid>
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
 
-            </Grid>
-        </ScrollViewer>
-    </Grid>
+            <!-- Go back-->
+            <Button x:Name="goBack" FontSize="20" Click="Go_Back_Click" Margin="1819,976,53,50">
+                <Grid>
+                    <Image Source="go-back-left-arrow.png" Margin="-23,4,120.2,0.4" HorizontalAlignment="Center" Width="50" RenderTransformOrigin="0.507,1.468"/>
+                    <TextBlock Text="Go Back" FontSize="34" Margin="36,4,-18.8,1" RenderTransformOrigin="0.5,0.5"/>
+                </Grid>
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="8"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
+        </Grid>
+    </Viewbox>
 </Window>

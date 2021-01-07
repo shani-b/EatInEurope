@@ -1,17 +1,8 @@
 ﻿using EatInEurope.ViewModels;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace EatInEurope.Views
 {
@@ -20,6 +11,8 @@ namespace EatInEurope.Views
     /// </summary>
     public partial class AddRest : Window
     {
+        private bool flagStyleSelected;
+        private bool flagFromPriceSelected;
         private string owner;
         private string name;
         private string country;
@@ -29,6 +22,7 @@ namespace EatInEurope.Views
         private string url;
         private List<Restaurant> myRest;
 
+        // Properties.
         public List<Restaurant> MyRestaurants
         {
             get { return (List<Restaurant>)GetValue(MyRestaurantsProperty); }
@@ -44,7 +38,7 @@ namespace EatInEurope.Views
 
         public AddRest(string ownerName)
         {
-            InitializeComponent();
+            // Constructor.
             IModel model = (DataBaseModel)Application.Current.Properties["model"];
             DataContext = new ViewModelAddRest(model);
 
@@ -52,38 +46,31 @@ namespace EatInEurope.Views
             var bindingMyRests = new Binding(VMMyRests) { Mode = BindingMode.TwoWay };
             this.SetBinding(MyRestaurantsProperty, bindingMyRests);
 
+            InitializeComponent();
+            // Hides these objects until the visibility changes.
+            styleChoice.Visibility = Visibility.Collapsed;
+
+            // Initialize the fileds.
             owner = ownerName;
             styles = new List<string>();
             myRest = MyRestaurants;
+            flagStyleSelected = false;
+            flagFromPriceSelected = false;
         }
 
-        private void insert_Click(object sender, RoutedEventArgs e)
+        private void CountryChanged(object sender, SelectionChangedEventArgs e)
         {
-            // TODO: after quere INSERT. (we exept to see the new rest there)
-            
-            url = newurltAdd.Text;
-            name = newrestName.Text;
-            Restaurant newRest = new Restaurant("", name, country, city, styles, 0, price, 0, new List<UserReview>(), url);
-            myRest.Add(newRest);
-            MyRestaurants = myRest;
-
-
-            RestaurantOwnerWindow row = new RestaurantOwnerWindow(owner);
-            row.Show();
-            this.Close();
-        }
-
-        private void countriesChanged(object sender, SelectionChangedEventArgs e)
-        {
+            // Update country filed to be the selected country.
             country = (sender as ComboBox).SelectedItem as string;
         }
 
-        private void citiesChanged(object sender, SelectionChangedEventArgs e)
+        private void CityChanged(object sender, SelectionChangedEventArgs e)
         {
+            // Update city filed to be the selected city.
             city = (sender as ComboBox).SelectedItem as string;
         }
 
-        private void typesChanged(object sender, SelectionChangedEventArgs e)
+        private void StylesChanged(object sender, SelectionChangedEventArgs e)
         {
             string newVal = (sender as ComboBox).SelectedItem as string;
             var exist = styles.Find(val => val.Equals(newVal));
@@ -91,20 +78,43 @@ namespace EatInEurope.Views
             {
                 if (newVal == null)
                 {
+                    // Error handling.
                     return;
                 }
 
+                // Add the new selected style to the styles list filed.
                 styles.Add(newVal);
+
+                // Add the name of the chosen style to the view list. 
+                if (!flagStyleSelected)
+                {
+                    styleChoice.Visibility = Visibility.Visible;
+                    flagStyleSelected = true;
+                }
+                TextBlock filter = new TextBlock
+                {
+                    Text = newVal,
+                    FontSize = 16
+                };
+                choises.Children.Add(filter);
             }
         }
 
-        private void lowPriceVal_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void LowPriceVal_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            // Update price filed to be the selected price.
             ComboBoxItem priceItem = (ComboBoxItem)lowPriceVal.SelectedItem;
             price = priceItem.Content.ToString();
 
+            // Enabled 'To' view.
             topPriceVal.IsEnabled = true;
+            if (!flagFromPriceSelected)
+            {
+                lowPriceVal.IsEnabled = false;
+                flagFromPriceSelected = true;
+            }
 
+            // Update combo item view for fit the low price.
             switch (priceItem.Name[0])
             {
                 case 'a':
@@ -135,11 +145,40 @@ namespace EatInEurope.Views
             }
         }
 
-        private void topPriceVal_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void TopPriceVal_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            // Update price filed to be 'the prev price  - the selected price'.
             ComboBoxItem priceItem = (ComboBoxItem)topPriceVal.SelectedItem;
             string topPrice = priceItem.Content.ToString();
             price += " - " + topPrice;
+
+        }
+
+        private void Insert_Click(object sender, RoutedEventArgs e)
+        {
+            // Update name & url filed to be the inserted name & url.
+            url = newurltAdd.Text;
+            name = newrestName.Text;
+            
+            // Create new Restaurant object and add it to the rest list.
+            Restaurant newRest = new Restaurant("", name, country, city, styles, 0, price, 0, new List<UserReview>(), url, owner);
+            myRest.Add(newRest);
+            
+            // Insert to DB the new rest.
+            MyRestaurants = myRest;
+
+            // Show the Restaurant Owner Window view. (with the new rest)
+            RestaurantOwnerWindow row = new RestaurantOwnerWindow(owner);
+            row.Show();
+            this.Close();
+        }
+
+        private void Go_Back_Click(object sender, RoutedEventArgs e)
+        {
+            // Go Back - show the Restaurant Owner Window view. (without add new rest)
+            RestaurantOwnerWindow row = new RestaurantOwnerWindow(owner);
+            row.Show();
+            this.Close();
         }
     }
 }
