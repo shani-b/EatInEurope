@@ -28,12 +28,6 @@ namespace EatInEurope.Views
         public RestaurantView(Client rest, string idRest)
         {
             InitializeComponent();
-            //if (temp == null)
-            //{
-            //    // NO RESTURENT in this search try filter in differant way.
-            //}
-            //// TODO: DELETE {"Country", "City", "Name", "$$$", "Style","Raiting - stars"}
-            //temp = new List<string> {"Country", "City", "Name", "$$$", "Style","3"};
 
             restID = idRest;
             c = rest;
@@ -43,8 +37,8 @@ namespace EatInEurope.Views
 
         private void details_Click(object sender, RoutedEventArgs e)
         {
-            Restaurant showThisRestDetailes = c.getDetailsByID(restID);
-            RestaurantDetails restD = new RestaurantDetails(showThisRestDetailes, isClient);
+            //Restaurant showThisRestDetailes = c.getDetailsByID(restID);
+            RestaurantDetails restD = new RestaurantDetails(restID, isClient);
             restD.Show();
             c.Close();
         }

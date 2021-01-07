@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EatInEurope.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -35,18 +36,19 @@ namespace EatInEurope.Views
         private List<Category> Categories { get; set; }
         public TripSearch()
         {
-            InitializeComponent();
-        }
-
-        private void run_Click(object sender, RoutedEventArgs e)
-        {
-
             IModel model = (DataBaseModel)Application.Current.Properties["model"];
             DataContext = new ViewModelTripSearch(model);
 
             var VMCountriesPartStyle = "VM_CountriesPartStyle";
             var binding = new Binding(VMCountriesPartStyle) { Mode = BindingMode.OneWay };
             this.SetBinding(CountriesPartStyleProperty, binding);
+
+
+            InitializeComponent();
+        }
+
+        private void run_Click(object sender, RoutedEventArgs e)
+        {
             float pieWidth = 250, pieHeight = 250, centerX = pieWidth / 2, centerY = pieHeight / 2, radius = pieWidth / 2;
             mainCanvas.Width = pieWidth;
             mainCanvas.Height = pieHeight;
@@ -320,6 +322,11 @@ namespace EatInEurope.Views
                 mainCanvas.Children.Add(outline1);
                 mainCanvas.Children.Add(outline2);
             }
+        }
+
+        private void styleChoice_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // TODO: fill me!!!
         }
     }
 

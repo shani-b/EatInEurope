@@ -1,4 +1,5 @@
-﻿using EatInEurope.views;
+﻿using EatInEurope.ViewModels;
+using EatInEurope.views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,6 +74,31 @@ namespace EatInEurope.Views
         public static readonly DependencyProperty StylesFiltersProperty =
             DependencyProperty.Register("StylesFilters", typeof(List<string>), typeof(Client));
 
+        public string COrder
+        {
+            get { return (string)GetValue(COrderProperty); }
+            set
+            {
+                SetValue(COrderProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty COrderProperty =
+            DependencyProperty.Register("COrder", typeof(string), typeof(RestaurantOwnerWindow));
+
+        public bool CAsc
+        {
+            get { return (bool)GetValue(CAscProperty); }
+            set
+            {
+                SetValue(CAscProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty CAscProperty =
+            DependencyProperty.Register("CAsc", typeof(bool), typeof(RestaurantOwnerWindow));
+
+
         public Client()
         {
             IModel model = (DataBaseModel)Application.Current.Properties["model"];
@@ -83,7 +109,9 @@ namespace EatInEurope.Views
             searchResults.Visibility = Visibility.Collapsed;
             title.Visibility = Visibility.Collapsed;
             noRest.Visibility = Visibility.Collapsed;
-
+            deleteChoises.Visibility = Visibility.Collapsed;
+            sort.Visibility = Visibility.Collapsed;
+            comboSort.Visibility = Visibility.Collapsed;
 
             stackPanel = (StackPanel)FindName("choises");
             countriesFilters = new List<string>();
@@ -105,6 +133,15 @@ namespace EatInEurope.Views
             var VMTypesFilters = "VM_TypesFilter";
             var bindingTypes = new Binding(VMTypesFilters) { Mode = BindingMode.TwoWay };
             this.SetBinding(StylesFiltersProperty, bindingTypes);
+
+            var VMOrder = "VM_Order";
+            var bindingOrder = new Binding(VMOrder) { Mode = BindingMode.TwoWay };
+            this.SetBinding(COrderProperty, bindingOrder);
+
+            var VMAsc = "VM_Asc";
+            var bindingAsc = new Binding(VMAsc) { Mode = BindingMode.TwoWay };
+            this.SetBinding(CAscProperty, bindingAsc);
+
         }
 
         private void Search_Trip_Click(object sender, RoutedEventArgs e)
@@ -121,6 +158,8 @@ namespace EatInEurope.Views
             choises.Visibility = Visibility.Visible;
             searchTrip.Visibility = Visibility.Collapsed;
             searchRest.Visibility = Visibility.Collapsed;
+            deleteChoises.Visibility = Visibility.Visible;
+            
         }
 
 
@@ -174,6 +213,8 @@ namespace EatInEurope.Views
 
             stackPanel = (StackPanel)FindName("restList");
             title.Visibility = Visibility.Visible;
+            sort.Visibility = Visibility.Visible;
+            comboSort.Visibility = Visibility.Visible;
             fillRestStackPanel();
         }
 
@@ -201,7 +242,14 @@ namespace EatInEurope.Views
                     RestaurantView rest = new RestaurantView(this, restID);
 
                     rest.restName.Content = RestaurantsResult[i].Name;
-                    rest.styleName.Content = RestaurantsResult[i].Types + " | ";
+                    if(RestaurantsResult[i].Types.Count != 0) {
+                        rest.styleName.Content = RestaurantsResult[i].Types[0] + " | ";
+                    }
+                    else 
+                    {
+                        rest.styleName.Content = "None";
+                    }
+                   
                     rest.locationValue.Content = RestaurantsResult[i].City + ", " + RestaurantsResult[i].Country;
 
                     // TODO: FUNC ???
@@ -248,20 +296,6 @@ namespace EatInEurope.Views
         }
 
 
-
-        // TODO : TEMP FUNC - DELETE
-        public Restaurant getDetailsByID(string id)
-        {
-            for (int i = 0; i < RestaurantsResult.Count; i++)
-            {
-                if (RestaurantsResult[i].ID == id)
-                {
-                    return RestaurantsResult[i];
-                }
-            }
-            return null;
-        }
-
         private void deleteChoises_Click(object sender, RoutedEventArgs e)
         {
             stackPanel = (StackPanel)FindName("choises");
@@ -272,18 +306,55 @@ namespace EatInEurope.Views
             cities.SelectedItem = null;
             styles.SelectedItem = null;
 
+            CountryFilter = "";
+
             countries.IsEnabled = true;
 
             if (CitiesFilters != null)
             {
-                CitiesFilters.Clear();
+                citiesFilters.Clear();
+                CitiesFilters = citiesFilters;
             }
             if (StylesFilters != null)
             {
-                StylesFilters.Clear();
+                stylesFilters.Clear();
+                StylesFilters = stylesFilters;
             }
-            
 
+
+        }
+
+        private void filtersChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var filterChoice = (sender as ComboBox).SelectedItem;
+            string filterChoiceValue = filterChoice.ToString();
+            if (filterChoiceValue.Contains("A-Z"))
+            {
+                COrder = "name";
+                CAsc = true;
+            }
+            else if (filterChoiceValue.Contains("Z-A"))
+            {
+                COrder = "name";
+                CAsc = false;
+            }
+            else if (filterChoiceValue.Contains("Raiting low to height"))
+            {
+                COrder = "raiting";
+                CAsc = true;
+            }
+            else
+            {
+                COrder = "raiting";
+                CAsc = false;
+            }
+
+
+            // TODO: get correct filter by choice - clear restview and Re-insert 'fillRest..'  
+            stackPanel = (StackPanel)FindName("restList");
+            stackPanel.Children.Clear();
+            // correct filter 
+            fillRestStackPanel();
         }
     }
 }

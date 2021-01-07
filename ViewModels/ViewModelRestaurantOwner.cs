@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
-namespace EatInEurope
+namespace EatInEurope.ViewModels
 {
-    class ViewModelTripSearch: INotifyPropertyChanged
+    class ViewModelRestaurantOwner : INotifyPropertyChanged
     {
-        public List<string> Countries { get; set; }
         private IModel model;
 
-
-        public ViewModelTripSearch(IModel model)
+        public ViewModelRestaurantOwner(IModel model)
         {
             this.model = model;
             model.PropertyChanged +=
@@ -21,7 +19,9 @@ namespace EatInEurope
             };
 
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
+
         public void NotifyPropertyChanged(string PropName)
         {
             if (this.PropertyChanged!=null)
@@ -30,13 +30,34 @@ namespace EatInEurope
             }
         }
 
-        public Dictionary<string, int> VM_CountriesPartStyle
+        public List<Restaurant> VM_RestsResults
         {
-            get
+            get { return model.RestsResults; }
+            set
             {
-                return model.CountriesPartStyle;
+                model.RestsResults = value;
             }
         }
 
+        public string VM_Order
+        {
+            get { return model.Order; }
+            set { model.Order = value; }
+        }
+
+        public bool VM_Asc
+        {
+            get { return model.Asc; }
+            set { model.Asc = value; }
+        }
+
+        public string VM_RestID
+        {
+            get { return model.RestID; }
+            set
+            {
+                model.RestID = value;
+            }
+        }
     }
 }

@@ -131,28 +131,25 @@
     <Compile Include="Category.cs" />
     <Compile Include="Restaurant.cs" />
     <Compile Include="UserReview.cs" />
-    <Compile Include="ViewModelReview.cs" />
-    <Compile Include="ViewModelMain.cs" />
-    <Compile Include="ViewModelManager.cs" />
-    <Compile Include="ViewModelEdit.cs" />
-    <Compile Include="ViewModelRestaurantOwner.cs" />
-    <Compile Include="ViewModelAddRest.cs" />
-    <Compile Include="ViewModelRestaurantDetails.cs" />
+    <Compile Include="ViewModels\ViewModelReview.cs" />
+    <Compile Include="ViewModels\ViewModelMain.cs" />
+    <Compile Include="ViewModels\ViewModelManager.cs" />
+    <Compile Include="ViewModels\ViewModelEdit.cs" />
+    <Compile Include="ViewModels\ViewModelRestaurantOwner.cs" />
+    <Compile Include="ViewModels\ViewModelAddRest.cs" />
+    <Compile Include="ViewModels\ViewModelRestaurantDetails.cs" />
     <Compile Include="Views\AddRest.xaml.cs">
       <DependentUpon>AddRest.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AddReview.xaml.cs">
       <DependentUpon>AddReview.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModelTripSearch.cs" />
+    <Compile Include="ViewModels\ViewModelTripSearch.cs" />
     <Compile Include="Views\Client.xaml.cs">
       <DependentUpon>Client.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Edit.xaml.cs">
       <DependentUpon>Edit.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\EditView.xaml.cs">
-      <DependentUpon>EditView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Manager.xaml.cs">
       <DependentUpon>Manager.xaml</DependentUpon>
@@ -169,6 +166,9 @@
     <Compile Include="Views\Review.xaml.cs">
       <DependentUpon>Review.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\StarsRaitingView.xaml.cs">
+      <DependentUpon>StarsRaitingView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Style.xaml.cs">
       <DependentUpon>Style.xaml</DependentUpon>
     </Compile>
@@ -184,7 +184,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DataBaseModel.cs" />
-    <Compile Include="ViewModelSearch.cs" />
+    <Compile Include="ViewModels\ViewModelSearch.cs" />
     <Compile Include="Views\RestaurantView.xaml.cs">
       <DependentUpon>RestaurantView.xaml</DependentUpon>
     </Compile>
@@ -213,10 +213,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\EditView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\Manager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -242,6 +238,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="views\SearchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StarsRaitingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -295,6 +295,39 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Views\rest.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Owner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\go-back-left-arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="client.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\sort-descending.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\logout.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\trash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\star.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\half atsr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\full star.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

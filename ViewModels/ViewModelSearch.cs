@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
-namespace EatInEurope
+namespace EatInEurope.ViewModels
 {
     class ViewModelSearch: INotifyPropertyChanged
     {
@@ -85,6 +85,7 @@ namespace EatInEurope
             {
                 return model.CountriesOptions;
             }
+
         }
 
         public List<string> VM_CitiesOptions
@@ -93,6 +94,10 @@ namespace EatInEurope
             {
                 return model.CitiesOptions;
             }
+            //set
+            //{
+            //    model.CitiesOptions = value;
+            //}
         }
 
         public List<string> VM_TypesOptions
@@ -101,6 +106,10 @@ namespace EatInEurope
             {
                 return model.TypesOptions;
             }
+            //set
+            //{
+            //    model.TypesOptions = value;
+            //} 
         }
 
         public List<Restaurant> VM_RestsResults
