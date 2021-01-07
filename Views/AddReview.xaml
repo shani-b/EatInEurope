@@ -15,7 +15,7 @@
         <Label x:Name="newScore" FontSize="20" Content="Enter rating number:" Margin="0,212,597.6,165"/>
         <!--STAR VIEW-->
         <!--<Viewbox Margin="316,212,321.6,159"/>-->
-        <ComboBox Margin="210,212,501.6,159">
+        <ComboBox x:Name="raitingCombo" Margin="210,212,501.6,159" SelectionChanged="raiting_SelectionChanged">
             <ComboBoxItem Content="1" />
             <ComboBoxItem Content="1.5" />
             <ComboBoxItem Content="2" />

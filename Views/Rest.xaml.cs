@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EatInEurope.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,8 +24,44 @@ namespace EatInEurope.Views
         string restID;
         RestaurantOwnerWindow restow;
         bool isClient;
+
+        public List<Restaurant> MyRestaurantsList
+        {
+            get { return (List<Restaurant>)GetValue(MyRestaurantsProperty); }
+            set
+            {
+                SetValue(MyRestaurantsProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty MyRestaurantsProperty =
+            DependencyProperty.Register("MyRestaurantsList", typeof(List<Restaurant>), typeof(RestaurantOwnerWindow));
+
+        public string RestID
+        {
+            get { return (string)GetValue(RestIDProperty); }
+            set
+            {
+                SetValue(RestIDProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty RestIDProperty =
+            DependencyProperty.Register("RestID", typeof(string), typeof(RestaurantOwnerWindow));
+
         public Rest(RestaurantOwnerWindow rest, string idRest)
         {
+            IModel model = (DataBaseModel)Application.Current.Properties["model"];
+            DataContext = new ViewModelRestaurantOwner(model);
+
+            var VMMyRests = "VM_RestsResults";
+            var bindingMyRests = new Binding(VMMyRests) { Mode = BindingMode.TwoWay };
+            this.SetBinding(MyRestaurantsProperty, bindingMyRests);
+
+            var VMRestID = "VM_RestID";
+            var bindingRestID = new Binding(VMRestID) { Mode = BindingMode.TwoWay };
+            this.SetBinding(RestIDProperty, bindingRestID);
+
             InitializeComponent();
             restID = idRest;
             restow = rest;
@@ -36,23 +73,21 @@ namespace EatInEurope.Views
             // detaile window without recomends and raiting 
             // with add and edit options.
             // TODO: THIS THE CORRECT LINE : string showThisRestDetailes = restID;
-            Restaurant showThisRestDetailes = restow.getDetailsByID(restID);
-            RestaurantDetails restD = new RestaurantDetails(showThisRestDetailes, isClient);
+           // Restaurant showThisRestDetailes = restow.getDetailsByID(restID);
+            RestaurantDetails restD = new RestaurantDetails(restID, isClient);
             restD.Show();
             restow.Close();
-
         }
 
         private void deleteRest_Click(object sender, RoutedEventArgs e)
         {
-            // delete this rest
-            string restToDelete = restID;
-            //  TODO : quere - delete in DB
-            string ownerRest = restow.getOwner();
-            
-            RestaurantOwnerWindow rest = new RestaurantOwnerWindow(ownerRest);
-            rest.Show();
-            restow.Close();
+            //  Delete in DB this rest.
+            RestID = restID;
+            MyRestaurantsList.RemoveAt(MyRestaurantsList.FindIndex(x => x.ID == restID));
+
+            // remove from RestaurantOwnerWindow
+            restow.stp.Children.Clear();
+            restow.fillRestStackPanel();
         }
     }
 }

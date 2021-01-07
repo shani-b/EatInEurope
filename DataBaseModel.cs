@@ -27,10 +27,10 @@ namespace EatInEurope
             };*/
             /*CountriesOptions = new List<string> {
                 "Netherlands", "England","Swiss", "France","Germany"
-            };
+            };*/
             TypesOptions = new List<string> {
                 "Chinese", "Indian","vegeterian", "vegan","Italian"
-            };*/
+            };
 
            // RestsResults = new List<Restaurant>
             //{
@@ -42,13 +42,13 @@ namespace EatInEurope
                 //     "4.5","$$$$", "567", "Satisfaction", "Delicious old school restaurant","/Restaurant_Review-g188590-d696959-Reviews-La_Rive-Amsterdam_North_Holland_Province.html"}
 /*
                 new Restaurant("d11752080","Martine of Martine's Table","Netherlands", "Amsterdam",new List<string>{ "French", "Dutch", "European" }
-                    , 5, "$$ - $$$", 136,null,
+                    , 5, "$$ - $$$", 136,new List<UserReview>{new UserReview("d11752080","good", "10/1/99", 5) },
                     "/Restaurant_Review-g188590-d11752080-Reviews-Martine_of_Martine_s_Table-Amsterdam_North_Holland_Province.html"),
                 new Restaurant("d693419", "De Silveren Spiegel","Netherlands", "Amsterdam",new List<string>{ "Dutch", "European", "Vegetarian Friendly", "Gluten Free Options" }
-                    , 4.5, "$$$$", 812,null,
+                    , 4.5, "$$$$", 812,new List<UserReview>(),
                     "/Restaurant_Review-g188590-d693419-Reviews-De_Silveren_Spiegel-Amsterdam_North_Holland_Province.html"),
                 new Restaurant("d696959", "La Rive","Netherlands", "Amsterdam",new List<string>{ "Mediterranean", "French", "International", "European", "Vegetarian Friendly", "Vegan Options" }
-                    , 4.5, "$$$$", 567,null,
+                    , 4.5, "$$$$", 567,new List<UserReview>(),
                     "/Restaurant_Review-g188590-d696959-Reviews-La_Rive-Amsterdam_North_Holland_Province.html")
             };*/
             //RestsResults = new List<List<string>> { };
@@ -132,8 +132,9 @@ namespace EatInEurope
         
         private bool usernameFree = false;
         public bool UsernameFree {
-            get { 
+            get {
                 // TODO: update flag by calling function checks username
+                usernameFree = true;
                 return usernameFree; 
             }
             set
@@ -263,6 +264,7 @@ namespace EatInEurope
             get { return restID; }
             set
             {
+                // Delete this restId from the DB
                 restID = value;
                 NotifyPropertyChanged("restID");
             } 
@@ -279,10 +281,18 @@ namespace EatInEurope
         }
         public Restaurant RestDetails
         {
-            get { return restDetails("000"); }
+            //get { return restDetails("000"); }
+            get 
+            {
+                if(restsResults.FindIndex(x => x.ID == RestID) < 0)
+                {
+                    return null;
+                }
+                return RestsResults[restsResults.FindIndex(x => x.ID == RestID)]; 
+            }
             set
             {
-                RestsResults[restsResults.FindIndex(x => x.Name == restID)] = value;
+                RestsResults[restsResults.FindIndex(x => x.ID == restID)] = value;
                 NotifyPropertyChanged("RestDetails");
             }
         }
@@ -293,7 +303,7 @@ namespace EatInEurope
             set
             {
                 newReview = value;
-                RestsResults.Find(x => x.Name == restID).Reviews.Add(value);
+                RestsResults.Find(x => x.ID == restID).Reviews.Add(value);
                 NotifyPropertyChanged("newReview");
             }
         }
@@ -304,6 +314,10 @@ namespace EatInEurope
             get { return restsResults; }
             set
             {
+                if (restsResults.Count > value.Count)
+                {
+                    // add new rest to DB (last in the list)
+                }
                 restsResults = value;
                 NotifyPropertyChanged("restsResults");
             }
@@ -479,6 +493,16 @@ namespace EatInEurope
             }
             return new_rest;
         }
+        //public Restaurant restDetails(string id)
+        //{
+        //    Restaurant details = null;
+        //    if (restsResults.Count != 0)
+        //    {
+        //        details = restsResults.Find(x => x.ID == id);
+        //    }
+        //    return details;
+        //}
+
 
         public bool addReview(UserReview userReview)
         {

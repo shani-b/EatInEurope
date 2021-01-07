@@ -10,51 +10,42 @@
         <Grid Background="#FF9DDEE2" Width="792">
 
             <!-- Add Rest -->
-            <Label x:Name="title" FontSize="40" Content="My new restaurant:" Margin="10,5,410,342"/>
+            <Label x:Name="title" FontSize="40" Content="My new restaurant" Margin="10,5,410,342"/>
 
             <Label x:Name="newName" FontSize="20" Content="Enter rest name:" Margin="2,112,595.6,266"/>
             <TextBox x:Name="newrestName" FontSize="25" Margin="207,113,336.6,266" Background="White" OpacityMask="#FFB05555"/>
 
             <Label x:Name="newContrynewCity" FontSize="20" Content="Enter rest contry:" Margin="0,163,597.6,214"/>
-            <TextBox x:Name="newcontrytName" FontSize="25" Margin="207,163,336.6,216" Background="White" OpacityMask="#FFB05555"/>
-            <!--<ComboBox Margin="207,163,402,216" />-->
             <ComboBox Name="countries" ItemsSource="{Binding VM_CountriesOptions}" Margin="207,163,402,216" SelectionChanged="countriesChanged"/>
 
 
             <Label x:Name="newCity" FontSize="20" Content="Enter rest city:" Margin="0,212,597.6,165"/>
-            <TextBox x:Name="newcitytName" FontSize="25" Margin="207,212,336.6,167" Background="White" OpacityMask="#FFB05555"/>
-            <!--<ComboBox Margin="207,212,402,167" />-->
             <ComboBox Name="cities"  Margin="207,212,402,167" ItemsSource="{Binding VM_CitiesOptions}" SelectionChanged="citiesChanged"/>
 
             <Label x:Name="newUrl" FontSize="20" Content="Enter rest url add's:" Margin="0,260,591.6,119"/>
             <TextBox x:Name="newurltAdd" FontSize="25" Margin="207,260,336.6,119" Background="White" OpacityMask="#FFB05555"/>
 
             <Label x:Name="newPrice" FontSize="20" Content="Enter price range:" Margin="0,307,597.6,70"/>
-            <!--<TextBox x:Name="newpriceValue" Text="$$$$$" Foreground="#FFC5BBBB" FontSize="25" Margin="207,310,336.6,69" Background="White" OpacityMask="#FFB05555"/>-->
             <Label  Content="From" FontSize="15" Margin="207,316,530,72.2"/>
-            <ComboBox x:Name="lowPriceVal" Margin="255,307,456,72.4" FontSize="20">
-                <ComboBoxItem Content="$" />
-                <ComboBoxItem Content="$$" />
-                <ComboBoxItem Content="$$$" />
-                <ComboBoxItem Content="$$$$" />
-                <ComboBoxItem Content="$$$$$" />
+            <ComboBox x:Name="lowPriceVal" Margin="255,307,456,72.4" FontSize="20" SelectionChanged="lowPriceVal_SelectionChanged">
+                <ComboBoxItem Name="a" Content="$" />
+                <ComboBoxItem Name="b" Content="$$" />
+                <ComboBoxItem Name="c" Content="$$$" />
+                <ComboBoxItem Name="d" Content="$$$$" />
+                <ComboBoxItem Name="e" Content="$$$$$" />
             </ComboBox>
             <Label  Content="To" FontSize="15" Margin="342,316,424,72.4"/>
-            <ComboBox x:Name="topPriceVal" Margin="374,309,337,70.4" FontSize="20">
-                <ComboBoxItem Content="$" />
-                <ComboBoxItem Content="$$" />
-                <ComboBoxItem Content="$$$" />
-                <ComboBoxItem Content="$$$$" />
-                <ComboBoxItem Content="$$$$$" />
+            <ComboBox x:Name="topPriceVal" Margin="374,309,337,70.4" FontSize="20" SelectionChanged="topPriceVal_SelectionChanged" IsEnabled="False">
+                <ComboBoxItem Name="top1" Content="$" />
+                <ComboBoxItem Name="top2" Content="$$" />
+                <ComboBoxItem Name="top3" Content="$$$" />
+                <ComboBoxItem Name="top4" Content="$$$$" />
+                <ComboBoxItem Name="top5" Content="$$$$$" />
             </ComboBox>
             
             <Label x:Name="newStyle" FontSize="20" Content="Choose styles:" Margin="0,356,597.6,21"/>
             <TextBox x:Name="newStyleValue" Text="" FontSize="25" Margin="207,358,336.6,21" Background="White" OpacityMask="#FFB05555"/>
-            <!--<ComboBox ItemsSource="{Binding VM_TypesOptions}" SelectionChanged="typesChanged"/>-->
-            <!--<ComboBox Margin="207,358,402,21.4" />-->
-          
-
-
+            <ComboBox Margin="207,358,336.6,21" ItemsSource="{Binding VM_TypesOptions}" SelectionChanged="typesChanged"/>
 
             <Button x:Name="insert" Content="Create!" Click="insert_Click" FontSize="20" Margin="631,354,57,22.2"/>
 
