@@ -18,16 +18,16 @@ namespace EatInEurope
            /* CountriesOptions = new List<string> {
                 "Netherlands", "England","Swiss", "France","Germany"
             };
-
+*/
             CitiesOptions = new List<string> {
                 "Amsterdam", "Athens","Barcelona", "Berlin","Bratislava","Brussels","Budapest",
                 "Copenhagen","Dublin","Edinburgh","Geneva","Hamburg","Helsinki","Krakow","Lisbon","Ljubljana",
                 "London","Luxembourg","Lyon","Madrid","Milan","Munich","Oporto","Oslo","Paris","Prague","Rome",
                 "Stockholm","Vienna","Warsaw","Zurich"
-            };*/
-            /*CountriesOptions = new List<string> {
+            };
+            CountriesOptions = new List<string> {
                 "Netherlands", "England","Swiss", "France","Germany"
-            };*/
+            };
             TypesOptions = new List<string> {
                 "Chinese", "Indian","vegeterian", "vegan","Italian"
             };
@@ -85,12 +85,13 @@ namespace EatInEurope
             {
                 password = value;
                 NotifyPropertyChanged("password");
-                if (signIn(username, password))
-                {
-                    LoginOK = true;
-                    // get relevent rest
-                    RestsResults = getRestByFilter();
-                }
+                //if (signIn(username, password))
+                //{
+                //    LoginOK = true;
+                // get relevent rest
+                //    RestsResults = getRestByFilter();
+                //}
+                LoginOK = true;
             }
         }
 
@@ -113,9 +114,9 @@ namespace EatInEurope
                 isClient = value;
                 NotifyPropertyChanged("isClient");
 
-                if (isClient) {
+                /*if (isClient) {
                     CountriesOptions = getCountries();
-                }
+                }*/
             } 
             get {
                 return isClient;
@@ -162,7 +163,7 @@ namespace EatInEurope
             set {
                 countryFilter = value;
                 NotifyPropertyChanged("countryFilter");
-                CitiesOptions = getCities();
+                //CitiesOptions = getCities();
             } 
         }
 
@@ -378,7 +379,7 @@ namespace EatInEurope
         public List<Restaurant> getRestByFilter()
         {
             // create sql query
-            string select = "t_restaurants.ID_TA, t_restaurants.name, t_City.Name as city,  t_country.Name as country, t_restaurants.rating, t_reataurants.Num_of_Reviews';";
+            string select = "t_restaurants.ID_TA, t_restaurants.name, t_City.Name as city,  t_country.Name as country, t_restaurants.rating', t_reataurants.owner";
             string from = "t_restaurants join t_city on t_restaurants.city_id = t_city.id join t_country on t_city.countrycode = t_country.code";
             string where = "t_restaurants.city_id = (select t_city.id from t_city where t_city.name = '" + CitiesFilter[0] + "')";
             // TODO check what happen if at the second time we go there, האם מתאפס?
@@ -408,24 +409,19 @@ namespace EatInEurope
             }
    
             List<Restaurant> all_rest = new List<Restaurant>();
-            List<string>[] rest = dBConnect.Select(from, where , orderByValue, order, select);
+            List<string>[] rest = dBConnect.Select(from, where , orderByValue, order, select,-1);
 
             select = "t_restaurants.ID_TA, t_style.style";
             from = "inner join t_style_rest on  t_restaurants.ID_TA = t_style_rest.ID_TA inner join t_style on t_style.id = t_style_rest.id";
             for (int i = 0; i<rest[0].Count ;i++)
             {
-
-                Restaurant new_rest = new Restaurant(rest[0][i], rest[1][i], rest[8][i], rest[2][i], null, Convert.ToDouble(rest[3][i]),null, -1 ,null, null);
-
+                Restaurant new_rest = new Restaurant(rest[0][i], rest[1][i], rest[8][i], rest[2][i], null, Convert.ToDouble(rest[3][i]),null, -1 ,null, null, rest[11][i]);
                 // condition for specific id -restaurant-styles
                 string id = rest[0][i];
                 where = " t_restaurants.ID_TA='" + id + "';";
-                List<string>[] dbStyles = dBConnect.Select(from, where, null, null, select);
+                List<string>[] dbStyles = dBConnect.Select(from, where, null, null, select,1);
                 List<string> styles = new List<string>();
-                for (int j = 0; j < dbStyles[0].Count; j++)
-                {
-                    styles.Add(dbStyles[9][j]);
-                }
+                styles.Add(dbStyles[9][0]);
                 new_rest.Types = styles;
                 all_rest.Add(new_rest);
             }
@@ -449,52 +445,48 @@ namespace EatInEurope
             return restsResults;
         }
 
-        public Restaurant restDetails(string restId)
+        public Restaurant restDetails()
         {
+            Restaurant currRest = RestsResults[restsResults.FindIndex(x => x.ID == RestID)];
             // create sql query
-            string select = "t_restaurants.ID_TA, t_restaurants.name, t_City.Name as city,  t_country.Name as country, t_restaurants.rating, t_restaurants.price_range, t_restaurants.Numbers_of_reviews, t_restaurants.url_TA, t_restaurants.owner";
-            string from = "t_restaurants join t_city on t_restaurants.city_id = t_city.id join t_country on t_city.countrycode = t_country.code";
-            string where = "t_restaurants.IDTA = " + restId;
+            string select = "t_restaurants.price_range, t_restaurants.Numbers_of_reviews, t_restaurants.url_TA";
+            string from = "t_restaurants";
+            string where = "t_restaurants.IDTA = " + currRest.ID;
             
-            List<string>[] rest = dBConnect.Select(from, where, null, null, select);
-            Restaurant new_rest = new Restaurant();
+            List<string>[] rest = dBConnect.Select(from, where, null, null, select,-1);
 
             select = "t_restaurants.ID_TA, t_style.style";
             from = "inner join t_style_rest on  t_restaurants.ID_TA = t_style_rest.ID_TA inner join t_style on t_style.id = t_style_rest.id";
             for (int i = 0; i < rest[0].Count; i++)
             {
-                new_rest.ID = rest[0][i];
-                new_rest.Name = rest[1][i];
-                new_rest.Country = rest[8][i];
-                new_rest.City = rest[2][i];
-                new_rest.Rate = Convert.ToDouble(rest[3][i]);
-                new_rest.PriceRange = rest[4][i];
-                new_rest.NumOfReviews = Convert.ToInt32(rest[7][i]);
-                new_rest.URL = rest[5][i];
-                new_rest.Owner = rest[12][i];
+                currRest.Rate = Convert.ToDouble(rest[3][i]);
+                currRest.PriceRange = rest[4][i];
+                currRest.NumOfReviews = Convert.ToInt32(rest[7][i]);
+                currRest.URL = rest[5][i];
  
                 // condition for specific id -restaurant-styles
                 string id = rest[0][i];
                 where = " t_restaurants.ID_TA='" + id + "';";
-                List<string>[] dbStyles = dBConnect.Select(from, where, null, null, select);
+                List<string>[] dbStyles = dBConnect.Select(from, where, null, null, select,-1);
                 List<string> styles = new List<string>();
                 for (int j = 0; j < dbStyles[0].Count; j++)
                 {
                     styles.Add(dbStyles[9][j]);
                 }
                 // get -restaurant -reviews
-                List<string>[] dbReviews = dBConnect.Select("t_reviews", "ID_TA= '" + rest[0][i] + "'", null, null, null);
+                List<string>[] dbReviews = dBConnect.Select("t_reviews", "ID_TA= '" + rest[0][i] + "'", null, null, null,-1);
                 List<UserReview> listReviews = new List<UserReview>();
                 for (int j = 0; j < dbReviews[0].Count; j++)
                 {
                     UserReview newReview = new UserReview(id, dbReviews[10][j], dbReviews[11][j], Convert.ToDouble(rest[3][i]));
                     listReviews.Add(newReview);
                 }
-                new_rest.Types = styles;
-                new_rest.Reviews = listReviews;
+                currRest.Types = styles;
+                currRest.Reviews = listReviews;
             }
-            return new_rest;
+            return currRest;
         }
+
         //public Restaurant restDetails(string id)
         //{
         //    Restaurant details = null;
@@ -505,7 +497,6 @@ namespace EatInEurope
         //    return details;
         //}
 
-
         public bool addReview(UserReview userReview)
         {
             // insert into t_reviews values('ID_TA', 'review', 'date');
@@ -514,7 +505,7 @@ namespace EatInEurope
             {
                 return false;
             }
-            List<string>[] data = dBConnect.Select("t_restaurants", "ID_TA = /'" + userReview.RestID + "/'", null, null, null);
+            List<string>[] data = dBConnect.Select("t_restaurants", "ID_TA = /'" + userReview.RestID + "/'", null, null, null,-1);
             int numOfReviews = Int32.Parse(data[7][0]);
             double rate = Convert.ToDouble(data[3][0]);
             double newRate = (numOfReviews * rate + userReview.Rate) / (numOfReviews + 1);
