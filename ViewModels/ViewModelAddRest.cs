@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EatInEurope.ViewModels
 {
-    class ViewModelAddRest: INotifyPropertyChanged
+    class ViewModelAddRest : INotifyPropertyChanged
     {
         private IModel model;
 
@@ -19,11 +19,12 @@ namespace EatInEurope.ViewModels
                 NotifyPropertyChanged("VM_" + e.PropertyName);
             };
 
+            model.IsAddRest = true;
         }
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string PropName)
         {
-            if (this.PropertyChanged!=null)
+            if (this.PropertyChanged != null)
             {
                 this.PropertyChanged(this, new PropertyChangedEventArgs(PropName));
             }
@@ -63,5 +64,14 @@ namespace EatInEurope.ViewModels
                 model.RestsResults = value;
             }
         }
+
+        public string VM_CountryFilter
+        {
+            set
+            {
+                model.CountryFilter = value;
+            }
+        }
+
     }
 }

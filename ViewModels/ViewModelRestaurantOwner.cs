@@ -24,7 +24,7 @@ namespace EatInEurope.ViewModels
 
         public void NotifyPropertyChanged(string PropName)
         {
-            if (this.PropertyChanged!=null)
+            if (this.PropertyChanged != null)
             {
                 this.PropertyChanged(this, new PropertyChangedEventArgs(PropName));
             }
@@ -58,6 +58,11 @@ namespace EatInEurope.ViewModels
             {
                 model.RestID = value;
             }
+        }
+
+        public string VM_IDToRemove
+        {
+            set { model.IDToRemove = value; }
         }
     }
 }

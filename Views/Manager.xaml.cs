@@ -172,6 +172,8 @@ namespace EatInEurope.Views
                 // The passwords are the same.
 
                 // Checks if the username is available.
+                usernameValue.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                NewPassword = passwordConfirm;
                 if (!UsernameFree)
                 {
                     // Displays an error indication to the user.
@@ -207,8 +209,7 @@ namespace EatInEurope.Views
                     {
                         // All input is correct for a new user.
                         // Insert the new restaurant owner to the DB.
-                        usernameValue.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-                        NewPassword = passwordConfirm;
+                        
 
                         // Show user's restaurant view.
                         RestaurantOwnerWindow rest = new RestaurantOwnerWindow(username);

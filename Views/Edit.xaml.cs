@@ -29,12 +29,30 @@ namespace EatInEurope.Views
         public static readonly DependencyProperty UpdateRestProperty =
             DependencyProperty.Register("UpdateRest", typeof(Restaurant), typeof(Edit));
 
+        public bool IsEdit
+        {
+            get { return (bool)GetValue(IsEditProperty); }
+            set
+            {
+                SetValue(IsEditProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty IsEditProperty =
+            DependencyProperty.Register("IsEdit", typeof(bool), typeof(Edit));
+
 
         public Edit(string restID)
         {
             // Constructor.
             IModel model = (DataBaseModel)Application.Current.Properties["model"];
             DataContext = new ViewModelEdit(model);
+
+            var VMIsEdit = "VM_IsEdit";
+            var bindingIsEdit = new Binding(VMIsEdit) { Mode = BindingMode.TwoWay };
+            this.SetBinding(IsEditProperty, bindingIsEdit);
+
+            IsEdit = true;
 
             var VMUpdateRest = "VM_RestDetails";
             var bindingUpdateRest = new Binding(VMUpdateRest) { Mode = BindingMode.TwoWay };
@@ -134,6 +152,7 @@ namespace EatInEurope.Views
             UpdateRest = rest;
 
             // Show the Restaurant Details view. (with the changes)
+            IsEdit = false;
             RestaurantDetails rd = new RestaurantDetails(idRest);
             rd.Show();
             this.Close();
@@ -142,6 +161,7 @@ namespace EatInEurope.Views
         private void Go_Back_Click(object sender, RoutedEventArgs e)
         {
             // Go back - show the Restaurant Details view. (without changes)
+            IsEdit = false;
             RestaurantDetails rd = new RestaurantDetails(idRest);
             rd.Show();
             this.Close();

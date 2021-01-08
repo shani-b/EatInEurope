@@ -33,11 +33,11 @@ namespace EatInEurope
         //Initialize values
         private void Initialize()
         {
-            server = "192.168.1.244";
+            server = "localhost";
             port = "3306";
             database = "rest";
             uid = "root";
-            password = "100798";
+            password = "Orel1998";
             string connectionString;
             connectionString = "SERVER=" + server + ";" + "PORT=" + port + ";" + "DATABASE=" +
             database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
@@ -91,11 +91,16 @@ namespace EatInEurope
             }
         }
 
-        public bool InsertSelect(string select, string where, string table)
+        public bool InsertSelect(string select, string where, string table, string values)
         {
 
-            string query = "INSERT INTO " + table + " Select " + select + " WHERE " + where;
 
+            string query = "INSERT INTO " + table; 
+            if (values != null)
+            {
+                query += " (" + values + ")";
+            }
+            query += " Select " + select + " WHERE " + where;
             //open connection
             if (this.OpenConnection() == true)
             {
@@ -156,11 +161,11 @@ namespace EatInEurope
             }
             if (limit != -1)
             {
-                query += "LIMIT" + limit.ToString();
+                query += " LIMIT " + limit.ToString();
             }
 
             //Create a list to store the result
-            List<string>[] list = new List<string>[7];
+            List<string>[] list = new List<string>[12];
             list[0] = new List<string>();
             list[1] = new List<string>();
             list[2] = new List<string>();
@@ -173,7 +178,6 @@ namespace EatInEurope
             list[9] = new List<string>();
             list[10] = new List<string>();
             list[11] = new List<string>();
-            list[12] = new List<string>();
 
             //Open connection
             if (this.OpenConnection() == true)
@@ -186,19 +190,99 @@ namespace EatInEurope
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
-                    list[0].Add(dataReader["ID_TA"] + "");
-                    list[1].Add(dataReader["Name"] + "");
-                    list[2].Add(dataReader["city_id"] + "");
-                    list[3].Add(dataReader["Rating"] + "");
-                    list[4].Add(dataReader["Price_Range"] + "");
-                    list[5].Add(dataReader["URL_TA"] + "");
-                    list[6].Add(dataReader["Owner"] + "");
-                    list[7].Add(dataReader["Numbers_of_Reviews"] + "");
-                    list[8].Add(dataReader["country"] + "");
-                    list[9].Add(dataReader["style"] + "");
-                    list[10].Add(dataReader["reviews"] + "");
-                    list[11].Add(dataReader["dates"] + "");
-                    list[11].Add(dataReader["owner"] + "");
+                    try
+                    {
+                        list[0].Add(dataReader["ID_TA"] + "");
+                    }
+                    catch (Exception e)
+                    {
+                        list[0].Add(null); }
+                    try
+                    {
+                        list[1].Add(dataReader["Name"] + "");
+                    }                    
+                    catch (Exception e)
+                    {
+                        list[1].Add(null);
+                    }
+                    try { 
+                        list[2].Add(dataReader["city"] + "");
+                    }
+                    catch (Exception e)
+                    {
+                        list[2].Add(null);
+                    }
+                    try {
+                        list[3].Add(dataReader["Rating"] + "");
+                    }
+                    catch (Exception e)
+                    {
+                        list[3].Add(null);
+                    }
+                    try
+                    {
+                        list[4].Add(dataReader["Price_Range"] + "");
+                    }
+                    catch (Exception e)
+                    {
+                        list[4].Add(null);
+                    }
+                    try
+                    {
+                        list[5].Add(dataReader["URL_TA"] + "");
+                    }
+                    catch (Exception e)
+                    {
+                        list[5].Add(null);
+                    }
+                    try
+                    {
+                        list[6].Add(dataReader["Owner"] + "");
+                    }
+                    catch (Exception e)
+                    {
+                        list[6].Add(null);
+                    }
+                    try
+                    {
+                        list[7].Add(dataReader["Numbers_of_Reviews"] + "");
+                    }
+                    catch (Exception e)
+                    {
+                        list[7].Add(null);
+                    }
+                    try
+                    {
+                        list[8].Add(dataReader["country"] + "");
+                    }
+                    catch (Exception e)
+                    {
+                        list[8].Add(null);
+                    }
+                    try
+                    {
+                        list[9].Add(dataReader["style"] + "");
+                    }
+                    catch (Exception e)
+                    {
+                        list[9].Add(null);
+                    }
+                    try
+                    {
+                        list[10].Add(dataReader["reviews"] + "");
+                    }
+                    catch (Exception e)
+                    {
+                        list[10].Add(null);
+                    }
+                    try
+                    {
+                        list[11].Add(dataReader["dates"] + "");
+                    }
+                    catch (Exception e)
+                    {
+                        list[11].Add(null);
+                    }
                 }
 
                 //close Data Reader
@@ -289,7 +373,10 @@ namespace EatInEurope
 
         public List<string> Check_existing(string user_name, string password, string table)
         {
-            string query = "SELECT COUNT(1) FROM " + table + " WHERE user_name='" + user_name + "' AND password= '" + password + "'";
+            string query = "SELECT COUNT(1) FROM " + table + " WHERE user_name='" + user_name + "'";
+            if (password != null) {
+                query += " AND password= '" + password + "'";
+            };
 
             List<string> list = new List<string>();
             //Open connection

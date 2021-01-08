@@ -15,42 +15,43 @@ namespace EatInEurope
         public DataBaseModel(DBConnect dbConnect)
         {
             dBConnect = dbConnect;
+            CountriesOptions = getCountries();
+            TypesOptions = getStyles();
+
            /* CountriesOptions = new List<string> {
                 "Netherlands", "England","Swiss", "France","Germany"
             };
 */
-            CitiesOptions = new List<string> {
-                "Amsterdam", "Athens","Barcelona", "Berlin","Bratislava","Brussels","Budapest",
-                "Copenhagen","Dublin","Edinburgh","Geneva","Hamburg","Helsinki","Krakow","Lisbon","Ljubljana",
-                "London","Luxembourg","Lyon","Madrid","Milan","Munich","Oporto","Oslo","Paris","Prague","Rome",
-                "Stockholm","Vienna","Warsaw","Zurich"
-            };
-            CountriesOptions = new List<string> {
-                "Netherlands", "England","Swiss", "France","Germany"
-            };
-            TypesOptions = new List<string> {
-                "Chinese", "Indian","vegeterian", "vegan","Italian"
-            };
+            /* CitiesOptions = new List<string> {
+                 "Amsterdam", "Athens","Barcelona", "Berlin","Bratislava","Brussels","Budapest",
+                 "Copenhagen","Dublin","Edinburgh","Geneva","Hamburg","Helsinki","Krakow","Lisbon","Ljubljana",
+                 "London","Luxembourg","Lyon","Madrid","Milan","Munich","Oporto","Oslo","Paris","Prague","Rome",
+                 "Stockholm","Vienna","Warsaw","Zurich"
+             };
+             CountriesOptions = getCountries();
+             TypesOptions = new List<string> {
+                 "Chinese", "Indian","vegeterian", "vegan","Italian"
+             };*/
 
-           // RestsResults = new List<Restaurant>
+            // RestsResults = new List<Restaurant>
             //{
-                //new List<string> {"Martine of Martine's Table","Amsterdam", "French", "Dutch", "European"
-                //    , "5", "$$ - $$$", "136", "Just like home", "A Warm Welcome to Wintry Amsterdam", "/Restaurant_Review-g188590-d11752080-Reviews-Martine_of_Martine_s_Table-Amsterdam_North_Holland_Province.html" },
-                // new List<string> {"De Silveren Spiegel" ,"Amsterdam","Dutch", "European", "Vegetarian Friendly",
-                //     "4.5","$$$$", "812", "Great food and staff", "just perfect","/Restaurant_Review-g188590-d693419-Reviews-De_Silveren_Spiegel-Amsterdam_North_Holland_Province.html" },
-                //  new List<string> {"La Rive" ,"Amsterdam","Mediterranean", "French", "International", 
-                //     "4.5","$$$$", "567", "Satisfaction", "Delicious old school restaurant","/Restaurant_Review-g188590-d696959-Reviews-La_Rive-Amsterdam_North_Holland_Province.html"}
-/*
-                new Restaurant("d11752080","Martine of Martine's Table","Netherlands", "Amsterdam",new List<string>{ "French", "Dutch", "European" }
-                    , 5, "$$ - $$$", 136,new List<UserReview>{new UserReview("d11752080","gooooooooooooooood", "10/1/99", 0.0), new UserReview("d11752080","very recomend rest", "20/01/19", 2.5), new UserReview("d11752080","I LIKE THIS REST", "29/08/2000", 5) },
-                    "/Restaurant_Review-g188590-d11752080-Reviews-Martine_of_Martine_s_Table-Amsterdam_North_Holland_Province.html", "Orel"),
-                new Restaurant("d693419", "De Silveren Spiegel","Netherlands", "Amsterdam",new List<string>{ "Dutch", "European", "Vegetarian Friendly", "Gluten Free Options" }
-                    , 4.5, "$$$$", 812,new List<UserReview>(),
-                    "/Restaurant_Review-g188590-d693419-Reviews-De_Silveren_Spiegel-Amsterdam_North_Holland_Province.html", "shani"),
-                new Restaurant("d696959", "La Rive","Netherlands", "Amsterdam",new List<string>{ "Mediterranean", "French", "International", "European", "Vegetarian Friendly", "Vegan Options" }
-                    , 1.5, "$$$$", 567,new List<UserReview>(),
-                    "/Restaurant_Review-g188590-d696959-Reviews-La_Rive-Amsterdam_North_Holland_Province.html", "reut")
-            };*/
+            //new List<string> {"Martine of Martine's Table","Amsterdam", "French", "Dutch", "European"
+            //    , "5", "$$ - $$$", "136", "Just like home", "A Warm Welcome to Wintry Amsterdam", "/Restaurant_Review-g188590-d11752080-Reviews-Martine_of_Martine_s_Table-Amsterdam_North_Holland_Province.html" },
+            // new List<string> {"De Silveren Spiegel" ,"Amsterdam","Dutch", "European", "Vegetarian Friendly",
+            //     "4.5","$$$$", "812", "Great food and staff", "just perfect","/Restaurant_Review-g188590-d693419-Reviews-De_Silveren_Spiegel-Amsterdam_North_Holland_Province.html" },
+            //  new List<string> {"La Rive" ,"Amsterdam","Mediterranean", "French", "International", 
+            //     "4.5","$$$$", "567", "Satisfaction", "Delicious old school restaurant","/Restaurant_Review-g188590-d696959-Reviews-La_Rive-Amsterdam_North_Holland_Province.html"}
+            /*
+                            new Restaurant("d11752080","Martine of Martine's Table","Netherlands", "Amsterdam",new List<string>{ "French", "Dutch", "European" }
+                                , 5, "$$ - $$$", 136,new List<UserReview>{new UserReview("d11752080","gooooooooooooooood", "10/1/99", 0.0), new UserReview("d11752080","very recomend rest", "20/01/19", 2.5), new UserReview("d11752080","I LIKE THIS REST", "29/08/2000", 5) },
+                                "/Restaurant_Review-g188590-d11752080-Reviews-Martine_of_Martine_s_Table-Amsterdam_North_Holland_Province.html", "Orel"),
+                            new Restaurant("d693419", "De Silveren Spiegel","Netherlands", "Amsterdam",new List<string>{ "Dutch", "European", "Vegetarian Friendly", "Gluten Free Options" }
+                                , 4.5, "$$$$", 812,new List<UserReview>(),
+                                "/Restaurant_Review-g188590-d693419-Reviews-De_Silveren_Spiegel-Amsterdam_North_Holland_Province.html", "shani"),
+                            new Restaurant("d696959", "La Rive","Netherlands", "Amsterdam",new List<string>{ "Mediterranean", "French", "International", "European", "Vegetarian Friendly", "Vegan Options" }
+                                , 1.5, "$$$$", 567,new List<UserReview>(),
+                                "/Restaurant_Review-g188590-d696959-Reviews-La_Rive-Amsterdam_North_Holland_Province.html", "reut")
+                        };*/
 
             //RestsResults = new List<List<string>> { };
 
@@ -85,13 +86,12 @@ namespace EatInEurope
             {
                 password = value;
                 NotifyPropertyChanged("password");
-                //if (signIn(username, password))
-                //{
-                //    LoginOK = true;
-                // get relevent rest
-                //    RestsResults = getRestByFilter();
-                //}
-                LoginOK = true;
+                if (signIn(username, password))
+                {
+                    LoginOK = true;
+                    //get relevent rest
+                    RestsResults = getRestByFilter();
+                }
             }
         }
 
@@ -103,7 +103,15 @@ namespace EatInEurope
             {
                 newPassword = value;
                 NotifyPropertyChanged("newPassword");
-                register(username, newPassword);
+                UsernameFree = true;
+                if (!signIn(username, null))
+                {
+                    register(username, newPassword);
+                } else
+                {
+                    UsernameFree = false;
+                }
+                
             }
         }
 
@@ -114,14 +122,31 @@ namespace EatInEurope
                 isClient = value;
                 NotifyPropertyChanged("isClient");
 
-                /*if (isClient) {
+                if (isClient)
+                {
                     CountriesOptions = getCountries();
-                }*/
+                    TypesOptions = getStyles();
+                }
             } 
             get {
                 return isClient;
 
-            } }
+            } 
+        }
+        private bool isEdit = false; 
+        public bool IsEdit {
+            get
+            {
+                return isEdit;
+            }
+            set
+            {
+                isEdit = value;
+                if (isEdit)
+                    CitiesOptions = getAllCities();
+                NotifyPropertyChanged("isEdit");
+            }
+        }
 
         private bool loginOK = false;
         public bool LoginOK { 
@@ -136,8 +161,8 @@ namespace EatInEurope
         public bool UsernameFree {
             get {
                 // TODO: update flag by calling function checks username
-                usernameFree = true;
-                return usernameFree; 
+                
+                return usernameFree;
             }
             set
             {
@@ -163,7 +188,7 @@ namespace EatInEurope
             set {
                 countryFilter = value;
                 NotifyPropertyChanged("countryFilter");
-                //CitiesOptions = getCities();
+                CitiesOptions = getCities();
             } 
         }
 
@@ -257,7 +282,7 @@ namespace EatInEurope
             {
                 asc = value;
                 NotifyPropertyChanged("asc");
-                orderBy(order, asc);
+                RestsResults = getRestByFilter();
             }
         }
         
@@ -281,24 +306,54 @@ namespace EatInEurope
                 NotifyPropertyChanged("restName");
             }
         }
+        private double restRating;
+        public double RestRating { 
+            get
+            {
+                restRating = RestsResults[restsResults.FindIndex(x => x.ID == RestID)].Rate;
+                return restRating;
+            }
+        }
         public Restaurant RestDetails
         {
             //get { return restDetails("000"); }
             get 
             {
-                if(restsResults.FindIndex(x => x.ID == RestID) < 0)
+                if (restID != null)
+                {
+                    if (!IsEdit)
+                    {
+                        return restDetails();
+                    }
+                    return RestsResults[restsResults.FindIndex(x => x.ID == restID)];
+                } else
                 {
                     return null;
                 }
-                return RestsResults[restsResults.FindIndex(x => x.ID == RestID)]; 
+                
             }
             set
             {
                 RestsResults[restsResults.FindIndex(x => x.ID == restID)] = value;
+                updateRestaurant(value);
                 NotifyPropertyChanged("RestDetails");
             }
         }
-       
+
+        private string idToRemove;
+        public string IDToRemove {
+            get
+            {
+                return idToRemove;
+            }
+            set
+            {
+                idToRemove = value;
+                NotifyPropertyChanged("idToRemove");
+                deleteRest();
+            }
+        }
+
         private UserReview newReview;
         public UserReview NewReview { 
             get { return newReview; }
@@ -309,6 +364,16 @@ namespace EatInEurope
                 NotifyPropertyChanged("newReview");
             }
         }
+        private bool isAddRest;
+        public bool IsAddRest { 
+            get {
+                return isAddRest;
+            }
+            set {
+                isAddRest = value;
+                NotifyPropertyChanged("isAddRest");
+            }
+        }
 
         private List<Restaurant> restsResults = new List<Restaurant>();
         public List<Restaurant> RestsResults
@@ -316,9 +381,10 @@ namespace EatInEurope
             get { return restsResults; }
             set
             {
-                if (restsResults.Count > value.Count)
+                if (IsAddRest)
                 {
-                    // add new rest to DB (last in the list)
+                    addRest(restsResults[restsResults.Count - 1]);
+                    IsAddRest = false;
                 }
                 restsResults = value;
                 NotifyPropertyChanged("restsResults");
@@ -345,10 +411,8 @@ namespace EatInEurope
         
         public bool deleteRest()
         {
-            //delete from t_restaurants where ID_TA='ID_TA';
             //TODO CHANGE ID
-            //return dBConnect.Delete("t_retaurants", "'ID_TA='" + "id" + "'");
-            return false;
+            return dBConnect.Delete("t_restaurants", "ID_TA=" +IDToRemove );
         }
         
         public List<Restaurant> getTop5Rest()
@@ -366,7 +430,7 @@ namespace EatInEurope
         {
             // check if not exist:
             List<string> result = dBConnect.Check_existing(username, password, "t_owners");
-            if (result[1].Equals("0"))
+            if (result[0].Equals("0"))
             {
                 return false;
             }
@@ -379,24 +443,33 @@ namespace EatInEurope
         public List<Restaurant> getRestByFilter()
         {
             // create sql query
-            string select = "t_restaurants.ID_TA, t_restaurants.name, t_City.Name as city,  t_country.Name as country, t_restaurants.rating', t_reataurants.owner";
+            string select = "t_restaurants.ID_TA, t_restaurants.name, t_City.Name as city,  t_country.Name as country, t_restaurants.rating, t_restaurants.owner";
             string from = "t_restaurants join t_city on t_restaurants.city_id = t_city.id join t_country on t_city.countrycode = t_country.code";
-            string where = "t_restaurants.city_id = (select t_city.id from t_city where t_city.name = '" + CitiesFilter[0] + "')";
-            // TODO check what happen if at the second time we go there, האם מתאפס?
-            if(TypesFilter[0] != null)
-            {
-                where += "And t_restaurants.ID_TA IN (select ID_TA from t_style_rest join t_style on t_style_rest.id = t_style.id where t_style.style='"+ TypesFilter[0] +"'";
-                for (int i = 1; i<TypesFilter.Count; i++){
-                    where += " OR t_style.style='" + TypesFilter[i] + "'";
-                }
-                where += ");";
+            string where;
+            if (isClient)
+                where = "t_restaurants.city_id = (select t_city.id from t_city where t_city.name = '" + CitiesFilter[0] + "')";
+            else
+                where = "t_restaurants.owner = '"+UserName+"'";
 
+            // TODO check what happen if at the second time we go there, האם מתאפס?
+            if (TypesFilter.Count != 0)
+            {
+                if (TypesFilter[0] != null)
+                {
+                    where += "And t_restaurants.ID_TA IN (select ID_TA from t_style_rest join t_style on t_style_rest.id = t_style.id where t_style.style='" + TypesFilter[0] + "'";
+                    for (int i = 1; i < TypesFilter.Count; i++)
+                    {
+                        where += " OR t_style.style='" + TypesFilter[i] + "'";
+                    }
+                    where += ");";
+
+                }
             }
-            if (top5RestValue[0] != null)
+            /*if (top5RestValue[0] != null)
             {
                 //add filter of 5 top rest
                 where = top5RestValue[0] + where + top5RestValue[1];
-            }
+            }*/
             string orderByValue = null;
             string order = null;
             if (Order != null)
@@ -409,16 +482,16 @@ namespace EatInEurope
             }
    
             List<Restaurant> all_rest = new List<Restaurant>();
-            List<string>[] rest = dBConnect.Select(from, where , orderByValue, order, select,-1);
+            List<string>[] rest = dBConnect.Select(from, where , orderByValue, order, select,2);
 
             select = "t_restaurants.ID_TA, t_style.style";
-            from = "inner join t_style_rest on  t_restaurants.ID_TA = t_style_rest.ID_TA inner join t_style on t_style.id = t_style_rest.id";
+            from = "t_restaurants join t_style_rest on  t_restaurants.ID_TA = t_style_rest.ID_TA join t_style on t_style.id = t_style_rest.styleid";
             for (int i = 0; i<rest[0].Count ;i++)
             {
-                Restaurant new_rest = new Restaurant(rest[0][i], rest[1][i], rest[8][i], rest[2][i], null, Convert.ToDouble(rest[3][i]),null, -1 ,null, null, rest[11][i]);
+                Restaurant new_rest = new Restaurant(rest[0][i], rest[1][i], rest[8][i], rest[2][i], null, Convert.ToDouble(rest[3][i]),null, -1 ,null, null, rest[6][i]);
                 // condition for specific id -restaurant-styles
                 string id = rest[0][i];
-                where = " t_restaurants.ID_TA='" + id + "';";
+                where = " t_restaurants.ID_TA='" + id + "'";
                 List<string>[] dbStyles = dBConnect.Select(from, where, null, null, select,1);
                 List<string> styles = new List<string>();
                 styles.Add(dbStyles[9][0]);
@@ -439,11 +512,11 @@ namespace EatInEurope
             return true;
         }
 
-        public List<Restaurant> orderBy(string orderType, bool order)
+       /* public List<Restaurant> orderBy(string orderType, bool order)
         {
-            //RestsResults = dBConnect.Select("t_restaurants", null, orderType, order);
+            RestsResults = dBConnect.Select("t_restaurants", null, orderType, order);
             return restsResults;
-        }
+        }*/
 
         public Restaurant restDetails()
         {
@@ -451,22 +524,22 @@ namespace EatInEurope
             // create sql query
             string select = "t_restaurants.price_range, t_restaurants.Numbers_of_reviews, t_restaurants.url_TA";
             string from = "t_restaurants";
-            string where = "t_restaurants.IDTA = " + currRest.ID;
+            string where = "t_restaurants.ID_TA = " + currRest.ID;
             
             List<string>[] rest = dBConnect.Select(from, where, null, null, select,-1);
 
             select = "t_restaurants.ID_TA, t_style.style";
-            from = "inner join t_style_rest on  t_restaurants.ID_TA = t_style_rest.ID_TA inner join t_style on t_style.id = t_style_rest.id";
+            from = "t_restaurants inner join t_style_rest on  t_restaurants.ID_TA = t_style_rest.ID_TA inner join t_style on t_style.id = t_style_rest.styleid";
             for (int i = 0; i < rest[0].Count; i++)
             {
-                currRest.Rate = Convert.ToDouble(rest[3][i]);
+                
                 currRest.PriceRange = rest[4][i];
                 currRest.NumOfReviews = Convert.ToInt32(rest[7][i]);
                 currRest.URL = rest[5][i];
  
                 // condition for specific id -restaurant-styles
-                string id = rest[0][i];
-                where = " t_restaurants.ID_TA='" + id + "';";
+                ;
+                where = " t_restaurants.ID_TA='" + currRest.ID + "';";
                 List<string>[] dbStyles = dBConnect.Select(from, where, null, null, select,-1);
                 List<string> styles = new List<string>();
                 for (int j = 0; j < dbStyles[0].Count; j++)
@@ -474,11 +547,11 @@ namespace EatInEurope
                     styles.Add(dbStyles[9][j]);
                 }
                 // get -restaurant -reviews
-                List<string>[] dbReviews = dBConnect.Select("t_reviews", "ID_TA= '" + rest[0][i] + "'", null, null, null,-1);
+                List<string>[] dbReviews = dBConnect.Select("t_reviews", "ID_TA= " + currRest.ID , null, null, null,-1);
                 List<UserReview> listReviews = new List<UserReview>();
                 for (int j = 0; j < dbReviews[0].Count; j++)
                 {
-                    UserReview newReview = new UserReview(id, dbReviews[10][j], dbReviews[11][j], Convert.ToDouble(rest[3][i]));
+                    UserReview newReview = new UserReview(currRest.ID, dbReviews[10][j], dbReviews[11][j], Convert.ToDouble(rest[3][i]));
                     listReviews.Add(newReview);
                 }
                 currRest.Types = styles;
@@ -536,26 +609,51 @@ namespace EatInEurope
 
         public bool addRest(Restaurant rest)
         {
-            string select = " Select " + "\"" + rest.Name + "\", t_city.id, \"" +
-                "0" + "\",\"" + rest.PriceRange + "\",\"" + "0" + "\",\"" + rest.URL + "\",\"" + username + "\"";
-            string where = "t_city.name = \"" + rest.City + "\";";
+            bool price = false;
+            bool url = false;
+            string select = "'" + rest.Name + "', t_city.id, 0";
+            if (rest.PriceRange != null)
+            {
+                select += ", '" + rest.PriceRange + "'";
+                price = true;
+            }
+            select += ", 0";
+            if (!rest.URL.Equals(""))
+            {
+                select += ", '" + rest.URL + "'";
+                url = true;
+            }
+            select += ", '" + username + "' from t_city";
+            string where = "t_city.name = '" + rest.City + "'";
+            string values = "name, city_id,rating ,";
+            if (price)
+                values += "price_range,";
+            values += "numbers_of_reviews,";
+            if (url)
+                values += "url_ta,";
+            values += "owner ";
             // insert restaurant
-            bool result = dBConnect.InsertSelect(select, where, "t_restaurants");
+            bool result = dBConnect.InsertSelect(select, where, "t_restaurants", values);
             if (result == false)
                 return false;
             int id = dBConnect.select_last_inserted_id();
             if (id == -1)
                 return false;
 
-            // insert styles            
-            select = "\'" + id.ToString() + "\'"+ " , t_style.id";
-            foreach (string type in rest.Types)
+            // insert styles     
+            if (rest.Types.Count != 0)
             {
-                where = "t_style.id from t_style where t_style.style = \'" + type + "\';";
-                result = dBConnect.InsertSelect(select, where, "t_style_rest");
-                if (result == false)
-                    return false;
+                select =  id.ToString() + " , t_style.id from t_style ";
+                foreach (string type in rest.Types)
+                {
+                    where = " t_style.style = \'" + type + "\';";
+                    result = dBConnect.InsertSelect(select, where, "t_style_rest", null);
+                    if (result == false)
+                        return false;
+                }
             }
+            int new_id = dBConnect.select_last_inserted_id();
+            restsResults[RestsResults.Count - 1].ID = new_id.ToString();
             return true;
         }
 
@@ -600,13 +698,24 @@ namespace EatInEurope
 
         public List<string> getCities()
         {
-            string whereCond = "CountryCode = (select code from t_country where name = \"" + countryFilter + "\")";
-            return dBConnect.SelectColumn("t_country",  whereCond ,"ASC","name","name");
+            string whereCond = "countrycode = (select code from t_country where name = \"" + countryFilter + "\")";
+            return dBConnect.SelectColumn("t_city",  whereCond ,"name", "ASC", "name");
+        }
+
+        public List<string> getAllCities()
+        {
+            return dBConnect.SelectColumn("t_city", null, "name", "Asc", "name");
         }
 
         public List<string> getStyles()
         {
             return dBConnect.SelectColumn("t_style", null , null, null, "style");
+        }
+
+        public bool updateRestaurant(Restaurant rest)
+        {
+            string set = "name='" + rest.Name + "' ,URL_TA= '" + rest.URL + "' ,price_range= '" + rest.PriceRange + "' ,t_restaurants.city_id = (SELECT t_city.id FROM t_city WHERE t_city.name = '" + rest.City + "')";
+            return dBConnect.Update("t_restaurants", set, "ID_TA = " + rest.ID);
         }
 
     }

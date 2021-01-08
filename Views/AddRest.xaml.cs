@@ -35,6 +35,19 @@ namespace EatInEurope.Views
         public static readonly DependencyProperty MyRestaurantsProperty =
             DependencyProperty.Register("MyRestaurants", typeof(List<Restaurant>), typeof(AddRest));
 
+        public string CountryFilter
+        {
+            get { return (string)GetValue(CountryFilterProperty); }
+            set
+            {
+                SetValue(CountryFilterProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty CountryFilterProperty =
+            DependencyProperty.Register("CountryFilter", typeof(string), typeof(AddRest));
+
+
 
         public AddRest(string ownerName)
         {
@@ -45,6 +58,10 @@ namespace EatInEurope.Views
             var VMMyRests = "VM_RestsResults";
             var bindingMyRests = new Binding(VMMyRests) { Mode = BindingMode.TwoWay };
             this.SetBinding(MyRestaurantsProperty, bindingMyRests);
+
+            var VMCountriesFilters = "VM_CountryFilter";
+            var bindingCountries = new Binding(VMCountriesFilters) { Mode = BindingMode.TwoWay };
+            this.SetBinding(CountryFilterProperty, bindingCountries);
 
             InitializeComponent();
             // Hides these objects until the visibility changes.
@@ -62,6 +79,7 @@ namespace EatInEurope.Views
         {
             // Update country filed to be the selected country.
             country = (sender as ComboBox).SelectedItem as string;
+            CountryFilter = country;
         }
 
         private void CityChanged(object sender, SelectionChangedEventArgs e)

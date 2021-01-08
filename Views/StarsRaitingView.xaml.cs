@@ -11,17 +11,17 @@ namespace EatInEurope.Views
     public partial class StarsRaitingView : UserControl
     {
         // Property.
-        public Restaurant RestDetails
+        public double RestRating
         {
-            get { return (Restaurant)GetValue(RestDetailsProperty); }
+            get { return (double)GetValue(RestRatingProperty); }
             set
             {
-                SetValue(RestDetailsProperty, value);
+                SetValue(RestRatingProperty, value);
             }
         }
 
-        public static readonly DependencyProperty RestDetailsProperty =
-            DependencyProperty.Register("RestDetails", typeof(Restaurant), typeof(StarsRaitingView));
+        public static readonly DependencyProperty RestRatingProperty =
+            DependencyProperty.Register("RestRating", typeof(double), typeof(StarsRaitingView));
 
 
         public StarsRaitingView()
@@ -30,9 +30,9 @@ namespace EatInEurope.Views
             IModel model = (DataBaseModel)Application.Current.Properties["model"];
             DataContext = new ViewModelRestaurantDetails(model);
 
-            var VMRestDetails = "VM_RestDetails";
-            var bindingRestDetails = new Binding(VMRestDetails) { Mode = BindingMode.OneWay };
-            this.SetBinding(RestDetailsProperty, bindingRestDetails);
+            var VMRestRating = "VM_RestRating";
+            var bindingRestRating = new Binding(VMRestRating) { Mode = BindingMode.OneWay };
+            this.SetBinding(RestRatingProperty, bindingRestRating);
 
             InitializeComponent();
 
@@ -56,7 +56,7 @@ namespace EatInEurope.Views
             stat5F.Visibility = Visibility.Collapsed;
 
             // Get current rest raiting.
-            double raiting = RestDetails.Rate;
+            double raiting = RestRating;
             int rate = (int)raiting;
 
             // Fill the view with full stars according to rate number.
