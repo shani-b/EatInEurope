@@ -63,7 +63,7 @@ namespace EatInEurope.ViewModels
             }
         }
 
-        public double[] VM_RateFilter
+        public List<double> VM_RateFilter
         {
             set
             {
@@ -71,7 +71,7 @@ namespace EatInEurope.ViewModels
             }
         }
 
-        public int[] VM_PriceFilter
+        public List<string> VM_PriceFilter
         {
             set
             {

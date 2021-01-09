@@ -12,7 +12,7 @@
             <Label x:Name="reviewNum" Padding="5" Margin="19,18,858,0" FontFamily="Maiandra GD" Content="1" FontSize="60" Background="#FFF9F9F9" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
             <!-- Text -->
-            <TextBox x:Name="reviewText" IsReadOnly="True" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" Padding="5" Margin="123,18,10,139" Text="Reviews Text" FontSize="30" VerticalAlignment="Center" Height="86" Background="{x:Null}" SelectionBrush="{x:Null}" Foreground="Black" BorderBrush="{x:Null}"/>
+            <TextBox x:Name="reviewText" IsReadOnly="True" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" Padding="5" Margin="123,18,10,139" Text="Reviews Text" FontSize="30" VerticalAlignment="Center" Height="86" Background="{x:Null}" SelectionBrush="{x:Null}" Foreground="Black" BorderBrush="#FFEE5BBF"/>
 
             <!-- Raiting -->
             <Label x:Name="ratingNum" Padding="5" Margin="29,117,872,69" FontFamily="Maiandra GD" Content="1.5" FontSize="40" FontWeight="Bold" HorizontalAlignment="Center" Width="71" VerticalAlignment="Top"/>

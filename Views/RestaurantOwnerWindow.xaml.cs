@@ -230,6 +230,9 @@ namespace EatInEurope.Views
 
         private void LogOut_Click(object sender, RoutedEventArgs e)
         {
+            // Clean rest results in Model.
+            MyRestaurants.Clear();
+            
             // Logout button - Go back to Manager window.
             Manager manager = new Manager();
             manager.Show();

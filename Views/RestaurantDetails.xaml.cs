@@ -247,10 +247,22 @@ namespace EatInEurope.Views
 
         private void Go_Back_Click(object sender, RoutedEventArgs e)
         {
-            // Back button - Restaurant Owner window view.
-            RestaurantOwnerWindow restOwner = new RestaurantOwnerWindow(RestDetails.Owner);
-            restOwner.Show();
-            this.Close();
+            if (WhoIsIt)
+            {
+                // Client
+                // Back button - Client view.
+                Search client = new Search();
+                client.Show();
+                this.Close();
+            }
+            else
+            {
+                // Owner
+                // Back button - Restaurant Owner window view.
+                RestaurantOwnerWindow restOwner = new RestaurantOwnerWindow(RestDetails.Owner);
+                restOwner.Show();
+                this.Close();
+            }
         }
     }
 }

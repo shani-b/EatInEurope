@@ -10,6 +10,7 @@ namespace EatInEurope
     /// </summary>
     public partial class MainWindow : Window
     {
+        // Properties.
         public bool IsClient
         {
             get { return (bool)GetValue(IsClientProperty); }
@@ -38,9 +39,9 @@ namespace EatInEurope
 
         private void Client_Click(object sender, RoutedEventArgs e)
         {
-            // Go to client view.
+            // Go to Client Options view.
             IsClient = true;
-            Client client = new Client();
+            ClientOptionsView client = new ClientOptionsView();
             client.Show();
             this.Close();
         }

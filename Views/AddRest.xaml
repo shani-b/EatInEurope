@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EatInEurope.Views"
         mc:Ignorable="d"
-        Title="AddRest" Height="450" Width="800">
+        Title="Eat In Europe" Height="450" Width="800">
     <Viewbox>
         <Grid Background="#FF9DDEE2" Width="853" Height="449">
 
             <!-- Title -->
             <Label x:Name="title" FontSize="46" FontWeight="Bold" FontFamily="Maiandra GD" Content="My new restaurant" Margin="10,5,432,372"/>
-            
+
             <!-- Logo -->
             <Image Source="black logo.png" Margin="676,5,0,325"/>
-            
+
             <!-- Name -->
             <Label x:Name="newName" FontFamily="Maiandra GD" FontSize="21" Content="Enter name:" Margin="2,90,690,328"/>
             <TextBox x:Name="newrestName" MaxLength="20" FontSize="18" Margin="163,95,432,325" Background="White" OpacityMask="#FFB05555"/>
@@ -55,11 +55,23 @@
             <ComboBox FontSize="17" Margin="599,144,48,276" ItemsSource="{Binding VM_TypesOptions}" SelectionChanged="StylesChanged"/>
             <ScrollViewer x:Name="styleChoice" Margin="470,186,48,110">
                 <StackPanel x:Name="choises" Grid.Row="0" >
-                    <TextBlock x:Name="titleChoices" FontSize="20" FontStyle="Italic" TextDecorations="Underline">Your chosen styles:</TextBlock>
+                    <TextBlock x:Name="titleChoices" Text="Your chosen styles:" FontSize="20" FontFamily="Maiandra GD" TextDecorations="Underline"/>
                 </StackPanel>
             </ScrollViewer>
 
             <!-- Buttons -->
+            <!-- Refresh -->
+            <Button x:Name="refresh" FontSize="20" Click="Refresh_Click" Margin="428,308,391,107">
+                <Grid>
+                    <Image Source="refresh.png" Margin="5,-3,5.4,-2.6" HorizontalAlignment="Center" Width="20" RenderTransformOrigin="0.507,1.468"/>
+                </Grid>
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="22"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
             <!-- Insert -->
             <Button x:Name="insert" Content="Create!" Click="Insert_Click" FontSize="24" Margin="703,378,29,22">
                 <Button.Resources>

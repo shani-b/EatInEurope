@@ -21,7 +21,7 @@ namespace EatInEurope.Views
         private bool removeError2;
         private bool choiceOpition; // login = 1, sing up = 0
 
-
+        // Properties.
         public bool LoginOK
         {
             get { return (bool)GetValue(LoginOKProperty); }
@@ -170,10 +170,10 @@ namespace EatInEurope.Views
             else
             {
                 // The passwords are the same.
-
-                // Checks if the username is available.
+                // Insert the new restaurant owner to the DB.
                 usernameValue.GetBindingExpression(TextBox.TextProperty).UpdateSource();
                 NewPassword = passwordConfirm;
+                // Checks if the username is available.
                 if (!UsernameFree)
                 {
                     // Displays an error indication to the user.
@@ -189,7 +189,6 @@ namespace EatInEurope.Views
                 else
                 {
                     // Username free (not exsits in DB) => sing up successful.
-
                     // Checks if the input is incorrect.
                     if (password.Equals("") || username.Equals("wrong") || username.Equals(""))
                     {
@@ -208,9 +207,6 @@ namespace EatInEurope.Views
                     else
                     {
                         // All input is correct for a new user.
-                        // Insert the new restaurant owner to the DB.
-                        
-
                         // Show user's restaurant view.
                         RestaurantOwnerWindow rest = new RestaurantOwnerWindow(username);
                         rest.Show();
@@ -219,7 +215,7 @@ namespace EatInEurope.Views
                 }
             }
         }
-   
+
         private void Login_Option_Click(object sender, RoutedEventArgs e)
         {
             // Switch button to choose between login and sing up.
@@ -305,14 +301,6 @@ namespace EatInEurope.Views
                 btn_login.Background = Brushes.LightGray;
                 btn_singUp.Background = Brushes.Orange;
             }
-        }
-
-        private void Go_Back_Click(object sender, RoutedEventArgs e)
-        {
-            // Back button - Main window.
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            this.Close();
         }
 
         private void UsernameValue_TextChanged(object sender, TextChangedEventArgs e)
@@ -461,7 +449,18 @@ namespace EatInEurope.Views
             {
                 errorText.Visibility = Visibility.Collapsed;
             }
-        
+
+        }
+
+
+  
+
+        private void Go_Back_Click(object sender, RoutedEventArgs e)
+        {
+            // Back button - Main window.
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
         }
     }
 }
