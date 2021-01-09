@@ -33,11 +33,11 @@ namespace EatInEurope
         //Initialize values
         private void Initialize()
         {
-            server = "192.168.1.244";
+            server = "localhost";
             port = "3306";
             database = "rest";
             uid = "root";
-            password = "100798";
+            password = "Orel1998";
             string connectionString;
             connectionString = "SERVER=" + server + ";" + "PORT=" + port + ";" + "DATABASE=" +
             database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
@@ -91,6 +91,34 @@ namespace EatInEurope
             }
         }
 
+        public bool InsertSelect(string select, string where, string table, string values)
+        {
+
+
+            string query = "INSERT INTO " + table; 
+            if (values != null)
+            {
+                query += " (" + values + ")";
+            }
+            query += " Select " + select + " WHERE " + where;
+            //open connection
+            if (this.OpenConnection() == true)
+            {
+                //create command and assign the query and connection from the constructor
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+
+                //Execute command
+                cmd.ExecuteNonQuery();
+
+                //close connection
+                this.CloseConnection();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         //Insert statement
         public bool Insert(string values, string table)
         {
@@ -116,22 +144,28 @@ namespace EatInEurope
         }
 
         //Select statement 
-        public List<string>[] Select(string table, string whereCond, string orderByValue, string order)
+        public List<string>[] Select(string table, string whereCond, string orderByValue, string order, string select,int limit)
         {
-            //retaurants:
-            string query = "SELECT * FROM " + table;
-
-            if (whereCond != null)
-            {
+            string query;
+            if (select != null) {
+                query = "SELECT " + select + " from " + table;
+            }
+            else {
+                query = "SELECT * FROM " + table;
+            }
+            if (whereCond != null)   {
                 query += " WHERE " + whereCond;
             }
-            if (orderByValue != null)
-            {
+            if (orderByValue != null) {
                 query += " ORDER BY " + orderByValue + " " + order;
+            }
+            if (limit != -1)
+            {
+                query += " LIMIT " + limit.ToString();
             }
 
             //Create a list to store the result
-            List<string>[] list = new List<string>[7];
+            List<string>[] list = new List<string>[12];
             list[0] = new List<string>();
             list[1] = new List<string>();
             list[2] = new List<string>();
@@ -139,6 +173,11 @@ namespace EatInEurope
             list[4] = new List<string>();
             list[5] = new List<string>();
             list[6] = new List<string>();
+            list[7] = new List<string>();
+            list[8] = new List<string>();
+            list[9] = new List<string>();
+            list[10] = new List<string>();
+            list[11] = new List<string>();
 
             //Open connection
             if (this.OpenConnection() == true)
@@ -151,13 +190,99 @@ namespace EatInEurope
                 //Read the data and store them in the list
                 while (dataReader.Read())
                 {
-                    list[0].Add(dataReader["ID_TA"] + "");
-                    list[1].Add(dataReader["Name"] + "");
-                    list[2].Add(dataReader["ID"] + "");
-                    list[3].Add(dataReader["Rating"] + "");
-                    list[4].Add(dataReader["Price_Range"] + "");
-                    list[5].Add(dataReader["URL_TA"] + "");
-                    list[6].Add(dataReader["Owner"] + "");
+                    try
+                    {
+                        list[0].Add(dataReader["ID_TA"] + "");
+                    }
+                    catch (Exception e)
+                    {
+                        list[0].Add(null); }
+                    try
+                    {
+                        list[1].Add(dataReader["Name"] + "");
+                    }                    
+                    catch (Exception e)
+                    {
+                        list[1].Add(null);
+                    }
+                    try { 
+                        list[2].Add(dataReader["city"] + "");
+                    }
+                    catch (Exception e)
+                    {
+                        list[2].Add(null);
+                    }
+                    try {
+                        list[3].Add(dataReader["Rating"] + "");
+                    }
+                    catch (Exception e)
+                    {
+                        list[3].Add(null);
+                    }
+                    try
+                    {
+                        list[4].Add(dataReader["Price_Range"] + "");
+                    }
+                    catch (Exception e)
+                    {
+                        list[4].Add(null);
+                    }
+                    try
+                    {
+                        list[5].Add(dataReader["URL_TA"] + "");
+                    }
+                    catch (Exception e)
+                    {
+                        list[5].Add(null);
+                    }
+                    try
+                    {
+                        list[6].Add(dataReader["Owner"] + "");
+                    }
+                    catch (Exception e)
+                    {
+                        list[6].Add(null);
+                    }
+                    try
+                    {
+                        list[7].Add(dataReader["Numbers_of_Reviews"] + "");
+                    }
+                    catch (Exception e)
+                    {
+                        list[7].Add(null);
+                    }
+                    try
+                    {
+                        list[8].Add(dataReader["country"] + "");
+                    }
+                    catch (Exception e)
+                    {
+                        list[8].Add(null);
+                    }
+                    try
+                    {
+                        list[9].Add(dataReader["style"] + "");
+                    }
+                    catch (Exception e)
+                    {
+                        list[9].Add(null);
+                    }
+                    try
+                    {
+                        list[10].Add(dataReader["reviews"] + "");
+                    }
+                    catch (Exception e)
+                    {
+                        list[10].Add(null);
+                    }
+                    try
+                    {
+                        list[11].Add(dataReader["dates"] + "");
+                    }
+                    catch (Exception e)
+                    {
+                        list[11].Add(null);
+                    }
                 }
 
                 //close Data Reader
@@ -175,7 +300,30 @@ namespace EatInEurope
             }
         }
 
+        public int select_last_inserted_id()
+        {
+            string query = "SELECT LAST_INSERT_ID();";
+            int last_id = -1;
+            if (this.OpenConnection() == true)
+            {
+                //Create Mysql Command
+                MySqlCommand cmd = new MySqlCommand(query, connection);
 
+                //ExecuteScalar will return one value
+                last_id = int.Parse(cmd.ExecuteScalar() + "");
+
+                //close Connection
+                this.CloseConnection();
+
+                return last_id;
+            }
+            else
+            {
+                return last_id;
+            }
+            
+
+        }
 
         public List<string> SelectColumn(string table, string whereCond, string orderByValue, string order ,string column)
         {
@@ -225,7 +373,10 @@ namespace EatInEurope
 
         public List<string> Check_existing(string user_name, string password, string table)
         {
-            string query = "SELECT COUNT(1) FROM " + table + " WHERE user_name='" + user_name + "' AND password= '" + password + "'";
+            string query = "SELECT COUNT(1) FROM " + table + " WHERE user_name='" + user_name + "'";
+            if (password != null) {
+                query += " AND password= '" + password + "'";
+            };
 
             List<string> list = new List<string>();
             //Open connection
@@ -325,16 +476,45 @@ namespace EatInEurope
 
 
 
-
-
         //Count statement
-        public int Count()
-        {
-            string query = "SELECT Count(*) FROM tableinfo";
-            int Count = -1;
+        public List<string>[] Count(string query)
+        { 
+
+            List<string>[] list = new List<string>[2];
+            list[0] = new List<string>();
+            list[1] = new List<string>();
+
+            if (this.OpenConnection() == true)
+            {
+                //Create Command
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                //Create a data reader and Execute the command
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                //Read the data and store them in the list
+                while (dataReader.Read())
+                {
+                    list[0].Add(dataReader["name"] + "");
+                    list[1].Add(dataReader["COUNT(*)"] + "");
+                }
+
+                //close Data Reader
+                dataReader.Close();
+
+                //close Connection
+                this.CloseConnection();
+
+                //return list to be displayed
+                return list;
+            }
+            else
+            {
+                return list;
+            }
+
 
             //Open Connection
-            if (this.OpenConnection() == true)
+/*            if (this.OpenConnection() == true)
             {
                 //Create Mysql Command
                 MySqlCommand cmd = new MySqlCommand(query, connection);
@@ -350,7 +530,7 @@ namespace EatInEurope
             else
             {
                 return Count;
-            }
+            }*/
         }
 
         //Backup

@@ -42,5 +42,11 @@ namespace EatInEurope.ViewModels
                 return model.CitiesOptions;
             }
         }
+
+        public bool VM_IsEdit
+        {
+            get { return model.IsEdit; }
+            set { model.IsEdit = value; }
+        }
     }
 }
