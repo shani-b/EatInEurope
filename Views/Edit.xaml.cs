@@ -59,52 +59,79 @@ namespace EatInEurope.Views
         {
             // Update price filed to be the selected price.
             ComboBoxItem priceItem = (ComboBoxItem)lowPriceVal.SelectedItem;
-            price = priceItem.Content.ToString();
-
-            // Enabled 'To' view.
-            topPriceVal.IsEnabled = true;
-            if (!flagFromPriceSelected)
+            if (priceItem == null)
             {
-                lowPriceVal.IsEnabled = false;
-                flagFromPriceSelected = true;
+                lowPriceVal.IsEnabled = true;
+                topPriceVal.IsEnabled = false;
             }
-
-            // Update combo item view for fit the low price.
-            switch (priceItem.Name[0])
+            else
             {
-                case 'a': top1.Visibility = Visibility.Collapsed;
-                    break;
-                case 'b':
-                    top1.Visibility = Visibility.Collapsed;
-                    top2.Visibility = Visibility.Collapsed;
-                    break;
-                case 'c':
-                    top1.Visibility = Visibility.Collapsed;
-                    top2.Visibility = Visibility.Collapsed;
-                    top3.Visibility = Visibility.Collapsed;
-                    break;
-                case 'd':
-                    top1.Visibility = Visibility.Collapsed;
-                    top2.Visibility = Visibility.Collapsed;
-                    top3.Visibility = Visibility.Collapsed;
-                    top4.Visibility = Visibility.Collapsed;
-                    break;
-                case 'e':
-                    top1.Visibility = Visibility.Collapsed;
-                    top2.Visibility = Visibility.Collapsed;
-                    top3.Visibility = Visibility.Collapsed;
-                    top4.Visibility = Visibility.Collapsed;
-                    top5.Visibility = Visibility.Collapsed;
-                    break;
+                price = priceItem.Content.ToString();
+
+                // Enabled 'To' view.
+                topPriceVal.IsEnabled = true;
+                if (!flagFromPriceSelected)
+                {
+                    lowPriceVal.IsEnabled = false;
+                    flagFromPriceSelected = true;
+                }
+
+                // Update combo item view for fit the low price.
+                switch (priceItem.Name[0])
+                {
+                    case 'a':
+                        top1.Visibility = Visibility.Collapsed;
+                        break;
+                    case 'b':
+                        top1.Visibility = Visibility.Collapsed;
+                        top2.Visibility = Visibility.Collapsed;
+                        break;
+                    case 'c':
+                        top1.Visibility = Visibility.Collapsed;
+                        top2.Visibility = Visibility.Collapsed;
+                        top3.Visibility = Visibility.Collapsed;
+                        break;
+                    case 'd':
+                        top1.Visibility = Visibility.Collapsed;
+                        top2.Visibility = Visibility.Collapsed;
+                        top3.Visibility = Visibility.Collapsed;
+                        top4.Visibility = Visibility.Collapsed;
+                        break;
+                    case 'e':
+                        topPriceVal.IsEnabled = false;
+                        break;
+                }
             }
         }
 
         private void TopPriceVal_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // Update price filed to be 'the prev price  - the selected price'.
-            ComboBoxItem typeItem = (ComboBoxItem)topPriceVal.SelectedItem;
-            string topPrice = typeItem.Content.ToString();
-            price += " - " + topPrice;
+            ComboBoxItem priceItem = (ComboBoxItem)topPriceVal.SelectedItem;
+            if (priceItem == null)
+            {
+                topPriceVal.IsEnabled = false;
+            }
+            else
+            {
+                string topPrice = priceItem.Content.ToString();
+                price += " - " + topPrice;
+                topPriceVal.IsEnabled = false;
+            }
+        }
+
+        private void Refresh_Click(object sender, RoutedEventArgs e)
+        {
+            // Clean choise.
+            price = "";
+            lowPriceVal.SelectedIndex = -1;
+            topPriceVal.SelectedIndex = -1;
+            flagFromPriceSelected = false;
+            top1.Visibility = Visibility.Visible;
+            top2.Visibility = Visibility.Visible;
+            top3.Visibility = Visibility.Visible;
+            top4.Visibility = Visibility.Visible;
+            top5.Visibility = Visibility.Visible;
         }
 
         private void Update_Click(object sender, RoutedEventArgs e)
@@ -146,5 +173,6 @@ namespace EatInEurope.Views
             rd.Show();
             this.Close();
         }
+
     }
 }

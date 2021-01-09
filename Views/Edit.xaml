@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EatInEurope.Views"
         mc:Ignorable="d"
-        Title="Edit" Height="450" Width="800">
+        Title="Eat In Europe" Height="450" Width="800">
     <Viewbox>
         <Grid Background="#FF9DDEE2" Height="455" Width="862">
 
             <!-- Title -->
             <Label x:Name="title" FontSize="50" FontWeight="Bold" FontFamily="Maiandra GD" Content="Changes" Margin="10,19,595,361"/>
-            
+
             <!-- Logo -->
             <Image Source="black logo.png" Margin="676,5,0,325"/>
 
@@ -37,7 +37,7 @@
                 <ComboBoxItem Name="d" Content="$$$$" />
                 <ComboBoxItem Name="e" Content="$$$$$" />
             </ComboBox>
-            <Label  Content="To" FontSize="18" Margin="337,298,493,128"/>
+            <Label  Content="To" FontSize="18" Margin="337,298,493,125"/>
             <ComboBox x:Name="topPriceVal" Margin="372,296,402,121" FontSize="22" SelectionChanged="TopPriceVal_SelectionChanged" IsEnabled="False">
                 <ComboBoxItem Name="top1" Content="$" />
                 <ComboBoxItem Name="top2" Content="$$" />
@@ -48,6 +48,18 @@
 
 
             <!-- Buttons -->
+            <!-- Refresh -->
+            <Button x:Name="refresh" FontSize="20" Click="Refresh_Click" Margin="468,294,353,121">
+                <Grid>
+                    <Image Source="refresh.png" Margin="3,-5,2.4,-5.6" HorizontalAlignment="Center" Width="25" RenderTransformOrigin="0.507,1.468"/>
+                </Grid>
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="22"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
             <!-- Update -->
             <Button x:Name="update" Content="Edit!" Click="Update_Click" FontSize="26" Margin="718,378,39,22">
                 <Button.Resources>

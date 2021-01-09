@@ -22,10 +22,10 @@ namespace EatInEurope.Views
     {
 
         string restID;
-        Client c;
+        Search c;
 
         public List<string> temp;
-        public RestaurantView(Client rest, string idRest)
+        public RestaurantView(Search rest, string idRest)
         {
             InitializeComponent();
 

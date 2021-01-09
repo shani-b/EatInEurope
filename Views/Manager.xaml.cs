@@ -21,7 +21,7 @@ namespace EatInEurope.Views
         private bool removeError2;
         private bool choiceOpition; // login = 1, sing up = 0
 
-
+        // Properties.
         public bool LoginOK
         {
             get { return (bool)GetValue(LoginOKProperty); }
@@ -120,105 +120,6 @@ namespace EatInEurope.Views
             removeError2 = false;
         }
 
-        private void Login_Click(object sender, RoutedEventArgs e)
-        {
-            usernameValue.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            Password = passwordValue.Password;
-
-            // Check if the username & password that entered are correct (found in our DB).
-            if (!LoginOK)
-            {
-                // Displays an error indication to the user.
-                errorText.Visibility = Visibility.Visible;
-                usernameValue.Text = "wrong";
-                usernameValue.Foreground = Brushes.LightGray;
-                errorUsername.Visibility = Visibility.Visible;
-                errorPassword.Visibility = Visibility.Visible;
-                cleanUser = true;
-                cleanPassword = true;
-                removeError1 = false;
-                removeError2 = false;
-            }
-            else
-            {
-                // User exists => login successful.
-                // Show user's restaurant view.
-                RestaurantOwnerWindow rest = new RestaurantOwnerWindow(usernameValue.Text);
-                rest.Show();
-                this.Close();
-            }
-        }
-
-        private void Sign_up_Click(object sender, RoutedEventArgs e)
-        {
-            string username = usernameValue.Text;
-            string password = passwordValue.Password;
-            string passwordConfirm = passwordConfirmValue.Password;
-
-            // Checks if the password for the confirmation password is the same.
-            if (!password.Equals(passwordConfirm))
-            {
-                // Displays an error indication to the user.
-                errorText.Visibility = Visibility.Visible;
-                errorText.Text = " The passwords are not the same.\n Try again!";
-                errorPassword.Visibility = Visibility.Visible;
-                errorConfirm.Visibility = Visibility.Visible;
-                cleanUser = false;
-                cleanConfirm = true;
-                cleanPassword = true;
-            }
-            else
-            {
-                // The passwords are the same.
-
-                // Checks if the username is available.
-                if (!UsernameFree)
-                {
-                    // Displays an error indication to the user.
-                    errorText.Visibility = Visibility.Visible;
-                    errorText.Text = " Username is already taken.\n Try differnet username!";
-                    usernameValue.Text = "wrong";
-                    usernameValue.Foreground = Brushes.LightGray;
-                    errorUsername.Visibility = Visibility.Visible;
-                    cleanUser = true;
-                    cleanPassword = false;
-                    cleanConfirm = false;
-                }
-                else
-                {
-                    // Username free (not exsits in DB) => sing up successful.
-
-                    // Checks if the input is incorrect.
-                    if (password.Equals("") || username.Equals("wrong") || username.Equals(""))
-                    {
-                        // Displays an error indication to the user.
-                        errorText.Visibility = Visibility.Visible;
-                        errorText.Text = " The password or username are\n not valid. Try again!";
-                        usernameValue.Text = "wrong";
-                        usernameValue.Foreground = Brushes.LightGray;
-                        errorUsername.Visibility = Visibility.Visible;
-                        errorPassword.Visibility = Visibility.Visible;
-                        errorConfirm.Visibility = Visibility.Visible;
-                        cleanUser = true;
-                        cleanPassword = true;
-                        cleanConfirm = true;
-                    }
-                    else
-                    {
-                        // All input is correct for a new user.
-                        // Insert the new restaurant owner to the DB.
-                        usernameValue.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-                        NewPassword = passwordConfirm;
-
-                        // Show user's restaurant view.
-                        RestaurantOwnerWindow rest = new RestaurantOwnerWindow(username);
-                        rest.Show();
-                        this.Close();
-                    }
-                }
-            }
-        }
-   
         private void Login_Option_Click(object sender, RoutedEventArgs e)
         {
             // Switch button to choose between login and sing up.
@@ -304,14 +205,6 @@ namespace EatInEurope.Views
                 btn_login.Background = Brushes.LightGray;
                 btn_singUp.Background = Brushes.Orange;
             }
-        }
-
-        private void Go_Back_Click(object sender, RoutedEventArgs e)
-        {
-            // Back button - Main window.
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            this.Close();
         }
 
         private void UsernameValue_TextChanged(object sender, TextChangedEventArgs e)
@@ -460,7 +353,114 @@ namespace EatInEurope.Views
             {
                 errorText.Visibility = Visibility.Collapsed;
             }
-        
+
+        }
+
+        private void Login_Click(object sender, RoutedEventArgs e)
+        {
+            usernameValue.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            Password = passwordValue.Password;
+
+            // Check if the username & password that entered are correct (found in our DB).
+            if (!LoginOK)
+            {
+                // Displays an error indication to the user.
+                errorText.Visibility = Visibility.Visible;
+                usernameValue.Text = "wrong";
+                usernameValue.Foreground = Brushes.LightGray;
+                errorUsername.Visibility = Visibility.Visible;
+                errorPassword.Visibility = Visibility.Visible;
+                cleanUser = true;
+                cleanPassword = true;
+                removeError1 = false;
+                removeError2 = false;
+            }
+            else
+            {
+                // User exists => login successful.
+                // Show user's restaurant view.
+                RestaurantOwnerWindow rest = new RestaurantOwnerWindow(usernameValue.Text);
+                rest.Show();
+                this.Close();
+            }
+        }
+
+        private void Sign_up_Click(object sender, RoutedEventArgs e)
+        {
+            string username = usernameValue.Text;
+            string password = passwordValue.Password;
+            string passwordConfirm = passwordConfirmValue.Password;
+
+            // Checks if the password for the confirmation password is the same.
+            if (!password.Equals(passwordConfirm))
+            {
+                // Displays an error indication to the user.
+                errorText.Visibility = Visibility.Visible;
+                errorText.Text = " The passwords are not the same.\n Try again!";
+                errorPassword.Visibility = Visibility.Visible;
+                errorConfirm.Visibility = Visibility.Visible;
+                cleanUser = false;
+                cleanConfirm = true;
+                cleanPassword = true;
+            }
+            else
+            {
+                // The passwords are the same.
+
+                // Checks if the username is available.
+                if (!UsernameFree)
+                {
+                    // Displays an error indication to the user.
+                    errorText.Visibility = Visibility.Visible;
+                    errorText.Text = " Username is already taken.\n Try differnet username!";
+                    usernameValue.Text = "wrong";
+                    usernameValue.Foreground = Brushes.LightGray;
+                    errorUsername.Visibility = Visibility.Visible;
+                    cleanUser = true;
+                    cleanPassword = false;
+                    cleanConfirm = false;
+                }
+                else
+                {
+                    // Username free (not exsits in DB) => sing up successful.
+
+                    // Checks if the input is incorrect.
+                    if (password.Equals("") || username.Equals("wrong") || username.Equals(""))
+                    {
+                        // Displays an error indication to the user.
+                        errorText.Visibility = Visibility.Visible;
+                        errorText.Text = " The password or username are\n not valid. Try again!";
+                        usernameValue.Text = "wrong";
+                        usernameValue.Foreground = Brushes.LightGray;
+                        errorUsername.Visibility = Visibility.Visible;
+                        errorPassword.Visibility = Visibility.Visible;
+                        errorConfirm.Visibility = Visibility.Visible;
+                        cleanUser = true;
+                        cleanPassword = true;
+                        cleanConfirm = true;
+                    }
+                    else
+                    {
+                        // All input is correct for a new user.
+                        // Insert the new restaurant owner to the DB.
+                        usernameValue.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                        NewPassword = passwordConfirm;
+
+                        // Show user's restaurant view.
+                        RestaurantOwnerWindow rest = new RestaurantOwnerWindow(username);
+                        rest.Show();
+                        this.Close();
+                    }
+                }
+            }
+        }
+
+        private void Go_Back_Click(object sender, RoutedEventArgs e)
+        {
+            // Back button - Main window.
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
         }
     }
 }

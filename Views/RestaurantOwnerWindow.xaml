@@ -69,8 +69,8 @@
             <ComboBox x:Name="comboSort" Margin="4,21.2,142.6,33.8" Grid.Row="2" SelectionChanged="SortChanged" FontSize="14" Grid.ColumnSpan="2">
                 <ComboBoxItem x:Name="AZ" Content="A-Z" />
                 <ComboBoxItem x:Name="ZA" Content="Z-A" />
-                <ComboBoxItem Content="Raiting low to height" />
-                <ComboBoxItem Content="Raiting height to low" />
+                <ComboBoxItem Content="Rating low to height" />
+                <ComboBoxItem Content="Rating height to low" />
             </ComboBox>
 
             <!-- Logout -->

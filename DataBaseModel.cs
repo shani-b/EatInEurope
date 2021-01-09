@@ -94,6 +94,7 @@ namespace EatInEurope
                 //    RestsResults = getRestByFilter();
                 //}
                 LoginOK = true;
+                RestsResults.Clear();
                 /*if (signIn(username, password))
                 {
                     LoginOK = true;
@@ -111,6 +112,7 @@ namespace EatInEurope
             {
                 newPassword = value;
                 NotifyPropertyChanged("newPassword");
+                RestsResults.Clear();
                 //register(username, newPassword);
             }
         }
@@ -226,8 +228,8 @@ namespace EatInEurope
             }
         }
 
-        private double[] ratesFilter = new double[2];
-        public double[] RateFilter {
+        private List<double> ratesFilter = new List<double>();
+        public List<double> RateFilter {
             get { return ratesFilter; }
             set
             {
@@ -236,8 +238,8 @@ namespace EatInEurope
             }
         }
 
-        private int[] priceFilter = new int[2];
-        public int[] PriceFilter {
+        private List<string> priceFilter = new List<string>();
+        public List<string> PriceFilter {
             get { return priceFilter; }
             set
             {

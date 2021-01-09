@@ -145,8 +145,11 @@
       <DependentUpon>AddReview.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\ViewModelTripSearch.cs" />
-    <Compile Include="Views\Client.xaml.cs">
-      <DependentUpon>Client.xaml</DependentUpon>
+    <Compile Include="Views\Search.xaml.cs">
+      <DependentUpon>Search.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClientOptionsview.xaml.cs">
+      <DependentUpon>ClientOptionsview.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Edit.xaml.cs">
       <DependentUpon>Edit.xaml</DependentUpon>
@@ -202,7 +205,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Client.xaml">
+    <Page Include="Views\Search.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ClientOptionsview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -330,6 +337,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Views\black logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Trip Search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Find Rest.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Search.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
