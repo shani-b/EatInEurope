@@ -1,4 +1,5 @@
 ﻿using EatInEurope.ViewModels;
+using MySqlX.XDevAPI.Common;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -21,6 +22,12 @@ namespace EatInEurope.Views
     /// </summary>
     public partial class TripSearch : Window
     {
+        private List<Category> Categories { get; set; }
+        int maxPart;
+        string contryResult;
+
+
+        // Properties.
         public Dictionary<string, int> CountriesPartStyle
         {
             get { return (Dictionary<string, int>)GetValue(CountriesPartStyleProperty); }
@@ -33,9 +40,22 @@ namespace EatInEurope.Views
         public static readonly DependencyProperty CountriesPartStyleProperty =
             DependencyProperty.Register("CountriesPartStyle", typeof(Dictionary<string, int>), typeof(TripSearch));
 
-        private List<Category> Categories { get; set; }
+        public List<string> StyleFilter
+        {
+            get { return (List<string>)GetValue(StyleFilterProperty); }
+            set
+            {
+                SetValue(StyleFilterProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty StyleFilterProperty =
+            DependencyProperty.Register("StyleFilter", typeof(List<string>), typeof(TripSearch));
+
+
         public TripSearch()
         {
+            // Constructor.
             IModel model = (DataBaseModel)Application.Current.Properties["model"];
             DataContext = new ViewModelTripSearch(model);
 
@@ -43,199 +63,34 @@ namespace EatInEurope.Views
             var binding = new Binding(VMCountriesPartStyle) { Mode = BindingMode.OneWay };
             this.SetBinding(CountriesPartStyleProperty, binding);
 
+            var VMStyleFilter = "VM_TypesFilter";
+            var bindingStyleFilter = new Binding(VMStyleFilter) { Mode = BindingMode.TwoWay };
+            this.SetBinding(StyleFilterProperty, bindingStyleFilter);
 
             InitializeComponent();
+            // Hides these objects until the visibility changes.
+            resultsView.Visibility = Visibility.Collapsed;
+            run.IsEnabled = false;
+
+            // Initialize the fileds.
+            maxPart = 0;
+            contryResult = "";
         }
 
-        private void run_Click(object sender, RoutedEventArgs e)
+        private void Run_Click(object sender, RoutedEventArgs e)
         {
             float pieWidth = 250, pieHeight = 250, centerX = pieWidth / 2, centerY = pieHeight / 2, radius = pieWidth / 2;
             mainCanvas.Width = pieWidth;
             mainCanvas.Height = pieHeight;
 
-            //Categories = new List<Category>()
-            //{
-            //    //#region test #1
-            //    //new Category
-            //    //{
-            //    //    Title = "Category#01",
-            //    //    Percentage = 10,
-            //    //    ColorBrush = Brushes.Gold,
-            //    //},
-
-            //    //new Category
-            //    //{
-            //    //    Title = "Category#02",
-            //    //    Percentage = 30,
-            //    //    ColorBrush = Brushes.Pink,
-            //    //},
-
-            //    //new Category
-            //    //{
-            //    //    Title = "Category#03",
-            //    //    Percentage = 60,
-            //    //    ColorBrush = Brushes.CadetBlue,
-            //    //}, 
-            //    //#endregion
-
-            //    #region test #2
-            //    //new Category
-            //    //{
-            //    //    Title = "Category#01",
-            //    //    Percentage = 20,
-            //    //    ColorBrush = Brushes.Gold,
-            //    //},
-
-            //    //new Category
-            //    //{
-            //    //    Title = "Category#02",
-            //    //    Percentage = 80,
-            //    //    ColorBrush = Brushes.LightBlue,
-            //    //}, 
-            //    #endregion
-
-            //    #region test #3
-            //    //new Category
-            //    //{
-            //    //    Title = "Category#01",
-            //    //    Percentage = 50,
-            //    //    ColorBrush = Brushes.Gold,
-            //    //},
-
-            //    //new Category
-            //    //{
-            //    //    Title = "Category#02",
-            //    //    Percentage = 50,
-            //    //    ColorBrush = Brushes.LightBlue,
-            //    //}, 
-            //    #endregion
-
-            //    #region test #4
-            //    //new Category
-            //    //{
-            //    //    Title = "Category#01",
-            //    //    Percentage = 30,
-            //    //    ColorBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4472C4")),
-            //    //},
-
-            //    //new Category
-            //    //{
-            //    //    Title = "Category#02",
-            //    //    Percentage = 30,
-            //    //    ColorBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#ED7D31")),
-            //    //},
-
-            //    //new Category
-            //    //{
-            //    //    Title = "Category#03",
-            //    //    Percentage = 20,
-            //    //    ColorBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFC000")),
-            //    //},
-
-            //    //new Category
-            //    //{
-            //    //    Title = "Category#04",
-            //    //    Percentage = 20,
-            //    //    ColorBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5B9BD5")),
-            //    //},
-
-            //    //new Category
-            //    //{
-            //    //    Title = "Category#05",
-            //    //    Percentage = 10,
-            //    //    ColorBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#A5A5A5")),
-            //    //}, 
-            //    #endregion
-
-            //    #region test #5
-            //    //new Category
-            //    //{
-            //    //    Title = "Category#01",
-            //    //    Percentage = 20,
-            //    //    ColorBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4472C4")),
-            //    //},
-
-            //    //new Category
-            //    //{
-            //    //    Title = "Category#02",
-            //    //    Percentage = 30,
-            //    //    ColorBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#ED7D31")),
-            //    //},
-
-            //    //new Category
-            //    //{
-            //    //    Title = "Category#03",
-            //    //    Percentage = 20,
-            //    //    ColorBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFC000")),
-            //    //},
-
-            //    //new Category
-            //    //{
-            //    //    Title = "Category#04",
-            //    //    Percentage = 20,
-            //    //    ColorBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5B9BD5")),
-            //    //},
-
-            //    //new Category
-            //    //{
-            //    //    Title = "Category#05",
-            //    //    Percentage = 10,
-            //    //    ColorBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#A5A5A5")),
-            //    //}, 
-            //    #endregion
-
-            //    // TODO: title=country name 
-
-            //    #region test #6
-
-            //    new Category
-            //    {
-            //        Title = "Category#01",
-            //        Percentage = 20,
-            //        ColorBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4472C4")),
-            //    },
-
-            //    new Category
-            //    {
-            //        Title = "Category#02",
-            //        Percentage = 60,
-            //        ColorBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#ED7D31")),
-            //    },
-
-            //    new Category
-            //    {
-            //        Title = "Category#03",
-            //        Percentage = 5,
-            //        ColorBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFC000")),
-            //    },
-
-
-
-
-            //    new Category
-            //    {
-            //        Title = "Category#04",
-            //        Percentage = 10,
-            //        ColorBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5B9BD5")),
-            //    },
-
-            //    new Category
-            //    {
-            //        Title = "Category#05",
-            //        Percentage = 5,
-            //        ColorBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#A5A5A5")),
-            //    }, 
-            //    #endregion
-            //};
-
             Categories = new List<Category>();
             List<SolidColorBrush> colors = new List<SolidColorBrush>
             {
-                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4472C4")),
-                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#ED7D31")),
-                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFC000")),
-                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5B9BD5")),
-                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#A5A5A5")),
+                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#b3d9ff")), // blue
+                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#ff99cc")), // pink
+                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#ffcc99")), // orenge
+                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#99ff99")), // green
+                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#d9b3ff")), // perpul
             };
             int i = 0;
             foreach (KeyValuePair<string, int> entry in CountriesPartStyle)
@@ -248,11 +103,19 @@ namespace EatInEurope.Views
                 };
                 Categories.Add(category);
                 i++;
+
+                // Check witch country is the country with  the biggest Percentage.
+                if (entry.Value > 0)
+                {
+                    maxPart = entry.Value;
+                    contryResult = entry.Key;
+                }
+
             }
 
             detailsItemsControl.ItemsSource = Categories;
 
-            // draw pie
+            // Draw pie
             float angle = 0, prevAngle = 0;
             foreach (var category in Categories)
             {
@@ -299,7 +162,7 @@ namespace EatInEurope.Views
                 prevAngle = angle;
 
 
-                // draw outlines
+                // Draw outlines
                 var outline1 = new Line()
                 {
                     X1 = centerX,
@@ -322,12 +185,27 @@ namespace EatInEurope.Views
                 mainCanvas.Children.Add(outline1);
                 mainCanvas.Children.Add(outline2);
             }
+
+            // Update result view.
+            resultsView.Visibility = Visibility.Visible;
+            resultVal.Text = contryResult;
         }
 
-        private void styleChoice_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Style_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // TODO: fill me!!!
+            // Update the chosen style in the model.
+            string style = (sender as ComboBox).SelectedItem as string;
+            StyleFilter = new List<string> { style };
+            run.IsEnabled = true;
+        }
+
+        private void Go_Back_Click(object sender, RoutedEventArgs e)
+        {
+            StyleFilter.Clear();
+            // Go Back button - show client option view.
+            ClientOptionsView clientOption = new ClientOptionsView();
+            clientOption.Show();
+            this.Close();
         }
     }
-
 }

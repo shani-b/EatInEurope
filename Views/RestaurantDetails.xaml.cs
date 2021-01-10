@@ -14,7 +14,6 @@ namespace EatInEurope.Views
     public partial class RestaurantDetails : Window
     {
         private StackPanel stp;
-        //private string restID;
 
         // Properties.
         public string RestID
@@ -251,8 +250,8 @@ namespace EatInEurope.Views
             {
                 // Client
                 // Back button - Client view.
-                Search client = new Search();
-                client.Show();
+                Search search = new Search(true);
+                search.Show();
                 this.Close();
             }
             else

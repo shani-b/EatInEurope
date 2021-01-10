@@ -20,26 +20,25 @@ namespace EatInEurope.Views
     /// </summary>
     public partial class RestaurantView : UserControl
     {
+        private string restID;
+        private Search search;
 
-        string restID;
-        Search c;
-
-        public List<string> temp;
         public RestaurantView(Search rest, string idRest)
         {
+            // Constructor.
             InitializeComponent();
 
+            // Initialize the fileds.
             restID = idRest;
-            c = rest;
+            search = rest;
         }
 
-
-        private void details_Click(object sender, RoutedEventArgs e)
+        private void Details_Click(object sender, RoutedEventArgs e)
         {
             //Restaurant showThisRestDetailes = c.getDetailsByID(restID);
             RestaurantDetails restD = new RestaurantDetails(restID);
             restD.Show();
-            c.Close();
+            search.Close();
         }
     }
 }

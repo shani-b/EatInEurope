@@ -8,7 +8,7 @@
         Title="Eat In Europe" Height="450" Width="800">
     <Viewbox>
         <Grid Background="#FFC6BBD6" Height="426" Width="800">
-            
+
             <!-- Title -->
             <Label x:Name="title" FontSize="46" FontWeight="Bold" FontFamily="Maiandra GD" Content="My new review:" Margin="10,19,409.6,328"/>
 
@@ -16,12 +16,14 @@
             <Image Source="black logo.png" Margin="607,0,0,284"/>
 
             <!-- Text -->
-            <Label x:Name="newReview" FontFamily="Maiandra GD" FontSize="22" Content="Enter rest name:" Margin="6,112,628,266"/>
-            <TextBox x:Name="reviewText" SpellCheck.IsEnabled="True" Language="en-US" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" Margin="177,113,25,251" Background="White" FontSize="22" OpacityMask="#FFB05555"/>
+            <Label x:Name="newReview" FontFamily="Maiandra GD" FontSize="22" Content="Enter review: *" Margin="6,112,632,266"/>
+            <Border x:Name="errorReview" Background="#FFDA3636" Padding="1" Margin="173,108,20,246" />
+            <TextBox x:Name="reviewText" SpellCheck.IsEnabled="True" Language="en-US" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" Margin="176,113,24,251" Background="White" FontSize="22" OpacityMask="#FFB05555"/>
 
             <!-- Raiting number -->
-            <Label x:Name="newScore" FontFamily="Maiandra GD" FontSize="22" Content="Enter rating number:" Margin="6,218,581,159"/>
-            <ComboBox x:Name="raitingCombo" FontSize="20" Margin="224,220,509,168" SelectionChanged="Raiting_SelectionChanged">
+            <Label x:Name="newScore" FontFamily="Maiandra GD" FontSize="22" Content="Enter rating number: *" Margin="6,218,562,159"/>
+            <Border x:Name="errorRate" Background="#FFDA3636" Padding="1" Margin="244,216,481,164" />
+            <ComboBox x:Name="raitingCombo" FontSize="20" Margin="248,220,485,168" SelectionChanged="Raiting_SelectionChanged">
                 <ComboBoxItem Content="0" />
                 <ComboBoxItem Content="0.5" />
                 <ComboBoxItem Content="1" />
@@ -35,6 +37,9 @@
                 <ComboBoxItem Content="5" />
             </ComboBox>
 
+            <!-- Errors view -->
+            <TextBlock x:Name="errorText" Background="Gold" Text=" Error" FontSize="16" Margin="340,354,175,22" />
+            
             <!-- Buttons -->
             <!-- Insert -->
             <Button x:Name="insert" Content="Add!" Click="Insert_Click" FontSize="24" Margin="656,354,42,22">
@@ -57,7 +62,7 @@
                     </Style>
                 </Button.Resources>
             </Button>
-            
+
         </Grid>
     </Viewbox>
 </Window>

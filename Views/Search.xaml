@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Views="clr-namespace:EatInEurope.Views" xmlns:Views1="clr-namespace:EatInEurope.Views"
         mc:Ignorable="d"
-        Title="Client" Height="450" Width="800">
+        Title="Eat In Europe" Height="450" Width="800">
     <Viewbox>
         <Grid Background="#FF7FE0AE" Height="476" Width="901">
             <Grid.ColumnDefinitions>
@@ -94,27 +94,27 @@
                                     <TextBlock Text="From price" FontSize="15"/>
                                     <Line Height="3"/>
                                     <ComboBox Name="fromPriceVal" FontSize="15" SelectionChanged="FromPrice_SelectionChanged">
-                                        <ComboBoxItem Content="$" />
-                                        <ComboBoxItem Content="$$" />
-                                        <ComboBoxItem Content="$$$" />
-                                        <ComboBoxItem Content="$$$$" />
-                                        <ComboBoxItem Content="$$$$$" />
+                                        <ComboBoxItem Name="f1" Content="$" />
+                                        <ComboBoxItem Name="f2" Content="$$" />
+                                        <ComboBoxItem Name="f3" Content="$$$" />
+                                        <ComboBoxItem Name="f4" Content="$$$$" />
+                                        <ComboBoxItem Name="f5" Content="$$$$$" />
                                     </ComboBox>
 
                                     <!-- From Rate -->
                                     <TextBlock Text="From rate" FontSize="15"/>
                                     <Line Height="2"/>
                                     <ComboBox x:Name="fromRateVal" FontSize="15" SelectionChanged="FromRate_SelectionChanged">
-                                        <ComboBoxItem Content="0.5"/>
-                                        <ComboBoxItem Content="1"/>
-                                        <ComboBoxItem Content="1.5"/>
-                                        <ComboBoxItem Content="2"/>
-                                        <ComboBoxItem Content="2.5"/>
-                                        <ComboBoxItem Content="3"/>
-                                        <ComboBoxItem Content="3.5"/>
-                                        <ComboBoxItem Content="4"/>
-                                        <ComboBoxItem Content="4.5"/>
-                                        <ComboBoxItem Content="5"/>
+                                        <ComboBoxItem Name="fa" Content="0.5"/>
+                                        <ComboBoxItem Name="fb" Content="1"/>
+                                        <ComboBoxItem Name="fc" Content="1.5"/>
+                                        <ComboBoxItem Name="fd" Content="2"/>
+                                        <ComboBoxItem Name="fe" Content="2.5"/>
+                                        <ComboBoxItem Name="ff" Content="3"/>
+                                        <ComboBoxItem Name="fg" Content="3.5"/>
+                                        <ComboBoxItem Name="fh" Content="4"/>
+                                        <ComboBoxItem Name="fi" Content="4.5"/>
+                                        <ComboBoxItem Name="fj" Content="5"/>
                                     </ComboBox>
 
                                 </StackPanel>
@@ -125,27 +125,27 @@
                                     <TextBlock Text="To price" FontSize="15"/>
                                     <Line Height="3"/>
                                     <ComboBox Name="toPriceVal" FontSize="15" SelectionChanged="ToPrice_SelectionChanged">
-                                        <ComboBoxItem Content="$" />
-                                        <ComboBoxItem Content="$$" />
-                                        <ComboBoxItem Content="$$$" />
-                                        <ComboBoxItem Content="$$$$" />
-                                        <ComboBoxItem Content="$$$$$" />
+                                        <ComboBoxItem Name="t1" Content="$" />
+                                        <ComboBoxItem Name="t2" Content="$$" />
+                                        <ComboBoxItem Name="t3" Content="$$$" />
+                                        <ComboBoxItem Name="t4" Content="$$$$" />
+                                        <ComboBoxItem Name="t5" Content="$$$$$" />
                                     </ComboBox>
 
                                     <!-- To Rate -->
                                     <TextBlock Text="To rate" FontSize="15"/>
                                     <Line Height="2"/>
                                     <ComboBox x:Name="toRateVal" FontSize="15" SelectionChanged="ToRate_SelectionChanged">
-                                        <ComboBoxItem Content="0.5"/>
-                                        <ComboBoxItem Content="1"/>
-                                        <ComboBoxItem Content="1.5"/>
-                                        <ComboBoxItem Content="2"/>
-                                        <ComboBoxItem Content="2.5"/>
-                                        <ComboBoxItem Content="3"/>
-                                        <ComboBoxItem Content="3.5"/>
-                                        <ComboBoxItem Content="4"/>
-                                        <ComboBoxItem Content="4.5"/>
-                                        <ComboBoxItem Content="5"/>
+                                        <ComboBoxItem Name="ta" Content="0.5"/>
+                                        <ComboBoxItem Name="tb" Content="1"/>
+                                        <ComboBoxItem Name="tc" Content="1.5"/>
+                                        <ComboBoxItem Name="td" Content="2"/>
+                                        <ComboBoxItem Name="te" Content="2.5"/>
+                                        <ComboBoxItem Name="tf" Content="3"/>
+                                        <ComboBoxItem Name="tg" Content="3.5"/>
+                                        <ComboBoxItem Name="th" Content="4"/>
+                                        <ComboBoxItem Name="ti" Content="4.5"/>
+                                        <ComboBoxItem Name="tj" Content="5"/>
                                     </ComboBox>
 
                                 </StackPanel>
@@ -166,7 +166,7 @@
             </Button>
 
             <!-- Clean Choises -->
-            <Button x:Name="deleteChoises" Click="deleteChoises_Click" Margin="52,46,59,11" Grid.Row="2" Grid.Column="1" >
+            <Button x:Name="deleteChoises" Click="DeleteChoises_Click" Margin="52,46,59,11" Grid.Row="2" Grid.Column="1" >
                 <Grid>
                     <Image Source="refresh.png" HorizontalAlignment="Center" Width="14" Margin="-2,10,42,10"/>
                     <TextBlock Text="Clean" FontFamily="Maiandra GD" FontSize="16" Margin="16,7,-2,9"/>
@@ -183,20 +183,63 @@
                 <StackPanel x:Name="choisesSTP" FlowDirection="LeftToRight">
                     <StackPanel Orientation="Horizontal">
                         <Line Width="8"/>
-                        <TextBlock x:Name="titleChoices" Text="Your chosen styles:" FontSize="19" FontWeight="Bold" FontFamily="Maiandra GD" TextDecorations="Underline"/>
+                        <TextBlock x:Name="titleChoices" Text="Your chosen filters:" FontSize="19" FontWeight="Bold" FontFamily="Maiandra GD" TextDecorations="Underline"/>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel x:Name="nameChoice" Orientation="Horizontal">
                         <Line Width="8"/>
-                        <StackPanel x:Name="citiesSTP">
-                            <TextBlock Text="Cities:" TextDecorations="Underline" FontSize="15" Margin="0,0,18.8,0"/>
+                        <StackPanel>
+                            <TextBlock x:Name="titleName" Text="Name:" FontSize="15" TextDecorations="Underline"/>
+                        </StackPanel>
+                        <Line Width="6"/>
+                        <StackPanel x:Name="nameSTP"/>
+                    </StackPanel>
+                    <StackPanel x:Name="allChoice" Orientation="Horizontal">
+                        <Line Width="8"/>
+                        <StackPanel x:Name="generic">
+                            <StackPanel>
+                                <TextBlock Text="Generic:" FontSize="15" TextDecorations="Underline" Margin="0,0,9.8,0"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel>
+                                    <TextBlock Text="Country:" FontSize="12" TextDecorations="Underline"/>
+                                    <TextBlock Text="From price:" FontSize="12" TextDecorations="Underline"/>
+                                    <TextBlock Text="To price:" FontSize="12" TextDecorations="Underline"/>
+                                    <TextBlock Text="From rate:" FontSize="12" TextDecorations="Underline"/>
+                                    <TextBlock Text="To rate:" FontSize="12" TextDecorations="Underline"/>
+                                </StackPanel>
+                                <Line Width="6"/>
+                                <StackPanel x:Name="generiSTP">
+                                    <StackPanel x:Name="countrySTP">
+                                        <TextBlock Text="" FontSize="12" TextDecorations="Underline"/>
+                                    </StackPanel>
+                                    <StackPanel x:Name="priceFSTP">
+                                        <TextBlock Text="" FontSize="12" TextDecorations="Underline"/>
+                                    </StackPanel>
+                                    <StackPanel x:Name="priceTSTP">
+                                        <TextBlock Text="" FontSize="12" TextDecorations="Underline"/>
+                                    </StackPanel>
+                                    <StackPanel x:Name="rateFSTP">
+                                        <TextBlock Text="" FontSize="12" TextDecorations="Underline"/>
+                                    </StackPanel>
+                                    <StackPanel x:Name="rateTSTP">
+                                        <TextBlock Text="" FontSize="12" TextDecorations="Underline"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
                         </StackPanel>
                         <Line Width="10"/>
-                        <StackPanel x:Name="stylesSTP">
-                            <TextBlock Text="Style:" FontSize="15" TextDecorations="Underline"  Margin="0,0,18.8,0"/>
+                        <StackPanel>
+                            <StackPanel x:Name="city">
+                                <TextBlock Text="Cities:" TextDecorations="Underline" FontSize="15" Margin="0,0,18.8,0"/>
+                            </StackPanel>
+                            <StackPanel x:Name="citiesSTP"/>
                         </StackPanel>
                         <Line Width="10"/>
-                        <StackPanel x:Name="generiSTP">
-                            <TextBlock Text="Generic:" FontSize="15" TextDecorations="Underline" Margin="0,0,18.8,0"/>
+                        <StackPanel x:Name="style">
+                            <StackPanel>
+                                <TextBlock Text="Style:" FontSize="15" TextDecorations="Underline"  Margin="0,0,18.8,0"/>
+                            </StackPanel>
+                            <StackPanel x:Name="stylesSTP"/>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
@@ -205,7 +248,7 @@
             <!-- Sort filters -->
             <Label x:Name="sort" Content="Sort by:"  FontFamily="Maiandra GD" FontSize="24" Margin="38,16,42,41" Grid.Column="2" />
             <Image x:Name="sortIcon" Source="sort-descending.png" Margin="2,21,142,45" Grid.Column="2"/>
-            <ComboBox x:Name="comboSort" Margin="5,55,3,0" SelectionChanged="filtersChanged" Grid.Column="2" Height="29" VerticalAlignment="Top">
+            <ComboBox x:Name="comboSort" Margin="5,55,17.8,0" SelectionChanged="SortChanged" FontSize="14" Grid.Column="2" Height="29" VerticalAlignment="Top">
                 <ComboBoxItem x:Name="AZ" Content="A-Z"/>
                 <ComboBoxItem x:Name="ZA" Content="Z-A"/>
                 <ComboBoxItem Content="Raiting low to height"/>
@@ -219,7 +262,7 @@
                     <!--list of rest-->
                 </StackPanel>
             </ScrollViewer>
-            <Label x:Name="noRest" Content=" There are no restaurants in this filters,&#xA; Try new search!" FontSize="20" Grid.ColumnSpan="3" Margin="80.4,10,47.6,79" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" />
+            <Label x:Name="noRest" Content="There are no restaurants in this filters.&#xA;  Click on 'Clear' and try new search!" FontSize="20" Grid.ColumnSpan="3" Margin="112,19.8,42.8,0.4" Grid.Column="2" Grid.Row="1" Background="#FFFAE2AE" IsEnabled="False" HorizontalContentAlignment="Center" />
 
             <!-- Go Back -->
             <Button x:Name="goBack" FontSize="20" Click="Go_Back_Click" Margin="10,41,36,7" Grid.Row="4" >
