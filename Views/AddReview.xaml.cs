@@ -39,6 +39,12 @@ namespace EatInEurope.Views
             this.SetBinding(MyNewReviewProperty, bindingMyNewReview);
 
             InitializeComponent();
+            // Hides these objects until the visibility changes.
+            errorText.Visibility = Visibility.Collapsed;
+            errorReview.Visibility = Visibility.Collapsed;
+            errorRate.Visibility = Visibility.Collapsed;
+
+            // Initialize the fileds.
             restID = idRest;
             rating = 0;
         }
@@ -49,20 +55,47 @@ namespace EatInEurope.Views
             string raitingString = raitingItem.Content.ToString();
             // Fill the rating filed with the chosen number.
             rating = Double.Parse(raitingString);
+            errorRate.Visibility = Visibility.Collapsed;
         }
 
         private void Insert_Click(object sender, RoutedEventArgs e)
         {
             // Fill current date. 
-            string date = DateTime.Now.ToString("dd/MM/yyy");
+            string date = DateTime.Now.ToString("MM/dd/yyy");
 
-            // Insert to the DB the new review.
-            MyNewReview = new UserReview(restID, reviewText.Text, date, rating);
+            // Update visbility.
+            if (!reviewText.Equals(""))
+            {
+                errorReview.Visibility = Visibility.Collapsed;
+            }
 
-            // Show the Restaurant Details view (with the new review).
-            RestaurantDetails restdetails = new RestaurantDetails(restID);
-            restdetails.Show();
-            this.Close();
+            // Checks if all mandatory details have been entered.
+            if (reviewText.Text.Equals("") || rating == 0)
+            {
+                string errorMessage = " You must enter ";
+                if (reviewText.Text.Equals(""))
+                {
+                    errorReview.Visibility = Visibility.Visible;
+                    errorMessage += "review, ";
+                }
+                if (rating == 0)
+                {
+                    errorRate.Visibility = Visibility.Visible;
+                    errorMessage += "rating, ";
+                }
+                errorText.Visibility = Visibility.Visible;
+                errorText.Text = errorMessage;
+            }
+            else
+            {
+                // Insert to the DB the new review.
+                MyNewReview = new UserReview(restID, reviewText.Text, date, rating);
+
+                // Show the Restaurant Details view (with the new review).
+                RestaurantDetails restdetails = new RestaurantDetails(restID);
+                restdetails.Show();
+                this.Close();
+            } 
         }
 
         private void Go_Back_Click(object sender, RoutedEventArgs e)

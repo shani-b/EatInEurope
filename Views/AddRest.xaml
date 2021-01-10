@@ -16,20 +16,23 @@
             <Image Source="black logo.png" Margin="676,5,0,325"/>
 
             <!-- Name -->
-            <Label x:Name="newName" FontFamily="Maiandra GD" FontSize="21" Content="Enter name:" Margin="2,90,690,328"/>
-            <TextBox x:Name="newrestName" MaxLength="20" FontSize="18" Margin="163,95,432,325" Background="White" OpacityMask="#FFB05555"/>
+            <Label x:Name="newName" FontFamily="Maiandra GD" FontSize="21" Content="Enter name: *" Margin="2,90,690,328"/>
+            <Border x:Name="errorName" Background="#FFDA3636" Padding="1" Margin="171,93,420,322" />
+            <TextBox x:Name="newrestName" MaxLength="20" FontSize="18" Margin="173,95,422,325" Background="White" OpacityMask="#FFB05555"/>
 
             <!-- Country -->
-            <Label x:Name="newContry" FontFamily="Maiandra GD" FontSize="20" Content="Choose country:" Margin="0,137,690,276"/>
-            <ComboBox Name="countries" FontSize="18" ItemsSource="{Binding VM_CountriesOptions}" Margin="163,142,432,278" SelectionChanged="CountryChanged"/>
+            <Label x:Name="newContry" FontFamily="Maiandra GD" FontSize="20" Content="Choose country: *" Margin="0,137,685,276"/>
+            <Border x:Name="errorCountry" Background="#FFDA3636" Padding="1" Margin="171,140,420,273" />
+            <ComboBox Name="countries" FontSize="18" ItemsSource="{Binding VM_CountriesOptions}" Margin="173,142,422,276" SelectionChanged="CountryChanged"/>
 
             <!-- City -->
-            <Label x:Name="newCity" FontFamily="Maiandra GD" FontSize="20" Content="Choose city:" Margin="0,186,690,229"/>
-            <ComboBox Name="cities" FontSize="18" Margin="163,191,432,229" ItemsSource="{Binding VM_CitiesOptions}" SelectionChanged="CityChanged"/>
+            <Label x:Name="newCity" FontFamily="Maiandra GD" FontSize="20" Content="Choose city: *" Margin="0,186,690,229"/>
+            <Border x:Name="errorCity" Background="#FFDA3636" Padding="1" Margin="171,189,420,224" />
+            <ComboBox Name="cities" FontSize="18" Margin="173,191,422,227" ItemsSource="{Binding VM_CitiesOptions}" SelectionChanged="CityChanged"/>
 
             <!-- URL -->
             <Label x:Name="newUrl" FontFamily="Maiandra GD" FontSize="20" Content="Enter url address:" Margin="0,240,690,180"/>
-            <TextBox x:Name="newurltAdd" FontSize="18" Margin="163,243,432,177" Background="White" OpacityMask="#FFB05555"/>
+            <TextBox x:Name="newurltAdd" FontSize="18" Margin="173,243,422,177" Background="White" OpacityMask="#FFB05555"/>
 
             <!-- Price -->
             <Label x:Name="newPrice" FontFamily="Maiandra GD" FontSize="20" Content="Choose price range:" Margin="0,307,672,103"/>
@@ -58,6 +61,9 @@
                     <TextBlock x:Name="titleChoices" Text="Your chosen styles:" FontSize="20" FontFamily="Maiandra GD" TextDecorations="Underline"/>
                 </StackPanel>
             </ScrollViewer>
+
+            <!-- Errors view -->
+            <TextBlock x:Name="errorText" Background="Gold" Text=" Error" FontSize="16" Margin="340,378,175,7" />
 
             <!-- Buttons -->
             <!-- Refresh -->

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Xml;
 
 namespace EatInEurope.Views
 {
@@ -66,6 +67,11 @@ namespace EatInEurope.Views
             InitializeComponent();
             // Hides these objects until the visibility changes.
             styleChoice.Visibility = Visibility.Collapsed;
+            errorName.Visibility = Visibility.Collapsed;
+            errorCountry.Visibility = Visibility.Collapsed;
+            errorCity.Visibility = Visibility.Collapsed;
+            errorText.Visibility = Visibility.Collapsed;
+            cities.IsEnabled = false;
 
             // Initialize the fileds.
             owner = ownerName;
@@ -73,19 +79,30 @@ namespace EatInEurope.Views
             myRest = MyRestaurants;
             flagStyleSelected = false;
             flagFromPriceSelected = false;
+            name = "";
+            country = "";
+            city = "";
         }
 
         private void CountryChanged(object sender, SelectionChangedEventArgs e)
         {
             // Update country filed to be the selected country.
             country = (sender as ComboBox).SelectedItem as string;
-            CountryFilter = country;
+            // Update visbility.
+            countries.IsEnabled = false;
+            cities.IsEnabled = true;
+            errorCountry.Visibility = Visibility.Collapsed;
+            //CountryFilter = country;
+
         }
 
         private void CityChanged(object sender, SelectionChangedEventArgs e)
         {
             // Update city filed to be the selected city.
             city = (sender as ComboBox).SelectedItem as string;
+            
+            // Update visbility.
+            errorCity.Visibility = Visibility.Collapsed;
         }
 
         private void StylesChanged(object sender, SelectionChangedEventArgs e)
@@ -202,18 +219,51 @@ namespace EatInEurope.Views
             // Update name & url filed to be the inserted name & url.
             url = newurltAdd.Text;
             name = newrestName.Text;
-            
-            // Create new Restaurant object and add it to the rest list.
-            Restaurant newRest = new Restaurant("", name, country, city, styles, 0, price, 0, new List<UserReview>(), url, owner);
-            myRest.Add(newRest);
-            
-            // Insert to DB the new rest.
-            MyRestaurants = myRest;
 
-            // Show the Restaurant Owner Window view. (with the new rest)
-            RestaurantOwnerWindow row = new RestaurantOwnerWindow(owner);
-            row.Show();
-            this.Close();
+            // Update visbility.
+            if (!name.Equals(""))
+            {
+                errorName.Visibility = Visibility.Collapsed;
+            }
+
+            // Checks if all mandatory details have been entered.
+            if (name.Equals("") || city.Equals("") || country.Equals(""))
+            {
+                string errorMessage = " You must enter ";
+                if (name.Equals(""))
+                {
+                    errorName.Visibility = Visibility.Visible;
+                    errorMessage += "name, ";
+                }
+                if (city.Equals(""))
+                {
+                    errorCity.Visibility = Visibility.Visible;
+                    errorMessage += "city, ";
+                }
+                if (country.Equals(""))
+                {
+                    errorCountry.Visibility = Visibility.Visible;
+                    errorMessage += "country, ";
+                }
+                errorText.Visibility = Visibility.Visible;
+                errorText.Text = errorMessage;
+
+            }
+            else
+            {
+                // All mandatory details have been entered.
+                // Create new Restaurant object and add it to the rest list.
+                Restaurant newRest = new Restaurant("", name, country, city, styles, 0, price, 0, new List<UserReview>(), url, owner);
+                myRest.Add(newRest);
+
+                // Insert to DB the new rest.
+                MyRestaurants = myRest;
+
+                // Show the Restaurant Owner Window view. (with the new rest)
+                RestaurantOwnerWindow row = new RestaurantOwnerWindow(owner);
+                row.Show();
+                this.Close();
+            }
         }
 
         private void Go_Back_Click(object sender, RoutedEventArgs e)

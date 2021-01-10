@@ -27,7 +27,7 @@ namespace EatInEurope.Views
         private void Search_Restaurant_Click(object sender, RoutedEventArgs e)
         {
             // Show search view.
-            Search search = new Search();
+            Search search = new Search(false);
             search.Show();
             this.Close();
         }

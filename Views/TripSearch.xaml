@@ -7,57 +7,156 @@
         mc:Ignorable="d"
         Title="Eat In Europe" Height="450" Width="800">
     <Viewbox>
-        <StackPanel x:Name="mainGrid"
+        <Grid Height="98" Width="186">
+            <StackPanel>
+                <!-- SEARCH -->
+                <!-- CHOOSE STYLE -->
+                <StackPanel Margin="0,0,-0.4,-0.4" Height="13" Orientation="Horizontal">
+                    <Grid Margin="0,0,-0.4,0" Width="186" >
+                        <StackPanel Margin="0,0,145,0" Orientation="Vertical">
+                            <Line Height="3" Margin="0,0,0,0"/>
+                            <TextBlock FontSize="7" FontFamily="Maiandra GD" Text="Choose style:"/>
+                        </StackPanel>
+                        <StackPanel Margin="46,0,0,0" Orientation="Horizontal">
+                            <StackPanel Margin="0,0,0,0" Width="84">
+                                <Line Height="2" Margin="44,0,34,0"/>
+                                <ComboBox x:Name="styleChoice" FontSize="3.5" ItemsSource="{Binding VM_TypesOptions}" SelectionChanged="Style_SelectionChanged" Margin="0,0,0,-8.4" Height="11"/>
+                            </StackPanel>
+                            <Line Width="3"/>
+                            <StackPanel>
+                                <Line Height="2"/>
+                                <Button x:Name="run" Content="Ok" FontSize="6" Click="Run_Click" Height="11" Width="15">
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="2"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Height="58" Margin="0,0,-0.4,0">
+                    <!-- CAKE -->
+                    <Line Height="6" Margin="0,0,-0.4,0"/>
+                    <Viewbox Margin="0,0,-0.4,0" Height="49">
+                        <Grid>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel>
+                                    <Canvas x:Name="mainCanvas" Margin="20,0"/>
+                                </StackPanel>
+                                <StackPanel>
+                                    <ScrollViewer Margin="20,0" Padding="10" VerticalAlignment="Center" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden">
+                                        <ItemsControl x:Name="detailsItemsControl">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate DataType="{x:Type local:Category}">
+                                                    <StackPanel Orientation="Horizontal" Margin="10">
+                                                        <Rectangle Width="20" Height="20" Fill="{Binding ColorBrush}" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                                                        <TextBlock Text="{Binding Title}" FontSize="20" VerticalAlignment="Center"/>
+                                                        <TextBlock Text="{Binding Percentage}" Foreground="{Binding ColorBrush}" FontSize="20" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                                                        <TextBlock Text="%" Foreground="{Binding ColorBrush}" FontSize="20" VerticalAlignment="Center"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </ScrollViewer>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </Viewbox>
+                </StackPanel>
+                <Line Height="2" Margin="0,0,-0.4,0"/>
+                <StackPanel>
+                    <!-- RESULT -->
+                    <StackPanel x:Name="resultsView" Orientation="Horizontal" Height="11" Margin="0,0,-0.4,0">
+                        <Line Width="28"/>
+                        <StackPanel>
+                            <TextBlock FontSize="8" FontFamily="Maiandra GD" Text="The Best Country for you is:"/>
+                        </StackPanel>
+                        <Line Margin="0,0,0,0.2" Width="3"/>
+                        <StackPanel>
+                            <TextBlock x:Name="resultVal" Text="country" FontFamily="Maiandra GD" TextDecorations="Underline" FontSize="8"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            <!-- Go Back -->
+            <Button x:Name="goBack" FontSize="20" Click="Go_Back_Click" Margin="4,85,154,2" >
+                <Grid Height="7">
+                    <Image Source="go-back-left-arrow.png"  HorizontalAlignment="Center" Width="5" Margin="1,0,18,0"/>
+                    <TextBlock Text="Go Back" FontSize="4" Margin="7,1,0,0" />
+                </Grid>
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="1"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
+    </Viewbox>
+</Window>
+
+
+<!--<Viewbox>
+    <StackPanel x:Name="mainGrid"
                 Orientation="Horizontal"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center">
-            <StackPanel Orientation="Vertical">
-                <Label Content="Choose style:"/>
-                <StackPanel Orientation="Horizontal">
-                    <ComboBox x:Name="styleChoice" Width="45" ItemsSource="{Binding VM_TypesOptions}" SelectionChanged="styleChoice_SelectionChanged"/>
-                    <Button x:Name="run" Content="ok" Width="22" Click="run_Click"/>
-                </StackPanel>
+        -->
+<!-- CHOOSE STYLE -->
+<!--
+        <StackPanel Orientation="Vertical">
+            <Label Content="Choose style:"/>
+            <StackPanel Orientation="Horizontal">
+                <ComboBox x:Name="styleChoice" Width="53" ItemsSource="{Binding VM_TypesOptions}" SelectionChanged="styleChoice_SelectionChanged"/>
+                <Line Width="5"/>
+                <Button x:Name="run" Content="ok" Width="22" Click="run_Click"/>
             </StackPanel>
-            <Canvas x:Name="mainCanvas" 
+        </StackPanel>
+        -->
+<!--<Viewbox>
+                <Grid></Grid>
+            </Viewbox>-->
+<!--
+        <Canvas x:Name="mainCanvas" 
                 Margin="20,0"/>
 
-            <ScrollViewer Margin="20,0"
+        <ScrollViewer Margin="20,0"
                       Padding="10"
                       VerticalAlignment="Center"
                       VerticalScrollBarVisibility="Auto"
                       HorizontalScrollBarVisibility="Hidden">
-                <ItemsControl x:Name="detailsItemsControl">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate DataType="{x:Type local:Category}">
-                            <StackPanel Orientation="Horizontal"
+            <ItemsControl x:Name="detailsItemsControl">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type local:Category}">
+                        <StackPanel Orientation="Horizontal"
                                     Margin="10">
-                                <Rectangle Width="20"
+                            <Rectangle Width="20"
                                        Height="20"
                                        Fill="{Binding ColorBrush}"
                                        Margin="0,0,5,0"
                                        VerticalAlignment="Center"/>
 
-                                <TextBlock Text="{Binding Title}"
+                            <TextBlock Text="{Binding Title}"
                                        FontSize="20"
                                        VerticalAlignment="Center"/>
 
-                                <TextBlock Text="{Binding Percentage}"
+                            <TextBlock Text="{Binding Percentage}"
                                        Foreground="{Binding ColorBrush}"
                                        FontSize="20"
                                        Margin="20,0,0,0"
                                        VerticalAlignment="Center"/>
 
-                                <TextBlock Text="%"
+                            <TextBlock Text="%"
                                        Foreground="{Binding ColorBrush}"
                                        FontSize="20"
                                        VerticalAlignment="Center"/>
 
-                            </StackPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
 
-            </ScrollViewer>
-        </StackPanel>
-    </Viewbox>
-</Window>
+        </ScrollViewer>
+    </StackPanel>
+</Viewbox>-->

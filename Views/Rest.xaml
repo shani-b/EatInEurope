@@ -26,10 +26,10 @@
             </Grid.RowDefinitions>
 
             <!-- Name -->
-            <Label x:Name="restName" Padding="5" Margin="8,4,7,38.6" Content="Rest name" FontSize="36" Grid.ColumnSpan="5" Grid.RowSpan="3" Background="{x:Null}"/>
+            <Label x:Name="restName" Padding="5" Margin="8,4,7,38.6" Content="Rest name" FontSize="36" Grid.ColumnSpan="5" Grid.RowSpan="3"/>
 
             <!-- Style -->
-            <Label x:Name="styleName" Padding="5" Margin="0,10.6,60.8,24.8" Content="Style name        |" FontSize="20" Grid.Row="2" Background="{x:Null}" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+            <Label x:Name="styleName" Padding="5" Margin="0,10.6,60.8,24.8" Content="Style name        |" FontSize="20" Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
 
             <!-- Location -->
             <Label x:Name="locationValue" Margin="2,0.2,110.2,36.4" Content="City name, conutry" FontSize="20" Grid.Row="4" Grid.RowSpan="2" Grid.ColumnSpan="3" />

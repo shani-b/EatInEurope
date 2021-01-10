@@ -47,5 +47,13 @@ namespace EatInEurope.ViewModels
             }
         }
 
+        public List<string> VM_TypesFilter
+        {
+            get { return model.TypesFilter; }
+            set
+            {
+                model.TypesFilter = value;
+            }
+        }
     }
 }

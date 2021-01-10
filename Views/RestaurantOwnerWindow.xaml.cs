@@ -117,10 +117,7 @@ namespace EatInEurope.Views
                 addRest.Background = Brushes.Yellow;
                 comboSort.IsEnabled = false;
                 // Clean the combo if used.
-                if(comboSort.SelectedItem != null)
-                {
-                    comboSort.SelectedItem = null;
-                }
+                comboSort.SelectedIndex = -1;
             }
             else
             {

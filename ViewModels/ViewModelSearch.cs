@@ -126,6 +126,15 @@ namespace EatInEurope.ViewModels
             set { model.RestName = value; }
         }
 
+        public string VM_RestID
+        {
+            get { return model.RestID; }
+            set
+            {
+                model.RestID = value;
+            }
+        }
+
         public string VM_Order
         {
             get { return model.Order; }
