@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.IO;
 //using Cassandra;
 using System.Data.SqlClient;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace EatInEurope
 {
@@ -18,12 +19,15 @@ namespace EatInEurope
     class DBConnect
     {
         private MySqlConnection connection;
+        private MySqlConnection connection2;
         private string server;
         private string port;
         private string database;
         private string uid;
         private string password;
-
+        private MySqlDataReader m_dataReader;
+        private bool m_moreToRead;
+        bool connect2Open = false;
         //Constructor
         public DBConnect()
         {
@@ -42,8 +46,11 @@ namespace EatInEurope
             connectionString = "SERVER=" + server + ";" + "PORT=" + port + ";" + "DATABASE=" +
             database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
             connection = new MySqlConnection(connectionString);
-        }
+            connection2 = new MySqlConnection(connectionString);
+            m_moreToRead = false;
+            m_dataReader = null;
 
+        }
         //open connection to database
         public bool OpenConnection()
         {
@@ -51,6 +58,37 @@ namespace EatInEurope
             {
                 connection.Close();
                 connection.Open();
+                return true;
+            }
+            catch (MySqlException ex)
+            {
+                //When handling errors, you can your application's response based 
+                //on the error number.
+                //The two most common error numbers when connecting are as follows:
+                //0: Cannot connect to server.
+                //1045: Invalid user name and/or password.
+                switch (ex.Number)
+                {
+                    case 0:
+                        Console.WriteLine("Cannot connect to server.  Contact administrator");
+                        MessageBox.Show("Cannot connect to server.  Contact administrator");
+                        break;
+
+                    case 1045:
+                        Console.WriteLine("Invalid username/password, please try again");
+                        MessageBox.Show("Invalid username/password, please try again");
+                        break;
+                }
+                return false;
+            }
+        }
+
+        public bool OpenConnection2()
+        {
+            try
+            {
+                connection2.Close();
+                connection2.Open();
                 return true;
             }
             catch (MySqlException ex)
@@ -92,11 +130,27 @@ namespace EatInEurope
             }
         }
 
+        private bool CloseConnection2()
+        {
+            try
+            {
+                connection2.Close();
+                return true;
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
+
+
         public bool InsertSelect(string select, string where, string table, string values)
         {
 
 
-            string query = "INSERT INTO " + table; 
+            string query = "INSERT INTO " + table;
             if (values != null)
             {
                 query += " (" + values + ")";
@@ -158,20 +212,24 @@ namespace EatInEurope
             }
         }
 
-        //Select statement 
-        public List<string>[] Select(string table, string whereCond, string orderByValue, string order, string select,int limit)
+
+        public List<string>[] Select(string table, string whereCond, string orderByValue, string order, string select, int limit)
         {
             string query;
-            if (select != null) {
+            if (select != null)
+            {
                 query = "SELECT " + select + " from " + table;
             }
-            else {
+            else
+            {
                 query = "SELECT * FROM " + table;
             }
-            if (whereCond != null)   {
+            if (whereCond != null)
+            {
                 query += " WHERE " + whereCond;
             }
-            if (orderByValue != null) {
+            if (orderByValue != null)
+            {
                 query += " ORDER BY " + orderByValue + " " + order;
             }
             if (limit != -1)
@@ -180,7 +238,7 @@ namespace EatInEurope
             }
 
             //Create a list to store the result
-            List<string>[] list = new List<string>[12];
+            List<string>[] list = new List<string>[13];
             list[0] = new List<string>();
             list[1] = new List<string>();
             list[2] = new List<string>();
@@ -193,6 +251,7 @@ namespace EatInEurope
             list[9] = new List<string>();
             list[10] = new List<string>();
             list[11] = new List<string>();
+            list[12] = new List<string>();
 
             //Open connection
             if (this.OpenConnection() == true)
@@ -202,14 +261,14 @@ namespace EatInEurope
                     //Create Command
                     MySqlCommand cmd = new MySqlCommand(query, connection);
                     //Create a data reader and Execute the command
-                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    MySqlDataReader dataReader1 = cmd.ExecuteReader();
 
                     //Read the data and store them in the list
-                    while (dataReader.Read())
+                    while (dataReader1.Read())
                     {
                         try
                         {
-                            list[0].Add(dataReader["ID_TA"] + "");
+                            list[0].Add(dataReader1["ID_TA"] + "");
                         }
                         catch (Exception e)
                         {
@@ -217,7 +276,7 @@ namespace EatInEurope
                         }
                         try
                         {
-                            list[1].Add(dataReader["Name"] + "");
+                            list[1].Add(dataReader1["Name"] + "");
                         }
                         catch (Exception e)
                         {
@@ -225,7 +284,7 @@ namespace EatInEurope
                         }
                         try
                         {
-                            list[2].Add(dataReader["city"] + "");
+                            list[2].Add(dataReader1["city"] + "");
                         }
                         catch (Exception e)
                         {
@@ -233,7 +292,7 @@ namespace EatInEurope
                         }
                         try
                         {
-                            list[3].Add(dataReader["Rating"] + "");
+                            list[3].Add(dataReader1["Rating"] + "");
                         }
                         catch (Exception e)
                         {
@@ -241,7 +300,7 @@ namespace EatInEurope
                         }
                         try
                         {
-                            list[4].Add(dataReader["Price_Range"] + "");
+                            list[4].Add(dataReader1["Price_Range"] + "");
                         }
                         catch (Exception e)
                         {
@@ -249,7 +308,7 @@ namespace EatInEurope
                         }
                         try
                         {
-                            list[5].Add(dataReader["URL_TA"] + "");
+                            list[5].Add(dataReader1["URL_TA"] + "");
                         }
                         catch (Exception e)
                         {
@@ -257,7 +316,7 @@ namespace EatInEurope
                         }
                         try
                         {
-                            list[6].Add(dataReader["Owner"] + "");
+                            list[6].Add(dataReader1["Owner"] + "");
                         }
                         catch (Exception e)
                         {
@@ -265,7 +324,7 @@ namespace EatInEurope
                         }
                         try
                         {
-                            list[7].Add(dataReader["Numbers_of_Reviews"] + "");
+                            list[7].Add(dataReader1["Numbers_of_Reviews"] + "");
                         }
                         catch (Exception e)
                         {
@@ -273,7 +332,7 @@ namespace EatInEurope
                         }
                         try
                         {
-                            list[8].Add(dataReader["country"] + "");
+                            list[8].Add(dataReader1["country"] + "");
                         }
                         catch (Exception e)
                         {
@@ -281,7 +340,7 @@ namespace EatInEurope
                         }
                         try
                         {
-                            list[9].Add(dataReader["style"] + "");
+                            list[9].Add(dataReader1["style"] + "");
                         }
                         catch (Exception e)
                         {
@@ -289,7 +348,7 @@ namespace EatInEurope
                         }
                         try
                         {
-                            list[10].Add(dataReader["reviews"] + "");
+                            list[10].Add(dataReader1["reviews"] + "");
                         }
                         catch (Exception e)
                         {
@@ -297,19 +356,27 @@ namespace EatInEurope
                         }
                         try
                         {
-                            list[11].Add(dataReader["dates"] + "");
+                            list[11].Add(dataReader1["dates"] + "");
                         }
                         catch (Exception e)
                         {
                             list[11].Add(null);
                         }
+                        try
+                        {
+                            list[12].Add(dataReader1["rate"] + "");
+                        }
+                        catch (Exception e)
+                        {
+                            list[12].Add(null);
+                        }
                     }
 
                     //close Data Reader
-                    dataReader.Close();
+                    dataReader1.Close();
 
                     //close Connection
-                    this.CloseConnection();
+                    //this.CloseConnection();
 
                     //return list to be displayed
                     return list;
@@ -323,6 +390,174 @@ namespace EatInEurope
             {
                 return list;
             }
+    }
+
+
+        //Select statement 
+        public List<string>[] SelectRest(string table, string whereCond, string orderByValue, string order, string select,int limit, bool queryContinue, ref bool endReading)
+        {
+
+            string query;
+            if (select != null) {
+                query = "SELECT " + select + " from " + table;
+            }
+            else {
+                query = "SELECT * FROM " + table;
+            }
+            if (whereCond != null)   {
+                query += " WHERE " + whereCond;
+            }
+            if (orderByValue != null) {
+                query += " ORDER BY " + orderByValue + " " + order;
+            }
+/*            if (limit != -1)
+            {
+                query += " LIMIT " + limit.ToString();
+            }*/
+
+            //Create a list to store the result
+            List<string>[] list = new List<string>[6];
+            list[0] = new List<string>();
+            list[1] = new List<string>();
+            list[2] = new List<string>();
+            list[3] = new List<string>();
+            list[4] = new List<string>();
+            list[5] = new List<string>();
+            
+
+            bool breakLoop = false;
+            //Open connection
+            if (!this.connect2Open) 
+            {
+                
+                if (this.OpenConnection2() != true)
+                {
+                    return list;
+                }
+                else
+                {
+                    this.connect2Open = true;
+                }
+            }
+           
+            
+            try
+            {
+                MySqlDataReader dataReader = null;
+
+                if (queryContinue)
+                    list = parseSqlData(m_dataReader, limit, list, ref breakLoop);
+                else
+                {
+                    if (m_dataReader != null)
+                    {
+                        m_dataReader.Close();
+                        m_dataReader = null;
+                    }
+                    //Create Command
+                    MySqlCommand cmd = new MySqlCommand(query, connection2);
+                    //Create a data reader and Execute the command
+                    dataReader = cmd.ExecuteReader();
+                    //Read the data and store them in the list
+                    list = parseSqlData(dataReader, limit, list, ref breakLoop);
+                }
+
+                if (breakLoop != true)
+                {
+                    endReading = true;
+                    //we finish reading
+                    m_moreToRead = false;
+                }
+                if (!m_moreToRead)
+                {
+                    if (m_dataReader != null)
+                    {
+                        //close Data Reader
+                        m_dataReader.Close();
+                    }
+                    //close Connection
+                    this.CloseConnection2();
+                    this.connect2Open = false;
+
+                    m_dataReader = null;
+
+                }
+                //return list to be displayed
+                return list;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        private List<string>[] parseSqlData(MySqlDataReader dataReader, int limit, List<string>[] list,ref bool breakLoop)
+        {
+            int i = 0;
+
+            while (dataReader.Read())
+            {
+                if (limit != -1)
+                {
+                    if (i == limit)
+                    {
+                        m_dataReader = dataReader;
+                        m_moreToRead = true;
+                        breakLoop = true;
+                        break;
+                    }
+                }
+                try
+                {
+                    list[0].Add(dataReader["ID_TA"] + "");
+                }
+                catch (Exception e)
+                {
+                    list[0].Add(null);
+                }
+                try
+                {
+                    list[1].Add(dataReader["Name"] + "");
+                }
+                catch (Exception e)
+                {
+                    list[1].Add(null);
+                }
+                try
+                {
+                    list[2].Add(dataReader["city"] + "");
+                }
+                catch (Exception e)
+                {
+                    list[2].Add(null);
+                }
+                try
+                {
+                    list[3].Add(dataReader["Rating"] + "");
+                }
+                catch (Exception e)
+                {
+                    list[3].Add(null);
+                }
+                try
+                {
+                    list[4].Add(dataReader["country"] + "");
+                }
+                catch (Exception e)
+                {
+                    list[4].Add(null);
+                }
+                try
+                {
+                    list[5].Add(dataReader["owner"] + "");
+                }
+                catch (Exception e)
+                {
+                    list[5].Add(null);
+                }
+                i++;
+            }
+            return list;
         }
 
         public int select_last_inserted_id()

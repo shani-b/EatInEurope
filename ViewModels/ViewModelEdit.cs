@@ -48,5 +48,7 @@ namespace EatInEurope.ViewModels
             get { return model.IsEdit; }
             set { model.IsEdit = value; }
         }
+
+
     }
 }

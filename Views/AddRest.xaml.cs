@@ -92,7 +92,7 @@ namespace EatInEurope.Views
             countries.IsEnabled = false;
             cities.IsEnabled = true;
             errorCountry.Visibility = Visibility.Collapsed;
-            //CountryFilter = country;
+            CountryFilter = country;
 
         }
 

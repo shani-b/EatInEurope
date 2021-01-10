@@ -55,5 +55,6 @@ namespace EatInEurope.ViewModels
                 return model.RestRating;
             }
         }
+
     }
 }
