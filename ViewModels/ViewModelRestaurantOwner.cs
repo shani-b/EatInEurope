@@ -64,5 +64,20 @@ namespace EatInEurope.ViewModels
         {
             set { model.IDToRemove = value; }
         }
+
+
+        public bool VM_LoadMoreRests
+        {
+            get { return model.LoadMoreRests; }
+            set { model.LoadMoreRests = value; }
+        }
+
+        public bool VM_EndOfRests
+        {
+            get { return model.EndOfRests; }
+            set { model.EndOfRests = value; }
+
+        }
+
     }
 }

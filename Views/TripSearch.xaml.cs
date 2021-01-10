@@ -59,10 +59,6 @@ namespace EatInEurope.Views
             IModel model = (DataBaseModel)Application.Current.Properties["model"];
             DataContext = new ViewModelTripSearch(model);
 
-            var VMCountriesPartStyle = "VM_CountriesPartStyle";
-            var binding = new Binding(VMCountriesPartStyle) { Mode = BindingMode.OneWay };
-            this.SetBinding(CountriesPartStyleProperty, binding);
-
             var VMStyleFilter = "VM_TypesFilter";
             var bindingStyleFilter = new Binding(VMStyleFilter) { Mode = BindingMode.TwoWay };
             this.SetBinding(StyleFilterProperty, bindingStyleFilter);
@@ -79,6 +75,10 @@ namespace EatInEurope.Views
 
         private void Run_Click(object sender, RoutedEventArgs e)
         {
+            var VMCountriesPartStyle = "VM_CountriesPartStyle";
+            var binding = new Binding(VMCountriesPartStyle) { Mode = BindingMode.OneWay };
+            this.SetBinding(CountriesPartStyleProperty, binding);
+
             float pieWidth = 250, pieHeight = 250, centerX = pieWidth / 2, centerY = pieHeight / 2, radius = pieWidth / 2;
             mainCanvas.Width = pieWidth;
             mainCanvas.Height = pieHeight;
@@ -105,7 +105,7 @@ namespace EatInEurope.Views
                 i++;
 
                 // Check witch country is the country with  the biggest Percentage.
-                if (entry.Value > 0)
+                if (entry.Value > maxPart)
                 {
                     maxPart = entry.Value;
                     contryResult = entry.Key;
@@ -189,6 +189,8 @@ namespace EatInEurope.Views
             // Update result view.
             resultsView.Visibility = Visibility.Visible;
             resultVal.Text = contryResult;
+
+            maxPart = 0;
         }
 
         private void Style_SelectionChanged(object sender, SelectionChangedEventArgs e)

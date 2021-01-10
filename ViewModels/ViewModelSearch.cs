@@ -5,10 +5,10 @@ using System.Text;
 
 namespace EatInEurope.ViewModels
 {
-    class ViewModelSearch: INotifyPropertyChanged
+    class ViewModelSearch : INotifyPropertyChanged
     {
         public List<string> Countries { get; set; }
-/*        public List<string> Cities { get; set; }*/
+        /*        public List<string> Cities { get; set; }*/
         private IModel model;
 
 
@@ -32,7 +32,7 @@ namespace EatInEurope.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string PropName)
         {
-            if (this.PropertyChanged!=null)
+            if (this.PropertyChanged != null)
             {
                 this.PropertyChanged(this, new PropertyChangedEventArgs(PropName));
             }
@@ -144,6 +144,26 @@ namespace EatInEurope.ViewModels
         {
             get { return model.Asc; }
             set { model.Asc = value; }
+        }
+
+        public bool VM_StartSearch
+        {
+            get { return model.StartSearch; }
+            set { model.StartSearch = value; }
+        }
+
+
+        public bool VM_LoadMoreRests
+        {
+            get { return model.LoadMoreRests; }
+            set { model.LoadMoreRests = value; }
+        }
+
+        public bool VM_EndOfRests
+        {
+            get { return model.EndOfRests; }
+            set { model.EndOfRests = value; }
+
         }
     }
 }

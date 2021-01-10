@@ -7,6 +7,8 @@ namespace EatInEurope
 {
     interface IModel : INotifyPropertyChanged
     {
+
+        bool EndOfRests { set; get; }
         string UserName { get; set; }
         string Password { get; set; }
         string NewPassword { get; set; }
@@ -25,6 +27,9 @@ namespace EatInEurope
         List<string> CountriesOptions { get; set; }
         List<string> CitiesOptions { get; set; }
         List<string> TypesOptions { get; set; }
+        
+        bool LoadMoreRests { set; get; }
+        bool StartSearch { set; get; }
         string Order { get; set; }
         bool Asc { get; set; }
         string RestID { get; set; }
