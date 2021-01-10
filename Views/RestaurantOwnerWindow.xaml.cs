@@ -202,12 +202,12 @@ namespace EatInEurope.Views
             }
             else if (filterChoiceValue.Contains("Raiting low to height"))
             {
-                Order = "raiting";
+                Order = "rating";
                 Asc = true;
             }
             else
             {
-                Order = "raiting";
+                Order = "rating";
                 Asc = false;
             }
 
