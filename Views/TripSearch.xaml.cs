@@ -25,7 +25,7 @@ namespace EatInEurope.Views
         private List<Category> Categories { get; set; }
         int maxPart;
         string contryResult;
-
+        string color;
 
         // Properties.
         public Dictionary<string, int> CountriesPartStyle
@@ -75,6 +75,7 @@ namespace EatInEurope.Views
             // Initialize the fileds.
             maxPart = 0;
             contryResult = "";
+            
         }
 
         private void Run_Click(object sender, RoutedEventArgs e)
@@ -86,10 +87,10 @@ namespace EatInEurope.Views
             Categories = new List<Category>();
             List<SolidColorBrush> colors = new List<SolidColorBrush>
             {
-                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#b3d9ff")), // blue
+                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#80bfff")), // blue
                 new SolidColorBrush((Color)ColorConverter.ConvertFromString("#ff99cc")), // pink
                 new SolidColorBrush((Color)ColorConverter.ConvertFromString("#ffcc99")), // orenge
-                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#99ff99")), // green
+                new SolidColorBrush((Color)ColorConverter.ConvertFromString("#66ff66")), // green
                 new SolidColorBrush((Color)ColorConverter.ConvertFromString("#d9b3ff")), // perpul
             };
             int i = 0;
@@ -105,10 +106,11 @@ namespace EatInEurope.Views
                 i++;
 
                 // Check witch country is the country with  the biggest Percentage.
-                if (entry.Value > 0)
+                if (entry.Value > maxPart)
                 {
                     maxPart = entry.Value;
                     contryResult = entry.Key;
+                    color = colors[i-1].ToString();
                 }
 
             }
@@ -189,6 +191,7 @@ namespace EatInEurope.Views
             // Update result view.
             resultsView.Visibility = Visibility.Visible;
             resultVal.Text = contryResult;
+            resultVal.Background = new BrushConverter().ConvertFromString(color) as SolidColorBrush;
         }
 
         private void Style_SelectionChanged(object sender, SelectionChangedEventArgs e)

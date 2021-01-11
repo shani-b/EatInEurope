@@ -272,6 +272,7 @@ namespace EatInEurope.Views
                 generic.Visibility = Visibility.Visible;
                 city.Visibility = Visibility.Visible;
                 style.Visibility = Visibility.Visible;
+                allChoice.Visibility = Visibility.Visible;
 
                 // Fill choice view.
                 TextBlock filter = new TextBlock();
@@ -365,10 +366,7 @@ namespace EatInEurope.Views
             if(priceItem != null)
             {
                 string fromPrice = priceItem.Content.ToString();
-                if (priceFilter.Count > 0)
-                {
-                    priceFilter.Clear();
-                }
+                priceFilter.Clear();
                 GenerateControls(fromPrice, priceFilter, 4);
 
                 // Update fromP filed.
@@ -415,10 +413,7 @@ namespace EatInEurope.Views
             if (priceItem != null)
             {
                 string toPrice = priceItem.Content.ToString();
-                if (priceFilter.Count > 0)
-                {
-                    priceFilter.Clear();
-                }
+                priceFilter.Clear();
                 GenerateControls(toPrice, priceFilter, 5);
 
                 // Update toP filed.
@@ -543,10 +538,7 @@ namespace EatInEurope.Views
             if (rateItem != null)
             {
                 string fromRate = rateItem.Content.ToString();
-                if (rateFilter.Count > 0)
-                {
-                    rateFilter.Clear();
-                }
+                rateFilter.Clear();
                 GenerateControls(fromRate, rateFilter, 6);
 
                 // Update fromR filed.
@@ -642,10 +634,7 @@ namespace EatInEurope.Views
             ComboBoxItem rateItem = (ComboBoxItem)toRateVal.SelectedItem;
             if (rateItem != null) {
                 string toRate = rateItem.Content.ToString();
-                if (rateFilter.Count > 0)
-                {
-                    rateFilter.Clear();
-                }
+                rateFilter.Clear();
                 GenerateControls(toRate, rateFilter, 7);
 
                 // Update toR filed.
@@ -1015,6 +1004,7 @@ namespace EatInEurope.Views
             deleteChoises.Background = Brushes.LightGray;
 
             // Hidden the rest results view.
+            noRest.Visibility = Visibility.Collapsed;
             title.Visibility = Visibility.Collapsed;
             sort.Visibility = Visibility.Collapsed;
             comboSort.Visibility = Visibility.Collapsed;
@@ -1041,10 +1031,7 @@ namespace EatInEurope.Views
             StylesFilters = stylesFilters;
 
             // Update in the model the chosen price.
-            if (priceFilter.Count > 0)
-            {
-                priceFilter.Clear();
-            }
+            priceFilter.Clear();
             if (fromP.Equals(""))
             {
                 priceFilter.Add("$");
@@ -1064,10 +1051,7 @@ namespace EatInEurope.Views
             PriceFilter = priceFilter;
 
             // Update in the model the chosen rate.
-            if (rateFilter.Count > 0)
-            {
-                rateFilter.Clear();
-            }
+            rateFilter.Clear();
             if (toR == 0)
             {
                 toR = 5;
@@ -1120,6 +1104,15 @@ namespace EatInEurope.Views
             searchResults.Visibility = Visibility.Visible;
             stackPanel = (StackPanel)FindName("restList");
             FillRestStackPanel();
+
+            // Clean the selected filters value in the comboBox.
+            countryCombo.SelectedIndex = -1;
+            cities.SelectedIndex = -1;
+            styles.SelectedIndex = -1;
+            fromPriceVal.SelectedIndex = -1;
+            toPriceVal.SelectedIndex = -1;
+            fromRateVal.SelectedIndex = -1;
+            toRateVal.SelectedIndex = -1;
         }
 
         public void FillRestStackPanel()

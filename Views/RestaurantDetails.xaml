@@ -7,10 +7,13 @@
         mc:Ignorable="d"
         Title="Eat In Europe" Height="450" Width="800">
     <Viewbox>
-        <Grid x:Name="details" Background="#FFFFB3B3" Width="2110" Height="1115">
-
+        <Grid x:Name="details" Width="2110" Height="1115">
+            <Grid.Background>
+                <ImageBrush x:Name="background" ImageSource="lemon.jpg" />
+            </Grid.Background>
+            
             <!-- Logo -->
-            <Image x:Name="logo" Source="white_logo.png" Margin="1701,10,19,772"/>
+            <Image x:Name="logo" Source="black logo.png" Margin="1639,0,0,758"/>
 
             <!-- Name -->
             <Label x:Name="restName" FontFamily="Maiandra GD" Padding="5" Margin="29,21,391,935" Content="Rest name" FontSize="120"/>
@@ -30,8 +33,8 @@
             <Label x:Name="priceValue" Padding="5" Margin="607,293,905,720" Content="| $$$$$" FontSize="52" FontWeight="Bold" />
 
             <!-- Styles -->
-            <Label x:Name="styles" Padding="5" Margin="29,383,1965,678" Content="Styles:" FontSize="32" FontWeight="Bold" />
-            <ScrollViewer x:Name="style" Margin="0,436,859,457" FlowDirection="RightToLeft"  RenderTransformOrigin="0.5,0.5">
+            <TextBlock x:Name="styles" Padding="5" Margin="29,383,1965,678" TextDecorations="Underline" Text="Styles:" FontSize="32" FontWeight="Bold" />
+            <ScrollViewer x:Name="style" Margin="0,436,859,457" FlowDirection="RightToLeft"  RenderTransformOrigin="0.5,0.5" Background="#FFF9EEAF">
                 <StackPanel x:Name="styleList" FlowDirection="LeftToRight" >
                     <!-- styles list-->
                 </StackPanel>
@@ -40,8 +43,8 @@
             <Label x:Name="noStyle" Content=" None" FontSize="36" Margin="27,441,1931,608" />
 
             <!-- Reviews -->
-            <Label x:Name="reviews" Padding="5" Margin="29,676,1931,372" Content="Reviews:" FontSize="32" FontWeight="Bold" />
-            <ScrollViewer x:Name="review" Margin="0,752,859,0" FlowDirection="RightToLeft" RenderTransformOrigin="0.5,0.5">
+            <TextBlock x:Name="reviews" Padding="5" Margin="29,685,1931,378" Text="Reviews:" TextDecorations="Underline" FontSize="32" FontWeight="Bold" />
+            <ScrollViewer x:Name="review" Margin="0,752,859,0" FlowDirection="RightToLeft" RenderTransformOrigin="0.5,0.5" Background="#FFFCF4F3">
                 <StackPanel x:Name="reviewsList" FlowDirection="LeftToRight">
                     <!--list of reviews-->
                 </StackPanel>
@@ -55,7 +58,7 @@
                 <Hyperlink x:Name="urlAdd" RequestNavigate="Hyperlink_RequestNavigate" NavigateUri="">Rest link</Hyperlink>
             </TextBlock>
             <!-- Show no Url message -->
-            <Label x:Name="noURL" Content=" No URL address, &#xD;&#xA; Edit and add one!" FontSize="36" Margin="1465,848,309,154" Background="PaleGoldenrod"/>
+            <Label x:Name="noURL" Content=" No URL address, &#xD;&#xA; Edit and add one!" FontSize="36" Margin="1465,848,309,154" Background="#FFF6A7AF"/>
 
             <!-- Buttons -->
             <!-- Edit details -->

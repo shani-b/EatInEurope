@@ -148,7 +148,7 @@ namespace EatInEurope.Views
 
             if (btn_singUp == null)
             {
-                btn_login.Background = Brushes.Orange;
+                btn_login.Background = new BrushConverter().ConvertFromString("#ff9966") as SolidColorBrush;
             }
 
             if (passwordConfirm.Visibility == Visibility.Visible)
@@ -159,7 +159,7 @@ namespace EatInEurope.Views
 
 
                 btn_singUp.Background = Brushes.LightGray;
-                btn_login.Background = Brushes.Orange;
+                btn_login.Background = new BrushConverter().ConvertFromString("#ff9966") as SolidColorBrush;
             }
         }
 
@@ -195,7 +195,7 @@ namespace EatInEurope.Views
 
             if (btn_login == null)
             {
-                btn_singUp.Background = Brushes.Orange;
+                btn_singUp.Background = new BrushConverter().ConvertFromString("#ff9966") as SolidColorBrush;
             }
 
             if (login.Visibility == Visibility.Visible)
@@ -203,7 +203,7 @@ namespace EatInEurope.Views
                 login.Visibility = Visibility.Collapsed;
 
                 btn_login.Background = Brushes.LightGray;
-                btn_singUp.Background = Brushes.Orange;
+                btn_singUp.Background = new BrushConverter().ConvertFromString("#ff9966") as SolidColorBrush;
             }
         }
 

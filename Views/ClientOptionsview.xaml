@@ -7,7 +7,10 @@
         mc:Ignorable="d"
         Title="Eat In Europe" Height="450" Width="800">
     <Viewbox>
-        <Grid Background="#FF7FE0AE" Height="476" Width="901">
+        <Grid Height="476" Width="901">
+            <Grid.Background>
+                <ImageBrush x:Name="background" ImageSource="greenBeckground.png" />
+            </Grid.Background>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -24,7 +27,7 @@
             </Grid.RowDefinitions>
             
             <!-- Logo -->
-            <Image x:Name="logo" Source="white_logo.png" Margin="162,0,170,0" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
+            <Image x:Name="logo" Source="logoGreen.png" Margin="162,0,170,0" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
 
             <!-- Buttons -->
             <!-- Search rest -->

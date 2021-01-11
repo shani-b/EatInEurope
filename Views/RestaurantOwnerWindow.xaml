@@ -9,7 +9,7 @@
     <Viewbox>
         <Grid Height="421" Width="794">
             <Grid.Background>
-                <ImageBrush x:Name="background" ImageSource="rest.png" />
+                <ImageBrush x:Name="background" ImageSource="resrOwner.png" />
             </Grid.Background>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -27,13 +27,13 @@
             </Grid.RowDefinitions>
 
             <!-- Logo -->
-            <Image x:Name="logo" Source="Logo.png" Margin="-8,5,0.2,57" Grid.RowSpan="2"/>
+            <Image x:Name="logo" Source="black logo.png" Margin="-24,5,122.4,15.8" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
 
             <!-- Title -->
             <Label Content="My Restaurants" Grid.Column="2" Grid.ColumnSpan="3"  FontSize="54" FontWeight="Bold" Foreground="Black" Margin="28.4,5,42.6,83.8" FontFamily="Maiandra GD" Grid.RowSpan="2" />
 
             <!-- username -->
-            <Label x:Name="usernameValue" Padding="5" Margin="3,0.2,81.6,39.8" Content="" FontFamily="Maiandra GD" FontSize="20" Grid.Row="1" Background="{x:Null}" FontWeight="Bold" BorderBrush="{x:Null}" Grid.ColumnSpan="2" />
+            <Label x:Name="usernameValue" Padding="5" Margin="3,16.2,63.4,23.8" Content="" FontFamily="Maiandra GD" FontSize="20" Grid.Row="1" Background="{x:Null}" FontWeight="Bold" BorderBrush="{x:Null}" Grid.ColumnSpan="2" />
 
             <!-- Show rest results -->
             <ScrollViewer x:Name="myRest" Grid.ColumnSpan="4" Margin="115.8,0.2,1.6,53.8" Grid.RowSpan="4" Grid.Row="1" Background="White" Grid.Column="1">
@@ -43,7 +43,7 @@
             </ScrollViewer>
 
             <!-- Show no rest message -->
-            <Label x:Name="noRest" Content=" You do not own any restaurants&#xA;          Add new restaurant!" FontSize="20" Grid.ColumnSpan="3" Margin="137.4,5.2,17.6,15.8" Grid.Column="2" Grid.Row="1" Background="#FFFAE2AE" IsEnabled="False" HorizontalContentAlignment="Center" />
+            <Label x:Name="noRest" Foreground="Black" Content=" You do not own any restaurants&#xA;          Add new restaurant!" FontSize="20" Grid.ColumnSpan="3" Margin="137.4,5.2,17.6,15.8" Grid.Column="2" Grid.Row="1" Background="#FF6FAEB9" IsEnabled="False" HorizontalContentAlignment="Center" />
 
             <!-- Buttons -->
             <!-- Add rest -->

@@ -47,7 +47,7 @@
             </Button.Resources>
         </Button>
         <!--Separates the restaurants -->
-        <Separator Grid.ColumnSpan="5" Margin="13,2,7,10.4" Grid.Row="6" Background="#FFB43B3B" />
+        <Separator Grid.ColumnSpan="5" Margin="13,2,7,10.4" Grid.Row="6" Background="#FFDCAE75" />
 
     </Grid>
 </UserControl>

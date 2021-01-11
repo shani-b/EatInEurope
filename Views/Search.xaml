@@ -7,7 +7,10 @@
         mc:Ignorable="d"
         Title="Eat In Europe" Height="450" Width="800">
     <Viewbox>
-        <Grid Background="#FF7FE0AE" Height="476" Width="901">
+        <Grid Height="476" Width="901">
+            <Grid.Background>
+                <ImageBrush x:Name="background" ImageSource="ser1.png" />
+            </Grid.Background>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -40,7 +43,7 @@
                             <TextBox x:Name="name" FontSize="14" Margin="0,0,0.2,0" Height="23" />
                         </StackPanel>
                         <StackPanel Width="33">
-                            <Button x:Name="searchName" Click="SearchName_Click" Height="24" Margin="6,0,-0.2,0" Background="#FF84DADA" >
+                            <Button x:Name="searchName" Click="SearchName_Click" Height="24" Margin="6,0,-0.2,0" Background="#FFDCAE75" >
                                 <Grid>
                                     <Image Source="Search.png" Margin="5,3,4,2" />
                                 </Grid>
@@ -157,7 +160,7 @@
 
             <!-- Buttons -->
             <!-- Search by filters -->
-            <Button x:Name="search" Content="Search" FontSize="18" FontFamily="Maiandra GD" Click="Search_Click" Margin="147,46,141,11" Grid.ColumnSpan="2" Grid.Row="2" Background="#FF84DADA" >
+            <Button x:Name="search" Content="Search" FontSize="18" FontFamily="Maiandra GD" Click="Search_Click" Margin="147,46,141,11" Grid.ColumnSpan="2" Grid.Row="2" Background="#FFDCAE75" >
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="6"/>
@@ -262,7 +265,7 @@
                     <!--list of rest-->
                 </StackPanel>
             </ScrollViewer>
-            <Label x:Name="noRest" Content="There are no restaurants in this filters.&#xA;  Click on 'Clear' and try new search!" FontSize="20" Grid.ColumnSpan="3" Margin="112,19.8,42.8,0.4" Grid.Column="2" Grid.Row="1" Background="#FFFAE2AE" IsEnabled="False" HorizontalContentAlignment="Center" />
+            <Label x:Name="noRest" Foreground="Black" Content="There are no restaurants in this filters.&#xA;  Click on 'Clear' and try new search!" FontSize="20" Grid.ColumnSpan="3" Margin="112,19.8,42.8,0.4" Grid.Column="2" Grid.Row="1" Background="#FFFAE2AE" IsEnabled="False" HorizontalContentAlignment="Center" />
 
             <!-- Go Back -->
             <Button x:Name="goBack" FontSize="20" Click="Go_Back_Click" Margin="10,41,36,7" Grid.Row="4" >

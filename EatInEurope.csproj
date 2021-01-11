@@ -148,8 +148,8 @@
     <Compile Include="Views\Search.xaml.cs">
       <DependentUpon>Search.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ClientOptionsview.xaml.cs">
-      <DependentUpon>ClientOptionsview.xaml</DependentUpon>
+    <Compile Include="Views\ClientOptionsView.xaml.cs">
+      <DependentUpon>ClientOptionsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Edit.xaml.cs">
       <DependentUpon>Edit.xaml</DependentUpon>
@@ -209,7 +209,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ClientOptionsview.xaml">
+    <Page Include="Views\ClientOptionsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -282,19 +282,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Mix Of Flavored Spices Powder On Table.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Views\Logo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Views\Toalha De Mesa.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Views\white_logo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Views\rest.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Owner.png" />
@@ -349,6 +337,48 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Views\Search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\greenBeckground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\logoGreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\BlueBack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\lemon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\cook.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\cendy.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\man.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\ser1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="main.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\connect.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\resrOwner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\edit2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\edit1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\review.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
