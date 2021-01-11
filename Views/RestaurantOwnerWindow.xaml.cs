@@ -239,7 +239,7 @@ namespace EatInEurope.Views
                 Order = "name";
                 Asc = false;
             }
-            else if (filterChoiceValue.Contains("Raiting low to height"))
+            else if (filterChoiceValue.Contains("Rating low to height"))
             {
                 Order = "rating";
                 Asc = true;
