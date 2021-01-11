@@ -8,14 +8,17 @@
         Title="Eat In Europe" Height="450" Width="800">
     <Viewbox>
         <Grid Height="98" Width="186">
+            <Grid.Background>
+                <ImageBrush x:Name="background" ImageSource="BlueBack.png" />
+            </Grid.Background>
             <StackPanel>
                 <!-- SEARCH -->
                 <!-- CHOOSE STYLE -->
                 <StackPanel Margin="0,0,-0.4,-0.4" Height="13" Orientation="Horizontal">
                     <Grid Margin="0,0,-0.4,0" Width="186" >
-                        <StackPanel Margin="0,0,145,0" Orientation="Vertical">
+                        <StackPanel Margin="0,0,140,-0.2" Orientation="Vertical">
                             <Line Height="3" Margin="0,0,0,0"/>
-                            <TextBlock FontSize="7" FontFamily="Maiandra GD" Text="Choose style:"/>
+                            <TextBlock FontSize="7" FontFamily="Maiandra GD" Text=" Choose style:"/>
                         </StackPanel>
                         <StackPanel Margin="46,0,0,0" Orientation="Horizontal">
                             <StackPanel Margin="0,0,0,0" Width="84">
@@ -53,7 +56,7 @@
                                                     <StackPanel Orientation="Horizontal" Margin="10">
                                                         <Rectangle Width="20" Height="20" Fill="{Binding ColorBrush}" Margin="0,0,5,0" VerticalAlignment="Center"/>
                                                         <TextBlock Text="{Binding Title}" FontSize="20" VerticalAlignment="Center"/>
-                                                        <TextBlock Text="{Binding Percentage}" Foreground="{Binding ColorBrush}" FontSize="20" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                                                        <TextBlock Text="{Binding Percentage}" FontWeight="Bold" Foreground="{Binding ColorBrush}" FontSize="20" Margin="20,0,0,0" VerticalAlignment="Center"/>
                                                         <TextBlock Text="%" Foreground="{Binding ColorBrush}" FontSize="20" VerticalAlignment="Center"/>
                                                     </StackPanel>
                                                 </DataTemplate>
@@ -69,9 +72,10 @@
                 <StackPanel>
                     <!-- RESULT -->
                     <StackPanel x:Name="resultsView" Orientation="Horizontal" Height="11" Margin="0,0,-0.4,0">
-                        <Line Width="28"/>
+                        <Line Width="4"/>
                         <StackPanel>
-                            <TextBlock FontSize="8" FontFamily="Maiandra GD" Text="The Best Country for you is:"/>
+                            <Line Height="2"/>
+                            <TextBlock FontSize="6" FontFamily="Maiandra GD" Text="The Best Country for you is:"/>
                         </StackPanel>
                         <Line Margin="0,0,0,0.2" Width="3"/>
                         <StackPanel>

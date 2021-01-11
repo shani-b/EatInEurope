@@ -7,23 +7,25 @@
         mc:Ignorable="d"
         Title="Eat In Europe" Height="450" Width="800">
     <Viewbox>
-        <Grid Background="#FFC6BBD6" Height="426" Width="800">
-
+        <Grid Height="426" Width="800">
+            <Grid.Background>
+                <ImageBrush x:Name="background" ImageSource="review.png" />
+            </Grid.Background>
             <!-- Title -->
-            <Label x:Name="title" FontSize="46" FontWeight="Bold" FontFamily="Maiandra GD" Content="My new review:" Margin="10,19,409.6,328"/>
+            <Label x:Name="title" FontSize="46" FontWeight="Bold" FontFamily="Maiandra GD" Content="My new review:" Margin="10,45,410,302"/>
 
             <!-- Logo -->
-            <Image Source="black logo.png" Margin="607,0,0,284"/>
+            <Image Source="black logo.png" Margin="607,26,0,258"/>
 
             <!-- Text -->
-            <Label x:Name="newReview" FontFamily="Maiandra GD" FontSize="22" Content="Enter review: *" Margin="6,112,632,266"/>
-            <Border x:Name="errorReview" Background="#FFDA3636" Padding="1" Margin="173,108,20,246" />
-            <TextBox x:Name="reviewText" SpellCheck.IsEnabled="True" Language="en-US" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" Margin="176,113,24,251" Background="White" FontSize="22" OpacityMask="#FFB05555"/>
+            <Label x:Name="newReview" FontWeight="Bold" FontFamily="Maiandra GD" FontSize="22" Content="Enter review: *" Margin="6,138,632,240"/>
+            <Border x:Name="errorReview" Background="#FFDA3636" Padding="1" Margin="173,137,21,222" />
+            <TextBox x:Name="reviewText" SpellCheck.IsEnabled="True" Language="en-US" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" Margin="176,139,24,225" Background="White" FontSize="22" OpacityMask="#FFB05555"/>
 
             <!-- Raiting number -->
-            <Label x:Name="newScore" FontFamily="Maiandra GD" FontSize="22" Content="Enter rating number: *" Margin="6,218,562,159"/>
-            <Border x:Name="errorRate" Background="#FFDA3636" Padding="1" Margin="244,216,481,164" />
-            <ComboBox x:Name="raitingCombo" FontSize="20" Margin="248,220,485,168" SelectionChanged="Raiting_SelectionChanged">
+            <Label x:Name="newScore" FontWeight="Bold" FontFamily="Maiandra GD" FontSize="22" Content="Enter rating number: *" Margin="6,244,560,133"/>
+            <Border x:Name="errorRate" Background="#FFDA3636" Padding="1" Margin="245,244,482,139" />
+            <ComboBox x:Name="raitingCombo" FontSize="20" Margin="248,246,485,142" SelectionChanged="Raiting_SelectionChanged">
                 <ComboBoxItem Content="0" />
                 <ComboBoxItem Content="0.5" />
                 <ComboBoxItem Content="1" />
@@ -38,11 +40,11 @@
             </ComboBox>
 
             <!-- Errors view -->
-            <TextBlock x:Name="errorText" Background="Gold" Text=" Error" FontSize="16" Margin="340,354,175,22" />
-            
+            <TextBlock x:Name="errorText" Background="#FFA87ABA" Text=" Error" FontSize="16" Margin="422,349,143,38" />
+
             <!-- Buttons -->
             <!-- Insert -->
-            <Button x:Name="insert" Content="Add!" Click="Insert_Click" FontSize="24" Margin="656,354,42,22">
+            <Button x:Name="insert" Content="Add!" Click="Insert_Click" FontSize="24" Margin="678,344,20,32">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
@@ -51,7 +53,7 @@
             </Button>
 
             <!-- Go back -->
-            <Button x:Name="goBack" FontSize="20" Click="Go_Back_Click" Margin="19,354,651,22">
+            <Button x:Name="goBack" FontSize="20" Click="Go_Back_Click" Margin="14,344,656,32">
                 <Grid>
                     <Image Source="go-back-left-arrow.png" Margin="4,10,93,10" HorizontalAlignment="Center" Width="28" RenderTransformOrigin="0.507,1.468"/>
                     <TextBlock Text="Go Back" FontSize="20" Margin="39,8,7,7" RenderTransformOrigin="0.5,0.5"/>

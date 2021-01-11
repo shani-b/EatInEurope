@@ -9,7 +9,7 @@
     <Viewbox>
         <Grid Width="947" Height="500">
             <Grid.Background>
-                <ImageBrush x:Name="background" ImageSource="Toalha De Mesa.jpg" />
+                <ImageBrush x:Name="background" ImageSource="connect.jpg" />
             </Grid.Background>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -35,18 +35,30 @@
             <Label Content="Choose option:" Grid.Row="2" Grid.ColumnSpan="2"  FontSize="30" FontWeight="Bold" Foreground="White" Margin="4.4,10,140.8,55.4" FontFamily="Maiandra GD" Grid.RowSpan="2" Grid.Column="1" />
 
             <!-- Options -->
-            <Button x:Name="loginOption" Content="Login" FontSize="20" Click="Login_Option_Click" Margin="49.8,9,29.8,0.2" Grid.Row="2" Grid.Column="2" Background="LightGray"/>
-            <Button x:Name="signUpOption" Content="Sign up" FontSize="20" Click="Sign_up_Option_Click" Margin="157.8,9,110.6,0.2" Grid.Row="2" Grid.Column="2" Background="LightGray" Grid.ColumnSpan="2"/>
-
+            <Button x:Name="loginOption" Content="Login" FontSize="20" Click="Login_Option_Click" Margin="49.8,9,29.8,10.2" Grid.Row="2" Grid.Column="2" Background="LightGray">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="30,0,0,30" />
+                </Style>
+            </Button.Resources>
+            </Button>
+            <Button x:Name="signUpOption" Content="Sign up" FontSize="20" Click="Sign_up_Option_Click" Margin="157.8,9,110.4,10.2" Grid.Row="2" Grid.Column="2" Background="LightGray" Grid.ColumnSpan="2">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="0,30,30,0" />
+                </Style>
+            </Button.Resources>
+            </Button>
+        
             <!-- Log in -->
             <!-- Username -->
             <Label x:Name="username" Content="Username:" FontSize="27" FontFamily="Maiandra GD" Margin="4.4,15.8,47.2,10.4" Grid.Row="3" Foreground="White" Grid.Column="1"/>
-            <Border x:Name="errorUsername" Background="#FFDA3636" Padding="1" Grid.Column="2" Margin="47.8,14.8,134.4,4.4" Grid.Row="3" Grid.ColumnSpan="2" />
+            <Border x:Name="errorUsername" Background="#FFEB4A4A" Padding="1" Grid.Column="2" Margin="47.8,14.5,134.6,4.2" Grid.Row="3" Grid.ColumnSpan="2" />
             <TextBox x:Name="usernameValue" Padding="5" Margin="50.8,16.8,137.4,7.4" FontSize="25" MaxLength="14" Grid.Row="3" Grid.Column="2" Text="{Binding VM_UserName, Mode=TwoWay, UpdateSourceTrigger=Explicit}" Grid.ColumnSpan="2" TextChanged="UsernameValue_TextChanged"/>
 
             <!-- Password -->
             <Label x:Name="password" Content="Password:" FontSize="27"  FontFamily="Maiandra GD" Margin="4.4,15.6,47.2,9.6" Grid.Row="4" Foreground="White" Grid.Column="1"/>
-            <Border x:Name="errorPassword" Background="#FFEB4A4A" Padding="1" Grid.Column="2" Margin="47.8,14.6,134.4,3.6" Grid.Row="4" Grid.ColumnSpan="2"/>
+            <Border x:Name="errorPassword" Background="#FFEB4A4A" Padding="1" Grid.Column="2" Margin="47.8,14.6,134.6,3.6" Grid.Row="4" Grid.ColumnSpan="2"/>
             <PasswordBox x:Name="passwordValue" Padding="5" Margin="50.8,16.6,137.4,6.6" FontSize="30" Grid.Column="2" Grid.Row="4" MaxLength="14" PasswordChar="*" Grid.ColumnSpan="2" Password="" PasswordChanged="PasswordValue_PasswordChanged"/>
 
             <!-- Login Button -->
@@ -61,20 +73,20 @@
             <!-- Sign up -->
             <!-- Confirm Password -->
             <Label x:Name="passwordConfirm" Content="Confirm Password:" FontSize="25" FontFamily="Maiandra GD" Margin="4.4,18.4,156.8,7.8" Grid.Row="5" Foreground="White" Grid.Column="1" Grid.ColumnSpan="2"/>
-            <Border x:Name="errorConfirm" Background="#FFEB4A4A" Padding="1" Grid.Column="2" Margin="47.8,13.4,134.4,4.8" Grid.Row="5" Grid.ColumnSpan="2"/>
-            <PasswordBox x:Name="passwordConfirmValue" Padding="5" Margin="49.8,15.4,137.4,7.8" FontSize="30" Grid.Column="2" Grid.Row="5" MaxLength="14" PasswordChar="*"  Password="" Grid.ColumnSpan="2" PasswordChanged="PasswordConfirmValue_PasswordChanged" />
+            <Border x:Name="errorConfirm" Background="#FFEB4A4A" Padding="1" Grid.Column="2" Margin="47.8,13.1,134.6,5" Grid.Row="5" Grid.ColumnSpan="2"/>
+            <PasswordBox x:Name="passwordConfirmValue" Padding="5" Margin="50.8,15.4,137.4,7.8" FontSize="30" Grid.Column="2" Grid.Row="5" MaxLength="14" PasswordChar="*"  Password="" Grid.ColumnSpan="2" PasswordChanged="PasswordConfirmValue_PasswordChanged" />
 
             <!-- SingUp Button -->
             <Button x:Name="signUp" Content="Sign up" FontSize="30"  FontFamily="Maiandra GD" Click="Sign_up_Click" Margin="83.2,9.4,155.2,4.8" Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="2">
                 <Button.Resources>
                     <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="5"/>
+                        <Setter Property="CornerRadius" Value="5" />
                     </Style>
                 </Button.Resources>
             </Button>
 
             <!-- Errors view -->
-            <TextBlock x:Name="errorText" Background="Gold" Text=" Username or password wrong. &#xD;&#xA; Try again!" FontSize="16" Grid.ColumnSpan="2" Grid.Column="3" Margin="83.2,9.6,51.2,6.6" Grid.Row="4" />
+            <TextBlock x:Name="errorText" Background="#FFF4A361" Text=" Username or password wrong. &#xD;&#xA; Try again!" FontSize="16" Grid.ColumnSpan="2" Grid.Column="3" Margin="83.2,9.6,51.2,6.6" Grid.Row="4" />
 
             <!-- Go back-->
             <Button x:Name="goBack" FontSize="20" Click="Go_Back_Click" Margin="46,15.2,27.6,13" Grid.Row="6">
@@ -88,37 +100,6 @@
                     </Style>
                 </Button.Resources>
             </Button>
-
-            <!--<Button Click="Go_Back_Click" Margin="-13,10.2,42.6,2" RenderTransformOrigin="0.5,0.5" Grid.Row="6" FontSize="14">
-                <Button.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleX="-1"/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Button.RenderTransform>
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Grid>
-                            <StackPanel Orientation="Horizontal">
-                                <Rectangle Width="100" Height="50" Stroke="LightGray" Fill="LightGray" VerticalAlignment="Top"/>
-                                <Polygon Points= "0,0 30,25, 0,50" Stroke="LightGray" Fill="LightGray" Margin="0,0,0,9.2" />
-                            </StackPanel>
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Content="Go Back"  Margin="21,16,86.8,21.2" RenderTransformOrigin="0.5,0.5" Width="53" Height="22">
-                                <ContentPresenter.RenderTransform>
-                                    <TransformGroup>
-                                        <ScaleTransform ScaleX="-1"/>
-                                        <SkewTransform/>
-                                        <RotateTransform/>
-                                        <TranslateTransform/>
-                                    </TransformGroup>
-                                </ContentPresenter.RenderTransform>
-                            </ContentPresenter>
-                        </Grid>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>-->
         </Grid>
     </Viewbox>
 </Window>

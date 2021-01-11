@@ -12,7 +12,7 @@
             <Label x:Name="reviewNum" Padding="5" Margin="19,18,858,0" FontFamily="Maiandra GD" Content="1" FontSize="60" Background="#FFF9F9F9" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
             <!-- Text -->
-            <TextBox x:Name="reviewText" IsReadOnly="True" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" Padding="5" Margin="123,18,10,139" Text="Reviews Text" FontSize="30" VerticalAlignment="Center" Height="86" Background="{x:Null}" SelectionBrush="{x:Null}" Foreground="Black" BorderBrush="#FFEE5BBF"/>
+            <TextBox x:Name="reviewText" IsReadOnly="True" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" Padding="5" Margin="123,18,10,139" Text="Reviews Text" FontSize="30" VerticalAlignment="Center" Height="86" Background="{x:Null}" SelectionBrush="{x:Null}" Foreground="Black" BorderBrush="#FFDC57B2"/>
 
             <!-- Raiting -->
             <Label x:Name="ratingNum" Padding="5" Margin="29,117,872,69" FontFamily="Maiandra GD" Content="1.5" FontSize="40" FontWeight="Bold" HorizontalAlignment="Center" Width="71" VerticalAlignment="Top"/>
@@ -22,7 +22,7 @@
             <Label x:Name="date" Padding="5" Margin="136,128,602,54" FontFamily="Maiandra GD" Content="--/--/----" FontSize="30" FontWeight="Bold"/>
             
             <!--Spreted-->
-            <Separator Margin="13,189,7,7" Background="#FFB43B3B" />
+            <Separator Margin="13,189,7,7" Background="#FFD13EA2" />
         </Grid>
     </Viewbox>
 </UserControl>

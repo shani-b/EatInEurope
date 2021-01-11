@@ -428,7 +428,6 @@ namespace EatInEurope.Views
             {
                 string fromPrice = priceItem.Content.ToString();
                 priceFilter.Clear();
-               
                 GenerateControls(fromPrice, priceFilter, 4);
 
                 // Update fromP filed.
@@ -476,7 +475,6 @@ namespace EatInEurope.Views
             {
                 string toPrice = priceItem.Content.ToString();
                 priceFilter.Clear();
-                
                 GenerateControls(toPrice, priceFilter, 5);
 
                 // Update toP filed.
@@ -698,7 +696,6 @@ namespace EatInEurope.Views
             if (rateItem != null) {
                 string toRate = rateItem.Content.ToString();
                 rateFilter.Clear();
-               
                 GenerateControls(toRate, rateFilter, 7);
 
                 // Update toR filed.
@@ -1069,6 +1066,7 @@ namespace EatInEurope.Views
             deleteChoises.Background = Brushes.LightGray;
 
             // Hidden the rest results view.
+            noRest.Visibility = Visibility.Collapsed;
             title.Visibility = Visibility.Collapsed;
             sort.Visibility = Visibility.Collapsed;
             noRest.Visibility = Visibility.Collapsed;
@@ -1099,7 +1097,6 @@ namespace EatInEurope.Views
 
             // Update in the model the chosen price.
             priceFilter.Clear();
-            
             if (fromP.Equals(""))
             {
                 priceFilter.Add("$");
@@ -1120,7 +1117,6 @@ namespace EatInEurope.Views
 
             // Update in the model the chosen rate.
             rateFilter.Clear();
-            
             if (toR != 0 || fromR != 0)
             {
                 RateFilter = new List<double> { fromR, toR };
@@ -1178,11 +1174,21 @@ namespace EatInEurope.Views
             stackPanel = (StackPanel)FindName("restList");
             FillRestStackPanel();
 
+
+            // Clean the selected filters value in the comboBox.
+            countryCombo.SelectedIndex = -1;
+            cities.SelectedIndex = -1;
+            styles.SelectedIndex = -1;
+            fromPriceVal.SelectedIndex = -1;
+            toPriceVal.SelectedIndex = -1;
+            fromRateVal.SelectedIndex = -1;
+            toRateVal.SelectedIndex = -1;
             if (CEndOfRests == true)
             {
                 moreRests.IsEnabled = false;
                 //moreRests.Visibility = Visibility.Collapsed;
             }
+
         }
 
         public void FillRestStackPanel()

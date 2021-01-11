@@ -10,7 +10,7 @@
     <Viewbox>
         <Grid Height="285" Width="538">
             <Grid.Background>
-                <ImageBrush x:Name="background" ImageSource="Mix Of Flavored Spices Powder On Table.jpg" />
+                <ImageBrush x:Name="background" ImageSource="main.png" />
             </Grid.Background>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -28,11 +28,11 @@
             </Grid.RowDefinitions>
 
             <!-- Title -->
-            <Label Content="Eat In Europe" Grid.ColumnSpan="4"  FontSize="50" FontWeight="Bold" Foreground="#FFF9D437" Margin="6.8,51,104.6,48.2" FontFamily="Maiandra GD" Grid.RowSpan="3" Grid.Column="1" />
+            <Label Content="Eat In Europe" Grid.ColumnSpan="4"  FontSize="37" FontWeight="Bold" Foreground="#FFF9D437" Margin="107.8,2.4,74.6,0.4" FontFamily="Maiandra GD" Grid.Column="1" Grid.Row="1" BorderBrush="Black" />
 
             <!-- Buttons -->
             <!-- Client -->
-            <Button x:Name="Client" Click="Client_Click" Margin="0,13.6,10.4,17" Grid.Row="2" Grid.Column="2" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalAlignment="Right" Width="128">
+            <Button x:Name="Client" Click="Client_Click" Margin="0,13.6,61.6,17" Grid.Row="2" Grid.Column="3" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalAlignment="Right" Width="128" Background="#FFF3E8BA">
                 <Grid Height="75" Width="100">
                     <Image Source="client.png" Margin="24,9,28,24" RenderTransformOrigin="0.738,0.804"/>
                     <TextBlock Text="Client" FontFamily="Maiandra GD" FontSize="14" HorizontalAlignment="Center" Height="18" Width="44" Margin="30,58,26,-1"/>
@@ -45,7 +45,7 @@
             </Button>
 
             <!-- Restaurant Owner -->
-            <Button x:Name="Manager" Click="Manager_Click" Margin="19.8,13.6,67.4,17" Grid.Row="2" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Column="1">
+            <Button x:Name="Manager" Click="Manager_Click" Margin="75.8,13.6,11.4,17" Grid.Row="2" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Column="1" Background="#FFF3E8BA">
                 <Grid Height="73" Width="111">
                     <Image Source="Owner.png" Margin="26,0,31,18" HorizontalAlignment="Center" Width="54"/>
                     <TextBlock Text="Restaurant Owner" FontFamily="Maiandra GD" FontSize="14"  Height="20" Margin="-2,55,0,-2"/>

@@ -7,38 +7,40 @@
         mc:Ignorable="d"
         Title="Eat In Europe" Height="450" Width="800">
     <Viewbox>
-        <Grid Background="#FF9DDEE2" Height="455" Width="862">
-
+        <Grid Height="455" Width="862">
+            <Grid.Background>
+                <ImageBrush x:Name="background" ImageSource="edit1.png" />
+            </Grid.Background>
             <!-- Title -->
-            <Label x:Name="title" FontSize="50" FontWeight="Bold" FontFamily="Maiandra GD" Content="Changes" Margin="10,19,595,361"/>
+            <Label x:Name="title" FontSize="50" FontWeight="Bold" FontFamily="Maiandra GD" Content="Changes" Margin="38,19,567,361"/>
 
             <!-- Logo -->
             <Image Source="black logo.png" Margin="676,5,0,325"/>
 
             <!-- Name -->
-            <Label x:Name="ChangeName" FontFamily="Maiandra GD" FontSize="21" Content="Change name:" Margin="3,115,684,298"/>
-            <TextBox x:Name="restName" MaxLength="25" FontSize="20" Margin="188,118,355,302" Background="White" OpacityMask="#FFB05555"/>
+            <Label x:Name="ChangeName" FontWeight="Bold" FontFamily="Maiandra GD" FontSize="21" Content="Change name:" Margin="36,115,651,298"/>
+            <TextBox x:Name="restName" MaxLength="25" FontSize="20" Margin="233,118,310,302" Background="White" OpacityMask="#FFB05555"/>
 
             <!-- City -->
-            <Label x:Name="ChangeCity"  FontFamily="Maiandra GD" FontSize="20" Content="Change city:" Margin="3,174,682,239"/>
-            <ComboBox x:Name="citytName" Margin="188,176,355,244" ItemsSource="{Binding VM_CitiesOptions}" SelectionChanged="CityChanged" FontSize="20"/>
+            <Label x:Name="ChangeCity" FontWeight="Bold" FontFamily="Maiandra GD" FontSize="20" Content="Change city:" Margin="36,174,649,239"/>
+            <ComboBox x:Name="citytName" Margin="233,176,310,244" ItemsSource="{Binding VM_CitiesOptions}" SelectionChanged="CityChanged" FontSize="20"/>
 
             <!-- URL -->
-            <Label x:Name="ChangeUrl"  FontFamily="Maiandra GD" FontSize="20" Content="Change url address:" Margin="3,233,682,183"/>
-            <TextBox x:Name="urltAdd" FontSize="25" Margin="188,235,353,187" Background="White" OpacityMask="#FFB05555"/>
+            <Label x:Name="ChangeUrl" FontWeight="Bold" FontFamily="Maiandra GD" FontSize="20" Content="Change url address:" Margin="36,233,639,183"/>
+            <TextBox x:Name="urltAdd" FontSize="25" Margin="233,235,308,187" Background="White" OpacityMask="#FFB05555"/>
 
             <!-- Price -->
-            <Label x:Name="ChangePrice"  FontFamily="Maiandra GD" FontSize="20" Content="Change price range:" Margin="3,295,672,120"/>
-            <Label  Content="From" FontSize="18" Margin="188,298,613,128"/>
-            <ComboBox x:Name="lowPriceVal" Margin="242,296,532,121" FontSize="22" SelectionChanged="LowPriceVal_SelectionChanged">
+            <Label x:Name="ChangePrice" FontWeight="Bold" FontFamily="Maiandra GD" FontSize="20" Content="Change price range:" Margin="36,295,630,120"/>
+            <Label  Content="From" FontSize="18" Margin="233,298,568,128"/>
+            <ComboBox x:Name="lowPriceVal" Margin="287,296,487,121" FontSize="22" SelectionChanged="LowPriceVal_SelectionChanged">
                 <ComboBoxItem Name="a" Content="$" />
                 <ComboBoxItem Name="b" Content="$$" />
                 <ComboBoxItem Name="c" Content="$$$" />
                 <ComboBoxItem Name="d" Content="$$$$" />
                 <ComboBoxItem Name="e" Content="$$$$$" />
             </ComboBox>
-            <Label  Content="To" FontSize="18" Margin="337,298,493,125"/>
-            <ComboBox x:Name="topPriceVal" Margin="372,296,402,121" FontSize="22" SelectionChanged="TopPriceVal_SelectionChanged" IsEnabled="False">
+            <Label  Content="To" FontSize="18" Margin="382,298,448,125"/>
+            <ComboBox x:Name="topPriceVal" Margin="417,296,357,121" FontSize="22" SelectionChanged="TopPriceVal_SelectionChanged" IsEnabled="False">
                 <ComboBoxItem Name="top1" Content="$" />
                 <ComboBoxItem Name="top2" Content="$$" />
                 <ComboBoxItem Name="top3" Content="$$$" />
@@ -49,7 +51,7 @@
 
             <!-- Buttons -->
             <!-- Refresh -->
-            <Button x:Name="refresh" FontSize="20" Click="Refresh_Click" Margin="468,294,353,121">
+            <Button x:Name="refresh" FontSize="20" Click="Refresh_Click" Margin="513,294,308,121">
                 <Grid>
                     <Image Source="refresh.png" Margin="3,-5,2.4,-5.6" HorizontalAlignment="Center" Width="25" RenderTransformOrigin="0.507,1.468"/>
                 </Grid>
@@ -85,3 +87,102 @@
         </Grid>
     </Viewbox>
 </Window>
+
+<!--<Viewbox>
+    <Grid Height="455" Width="862">
+        <Grid.Background>
+            <ImageBrush x:Name="background" ImageSource="edit2.png" />
+        </Grid.Background>
+        -->
+<!-- Title -->
+<!--
+        <Label x:Name="title" FontSize="50" FontWeight="Bold" FontFamily="Maiandra GD" Content="Changes" Margin="78,19,527,361"/>
+
+        -->
+<!-- Logo -->
+<!--
+        <Image Source="black logo.png" Margin="638,5,38,325"/>
+
+        -->
+<!-- Name -->
+<!--
+        <Label x:Name="ChangeName" FontWeight="Bold" FontFamily="Maiandra GD" FontSize="21" Content="Change name:" Margin="71,115,616,298"/>
+        <TextBox x:Name="restName" MaxLength="25" FontSize="20" Margin="268,118,275,302" Background="White" OpacityMask="#FFB05555"/>
+
+        -->
+<!-- City -->
+<!--
+        <Label x:Name="ChangeCity" FontWeight="Bold" FontFamily="Maiandra GD" FontSize="20" Content="Change city:" Margin="71,174,614,239"/>
+        <ComboBox x:Name="citytName" Margin="268,176,275,244" ItemsSource="{Binding VM_CitiesOptions}" SelectionChanged="CityChanged" FontSize="20"/>
+
+        -->
+<!-- URL -->
+<!--
+        <Label x:Name="ChangeUrl" FontWeight="Bold" FontFamily="Maiandra GD" FontSize="20" Content="Change url address:" Margin="71,233,604,183"/>
+        <TextBox x:Name="urltAdd" FontSize="25" Margin="268,235,273,187" Background="White" OpacityMask="#FFB05555"/>
+
+        -->
+<!-- Price -->
+<!--
+        <Label x:Name="ChangePrice" FontWeight="Bold" FontFamily="Maiandra GD" FontSize="20" Content="Change price range:" Margin="71,295,595,120"/>
+        <Label  Content="From" FontSize="18" Margin="268,298,533,128"/>
+        <ComboBox x:Name="lowPriceVal" Margin="322,296,452,121" FontSize="22" SelectionChanged="LowPriceVal_SelectionChanged">
+            <ComboBoxItem Name="a" Content="$" />
+            <ComboBoxItem Name="b" Content="$$" />
+            <ComboBoxItem Name="c" Content="$$$" />
+            <ComboBoxItem Name="d" Content="$$$$" />
+            <ComboBoxItem Name="e" Content="$$$$$" />
+        </ComboBox>
+        <Label  Content="To" FontSize="18" Margin="417,298,413,125"/>
+        <ComboBox x:Name="topPriceVal" Margin="452,296,322,121" FontSize="22" SelectionChanged="TopPriceVal_SelectionChanged" IsEnabled="False">
+            <ComboBoxItem Name="top1" Content="$" />
+            <ComboBoxItem Name="top2" Content="$$" />
+            <ComboBoxItem Name="top3" Content="$$$" />
+            <ComboBoxItem Name="top4" Content="$$$$" />
+            <ComboBoxItem Name="top5" Content="$$$$$" />
+        </ComboBox>
+
+
+        -->
+<!-- Buttons -->
+<!-- Refresh -->
+<!--
+        <Button x:Name="refresh" FontSize="20" Click="Refresh_Click" Margin="548,294,273,121">
+            <Grid>
+                <Image Source="refresh.png" Margin="3,-5,2.4,-5.6" HorizontalAlignment="Center" Width="25" RenderTransformOrigin="0.507,1.468"/>
+            </Grid>
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="22"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        -->
+<!-- Update -->
+<!--
+        <Button x:Name="update" Content="Edit!" Click="Update_Click" FontSize="26" Margin="703,378,54,22">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="7"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        -->
+<!-- Go back -->
+<!--
+        <Button x:Name="goBack" FontSize="20" Click="Go_Back_Click" Margin="58,378,662,22">
+            <Grid>
+                <Image Source="go-back-left-arrow.png" Margin="7,11,95.8,8.6" HorizontalAlignment="Center" Width="22" RenderTransformOrigin="0.507,1.468"/>
+                <TextBlock Text="Go Back" FontSize="20" Margin="37,7,8.8,7.6" RenderTransformOrigin="0.5,0.5"/>
+            </Grid>
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="7"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+    </Grid>
+</Viewbox>-->
