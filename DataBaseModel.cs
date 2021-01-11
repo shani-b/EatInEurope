@@ -682,17 +682,17 @@ namespace EatInEurope
                     if (ranges.Count != 0)
                     {
 
-                        where += " And t_restaurants.ID_TA IN (select ID_TA from t_restaurants where Price_Range = '" + ranges[0] + "'";
+                        where += " And (t_restaurants.Price_Range = '" + ranges[0] + "'";
                         for (int i = 1; i < ranges.Count; i++)
                         {
-                            where += " or Price_Range = '" + ranges[i] + "'";
+                            where += " OR Price_Range = '" + ranges[i] + "'";
                         }
                         where += ")";
                     }
 
                     if (RateFilter.Count != 0)
                     {
-                        where += " And t_restaurants.ID_TA IN (select ID_TA from t_restaurants where rating Between " + RateFilter[0].ToString() + " AND " + RateFilter[1].ToString() + ")";
+                        where += " And t_restaurants.rating Between " + RateFilter[0].ToString() + " AND " + RateFilter[1].ToString();
                     }
                 }
                 else
@@ -732,9 +732,11 @@ namespace EatInEurope
                 EndOfRests = false;
             if (rest == null)
                 return null;
+            
             select = "t_restaurants.ID_TA, t_style.style";
             from = "t_restaurants join t_style_rest on  t_restaurants.ID_TA = t_style_rest.ID_TA join t_style on t_style.id = t_style_rest.styleid";
-            for (int i = 0; i<rest[0].Count ;i++)
+            
+            for (int i = 0; i < rest[0].Count ;i++)
             {
                 Restaurant new_rest = new Restaurant(rest[0][i], rest[1][i], rest[4][i], rest[2][i], null, calculateRate(Convert.ToDouble(rest[3][i])),null, -1 ,null, null, rest[5][i]);
                 // condition for specific id -restaurant-styles
@@ -773,7 +775,7 @@ namespace EatInEurope
         {
             Restaurant currRest = RestsResults[restsResults.FindIndex(x => x.ID == RestID)];
             // create sql query
-            string select = "t_restaurants.price_range, t_restaurants.Numbers_of_reviews, t_restaurants.url_TA";
+            string select = "t_restaurants.price_range, t_restaurants.Numbers_of_reviews, t_restaurants.url_TA ";
             string from = "t_restaurants";
             string where = "t_restaurants.ID_TA = " + currRest.ID;
             
@@ -791,8 +793,8 @@ namespace EatInEurope
  
                 // condition for specific id -restaurant-styles
                 ;
-                where = " t_restaurants.ID_TA='" + currRest.ID + "';";
-                List<string>[] dbStyles = dBConnect.Select(from, where, null, null, select,-1);
+                where = " t_restaurants.ID_TA='" + currRest.ID + "' ";
+                List<string>[] dbStyles = dBConnect.Select(from, where, null, null, select,3);
                 if (dbStyles == null)
                     return null;
                 List<string> styles = new List<string>();
@@ -955,7 +957,7 @@ namespace EatInEurope
 
         public List<string> getCountries()
         {
-            return dBConnect.SelectColumn("t_country", "Continent = \"Europe\"", null, null, "name");
+            return dBConnect.SelectColumn("t_country", null, null, null, "name");
         }
 
         public List<string> getCities()
