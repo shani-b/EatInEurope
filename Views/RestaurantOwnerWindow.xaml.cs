@@ -29,6 +29,20 @@ namespace EatInEurope.Views
         public static readonly DependencyProperty MyRestaurantsProperty =
             DependencyProperty.Register("MyRestaurants", typeof(List<Restaurant>), typeof(RestaurantOwnerWindow));
 
+
+        public bool OLoadMoreRests
+        {
+            get { return (bool)GetValue(OLoadMoreRestsProperty); }
+            set
+            {
+                SetValue(OLoadMoreRestsProperty, value);
+            }
+        }
+        public static readonly DependencyProperty OLoadMoreRestsProperty =
+            DependencyProperty.Register("OLoadMoreRests", typeof(bool), typeof(RestaurantOwnerWindow));
+
+
+
         public string CurrentRestID
         {
             get { return (string)GetValue(CurrentRestIDProperty); }
@@ -66,6 +80,18 @@ namespace EatInEurope.Views
         public static readonly DependencyProperty AscProperty =
             DependencyProperty.Register("Asc", typeof(bool), typeof(RestaurantOwnerWindow));
 
+        public bool OEndOfRests
+        {
+            get { return (bool)GetValue(OEndOfRestsProperty); }
+            set
+            {
+                SetValue(OEndOfRestsProperty, value);
+            }
+        }
+        public static readonly DependencyProperty OEndOfRestsProperty =
+            DependencyProperty.Register("OEndOfRests", typeof(bool), typeof(RestaurantOwnerWindow));
+
+
 
         public RestaurantOwnerWindow(string username)
         {
@@ -89,9 +115,21 @@ namespace EatInEurope.Views
             var bindingAsc = new Binding(VMAsc) { Mode = BindingMode.TwoWay };
             this.SetBinding(AscProperty, bindingAsc);
 
+            var VMLoadMoreRests = "VM_LoadMoreRests";
+            var bindingLoadMoreRests = new Binding(VMLoadMoreRests) { Mode = BindingMode.TwoWay };
+            this.SetBinding(OLoadMoreRestsProperty, bindingLoadMoreRests);
+
+            var VMEndOfRests = "VM_EndOfRests";
+            var bindingEndOfRests = new Binding(VMEndOfRests) { Mode = BindingMode.TwoWay };
+            this.SetBinding(OEndOfRestsProperty, bindingEndOfRests);
+
             // Initialize the view.
             InitializeComponent();
             noRest.Visibility = Visibility.Collapsed;
+            if (OEndOfRests == true)
+            {
+                moreRests.IsEnabled = false;
+            }
             comboSort.IsEnabled = true;
 
             // Fill the list of rest view accordint to DB list of rest. 
@@ -107,13 +145,14 @@ namespace EatInEurope.Views
         public void FillRestStackPanel()
         {
             // Check how many restuarents exsits.
-            int restNum = MyRestaurants.Count;
-            if (MyRestaurants == null || MyRestaurants.Count == 0)
+            int restNum;
+            if (MyRestaurants == null || (restNum=MyRestaurants.Count) == 0)
             {
                 // The owner does not own any restaurants.
                 // Show view changes accordingly.
                 noRest.Visibility = Visibility.Visible;
                 myRest.Visibility = Visibility.Collapsed;
+                moreRests.Visibility = Visibility.Collapsed;
                 addRest.Background = Brushes.Yellow;
                 comboSort.IsEnabled = false;
                 // Clean the combo if used.
@@ -202,12 +241,12 @@ namespace EatInEurope.Views
             }
             else if (filterChoiceValue.Contains("Raiting low to height"))
             {
-                Order = "raiting";
+                Order = "rating";
                 Asc = true;
             }
             else
             {
-                Order = "raiting";
+                Order = "rating";
                 Asc = false;
             }
 
@@ -234,6 +273,24 @@ namespace EatInEurope.Views
             Manager manager = new Manager();
             manager.Show();
             this.Close();
+        }
+
+        private void moreRests_Click(object sender, RoutedEventArgs e)
+        {
+            //loading.Visibility = Visibility.Visible;
+            OLoadMoreRests = true;
+            // Clear the List of rest view.
+            stp = (StackPanel)FindName("restList");
+            stp.Children.Clear();
+
+            // Fill the List of rest view by the selected sort filter.
+            FillRestStackPanel();
+            if (OEndOfRests == true)
+            {
+                moreRests.IsEnabled = false;
+                //moreRests.Visibility = Visibility.Collapsed;
+            }
+
         }
     }
 }

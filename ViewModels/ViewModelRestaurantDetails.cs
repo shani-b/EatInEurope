@@ -23,7 +23,7 @@ namespace EatInEurope.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string PropName)
         {
-            if (this.PropertyChanged!=null)
+            if (this.PropertyChanged != null)
             {
                 this.PropertyChanged(this, new PropertyChangedEventArgs(PropName));
             }
@@ -47,5 +47,14 @@ namespace EatInEurope.ViewModels
                 return model.IsClient;
             }
         }
+
+        public double VM_RestRating
+        {
+            get
+            {
+                return model.RestRating;
+            }
+        }
+
     }
 }

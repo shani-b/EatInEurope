@@ -63,6 +63,14 @@
                 </Button.Resources>
             </Button>
 
+            <Button x:Name="moreRests" Content="Load more" FontSize="16" Click="moreRests_Click" Margin="141.8,34.2,56,13.8" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
             <!-- sort filters -->
             <Label x:Name="sort" Content="Sort by:" FontFamily="Maiandra GD" FontSize="24" Margin="40,63.2,13.2,66.8" Grid.Row="1" Grid.RowSpan="2" />
             <Image x:Name="sortIcon" Source="sort-descending.png" Margin="10,69.2,123.2,69.8" Grid.Row="1" RenderTransformOrigin="7.408,0.007" Grid.RowSpan="2"/>

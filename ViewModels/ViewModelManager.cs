@@ -72,5 +72,6 @@ namespace EatInEurope.ViewModels
                 model.UsernameFree = value;
             }
         }
+
     }
 }

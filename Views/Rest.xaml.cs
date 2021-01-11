@@ -39,6 +39,18 @@ namespace EatInEurope.Views
         public static readonly DependencyProperty RestIDProperty =
             DependencyProperty.Register("RestID", typeof(string), typeof(RestaurantOwnerWindow));
 
+        public string IDToRemove
+        {
+            get { return (string)GetValue(IDToRemoveProperty); }
+            set
+            {
+                SetValue(IDToRemoveProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty IDToRemoveProperty =
+            DependencyProperty.Register("IDToRemove", typeof(string), typeof(RestaurantOwnerWindow));
+
         public Rest(RestaurantOwnerWindow rest, string idRest)
         {
             // Constructor.
@@ -52,6 +64,10 @@ namespace EatInEurope.Views
             var VMRestID = "VM_RestID";
             var bindingRestID = new Binding(VMRestID) { Mode = BindingMode.TwoWay };
             this.SetBinding(RestIDProperty, bindingRestID);
+
+            var VMIDToRemove = "VM_IDToRemove";
+            var bindingIDToRemove = new Binding(VMIDToRemove) { Mode = BindingMode.TwoWay };
+            this.SetBinding(IDToRemoveProperty, bindingIDToRemove);
 
             InitializeComponent();
 
@@ -73,7 +89,7 @@ namespace EatInEurope.Views
         private void DeleteRest_Click(object sender, RoutedEventArgs e)
         {
             // Delete from the DB this rest('restID').
-            RestID = restID;
+            IDToRemove = restID;
             MyRestaurantsList.RemoveAt(MyRestaurantsList.FindIndex(x => x.ID == restID));
 
             // Delete from RestaurantOwnerWindow view this rest.

@@ -59,10 +59,6 @@ namespace EatInEurope.Views
             IModel model = (DataBaseModel)Application.Current.Properties["model"];
             DataContext = new ViewModelTripSearch(model);
 
-            var VMCountriesPartStyle = "VM_CountriesPartStyle";
-            var binding = new Binding(VMCountriesPartStyle) { Mode = BindingMode.OneWay };
-            this.SetBinding(CountriesPartStyleProperty, binding);
-
             var VMStyleFilter = "VM_TypesFilter";
             var bindingStyleFilter = new Binding(VMStyleFilter) { Mode = BindingMode.TwoWay };
             this.SetBinding(StyleFilterProperty, bindingStyleFilter);
@@ -80,6 +76,10 @@ namespace EatInEurope.Views
 
         private void Run_Click(object sender, RoutedEventArgs e)
         {
+            var VMCountriesPartStyle = "VM_CountriesPartStyle";
+            var binding = new Binding(VMCountriesPartStyle) { Mode = BindingMode.OneWay };
+            this.SetBinding(CountriesPartStyleProperty, binding);
+
             float pieWidth = 250, pieHeight = 250, centerX = pieWidth / 2, centerY = pieHeight / 2, radius = pieWidth / 2;
             mainCanvas.Width = pieWidth;
             mainCanvas.Height = pieHeight;
@@ -192,6 +192,8 @@ namespace EatInEurope.Views
             resultsView.Visibility = Visibility.Visible;
             resultVal.Text = contryResult;
             resultVal.Background = new BrushConverter().ConvertFromString(color) as SolidColorBrush;
+
+            maxPart = 0;
         }
 
         private void Style_SelectionChanged(object sender, SelectionChangedEventArgs e)

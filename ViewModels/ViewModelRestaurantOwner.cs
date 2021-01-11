@@ -24,7 +24,7 @@ namespace EatInEurope.ViewModels
 
         public void NotifyPropertyChanged(string PropName)
         {
-            if (this.PropertyChanged!=null)
+            if (this.PropertyChanged != null)
             {
                 this.PropertyChanged(this, new PropertyChangedEventArgs(PropName));
             }
@@ -59,5 +59,25 @@ namespace EatInEurope.ViewModels
                 model.RestID = value;
             }
         }
+
+        public string VM_IDToRemove
+        {
+            set { model.IDToRemove = value; }
+        }
+
+
+        public bool VM_LoadMoreRests
+        {
+            get { return model.LoadMoreRests; }
+            set { model.LoadMoreRests = value; }
+        }
+
+        public bool VM_EndOfRests
+        {
+            get { return model.EndOfRests; }
+            set { model.EndOfRests = value; }
+
+        }
+
     }
 }

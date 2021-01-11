@@ -153,9 +153,51 @@ namespace EatInEurope.Views
                 SetValue(CAscProperty, value);
             }
         }
-
         public static readonly DependencyProperty CAscProperty =
             DependencyProperty.Register("CAsc", typeof(bool), typeof(RestaurantOwnerWindow));
+
+
+
+        public bool CLoadMoreRests
+        {
+            get { return (bool)GetValue(CLoadMoreRestsProperty); }
+            set
+            {
+                SetValue(CLoadMoreRestsProperty, value);
+            }
+        }
+        public static readonly DependencyProperty CLoadMoreRestsProperty =
+            DependencyProperty.Register("CLoadMoreRests", typeof(bool), typeof(RestaurantOwnerWindow));
+
+
+
+        public bool CEndOfRests
+        {
+            get { return (bool)GetValue(CEndOfRestsProperty); }
+            set
+            {
+                SetValue(CEndOfRestsProperty, value);
+            }
+        }
+        public static readonly DependencyProperty CEndOfRestsProperty =
+            DependencyProperty.Register("CEndOfRests", typeof(bool), typeof(RestaurantOwnerWindow));
+
+
+
+
+
+
+        public bool StartSearch
+        {
+            get { return (bool)GetValue(StartSearchProperty); }
+            set
+            {
+                SetValue(StartSearchProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty StartSearchProperty =
+            DependencyProperty.Register("StartSearch", typeof(bool), typeof(RestaurantOwnerWindow));
 
 
         public Search(bool flag)
@@ -204,6 +246,23 @@ namespace EatInEurope.Views
             var bindingAsc = new Binding(VMAsc) { Mode = BindingMode.TwoWay };
             this.SetBinding(CAscProperty, bindingAsc);
 
+            var VMStartSearch = "VM_StartSearch";
+            var bindingStartSearch = new Binding(VMStartSearch) { Mode = BindingMode.TwoWay };
+            this.SetBinding(StartSearchProperty, bindingStartSearch);
+
+
+            var VMLoadMoreRests = "VM_LoadMoreRests";
+            var bindingLoadMoreRests = new Binding(VMLoadMoreRests) { Mode = BindingMode.TwoWay };
+            this.SetBinding(CLoadMoreRestsProperty, bindingLoadMoreRests);
+
+            var VMEndOfRests = "VM_EndOfRests";
+            var bindingEndOfRests = new Binding(VMEndOfRests) { Mode = BindingMode.TwoWay };
+            this.SetBinding(CEndOfRestsProperty, bindingEndOfRests);
+
+
+
+
+
             InitializeComponent();
 
             // Hides these objects until the visibility changes.
@@ -218,6 +277,7 @@ namespace EatInEurope.Views
             title.Visibility = Visibility.Collapsed;
             searchResults.Visibility = Visibility.Collapsed;
             noRest.Visibility = Visibility.Collapsed;
+            moreRests.Visibility = Visibility.Collapsed;
             cities.IsEnabled = false;
 
             // Initialize the fileds.
@@ -250,6 +310,7 @@ namespace EatInEurope.Views
                 comboSort.Visibility = Visibility.Visible;
                 sortIcon.Visibility = Visibility.Visible;
                 searchResults.Visibility = Visibility.Visible;
+                moreRests.Visibility = Visibility.Visible;
                 stackPanel = (StackPanel)FindName("restList");
                 FillRestStackPanel();
             }
@@ -987,6 +1048,7 @@ namespace EatInEurope.Views
             stylesFilters.Clear();
             priceFilter.Clear();
             rateFilter.Clear();
+            NameFilter = null;
             fromP = "";
             toP = "";
             fromR = 0;
@@ -1007,11 +1069,14 @@ namespace EatInEurope.Views
             noRest.Visibility = Visibility.Collapsed;
             title.Visibility = Visibility.Collapsed;
             sort.Visibility = Visibility.Collapsed;
+            noRest.Visibility = Visibility.Collapsed;
             comboSort.Visibility = Visibility.Collapsed;
             comboSort.IsEnabled = true;
             comboSort.SelectedIndex = -1;
             sortIcon.Visibility = Visibility.Collapsed;
             searchResults.Visibility = Visibility.Collapsed;
+            moreRests.Visibility = Visibility.Collapsed;
+            moreRests.IsEnabled = true;
             stackPanel = (StackPanel)FindName("restList");
             stackPanel.Children.Clear();
         }
@@ -1052,11 +1117,11 @@ namespace EatInEurope.Views
 
             // Update in the model the chosen rate.
             rateFilter.Clear();
-            if (toR == 0)
+            if (toR != 0 || fromR != 0)
             {
-                toR = 5;
+                RateFilter = new List<double> { fromR, toR };
             }
-            RateFilter = new List<double> { fromR, toR };
+            StartSearch = true;
 
             // No Enabled to serach again until clear the last search filters.
             search.IsEnabled = false;
@@ -1069,8 +1134,11 @@ namespace EatInEurope.Views
             comboSort.Visibility = Visibility.Visible;
             sortIcon.Visibility = Visibility.Visible;
             searchResults.Visibility = Visibility.Visible;
+            moreRests.Visibility = Visibility.Visible;
             stackPanel = (StackPanel)FindName("restList");
             FillRestStackPanel();
+
+
         }
 
         private void SearchName_Click(object sender, RoutedEventArgs e)
@@ -1102,8 +1170,10 @@ namespace EatInEurope.Views
             comboSort.Visibility = Visibility.Visible;
             sortIcon.Visibility = Visibility.Visible;
             searchResults.Visibility = Visibility.Visible;
+            moreRests.Visibility = Visibility.Visible;
             stackPanel = (StackPanel)FindName("restList");
             FillRestStackPanel();
+
 
             // Clean the selected filters value in the comboBox.
             countryCombo.SelectedIndex = -1;
@@ -1113,18 +1183,26 @@ namespace EatInEurope.Views
             toPriceVal.SelectedIndex = -1;
             fromRateVal.SelectedIndex = -1;
             toRateVal.SelectedIndex = -1;
+            if (CEndOfRests == true)
+            {
+                moreRests.IsEnabled = false;
+                //moreRests.Visibility = Visibility.Collapsed;
+            }
+
         }
 
         public void FillRestStackPanel()
         {
             // Check how many restuarents exsits.
-            int restNum = RestaurantsResult.Count;
-            if (RestaurantsResult == null || RestaurantsResult.Count == 0)
+            int restNum;
+            if (RestaurantsResult == null || (restNum = RestaurantsResult.Count) == 0 )
             {
                 // To this serch filters the are not Restaurant results.
                 // Show view changes accordingly.
+                
                 noRest.Visibility = Visibility.Visible;
                 searchResults.Visibility = Visibility.Collapsed;
+                moreRests.Visibility = Visibility.Collapsed;
                 comboSort.IsEnabled = false;
                 // Clean the combo if used.
                 comboSort.SelectedIndex = -1;
@@ -1187,6 +1265,11 @@ namespace EatInEurope.Views
                     // Add rest detailes to Rest list view.
                     stackPanel.Children.Add(rest);
                 }
+                if (CEndOfRests == true)
+                {
+                    moreRests.IsEnabled = false;
+                    //moreRests.Visibility = Visibility.Collapsed;
+                }
             }
         }
 
@@ -1210,34 +1293,53 @@ namespace EatInEurope.Views
                 COrder = "name";
                 CAsc = false;
             }
-            else if (filterChoiceValue.Contains("Raiting low to height"))
+            else if (filterChoiceValue.Contains("Rating low to height"))
             {
-                COrder = "raiting";
+                COrder = "rating";
                 CAsc = true;
             }
             else
             {
-                COrder = "raiting";
+                COrder = "rating";
                 CAsc = false;
             }
-           
+            
             // Clear the List of rest view.
             stackPanel = (StackPanel)FindName("restList");
             stackPanel.Children.Clear();
 
             // Fill the List of rest view by the selected sort filter.
             FillRestStackPanel();
+            moreRests.IsEnabled = true;
         }
 
         private void Go_Back_Click(object sender, RoutedEventArgs e)
         {
             // Clean rest results in the Model.
             RestaurantsResult.Clear();
+            NameFilter = null;
 
             // Go Back button - show client option view.
             ClientOptionsView clientOption = new ClientOptionsView();
             clientOption.Show();
             this.Close();
+        }
+
+        private void moreRests_Click(object sender, RoutedEventArgs e)
+        {
+            CLoadMoreRests = true;
+            // Clear the List of rest view.
+            stackPanel = (StackPanel)FindName("restList");
+            stackPanel.Children.Clear();
+
+            // Fill the List of rest view by the selected sort filter.
+            FillRestStackPanel();
+
+            if (CEndOfRests == true)
+            {
+                moreRests.IsEnabled = false;
+                //moreRests.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }
