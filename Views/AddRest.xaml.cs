@@ -49,6 +49,18 @@ namespace EatInEurope.Views
             DependencyProperty.Register("CountryFilter", typeof(string), typeof(AddRest));
 
 
+        public bool IsAddRest
+        {
+            get { return (bool)GetValue(IsAddRestProperty); }
+            set
+            {
+                SetValue(IsAddRestProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty IsAddRestProperty =
+            DependencyProperty.Register("IsAddRest", typeof(bool), typeof(AddRest));
+
 
         public AddRest(string ownerName)
         {
@@ -63,6 +75,10 @@ namespace EatInEurope.Views
             var VMCountriesFilters = "VM_CountryFilter";
             var bindingCountries = new Binding(VMCountriesFilters) { Mode = BindingMode.TwoWay };
             this.SetBinding(CountryFilterProperty, bindingCountries);
+
+            var VMIsAddRest = "VM_IsAddRest";
+            var bindingIsAddRest = new Binding(VMIsAddRest) { Mode = BindingMode.TwoWay };
+            this.SetBinding(IsAddRestProperty, bindingIsAddRest);
 
             InitializeComponent();
             // Hides these objects until the visibility changes.
@@ -269,6 +285,7 @@ namespace EatInEurope.Views
         private void Go_Back_Click(object sender, RoutedEventArgs e)
         {
             // Go Back - show the Restaurant Owner Window view. (without add new rest)
+            IsAddRest = false;
             RestaurantOwnerWindow row = new RestaurantOwnerWindow(owner);
             row.Show();
             this.Close();
