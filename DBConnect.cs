@@ -11,6 +11,7 @@ using System.IO;
 //using Cassandra;
 using System.Data.SqlClient;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Microsoft.VisualBasic;
 
 namespace EatInEurope
 {
@@ -37,11 +38,17 @@ namespace EatInEurope
         //Initialize values
         private void Initialize()
         {
-            server = "localhost";
-            port = "3306";
-            database = "rest";
-            uid = "root";
-            password = "100798";
+            server = Interaction.InputBox("server", "Fill connection detailes ");
+            port = Interaction.InputBox("port", "Fill connection detailes ");
+            uid = Interaction.InputBox("uid", "Fill connection detailes ");
+            password = Interaction.InputBox("password", "Fill connection detailes ");
+            database = Interaction.InputBox("database", "Fill connection detailes ");
+
+            /* server = "localhost";
+             port = "3306";
+             database = "rest";
+             uid = "root";
+             password = "100798";*/
             string connectionString;
             connectionString = "SERVER=" + server + ";" + "PORT=" + port + ";" + "DATABASE=" +
             database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
@@ -148,7 +155,7 @@ namespace EatInEurope
 
         public bool InsertSelect(string select, string where, string table, string values)
         {
-
+            //insert into t_style_rest select '1' , t_style.id from t_style where t_style.style = 'French';
 
             string query = "INSERT INTO " + table;
             if (values != null)
@@ -171,8 +178,9 @@ namespace EatInEurope
                     this.CloseConnection();
                     return true;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    //MessageBox.Show(ex.ToString());
                     return false;
                 }
             }
@@ -201,8 +209,9 @@ namespace EatInEurope
                     this.CloseConnection();
                     return true;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    //MessageBox.Show(ex.ToString());
                     return false;
                 }
             }
@@ -745,6 +754,8 @@ namespace EatInEurope
                 }
                 catch (MySqlException ex)
                 {
+                    //MessageBox.Show(ex.ToString());
+
                     return false;
                 }
             }

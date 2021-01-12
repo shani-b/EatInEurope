@@ -20,7 +20,7 @@
             <!-- Text -->
             <Label x:Name="newReview" FontWeight="Bold" FontFamily="Maiandra GD" FontSize="22" Content="Enter review: *" Margin="6,138,632,240"/>
             <Border x:Name="errorReview" Background="#FFDA3636" Padding="1" Margin="173,137,21,222" />
-            <TextBox x:Name="reviewText" SpellCheck.IsEnabled="True" Language="en-US" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" Margin="176,139,24,225" Background="White" FontSize="22" OpacityMask="#FFB05555"/>
+            <TextBox x:Name="reviewText" SpellCheck.IsEnabled="True" Language="en-US" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" Margin="176,139,24,225" Background="White" FontSize="22" OpacityMask="#FFB05555" TextChanged="reviewText_TextChanged"/>
 
             <!-- Raiting number -->
             <Label x:Name="newScore" FontWeight="Bold" FontFamily="Maiandra GD" FontSize="22" Content="Enter rating number: *" Margin="6,244,560,133"/>

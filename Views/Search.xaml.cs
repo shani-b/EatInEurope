@@ -1341,5 +1341,13 @@ namespace EatInEurope.Views
                 //moreRests.Visibility = Visibility.Collapsed;
             }
         }
+
+        private void name_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!name.Text.Equals(""))
+            {
+                search.IsEnabled = false;
+            }
+        }
     }
 }

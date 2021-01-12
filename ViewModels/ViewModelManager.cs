@@ -51,6 +51,7 @@ namespace EatInEurope.ViewModels
             get { return model.NewPassword; }
             set
             {
+                model.EndOfRests = true;
                 model.NewPassword = value;
             }
         }

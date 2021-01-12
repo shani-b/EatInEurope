@@ -20,7 +20,7 @@
             <!-- Name -->
             <Label x:Name="newName" FontFamily="Maiandra GD" FontWeight="Bold" FontSize="21" Content="Enter name: *" Margin="2,90,690,328"/>
             <Border x:Name="errorName" Background="#FFDA3636" Padding="1" Margin="181,93,410,322" />
-            <TextBox x:Name="newrestName" MaxLength="20" FontSize="18" Margin="183,95,412,325" Background="White" OpacityMask="#FFB05555"/>
+            <TextBox x:Name="newrestName" MaxLength="20" FontSize="18" Margin="183,95,412,325" Background="White" OpacityMask="#FFB05555" TextChanged="newrestName_TextChanged"/>
 
             <!-- Country -->
             <Label x:Name="newContry" FontFamily="Maiandra GD" FontWeight="Bold" FontSize="20" Content="Choose country: *" Margin="2,137,670,276"/>

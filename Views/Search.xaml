@@ -40,7 +40,7 @@
                     <TextBlock Text="Enter rest name" FontSize="16" Margin="0,0,214,0"/>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Width="295">
-                            <TextBox x:Name="name" FontSize="14" Margin="0,0,0.2,0" Height="23" />
+                            <TextBox x:Name="name" FontSize="14" Margin="0,0,0.2,0" Height="23" TextChanged="name_TextChanged"/>
                         </StackPanel>
                         <StackPanel Width="33">
                             <Button x:Name="searchName" Click="SearchName_Click" Height="24" Margin="6,0,-0.2,0" Background="#FFDCAE75" >
@@ -267,7 +267,7 @@
             </ScrollViewer>
             <Label x:Name="noRest" Foreground="Black" Content="There are no restaurants in this filters.&#xA;  Click on 'Clear' and try new search!" FontSize="20" Grid.ColumnSpan="3" Margin="112,19.8,42.8,0.4" Grid.Column="2" Grid.Row="1" Background="#FFFAE2AE" IsEnabled="False" HorizontalContentAlignment="Center" />
 
-            <Button x:Name="moreRests" Content="Load more" FontSize="20" Click="moreRests_Click" Margin="134,50.2,74.8,12" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" >
+            <Button x:Name="moreRests" Content="Load more" FontSize="20" Click="moreRests_Click" Margin="16.2,50.2,11.8,12" Grid.Row="4" Grid.Column="3" >
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>

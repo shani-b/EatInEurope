@@ -73,6 +73,13 @@ namespace EatInEurope.ViewModels
             }
         }
 
-
+        public bool VM_IsAddRest
+        {
+            get { return model.IsAddRest; }
+            set
+            {
+                model.IsAddRest = value;
+            }
+        }
     }
 }

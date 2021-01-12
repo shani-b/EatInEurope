@@ -105,5 +105,13 @@ namespace EatInEurope.Views
             restdetails.Show();
             this.Close();
         }
+
+        private void reviewText_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!reviewText.Text.Equals(""))
+            {
+                errorReview.Visibility = Visibility.Collapsed;
+            }
+        }
     }
 }
